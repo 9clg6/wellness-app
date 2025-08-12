@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 import 'package:starter_kit/core/providers/core/services/happen_action.service.provider.dart';
+import 'package:starter_kit/core/providers/core/services/navigation.service.provider.dart';
+import 'package:starter_kit/core/providers/foundation/services/navigation.service.dart';
 import 'package:starter_kit/core/providers/presentation/router.provider.dart';
 import 'package:starter_kit/core/utils/debouncer.util.dart';
-import 'package:starter_kit/domain/entities/happen_action.entity.dart';
-import 'package:starter_kit/foundation/routing/app_router.dart';
 import 'package:starter_kit/presentation/screens/home/home.state.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
@@ -20,6 +20,8 @@ class HomeViewModel extends _$HomeViewModel {
 
   /// page controller
   final TextEditingController happenController = TextEditingController();
+
+  late final NavigationService _navigationService;
 
   /// Because controller
   final TextEditingController becauseController = TextEditingController();
@@ -42,16 +44,14 @@ class HomeViewModel extends _$HomeViewModel {
   /// Flower key
   final GlobalKey flowerKey = GlobalKey();
 
-  /// Happen action entries are now managed by HappenActionService
-  List<HappenActionEntity> get happenActionMap =>
-      ref.read(happenActionServiceProvider).entries;
-
   // TODO(clement): persistence
   /// Streak days (simple placeholder without persistence)
   int streakDays = 1;
 
   @override
   HomeState build() {
+    _navigationService = ref.watch(navigationServiceProvider);
+
     listenSelf((HomeState? prev, HomeState next) {
       final bool wasShown = prev?.showSecondField ?? false;
       if (!wasShown && next.showSecondField) {
@@ -182,6 +182,11 @@ class HomeViewModel extends _$HomeViewModel {
 
   /// Trigger full completed
   void triggerFullCompleted() {
-    ref.read(routerProvider).push(const ReviewRoute());
+    ref.watch(navigationServiceProvider).navigateToReview();
+  }
+
+  /// Navigate to daily journey
+  void navigateToDailyJourney() {
+    _navigationService.navigateToDailyJourney();
   }
 }

@@ -43,6 +43,22 @@ class HomeRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [RealHomeScreen]
+class RealHomeRoute extends PageRouteInfo<void> {
+  const RealHomeRoute({List<PageRouteInfo>? children})
+    : super(RealHomeRoute.name, initialChildren: children);
+
+  static const String name = 'RealHomeRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const RealHomeScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [ReviewScreen]
 class ReviewRoute extends PageRouteInfo<void> {
   const ReviewRoute({List<PageRouteInfo>? children})
