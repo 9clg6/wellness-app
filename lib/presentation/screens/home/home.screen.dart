@@ -142,7 +142,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                               boxShadow: <BoxShadow>[
                                 if (_expandController.value < 1)
                                   BoxShadow(
-                                    color: Colors.black.withValues(alpha: 0.1),
+                                    color: Colors.black.withValues(alpha: 0.15),
                                     blurRadius: 16,
                                     spreadRadius: 1,
                                   ),
@@ -430,10 +430,13 @@ class _MainCardArea extends ConsumerWidget {
                   children: <Widget>[
                     const Gap(22),
                     ContinueButtonCard(
-                      onTap: onTapContinue,
+                       onTap: onTapContinue,
+                       key: viewModel.flowerKey,
                     ),
+                    const Gap(16),
                     ContinueButtonCard(
                       title: 'Test',
+                      key: const ValueKey<String>('full-completed-button'),
                       onTap: viewModel.triggerFullCompleted,
                     ),
                   ],

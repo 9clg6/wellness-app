@@ -18,13 +18,12 @@ class ReviewCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: Colors.black.withValues(alpha: 0.08)),
+        border: Border.all(color: Colors.black.withValues(alpha: 0.1)),
         boxShadow: <BoxShadow>[
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.08),
+            color: Colors.black.withValues(alpha: 0.15),
             blurRadius: 16,
             spreadRadius: 1,
-            offset: const Offset(0, 6),
           ),
         ],
       ),

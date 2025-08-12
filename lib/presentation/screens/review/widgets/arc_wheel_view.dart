@@ -106,13 +106,14 @@ class _ReviewArcWheelState extends State<ReviewArcWheel> {
                         child: OverflowBox(
                           maxWidth: constraints.maxWidth * 1.1,
                           child: SizedBox(
-                            height: widget.itemHeight * 1.5,
                             width: constraints.maxWidth * 0.91,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8,
+                            child: IntrinsicHeight(
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 4,
+                                ),
+                                child: ReviewCard(entry: entries[index]),
                               ),
-                              child: ReviewCard(entry: entries[index]),
                             ),
                           ),
                         ),

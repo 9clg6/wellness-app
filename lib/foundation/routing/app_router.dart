@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:starter_kit/core/providers/core/services/user.service.provider.dart';
 import 'package:starter_kit/presentation/screens/authentication/authentication.screen.dart';
 import 'package:starter_kit/presentation/screens/home/home.screen.dart';
+import 'package:starter_kit/presentation/screens/real_home/real_home.screen.dart';
 import 'package:starter_kit/presentation/screens/review/review.screen.dart';
 
 part 'app_router.gr.dart';
@@ -21,6 +22,7 @@ class AppRouter extends RootStackRouter {
       initial: true,
       guards: <AutoRouteGuard>[AuthGuard()],
     ),
+    AutoRoute(page: RealHomeRoute.page),
     AutoRoute(page: ReviewRoute.page),
   ];
 }

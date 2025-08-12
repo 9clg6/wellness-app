@@ -37,7 +37,8 @@ class CodegenLoader extends AssetLoader{
   "reviewScreenTitle": "Revue du jour",
   "reviewScreenStreak": "Streak: {days} jours",
   "reviewScreenNoEntries": "Aucune entrée pour aujourd'hui",
-  "continueBtn": "Continuer 🌻"
+  "continueBtn": "Continuer 🌻",
+  "reviewScreenTitle2": "😍 Félicitation ! Vous avez réussi à trouver 3 événements positifs aujourd'hui ! 😍\n\nPassez les en revue !"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"fr": _fr};
 }

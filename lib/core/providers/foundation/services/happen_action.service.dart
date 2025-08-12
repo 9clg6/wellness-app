@@ -2,8 +2,22 @@ import 'package:starter_kit/domain/entities/happen_action.entity.dart';
 
 /// Service pour gérer les entrées du jour et la streak
 class HappenActionService {
+  /// Constructor
+  HappenActionService() {
+    _entries = List<HappenActionEntity>.from(
+      List<HappenActionEntity>.generate(
+        3,
+        (int index) => HappenActionEntity(
+          happen: 'Test $index',
+          action: 'Test $index',
+          date: DateTime.now(),
+        ),
+      ),
+    );
+  }
+
   /// Entrées du jour (en mémoire)
-  final List<HappenActionEntity> _entries = <HappenActionEntity>[];
+  late final List<HappenActionEntity> _entries;
 
   /// Streak de jours (en mémoire)
   int _streakDays = 1;
@@ -17,7 +31,9 @@ class HappenActionService {
 
   /// Ajoute une entrée
   void addEntry({required String happen, required String action}) {
-    _entries.add(HappenActionEntity(happen: happen, action: action));
+    _entries.add(
+      HappenActionEntity(happen: happen, action: action, date: DateTime.now()),
+    );
   }
 
   /// Vide les entrées du jour

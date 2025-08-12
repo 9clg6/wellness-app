@@ -32,4 +32,27 @@ class NavigationService {
   void pop() {
     _appRouter.maybePop();
   }
+
+  /// Navigate to real home
+  void navigateToRealHome({bool replace = false}) {
+    if (replace) {
+      _appRouter.replace(const RealHomeRoute());
+    } else {
+      _appRouter.push(const RealHomeRoute());
+    }
+  }
+
+  /// Navigate to review
+  void navigateToReview({bool replace = false}) {
+    if (replace) {
+      _appRouter.replace(const ReviewRoute());
+    } else {
+      _appRouter.push(const ReviewRoute());
+    }
+  }
+
+  /// Navigate to daily journey
+  void navigateToDailyJourney() {
+    _appRouter.push(const HomeRoute());
+  }
 }
