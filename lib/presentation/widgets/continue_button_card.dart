@@ -26,8 +26,12 @@ class ContinueButtonCard extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(32),
-          boxShadow: const <BoxShadow>[
-            BoxShadow(blurRadius: 16, spreadRadius: 1),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              blurRadius: 16,
+              spreadRadius: 1,
+              color: Colors.black.withAlpha(20),
+            ),
           ],
         ),
         child: Text(

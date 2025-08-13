@@ -19,8 +19,11 @@
   "reviewCardTitle": "La chose positive qui m'est arrivé",
   "reviewCardSubtitle": "Ce que j'ai fais pour que cela ait lieu",
   "reviewScreenTitle": "Revue du jour",
-  "reviewScreenStreak": "Streak: {days} jours",
+  "reviewScreenStreak": "{} jours positifs d'affilé ! 🥹",
   "reviewScreenNoEntries": "Aucune entrée pour aujourd'hui",
   "continueBtn": "Continuer 🌻",
-  "reviewScreenTitle2": "😍 Félicitation ! Vous avez réussi à trouver 3 événements positifs aujourd'hui ! 😍\n\nPassez les en revue !"
+  "reviewScreenTitle2": "😍 Félicitation ! Vous avez réussi à trouver 3 événements positifs aujourd'hui ! 😍\n\nPassez les en revue !",
+  "reviewScreenTitle3": "☀️ Rends ta journée plus belle ☀️",
+  "reviewScreenTitle4": "Notes 3 choses qui t'ont marquées aujourd'hui",
+  "hello": "Bonjour"
 }
