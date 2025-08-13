@@ -9,7 +9,7 @@ import 'package:starter_kit/foundation/routing/app_router.dart';
 import 'package:starter_kit/presentation/screens/home/home.state.dart';
 import 'package:starter_kit/presentation/screens/home/home.view_model.dart';
 import 'package:starter_kit/presentation/screens/home/widgets/cards_stack_indicator.dart';
-import 'package:starter_kit/presentation/screens/home/widgets/continue_button_card.dart';
+import 'package:starter_kit/presentation/widgets/continue_button_card.dart';
 import 'package:starter_kit/presentation/screens/home/widgets/entry_card.dart';
 import 'package:starter_kit/presentation/widgets/custom_button.dart';
 import 'package:starter_kit/presentation/widgets/form_input.dart';

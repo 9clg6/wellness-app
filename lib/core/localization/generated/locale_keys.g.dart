@@ -27,5 +27,8 @@ abstract class  LocaleKeys {
   static const reviewScreenNoEntries = 'reviewScreenNoEntries';
   static const continueBtn = 'continueBtn';
   static const reviewScreenTitle2 = 'reviewScreenTitle2';
+  static const reviewScreenTitle3 = 'reviewScreenTitle3';
+  static const reviewScreenTitle4 = 'reviewScreenTitle4';
+  static const hello = 'hello';
 
 }
