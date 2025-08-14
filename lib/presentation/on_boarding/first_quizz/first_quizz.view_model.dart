@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:starter_kit/domain/entities/onboarding_answers.dart';
 import 'package:starter_kit/presentation/on_boarding/first_quizz/first_quizz.state.dart';
-import 'package:starter_kit/presentation/on_boarding/models/onboarding_answers.dart';
 import 'package:starter_kit/presentation/on_boarding/on_boarding.view_model.dart';
 
 part 'first_quizz.view_model.g.dart';
 
-/// On boarding view model
+/// First quizz view model
 @riverpod
 class FirstQuizzViewModel extends _$FirstQuizzViewModel {
   @override
@@ -24,57 +24,57 @@ class FirstQuizzViewModel extends _$FirstQuizzViewModel {
     );
   }
 
-  /// Q1 - Fréquence
+  /// Q1 - Frequency
   void selectFrequency(int index) {
-    state = state.copyWith(
-      answers: state.answers.copyWith(frequencyIndex: index),
+    _selectWithDelay(
+      index,
+      () => state.answers.copyWith(frequencyIndex: index),
     );
-    nextStep();
   }
 
-  /// Q2 - Découverte
+  /// Q2 - Discovery source
   void selectDiscoverySource(int index) {
-    state = state.copyWith(
-      answers: state.answers.copyWith(discoverySourceIndex: index),
+    _selectWithDelay(
+      index,
+      () => state.answers.copyWith(discoverySourceIndex: index),
     );
-    nextStep();
   }
 
-  /// Q3 - Thème préféré
+  /// Q3 - Favorite theme
   void selectFavoriteTheme(int index) {
-    state = state.copyWith(
-      answers: state.answers.copyWith(favoriteThemeIndex: index),
+    _selectWithDelay(
+      index,
+      () => state.answers.copyWith(favoriteThemeIndex: index),
     );
-    nextStep();
   }
 
-  /// Q4 - Ancienneté de la pratique
+  /// Q4 - Practice duration
   void selectPracticeDuration(int index) {
-    state = state.copyWith(
-      answers: state.answers.copyWith(practiceDurationIndex: index),
+    _selectWithDelay(
+      index,
+      () => state.answers.copyWith(practiceDurationIndex: index),
     );
-    nextStep();
   }
 
-  /// Q5 - Sérénité (1..5)
+  /// Q5 - Serenity (1..5)
   void selectSerenityScore(int score) {
-    state = state.copyWith(
-      answers: state.answers.copyWith(serenityScore: score),
+    _selectWithDelay(
+      score - 1,
+      () => state.answers.copyWith(serenityScore: score),
     );
-    nextStep();
   }
 
-  /// Q6 - Identité (prénom + âge)
+  /// Q6 - Identity (name + age)
   void setTempName(String value) {
     state = state.copyWith(tempName: value);
   }
 
-  /// Q6 - Identité (prénom + âge)
+  /// Q6 - Identity (name + age)
   void setTempAge(String value) {
     state = state.copyWith(tempAge: value);
   }
 
-  /// Finalise l'identité et renvoie les réponses si valides
+  /// Finalize the identity and return the answers if valid
   OnboardingAnswers? finalizeIdentity() {
     final String? name = state.tempName?.trim();
     final int? age = int.tryParse((state.tempAge ?? '').trim());
@@ -86,16 +86,25 @@ class FirstQuizzViewModel extends _$FirstQuizzViewModel {
       age: age,
     );
     state = state.copyWith(answers: updated, isCompleted: true);
-    // Remonter les réponses au ViewModel parent
-    // L'UI se contente d'écouter isCompleted et d'appeler onEnd
-    // ignore: invalid_use_of_internal_member
-    ref.read(onBoardingViewModelProvider.notifier).setAnswers(updated);
+    ref.read(onBoardingViewModelProvider.notifier).answers = updated;
     return updated;
   }
 
-  /// Appelé par l'UI, déclenche la finalisation et retourne succès/échec
+  /// Complete the quizz
   bool completeQuizz() {
     final OnboardingAnswers? answers = finalizeIdentity();
     return answers != null;
+  }
+
+  /// Sélection avec feedback UI (icone) puis avance après ~500ms
+  void _selectWithDelay(
+    int uiSelectedIndex,
+    OnboardingAnswers Function() build,
+  ) {
+    state = state.copyWith(selectedResponseIndex: uiSelectedIndex);
+    Future<void>.delayed(const Duration(milliseconds: 500), () {
+      state = state.copyWith(answers: build());
+      nextStep();
+    });
   }
 }

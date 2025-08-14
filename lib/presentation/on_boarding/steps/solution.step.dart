@@ -1,10 +1,13 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 import 'package:starter_kit/presentation/on_boarding/on_boarding.view_model.dart';
 import 'package:starter_kit/presentation/widgets/continue_button_card.dart';
 
 /// Étape de présentation de la solution
 class SolutionStep extends ConsumerStatefulWidget {
+  /// Constructor
   const SolutionStep({super.key});
 
   @override
@@ -15,12 +18,12 @@ class _SolutionStepState extends ConsumerState<SolutionStep> {
   final PageController _controller = PageController();
   int _index = 0;
 
-  static const List<String> _texts = <String>[
-    'Facilité : 3 minutes par jour, n’importe où.',
-    'Interface apaisante : claire et simple.',
-    'Historique & souvenirs : revois tes moments positifs.',
-    'Statistiques & progression : vois tes jours consécutifs.',
-    'Bonus premium : bilans mensuels + suggestions IA personnalisées.',
+  late final List<String> _texts = <String>[
+    LocaleKeys.onboarding_solution_1.tr(),
+    LocaleKeys.onboarding_solution_2.tr(),
+    LocaleKeys.onboarding_solution_3.tr(),
+    LocaleKeys.onboarding_solution_4.tr(),
+    LocaleKeys.onboarding_solution_5.tr(),
   ];
 
   void _next() {
@@ -65,7 +68,10 @@ class _SolutionStepState extends ConsumerState<SolutionStep> {
         ),
         Padding(
           padding: const EdgeInsets.only(bottom: 24),
-          child: ContinueButtonCard(onTap: _next, title: 'Suivant'),
+          child: ContinueButtonCard(
+            onTap: _next,
+            title: LocaleKeys.common_next.tr(),
+          ),
         ),
       ],
     );

@@ -7,9 +7,9 @@ part of 'first_quizz.view_model.dart';
 // **************************************************************************
 
 String _$firstQuizzViewModelHash() =>
-    r'fcb9d531556a2f722d59687cf9cc511de380918a';
+    r'fed2e0b440515212519049d47c99a0b31ec57386';
 
-/// On boarding view model
+/// First quizz view model
 ///
 /// Copied from [FirstQuizzViewModel].
 @ProviderFor(FirstQuizzViewModel)

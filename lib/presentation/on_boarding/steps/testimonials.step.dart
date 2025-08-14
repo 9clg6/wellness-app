@@ -1,11 +1,14 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 import 'package:starter_kit/presentation/on_boarding/on_boarding.view_model.dart';
 import 'package:starter_kit/presentation/widgets/continue_button_card.dart';
 
 /// Étape témoignages
 class TestimonialsStep extends ConsumerWidget {
+  /// Constructor
   const TestimonialsStep({super.key});
 
   @override
@@ -14,8 +17,8 @@ class TestimonialsStep extends ConsumerWidget {
       onBoardingViewModelProvider.notifier,
     );
     final List<String> testimonials = <String>[
-      '“En un mois, j’ai retrouvé une énergie positive que je pensais perdue.”',
-      '“3 minutes par jour, et je dors mieux.”',
+      LocaleKeys.onboarding_testimonial_1.tr(),
+      LocaleKeys.onboarding_testimonial_2.tr(),
     ];
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -33,7 +36,10 @@ class TestimonialsStep extends ConsumerWidget {
             ),
           ),
           const Gap(24),
-          ContinueButtonCard(onTap: viewModel.nextStep, title: 'Continuer'),
+          ContinueButtonCard(
+            onTap: viewModel.nextStep,
+            title: LocaleKeys.continueBtn.tr(),
+          ),
         ],
       ),
     );
