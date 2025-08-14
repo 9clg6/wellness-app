@@ -1,6 +1,6 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
-import 'package:starter_kit/presentation/on_boarding/models/onboarding_answers.dart';
+import 'package:starter_kit/domain/entities/onboarding_answers.dart';
 
 part 'first_quizz.state.g.dart';
 
@@ -14,6 +14,7 @@ final class FirstQuizzState with EquatableMixin {
     this.tempName,
     this.tempAge,
     this.isCompleted = false,
+    this.selectedResponseIndex,
   });
 
   /// Initial state
@@ -37,6 +38,9 @@ final class FirstQuizzState with EquatableMixin {
   /// Le quiz est complété
   final bool isCompleted;
 
+  /// Index sélectionné pour la question en cours (pour l'UI)
+  final int? selectedResponseIndex;
+
   @override
   List<Object?> get props => <Object?>[
     currentIndex,
@@ -44,5 +48,6 @@ final class FirstQuizzState with EquatableMixin {
     tempName,
     tempAge,
     isCompleted,
+    selectedResponseIndex,
   ];
 }

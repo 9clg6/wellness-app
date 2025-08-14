@@ -17,6 +17,8 @@ abstract class _$FirstQuizzStateCWProxy {
 
   FirstQuizzState isCompleted(bool isCompleted);
 
+  FirstQuizzState selectedResponseIndex(int? selectedResponseIndex);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `FirstQuizzState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -29,6 +31,7 @@ abstract class _$FirstQuizzStateCWProxy {
     String? tempName,
     String? tempAge,
     bool isCompleted,
+    int? selectedResponseIndex,
   });
 }
 
@@ -56,6 +59,10 @@ class _$FirstQuizzStateCWProxyImpl implements _$FirstQuizzStateCWProxy {
       this(isCompleted: isCompleted);
 
   @override
+  FirstQuizzState selectedResponseIndex(int? selectedResponseIndex) =>
+      this(selectedResponseIndex: selectedResponseIndex);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `FirstQuizzState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -68,6 +75,7 @@ class _$FirstQuizzStateCWProxyImpl implements _$FirstQuizzStateCWProxy {
     Object? tempName = const $CopyWithPlaceholder(),
     Object? tempAge = const $CopyWithPlaceholder(),
     Object? isCompleted = const $CopyWithPlaceholder(),
+    Object? selectedResponseIndex = const $CopyWithPlaceholder(),
   }) {
     return FirstQuizzState(
       currentIndex: currentIndex == const $CopyWithPlaceholder()
@@ -90,6 +98,11 @@ class _$FirstQuizzStateCWProxyImpl implements _$FirstQuizzStateCWProxy {
           ? _value.isCompleted
           // ignore: cast_nullable_to_non_nullable
           : isCompleted as bool,
+      selectedResponseIndex:
+          selectedResponseIndex == const $CopyWithPlaceholder()
+          ? _value.selectedResponseIndex
+          // ignore: cast_nullable_to_non_nullable
+          : selectedResponseIndex as int?,
     );
   }
 }

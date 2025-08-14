@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:starter_kit/presentation/on_boarding/models/onboarding_answers.dart';
+import 'package:starter_kit/domain/entities/onboarding_answers.dart';
 import 'package:starter_kit/presentation/on_boarding/on_boarding.state.dart';
 
 part 'on_boarding.view_model.g.dart';
@@ -17,10 +17,10 @@ class OnBoardingViewModel extends _$OnBoardingViewModel {
   OnboardingAnswers? _answers;
 
   /// Réponses collectées
-  OnboardingAnswers? get answers => _answers;
+  OnboardingAnswers get answers => _answers ?? const OnboardingAnswers();
 
   /// Setter des réponses
-  void setAnswers(OnboardingAnswers answers) {
+  set answers(OnboardingAnswers answers) {
     _answers = answers;
   }
 
