@@ -5,7 +5,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:mesh_gradient/mesh_gradient.dart';
 import 'package:starter_kit/core/extensions/string.extension.dart';
+import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 import 'package:starter_kit/presentation/screens/real_home/real_home.view_model.dart';
+import 'package:starter_kit/presentation/widgets/tappable_componenent.dart';
 
 /// Real home screen
 @RoutePage()
@@ -23,9 +25,6 @@ class _RealHomeScreenState extends ConsumerState<RealHomeScreen>
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
-    final RealHomeViewModel viewModel = ref.watch(
-      realHomeViewModelProvider.notifier,
-    );
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -55,7 +54,7 @@ class _RealHomeScreenState extends ConsumerState<RealHomeScreen>
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  'Bonjour,',
+                  LocaleKeys.hello.tr(),
                   style: textTheme.bodyMedium?.copyWith(
                     fontSize: 16,
                     color: Colors.black,
@@ -107,134 +106,259 @@ class _RealHomeScreenState extends ConsumerState<RealHomeScreen>
           ),
           Center(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 28),
+              padding: const EdgeInsets.only(left: 16, right: 16, top: 28),
               child: ListView(
                 children: <Widget>[
-                  Builder(
-                    builder: (BuildContext context) {
-                      final DateTime today = DateTime.now();
-                      final int weekDay = today.weekday;
-                      final DateTime firstDayOfWeek = today.subtract(
-                        Duration(days: weekDay),
-                      );
-
-                      return Container(
-                        padding: const EdgeInsets.symmetric(vertical: 4),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          color: Colors.white,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: List<Widget>.generate(7, (int index) {
-                            final bool isThisDayCurrent = index == weekDay;
-                            final DateTime currentDay = firstDayOfWeek.add(
-                              Duration(days: index),
-                            );
-                            final bool isSomethingHappened = viewModel
-                                .isSomethingHappenedThisDay(date: currentDay);
-
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 4),
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: <Widget>[
-                                  if (isSomethingHappened)
-                                    const Icon(
-                                      Icons.local_fire_department_rounded,
-                                      color: Colors.green,
-                                    ),
-                                  const Gap(2),
-                                  Container(
-                                    padding: const EdgeInsets.symmetric(
-                                      horizontal: 12,
-                                      vertical: 12,
-                                    ),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(16),
-                                      color: isThisDayCurrent
-                                          ? Colors.black
-                                          : Colors.white,
-                                    ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: <Widget>[
-                                        Text(
-                                          DateFormat(
-                                            'EEE',
-                                          ).format(currentDay).capitalize,
-                                          style: TextStyle(
-                                            color: isThisDayCurrent
-                                                ? Colors.white
-                                                : Colors.black,
-                                            fontSize: 12,
-                                          ),
-                                        ),
-                                        Text(
-                                          firstDayOfWeek
-                                              .add(Duration(days: index))
-                                              .day
-                                              .toString(),
-                                          style: TextStyle(
-                                            color: isThisDayCurrent
-                                                ? Colors.white
-                                                : Colors.black,
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          }),
-                        ),
-                      );
-                    },
-                  ),
+                  _BigContainerStreak(),
                   const Gap(16),
-                  IntrinsicHeight(
-                    child: Container(
-                      padding: const EdgeInsets.all(16),
+                  _RowContainerStreak(),
+                  _MainActionBtn(),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _MainActionBtn extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final RealHomeViewModel viewModel = ref.watch(
+      realHomeViewModelProvider.notifier,
+    );
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 32),
+      child: IntrinsicHeight(
+        child: TappableComponent(
+          color: Colors.pink[300]!,
+          splashColor: Colors.white.withAlpha(30),
+          onTap: viewModel.onTapAddHappenAction,
+          borderRadius: BorderRadius.circular(24),
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black.withAlpha(10)),
+              borderRadius: BorderRadius.circular(24),
+              boxShadow: <BoxShadow>[
+                BoxShadow(
+                  color: Colors.white.withAlpha(80),
+                  blurRadius: 10,
+                  spreadRadius: 1,
+                  blurStyle: BlurStyle.inner,
+                ),
+              ],
+              gradient: LinearGradient(
+                colors: <Color>[
+                  Colors.white.withAlpha(20),
+                  Colors.white.withAlpha(40),
+                  Colors.white.withAlpha(100),
+                ],
+              ),
+            ),
+            child: Column(
+              children: <Widget>[
+                Text(
+                  LocaleKeys.reviewScreenTitle3.tr(),
+                  style: textTheme.bodyMedium?.copyWith(
+                    fontSize: 18,
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Text(
+                  LocaleKeys.reviewScreenTitle4.tr(),
+                  style: textTheme.bodyMedium?.copyWith(
+                    fontSize: 14,
+                    color: Colors.white.withAlpha(200),
+                    fontWeight: FontWeight.w500,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _RowContainerStreak extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final RealHomeViewModel viewModel = ref.watch(
+      realHomeViewModelProvider.notifier,
+    );
+
+    return Builder(
+      builder: (BuildContext context) {
+        final DateTime today = DateTime.now();
+        final int weekDay = today.weekday;
+        final DateTime firstDayOfWeek = today.subtract(Duration(days: weekDay));
+
+        return Container(
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            color: Colors.white,
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: List<Widget>.generate(7, (int index) {
+              final bool isThisDayCurrent = index == weekDay;
+              final DateTime currentDay = firstDayOfWeek.add(
+                Duration(days: index),
+              );
+              final bool isSomethingHappened = viewModel
+                  .isSomethingHappenedThisDay(date: currentDay);
+              final bool isInStreak = viewModel.isThisDayInStreak(
+                date: currentDay,
+              );
+
+              return Padding(
+                padding: const EdgeInsets.symmetric(vertical: 4),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+
+                  children: <Widget>[
+                    if (viewModel.isThisDayInStreak(date: currentDay))
+                      const Icon(
+                        Icons.local_fire_department_rounded,
+                        color: Colors.red,
+                        size: 22,
+                      )
+                    else if (isSomethingHappened)
+                      const Icon(Icons.check, color: Colors.green, size: 22)
+                    else if (isThisDayCurrent &&
+                        !isSomethingHappened &&
+                        !isInStreak)
+                      const Text('😭', style: TextStyle(fontSize: 18)),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 12,
+                      ),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
-                        border: Border.all(color: Colors.black.withAlpha(20)),
-                        color: Colors.white,
-                        boxShadow: <BoxShadow>[
-                          BoxShadow(
-                            color: Colors.black.withAlpha(50),
-                            blurRadius: 10,
-                            spreadRadius: 1,
-                          ),
-                        ],
+                        color: isThisDayCurrent ? Colors.black : Colors.white,
                       ),
                       child: Column(
+                        mainAxisSize: MainAxisSize.min,
                         children: <Widget>[
                           Text(
-                            'Rends ta journée plus belle ☀️',
-                            style: textTheme.bodyMedium?.copyWith(
-                              fontSize: 18,
-                              color: Colors.black,
-                              fontWeight: FontWeight.w600,
+                            DateFormat('EEE').format(currentDay).capitalize,
+                            style: TextStyle(
+                              color: isThisDayCurrent
+                                  ? Colors.white
+                                  : Colors.black,
+                              fontSize: 12,
                             ),
                           ),
-                          const Gap(4),
                           Text(
-                            "Notes 3 choses qui t'ont marquées aujourd'hui",
-                            style: textTheme.bodyMedium?.copyWith(
+                            firstDayOfWeek
+                                .add(Duration(days: index))
+                                .day
+                                .toString(),
+                            style: TextStyle(
+                              color: isThisDayCurrent
+                                  ? Colors.white
+                                  : Colors.black,
                               fontSize: 14,
-                              color: Colors.black.withAlpha(100),
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w600,
                             ),
-                            textAlign: TextAlign.center,
                           ),
                         ],
                       ),
                     ),
+                  ],
+                ),
+              );
+            }),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class _BigContainerStreak extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final RealHomeViewModel viewModel = ref.watch(
+      realHomeViewModelProvider.notifier,
+    );
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(16),
+        color: Colors.white70,
+        border: Border.all(color: Colors.black.withAlpha(20)),
+      ),
+      child: Column(
+        children: <Widget>[
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 6),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(22),
+              color: Colors.white,
+              boxShadow: <BoxShadow>[
+                BoxShadow(
+                  color: Colors.black.withAlpha(20),
+                  blurRadius: 10,
+                  spreadRadius: 1,
+                ),
+              ],
+            ),
+            child: Row(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: const BoxDecoration(
+                      color: Colors.white70,
+                      shape: BoxShape.circle,
+                    ),
+                    child: const Icon(
+                      Icons.local_fire_department_sharp,
+                      color: Colors.red,
+                      size: 42,
+                    ),
                   ),
-                ],
+                ),
+                Text(
+                  LocaleKeys.reviewScreenStreak.tr(
+                    args: <String>[viewModel.streakDays.toString()],
+                  ),
+                  style: textTheme.bodyMedium?.copyWith(
+                    fontSize: 18,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Gap(12),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                viewModel.buildStreakMessage(),
+                style: textTheme.bodyMedium?.copyWith(
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontWeight: FontWeight.w300,
+                ),
               ),
             ),
           ),

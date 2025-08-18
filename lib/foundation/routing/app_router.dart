@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:starter_kit/core/providers/core/services/user.service.provider.dart';
+import 'package:starter_kit/presentation/on_boarding/on_boarding.screen.dart';
 import 'package:starter_kit/presentation/screens/authentication/authentication.screen.dart';
 import 'package:starter_kit/presentation/screens/home/home.screen.dart';
 import 'package:starter_kit/presentation/screens/real_home/real_home.screen.dart';
@@ -17,13 +18,10 @@ class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => <AutoRoute>[
     AutoRoute(page: AuthenticationRoute.page),
-    AutoRoute(
-      page: HomeRoute.page,
-      initial: true,
-      guards: <AutoRouteGuard>[AuthGuard()],
-    ),
-    AutoRoute(page: RealHomeRoute.page),
+    AutoRoute(page: HomeRoute.page, guards: <AutoRouteGuard>[AuthGuard()]),
+    AutoRoute(page: RealHomeRoute.page, guards: <AutoRouteGuard>[AuthGuard()]),
     AutoRoute(page: ReviewRoute.page),
+    AutoRoute(page: OnBoardingRoute.page, initial: true),
   ];
 }
 

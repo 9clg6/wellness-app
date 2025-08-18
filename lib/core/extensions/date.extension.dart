@@ -3,7 +3,10 @@ import 'package:intl/intl.dart';
 /// Date extension
 extension DateExtension on DateTime {
   /// Date without time
-  String get dateWithoutTime => DateFormat('yyyy-MM-dd').format(this);
+  String get formatDateWithoutTime => DateFormat('yyyy-MM-dd').format(this);
+
+  /// Date without time
+  DateTime get dateWithoutTime => DateTime(year, month, day);
 
   /// Date with day name
   String get dateWithDayName => DateFormat('EEEE dd MMMM').format(this);

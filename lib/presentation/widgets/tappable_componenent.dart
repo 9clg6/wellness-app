@@ -8,6 +8,7 @@ class TappableComponent extends StatelessWidget {
     required this.onTap,
     required this.color,
     this.borderRadius,
+    this.splashColor,
     super.key,
   });
 
@@ -20,16 +21,31 @@ class TappableComponent extends StatelessWidget {
   /// The color of the component
   final Color color;
 
+  /// The splash color of the component
+  final Color? splashColor;
+
   /// The border radius of the component
   final BorderRadius? borderRadius;
 
   @override
   Widget build(BuildContext context) {
+    final BorderRadius radius = borderRadius ?? BorderRadius.circular(12);
+
     return Material(
-      color: color,
-      borderRadius: borderRadius ?? BorderRadius.circular(12),
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      child: InkWell(onTap: onTap, child: child),
+      type: MaterialType.transparency,
+      child: Ink(
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: radius,
+        ),
+        child: InkWell(
+          onTap: onTap,
+          borderRadius: radius,
+          splashColor: splashColor,
+          highlightColor: Colors.transparent,
+          child: child,
+        ),
+      ),
     );
   }
 }

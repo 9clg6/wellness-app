@@ -1,28 +1,29 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'real_home.view_model.dart';
+part of 'on_boarding.view_model.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$realHomeViewModelHash() => r'05e209e6d293876fb986c3fad59e27f53e6cf633';
+String _$onBoardingViewModelHash() =>
+    r'533f750158d5c5e2f24e6640c058a9d81040f01d';
 
-/// Real home view model
+/// On boarding view model
 ///
-/// Copied from [RealHomeViewModel].
-@ProviderFor(RealHomeViewModel)
-final realHomeViewModelProvider =
-    AutoDisposeNotifierProvider<RealHomeViewModel, RealHomeState>.internal(
-      RealHomeViewModel.new,
-      name: r'realHomeViewModelProvider',
+/// Copied from [OnBoardingViewModel].
+@ProviderFor(OnBoardingViewModel)
+final onBoardingViewModelProvider =
+    AutoDisposeNotifierProvider<OnBoardingViewModel, OnBoardingState>.internal(
+      OnBoardingViewModel.new,
+      name: r'onBoardingViewModelProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
           ? null
-          : _$realHomeViewModelHash,
+          : _$onBoardingViewModelHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
-typedef _$RealHomeViewModel = AutoDisposeNotifier<RealHomeState>;
+typedef _$OnBoardingViewModel = AutoDisposeNotifier<OnBoardingState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
