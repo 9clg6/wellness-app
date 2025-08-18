@@ -17,24 +17,52 @@ class WelcomeStep extends ConsumerWidget {
     final OnBoardingViewModel viewModel = ref.watch(
       onBoardingViewModelProvider.notifier,
     );
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Text(
-          LocaleKeys.onboarding_welcomeMessage.tr(),
-          textAlign: TextAlign.center,
-          style: textTheme.titleLarge?.copyWith(
-            fontSize: 24,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
+
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(24),
+        color: Colors.white,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          RichText(
+            textAlign: TextAlign.center,
+            text: TextSpan(
+              children: <TextSpan>[
+                TextSpan(
+                  text: LocaleKeys.onboarding_welcomeMessage.tr(),
+                  style: textTheme.titleLarge?.copyWith(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w300,
+                    color: Colors.black,
+                  ),
+                ),
+                TextSpan(
+                  text: LocaleKeys.onboarding_welcomeMessage2.tr(),
+                  style: textTheme.titleLarge?.copyWith(
+                    fontSize: 24,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.pink,
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        const Gap(16),
-        ContinueButtonCard(
-          onTap: viewModel.nextStep,
-          title: LocaleKeys.onboarding_getStarted.tr(),
-        ),
-      ],
+          const Gap(32),
+          ContinueButtonCard(
+            onTap: viewModel.nextStep,
+            title: LocaleKeys.onboarding_getStarted.tr(),
+            width: double.infinity,
+
+            color: Colors.pink,
+            textColor: Colors.white,
+            fontWeight: FontWeight.w600,
+            fontSize: 18,
+          ),
+        ],
+      ),
     );
   }
 }

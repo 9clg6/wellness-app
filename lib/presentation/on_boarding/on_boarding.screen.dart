@@ -35,29 +35,23 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Center(
-          child: PageView(
-            controller: viewModel.pageController,
-            physics: const NeverScrollableScrollPhysics(),
-            children: <Widget>[
-              const WelcomeStep(),
-              FirstPersonalEngagementQuiz(
-                onEnd: () {
-                  ref.read(onBoardingViewModelProvider.notifier).nextStep();
-                },
-              ),
-              const CalculationStep(),
-              const MiniDiagnosticStep(),
-              const EducationStep(),
-              const SolutionStep(),
-              const TestimonialsStep(),
-              const GoalsStep(),
-              const PreActivationStep(),
-              const PaywallStep(),
-              const PostPaywallStep(),
-            ],
-          ),
+      body: Center(
+        child: PageView(
+          controller: viewModel.pageController,
+          physics: const NeverScrollableScrollPhysics(),
+          children: <Widget>[
+            const WelcomeStep(),
+            FirstPersonalEngagementQuiz(onEnd: viewModel.nextStep),
+            const CalculationStep(),
+            const MiniDiagnosticStep(),
+            const EducationStep(),
+            const SolutionStep(),
+            const TestimonialsStep(),
+            const GoalsStep(),
+            const PreActivationStep(),
+            const PaywallStep(),
+            const PostPaywallStep(),
+          ],
         ),
       ),
     );
