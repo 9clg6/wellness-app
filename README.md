@@ -127,8 +127,7 @@ fvm dart run easy_localization:generate \
 ## 🛠️ Getting Started
 
 ### **Prerequisites**
-- Flutter 3.8.0 or higher
-- Dart 3.0.0 or higher
+- Flutter 3.32.0
 - FVM (Flutter Version Manager) for consistent Flutter versions
 
 ### **Installation**
@@ -139,7 +138,7 @@ cd motivation-app
 
 # Install FVM and Flutter
 fvm install
-fvm use stable
+fvm use
 
 # Install dependencies
 fvm flutter pub get
