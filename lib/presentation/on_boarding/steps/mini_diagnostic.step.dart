@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 import 'package:starter_kit/presentation/on_boarding/on_boarding.view_model.dart';
 import 'package:starter_kit/presentation/widgets/continue_button_card.dart';
+import 'package:starter_kit/presentation/widgets/gradient_background.dart';
 
 /// Étape mini-diagnostic positif
 class MiniDiagnosticStep extends ConsumerWidget {
@@ -19,22 +20,30 @@ class MiniDiagnosticStep extends ConsumerWidget {
     final OnBoardingViewModel viewModel = ref.watch(
       onBoardingViewModelProvider.notifier,
     );
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 24),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text(
-            LocaleKeys.onboarding_miniDiagnostic.tr(args: <String>[name]),
-            textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 18, color: Colors.black),
-          ),
-          const Gap(24),
-          ContinueButtonCard(
-            onTap: viewModel.nextStep,
-            title: LocaleKeys.continueBtn.tr(),
-          ),
-        ],
+    return GradientBackground(
+      stackKey: GlobalKey<ScaffoldState>(),
+      opacity: 0.3,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 24),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              LocaleKeys.onboarding_miniDiagnostic.tr(args: <String>[name]),
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 18,
+                color: Colors.black,
+                fontWeight: FontWeight.w300,
+              ),
+            ),
+            const Gap(24),
+            ContinueButtonCard(
+              onTap: viewModel.nextStep,
+              title: 'Super ! 🌼',
+            ),
+          ],
+        ),
       ),
     );
   }

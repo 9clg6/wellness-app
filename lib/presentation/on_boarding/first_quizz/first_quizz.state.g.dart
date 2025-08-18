@@ -111,4 +111,27 @@ extension $FirstQuizzStateCopyWith on FirstQuizzState {
   /// Returns a callable class that can be used as follows: `instanceOfFirstQuizzState.copyWith(...)` or like so:`instanceOfFirstQuizzState.copyWith.fieldName(...)`.
   // ignore: library_private_types_in_public_api
   _$FirstQuizzStateCWProxy get copyWith => _$FirstQuizzStateCWProxyImpl(this);
+
+  /// Copies the object with the specific fields set to `null`. If you pass `false` as a parameter, nothing will be done and it will be ignored. Don't do it. Prefer `copyWith(field: null)` or `FirstQuizzState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
+  ///
+  /// Usage
+  /// ```dart
+  /// FirstQuizzState(...).copyWithNull(firstField: true, secondField: true)
+  /// ````
+  FirstQuizzState copyWithNull({
+    bool tempName = false,
+    bool tempAge = false,
+    bool selectedResponseIndex = false,
+  }) {
+    return FirstQuizzState(
+      currentIndex: currentIndex,
+      answers: answers,
+      tempName: tempName == true ? null : this.tempName,
+      tempAge: tempAge == true ? null : this.tempAge,
+      isCompleted: isCompleted,
+      selectedResponseIndex: selectedResponseIndex == true
+          ? null
+          : this.selectedResponseIndex,
+    );
+  }
 }

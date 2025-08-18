@@ -6,13 +6,41 @@ import 'package:starter_kit/presentation/widgets/tappable_componenent.dart';
 /// Continue button card
 class ContinueButtonCard extends StatelessWidget {
   /// Constructor
-  const ContinueButtonCard({required this.onTap, this.title, super.key});
+  const ContinueButtonCard({
+    required this.onTap,
+    this.title,
+    super.key,
+    this.width,
+    this.centerTitle = true,
+    this.color = Colors.white,
+    this.textColor = Colors.black,
+    this.fontWeight = FontWeight.w300,
+    this.fontSize = 16,
+  });
 
   /// On tap
   final VoidCallback onTap;
 
   /// Title
   final String? title;
+
+  /// Width
+  final double? width;
+
+  /// Center title
+  final bool centerTitle;
+
+  /// Font size
+  final double fontSize;
+
+  /// Color
+  final Color color;
+
+  /// Text color
+  final Color textColor;
+
+  /// Font weight
+  final FontWeight fontWeight;
 
   /// Build
   @override
@@ -22,9 +50,11 @@ class ContinueButtonCard extends StatelessWidget {
       color: Colors.white,
       borderRadius: BorderRadius.circular(32),
       child: Container(
+        alignment: Alignment.center,
         padding: const EdgeInsets.all(16),
+        width: width,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: color,
           borderRadius: BorderRadius.circular(32),
           boxShadow: <BoxShadow>[
             BoxShadow(
@@ -34,13 +64,20 @@ class ContinueButtonCard extends StatelessWidget {
             ),
           ],
         ),
-        child: Text(
-          title ?? LocaleKeys.continueBtn.tr(),
-          style: const TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.w300,
-            color: Colors.black,
-          ),
+        child: Row(
+          mainAxisAlignment: centerTitle
+              ? MainAxisAlignment.center
+              : MainAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              title ?? LocaleKeys.continueBtn.tr(),
+              style: TextStyle(
+                fontSize: fontSize,
+                fontWeight: fontWeight,
+                color: textColor,
+              ),
+            ),
+          ],
         ),
       ),
     );

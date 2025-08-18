@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:starter_kit/core/extensions/date.extension.dart';
+import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 import 'package:starter_kit/core/providers/core/services/happen_action.service.provider.dart';
 import 'package:starter_kit/core/providers/core/services/navigation.service.provider.dart';
 import 'package:starter_kit/core/providers/foundation/services/happen_action.service.dart';
@@ -114,11 +116,13 @@ class RealHomeViewModel extends _$RealHomeViewModel {
   String buildStreakMessage() {
     switch (streakDays) {
       case < 3:
-        return '🪄 Vous commencerez à voir les effets positifs dans ${3 - streakDays} jours !';
+        return LocaleKeys.onboarding_streak_message_1.tr(
+          args: <String>[(3 - streakDays).toString()],
+        );
       case 3:
-        return "😍 Vous commencerez à voir les effets à partir d'aujourd'hui !";
+        return LocaleKeys.onboarding_streak_message_2.tr();
       case > 3:
-        return '😎 Adieu biais de négativité !';
+        return LocaleKeys.onboarding_streak_message_3.tr();
     }
     return '';
   }

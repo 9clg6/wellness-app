@@ -5,7 +5,7 @@ import 'package:starter_kit/domain/entities/onboarding_answers.dart';
 part 'first_quizz.state.g.dart';
 
 ///
-@CopyWith()
+@CopyWith(copyWithNull: true)
 final class FirstQuizzState with EquatableMixin {
   /// Constructor
   const FirstQuizzState({
