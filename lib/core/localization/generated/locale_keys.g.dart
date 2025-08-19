@@ -86,6 +86,8 @@ abstract class  LocaleKeys {
   static const onboarding_q6_firstName_placeholder = 'onboarding_q6_firstName_placeholder';
   static const onboarding_q6_age_placeholder = 'onboarding_q6_age_placeholder';
   static const onboarding_q6_error = 'onboarding_q6_error';
+  static const onboarding_q6_name_required = 'onboarding_q6_name_required';
+  static const onboarding_q6_age_required = 'onboarding_q6_age_required';
   static const onboarding_opt_never = 'onboarding_opt_never';
   static const onboarding_opt_sometimes = 'onboarding_opt_sometimes';
   static const onboarding_opt_often = 'onboarding_opt_often';
@@ -162,5 +164,7 @@ abstract class  LocaleKeys {
   static const onboarding_goals_button_empty = 'onboarding_goals_button_empty';
   static const onboarding_goals_button_single = 'onboarding_goals_button_single';
   static const onboarding_goals_button_multiple = 'onboarding_goals_button_multiple';
+  static const onboarding_miniDiagnostic_button = 'onboarding_miniDiagnostic_button';
+  static const onboarding_education_button = 'onboarding_education_button';
 
 }

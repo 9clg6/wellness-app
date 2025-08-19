@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 /// Material theme
 class MaterialTheme {
@@ -154,7 +155,7 @@ class MaterialTheme {
   ThemeData light() {
     final ColorScheme colorScheme = lightScheme();
     final TextTheme textTheme = _createMaterial3TextTheme(
-      ThemeData.light().textTheme,
+      GoogleFonts.robotoTextTheme(),
       colorScheme,
     );
 

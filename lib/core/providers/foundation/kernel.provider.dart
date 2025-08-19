@@ -28,6 +28,15 @@ Future<void> kernel(Ref ref) async {
   final UserService userService = await ref.watch(userServiceProvider.future);
   await userService.loadUser();
 
+  // try {
+  //   // Initialize RevenueCat for in-app purchases
+  //   final PurchaseService purchaseService = 
+  // ref.read(purchaseServiceProvider);
+  //   await purchaseService.initialize();
+  // } on Exception catch (e) {
+  //   debugPrint('RevenueCat initialization error: $e');
+  // }
+
   ref.onDispose(() {
     ref
       ..invalidate(appConfigProvider)

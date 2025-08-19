@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:starter_kit/domain/entities/goal.entity.dart';
 
@@ -54,12 +55,10 @@ class GoalCard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              // Emoji
               Text(goal.emoji, style: const TextStyle(fontSize: 32)),
               const SizedBox(height: 12),
-              // Title
               Text(
-                goal.title,
+                goal.title.tr(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 14,
@@ -68,30 +67,16 @@ class GoalCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 4),
-              // Description
               Text(
-                goal.description,
+                goal.description.tr(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 11,
-                  color: isSelected ? Colors.white70 : Colors.grey[600],
+                  color: isSelected ? Colors.white70 : Colors.grey[500],
                   fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
-              // Selection indicator
-              if (isSelected)
-                Positioned(
-                  top: 8,
-                  right: 8,
-                  child: Container(
-                    padding: const EdgeInsets.all(4),
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Icon(Icons.check, size: 16, color: goal.color),
-                  ),
-                ),
             ],
           ),
         ),

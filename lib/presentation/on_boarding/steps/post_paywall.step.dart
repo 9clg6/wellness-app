@@ -1,10 +1,9 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
-import 'package:starter_kit/foundation/routing/app_router.dart';
+import 'package:starter_kit/presentation/on_boarding/on_boarding.view_model.dart';
 import 'package:starter_kit/presentation/widgets/continue_button_card.dart';
 
 /// Étape post-paywall (ou après refus)
@@ -26,8 +25,10 @@ class PostPaywallStep extends ConsumerWidget {
           ),
           const Gap(24),
           ContinueButtonCard(
-            onTap: () {
-              context.router.replace(const RealHomeRoute());
+            onTap: () async {
+              await ref
+                  .read(onBoardingViewModelProvider.notifier)
+                  .completeOnboarding();
             },
             title: LocaleKeys.onboarding_postPaywall_enter.tr(),
           ),

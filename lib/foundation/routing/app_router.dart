@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:starter_kit/core/providers/core/services/user.service.provider.dart';
+import 'package:starter_kit/core/providers/foundation/services/user.service.dart';
 import 'package:starter_kit/presentation/on_boarding/on_boarding.screen.dart';
 import 'package:starter_kit/presentation/screens/authentication/authentication.screen.dart';
 import 'package:starter_kit/presentation/screens/home/home.screen.dart';
@@ -18,15 +19,18 @@ class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => <AutoRoute>[
     AutoRoute(page: AuthenticationRoute.page),
-    AutoRoute(page: HomeRoute.page, guards: <AutoRouteGuard>[AuthGuard()]),
-    AutoRoute(page: RealHomeRoute.page, guards: <AutoRouteGuard>[AuthGuard()]),
+    AutoRoute(
+      page: RealHomeRoute.page,
+      guards: <AutoRouteGuard>[OnboardingGuard()],
+      initial: true,
+    ),
     AutoRoute(page: ReviewRoute.page),
-    AutoRoute(page: OnBoardingRoute.page, initial: true),
+    AutoRoute(page: OnBoardingRoute.page),
   ];
 }
 
-/// Auth guard
-class AuthGuard extends AutoRouteGuard {
+/// Onboarding guard - vérifie que l'onboarding n'est pas déjà passé
+class OnboardingGuard extends AutoRouteGuard {
   @override
   Future<void> onNavigation(
     NavigationResolver resolver,
@@ -36,16 +40,16 @@ class AuthGuard extends AutoRouteGuard {
       resolver.context,
       listen: false,
     );
-    await container.read(userServiceProvider.future);
 
-    resolver.next();
+    final UserService userService = await container.read(
+      userServiceProvider.future,
+    );
 
-    // if (userService.isAuthenticated) {
-    //   debugPrint('guard - isAuthenticated');
-    //   resolver.next();
-    // } else {
-    //   debugPrint('guard - notAuthenticated');
-    //   await resolver.redirectUntil(const AuthenticationRoute());
-    // }
+    if (await userService.isOnboardingCompleted()) {
+      resolver.next();
+      return;
+    }
+
+    await resolver.redirectUntil(const OnBoardingRoute());
   }
 }

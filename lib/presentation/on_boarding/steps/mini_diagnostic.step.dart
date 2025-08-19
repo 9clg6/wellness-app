@@ -24,7 +24,7 @@ class MiniDiagnosticStep extends ConsumerWidget {
       stackKey: GlobalKey<ScaffoldState>(),
       opacity: 0.3,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
+        padding: const EdgeInsets.symmetric(horizontal: 48),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -40,7 +40,9 @@ class MiniDiagnosticStep extends ConsumerWidget {
             const Gap(24),
             ContinueButtonCard(
               onTap: viewModel.nextStep,
-              title: 'Super ! 🌼',
+              title: LocaleKeys.onboarding_miniDiagnostic_button.tr(),
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
             ),
           ],
         ),

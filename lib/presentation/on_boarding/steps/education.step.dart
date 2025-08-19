@@ -116,8 +116,10 @@ class _EducationStepState extends ConsumerState<EducationStep> {
               onTap: _next,
               color: Colors.pink[100]!,
               title: _index == _screens.length - 1
-                  ? 'Je commence 🌸'
+                  ? LocaleKeys.onboarding_education_button.tr()
                   : LocaleKeys.common_next.tr(),
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ],

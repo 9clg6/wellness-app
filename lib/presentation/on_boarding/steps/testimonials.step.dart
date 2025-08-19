@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 import 'package:starter_kit/domain/entities/testimonial.entity.dart';
 import 'package:starter_kit/presentation/on_boarding/on_boarding.view_model.dart';
+import 'package:starter_kit/presentation/widgets/continue_button_card.dart';
 import 'package:starter_kit/presentation/widgets/testimonial_card.widget.dart';
 
 /// Testimonials step
@@ -76,7 +77,7 @@ class TestimonialsStep extends ConsumerWidget {
           children: <Widget>[
             // Section title
             Padding(
-              padding: const EdgeInsets.only(top: 32, bottom: 24),
+              padding: const EdgeInsets.only(top: 32, bottom: 12),
               child: Text(
                 LocaleKeys.onboarding_testimonials_title.tr(),
                 textAlign: TextAlign.center,
@@ -96,7 +97,7 @@ class TestimonialsStep extends ConsumerWidget {
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.grey[600],
-                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.w500,
                 ),
               ),
             ),
@@ -110,30 +111,13 @@ class TestimonialsStep extends ConsumerWidget {
                 },
               ),
             ),
-            // Continue button
-            Padding(
-              padding: const EdgeInsets.only(bottom: 24, top: 16),
-              child: SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: viewModel.nextStep,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.pink[400],
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  child: Text(
-                    LocaleKeys.continueBtn.tr(),
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ),
+            ContinueButtonCard(
+              onTap: viewModel.nextStep,
+              title: LocaleKeys.continueBtn.tr(),
+              color: Colors.pink[400]!,
+              textColor: Colors.white,
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
             ),
           ],
         ),

@@ -81,7 +81,7 @@ class CodegenLoader extends AssetLoader{
   "onboarding_goals_sleep": "Améliorer le sommeil",
   "onboarding_goals_confidence": "Booster la confiance",
   "onboarding_preActivation_title": "Es-tu prêt à commencer ton premier moment positif aujourd’hui ?",
-  "onboarding_preActivation_start": "Oui, je commence",
+  "onboarding_preActivation_start": "Oui, je commence 😍",
   "onboarding_paywall_title": "{}, commençons ensemble ton rituel personnalisé",
   "onboarding_paywall_annual": "Essai gratuit 7j → Abonnement annuel",
   "onboarding_paywall_monthly": "Abonnement mensuel",
@@ -98,6 +98,8 @@ class CodegenLoader extends AssetLoader{
   "onboarding_q6_firstName_placeholder": "Prénom",
   "onboarding_q6_age_placeholder": "Âge",
   "onboarding_q6_error": "Merci de renseigner un prénom et un âge valide.",
+  "onboarding_q6_name_required": "Le prénom est requis",
+  "onboarding_q6_age_required": "L'âge est requis",
   "onboarding_opt_never": "Jamais",
   "onboarding_opt_sometimes": "Parfois",
   "onboarding_opt_often": "Souvent",
@@ -113,12 +115,12 @@ class CodegenLoader extends AssetLoader{
   "onboarding_streak_message_1": "🪄 Vous commencerez à voir les effets positifs dans {} jours !",
   "onboarding_streak_message_2": "😍 Vous commencerez à voir les effets à partir d'aujourd'hui !",
   "onboarding_streak_message_3": "😎 Adieu biais de négativité !",
-  "onboarding_solution_welcome_title": "Bienvenue sur Motivation App 🌸",
+  "onboarding_solution_welcome_title": "Bienvenue sur Motivation App",
   "onboarding_solution_welcome_text": "Inspirée par des années de recherche en psychologie positive, notre mission est simple : t'aider à cultiver plus de positif chaque jour.",
   "onboarding_solution_welcome_emoji": "🌸",
   "onboarding_solution_facility_title": "Facilité : 3 minutes par jour, n'importe où.",
   "onboarding_solution_facility_text": "Interface apaisante : claire et simple.",
-  "onboarding_solution_facility_emoji": "⚡",
+  "onboarding_solution_facility_emoji": "⚡️",
   "onboarding_solution_interface_title": "Interface apaisante : claire et simple.",
   "onboarding_solution_interface_text": "Historique & souvenirs : revois tes moments positifs.",
   "onboarding_solution_interface_emoji": "🎨",
@@ -173,7 +175,9 @@ class CodegenLoader extends AssetLoader{
   "onboarding_goals_resilience_description": "\"Rebondir face aux difficultés\"",
   "onboarding_goals_button_empty": "Choisis au moins un objectif",
   "onboarding_goals_button_single": "Continuer avec {} objectif",
-  "onboarding_goals_button_multiple": "Continuer avec {} objectifs"
+  "onboarding_goals_button_multiple": "Continuer avec {} objectifs",
+  "onboarding_miniDiagnostic_button": "Super ! 🌼",
+  "onboarding_education_button": "Je commence 🌸"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"fr": _fr};
 }

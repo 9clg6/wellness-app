@@ -15,6 +15,10 @@ class FirstQuizzViewModel extends _$FirstQuizzViewModel {
   @override
   FirstQuizzState build() {
     _onboardingService = ref.watch(onboardingServiceProvider.notifier);
+
+    tempNameController.addListener(showBtnListener);
+    tempAgeController.addListener(showBtnListener);
+
     return FirstQuizzState.initial();
   }
 
@@ -120,6 +124,16 @@ class FirstQuizzViewModel extends _$FirstQuizzViewModel {
   void validateAgeAndSurname() {
     if (formKey.currentState?.validate() ?? false) {
       completeQuizz();
+    }
+  }
+
+  /// Show button listener
+  void showBtnListener() {
+    if (tempNameController.text.isNotEmpty &&
+        tempAgeController.text.isNotEmpty) {
+      state = state.copyWith(showBtn: true);
+    } else {
+      state = state.copyWith(showBtn: false);
     }
   }
 }
