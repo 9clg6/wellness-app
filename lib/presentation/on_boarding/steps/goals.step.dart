@@ -5,6 +5,7 @@ import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 import 'package:starter_kit/core/providers/core/services/onboarding.service.provider.dart';
 import 'package:starter_kit/domain/entities/goal.entity.dart';
 import 'package:starter_kit/presentation/on_boarding/on_boarding.view_model.dart';
+import 'package:starter_kit/presentation/widgets/continue_button_card.dart';
 import 'package:starter_kit/presentation/widgets/goal_card.widget.dart';
 
 /// Personalized goals step
@@ -109,7 +110,6 @@ class _GoalsStepState extends ConsumerState<GoalsStep> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            // Title
             Padding(
               padding: const EdgeInsets.only(top: 32, bottom: 16),
               child: Text(
@@ -121,7 +121,6 @@ class _GoalsStepState extends ConsumerState<GoalsStep> {
                 ),
               ),
             ),
-            // Subtitle
             Padding(
               padding: const EdgeInsets.only(bottom: 32),
               child: Text(
@@ -130,14 +129,13 @@ class _GoalsStepState extends ConsumerState<GoalsStep> {
                 style: TextStyle(fontSize: 16, color: Colors.grey[600]),
               ),
             ),
-            // Goals grid
             Expanded(
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
-                  childAspectRatio: 1.2,
+                  childAspectRatio: 1.1,
                 ),
                 itemCount: _goals.length,
                 itemBuilder: (BuildContext context, int index) {
@@ -152,42 +150,27 @@ class _GoalsStepState extends ConsumerState<GoalsStep> {
                 },
               ),
             ),
-            // Continue button
-            Padding(
-              padding: const EdgeInsets.only(bottom: 24, top: 16),
-              child: SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: _selectedGoals.isNotEmpty ? _continue : null,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: _selectedGoals.isNotEmpty
-                        ? Colors.pink[400]
-                        : Colors.grey[300],
-                    foregroundColor: _selectedGoals.isNotEmpty
-                        ? Colors.white
-                        : Colors.grey[500],
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+            ContinueButtonCard(
+              onTap: _continue,
+              title: _selectedGoals.isEmpty
+                  ? LocaleKeys.onboarding_goals_button_empty.tr()
+                  : _selectedGoals.length == 1
+                  ? LocaleKeys.onboarding_goals_button_single.tr(
+                      args: <String>[_selectedGoals.length.toString()],
+                    )
+                  : LocaleKeys.onboarding_goals_button_multiple.tr(
+                      args: <String>[_selectedGoals.length.toString()],
                     ),
-                  ),
-                  child: Text(
-                    _selectedGoals.isEmpty
-                        ? LocaleKeys.onboarding_goals_button_empty.tr()
-                        : _selectedGoals.length == 1
-                        ? LocaleKeys.onboarding_goals_button_single.tr(
-                            args: <String>[_selectedGoals.length.toString()],
-                          )
-                        : LocaleKeys.onboarding_goals_button_multiple.tr(
-                            args: <String>[_selectedGoals.length.toString()],
-                          ),
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ),
+              color: _selectedGoals.isNotEmpty
+                  ? Colors.pink[400]!
+                  : Colors.grey[300]!,
+              textColor: _selectedGoals.isNotEmpty
+                  ? Colors.white
+                  : Colors.black,
+              fontSize: 20,
+              fontWeight: _selectedGoals.isNotEmpty
+                  ? FontWeight.w700
+                  : FontWeight.w500,
             ),
           ],
         ),

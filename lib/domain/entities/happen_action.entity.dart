@@ -1,6 +1,8 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
 
+part 'happen_action.entity.g.dart';
+
 /// Happen action entity
 @CopyWith()
 final class HappenActionEntity with EquatableMixin {

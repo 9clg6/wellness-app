@@ -65,6 +65,7 @@ class ContinueButtonCard extends StatelessWidget {
           ],
         ),
         child: Row(
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: centerTitle
               ? MainAxisAlignment.center
               : MainAxisAlignment.start,

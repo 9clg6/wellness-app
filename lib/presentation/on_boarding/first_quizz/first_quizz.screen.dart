@@ -408,12 +408,12 @@ class _Q6Identity extends ConsumerWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   SizedBox(
-                    height: 48,
+                    height: 70,
                     width: double.infinity,
                     child: FormInput(
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {
-                          return 'Le prénom est requis';
+                          return LocaleKeys.onboarding_q6_name_required.tr();
                         }
                         return null;
                       },
@@ -423,7 +423,8 @@ class _Q6Identity extends ConsumerWidget {
                       minLines: null,
                       expands: true,
                       controller: viewModel.tempNameController,
-                      labelText: 'Prénom',
+                      labelText: LocaleKeys.onboarding_q6_firstName_placeholder
+                          .tr(),
                       autoValidate: false,
                       labelStyle: Theme.of(
                         context,
@@ -433,12 +434,12 @@ class _Q6Identity extends ConsumerWidget {
                   ),
                   const Gap(12),
                   SizedBox(
-                    height: 48,
+                    height: 70,
                     width: double.infinity,
                     child: FormInput(
                       validator: (String? value) {
                         if (value == null || value.isEmpty) {
-                          return "L'âge est requis";
+                          return LocaleKeys.onboarding_q6_age_required.tr();
                         }
                         return null;
                       },
@@ -448,7 +449,7 @@ class _Q6Identity extends ConsumerWidget {
                       minLines: null,
                       expands: true,
                       controller: viewModel.tempAgeController,
-                      labelText: 'Âge',
+                      labelText: LocaleKeys.onboarding_q6_age_placeholder.tr(),
                       autoValidate: false,
                       labelStyle: Theme.of(
                         context,
@@ -460,10 +461,11 @@ class _Q6Identity extends ConsumerWidget {
               ),
             ),
             const Gap(24),
-            ContinueButtonCard(
-              onTap: viewModel.validateAgeAndSurname,
-              title: LocaleKeys.continueBtn.tr(),
-            ),
+            if (ref.watch(firstQuizzViewModelProvider).showBtn)
+              ContinueButtonCard(
+                onTap: viewModel.validateAgeAndSurname,
+                title: LocaleKeys.continueBtn.tr(),
+              ),
           ],
         ),
       ),

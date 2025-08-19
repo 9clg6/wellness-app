@@ -1,7 +1,7 @@
-/// Exception thrown when a network is already set
-final class NetworkAlreadySetException implements Exception {
+/// TEMPLATE Exception thrown when a custom exception is thrown
+final class CustomException implements Exception {
   /// Constructor
-  const NetworkAlreadySetException(this.message);
+  const CustomException(this.message);
 
   /// Message
   final String message;

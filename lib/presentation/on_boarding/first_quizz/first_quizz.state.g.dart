@@ -19,6 +19,8 @@ abstract class _$FirstQuizzStateCWProxy {
 
   FirstQuizzState selectedResponseIndex(int? selectedResponseIndex);
 
+  FirstQuizzState showBtn(bool showBtn);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `FirstQuizzState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -32,6 +34,7 @@ abstract class _$FirstQuizzStateCWProxy {
     String? tempAge,
     bool isCompleted,
     int? selectedResponseIndex,
+    bool showBtn,
   });
 }
 
@@ -63,6 +66,9 @@ class _$FirstQuizzStateCWProxyImpl implements _$FirstQuizzStateCWProxy {
       this(selectedResponseIndex: selectedResponseIndex);
 
   @override
+  FirstQuizzState showBtn(bool showBtn) => this(showBtn: showBtn);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `FirstQuizzState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -76,6 +82,7 @@ class _$FirstQuizzStateCWProxyImpl implements _$FirstQuizzStateCWProxy {
     Object? tempAge = const $CopyWithPlaceholder(),
     Object? isCompleted = const $CopyWithPlaceholder(),
     Object? selectedResponseIndex = const $CopyWithPlaceholder(),
+    Object? showBtn = const $CopyWithPlaceholder(),
   }) {
     return FirstQuizzState(
       currentIndex: currentIndex == const $CopyWithPlaceholder()
@@ -103,6 +110,10 @@ class _$FirstQuizzStateCWProxyImpl implements _$FirstQuizzStateCWProxy {
           ? _value.selectedResponseIndex
           // ignore: cast_nullable_to_non_nullable
           : selectedResponseIndex as int?,
+      showBtn: showBtn == const $CopyWithPlaceholder()
+          ? _value.showBtn
+          // ignore: cast_nullable_to_non_nullable
+          : showBtn as bool,
     );
   }
 }
@@ -132,6 +143,7 @@ extension $FirstQuizzStateCopyWith on FirstQuizzState {
       selectedResponseIndex: selectedResponseIndex == true
           ? null
           : this.selectedResponseIndex,
+      showBtn: showBtn,
     );
   }
 }

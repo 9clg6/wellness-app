@@ -89,7 +89,10 @@ class CustomButton extends StatelessWidget {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(28),
             border: border
-                ? Border.all(color: borderColor ?? colorScheme.outlineVariant)
+                ? Border.all(
+                    color: borderColor ?? colorScheme.outlineVariant,
+                    width: 0.2,
+                  )
                 : null,
           ),
           padding: EdgeInsets.symmetric(horizontal: widthPadding),
