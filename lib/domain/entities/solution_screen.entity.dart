@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 /// Class to represent a solution screen
 class SolutionScreen {
   /// Constructor
@@ -7,7 +5,6 @@ class SolutionScreen {
     required this.title,
     required this.text,
     required this.emoji,
-    required this.color,
   });
 
   /// Screen title
@@ -18,7 +15,4 @@ class SolutionScreen {
 
   /// Screen emoji
   final String emoji;
-
-  /// Screen color
-  final Color color;
 }

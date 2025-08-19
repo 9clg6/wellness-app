@@ -15,6 +15,7 @@ final class FirstQuizzState with EquatableMixin {
     this.tempAge,
     this.isCompleted = false,
     this.selectedResponseIndex,
+    this.showBtn = false,
   });
 
   /// Initial state
@@ -41,6 +42,9 @@ final class FirstQuizzState with EquatableMixin {
   /// Index sélectionné pour la question en cours (pour l'UI)
   final int? selectedResponseIndex;
 
+  /// Show button
+  final bool showBtn;
+
   @override
   List<Object?> get props => <Object?>[
     currentIndex,
@@ -49,5 +53,6 @@ final class FirstQuizzState with EquatableMixin {
     tempAge,
     isCompleted,
     selectedResponseIndex,
+    showBtn,
   ];
 }

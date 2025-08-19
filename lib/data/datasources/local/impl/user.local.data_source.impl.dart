@@ -1,0 +1,55 @@
+import 'package:starter_kit/data/datasources/local/user.local.data_source.dart';
+import 'package:starter_kit/data/model/local/onboarding_answers.local.model.dart';
+import 'package:starter_kit/data/model/local/user_info.local.model.dart';
+import 'package:starter_kit/data/storages/user_preferences.storage.dart';
+
+/// User local data source impl
+final class UserLocalDatasourceImpl implements UserLocalDataSource {
+  /// Constructor
+  UserLocalDatasourceImpl({required UserPreferencesStorage userPreferences})
+    : _userPreferences = userPreferences;
+
+  final UserPreferencesStorage _userPreferences;
+
+  @override
+  Future<void> setOnBoardingAsSeen() async {
+    return _userPreferences.setOnboardingCompleted();
+  }
+
+  @override
+  Future<bool> isOnboardingCompleted() async {
+    return _userPreferences.isOnboardingCompleted();
+  }
+
+  @override
+  Future<void> setOnboardingCompleted() async {
+    return _userPreferences.setOnboardingCompleted();
+  }
+
+  @override
+  Future<void> resetOnboarding() async {
+    return _userPreferences.resetOnboarding();
+  }
+
+  @override
+  Future<void> saveOnboardingAnswers(
+    OnboardingAnswersLocalModel answers,
+  ) async {
+    return _userPreferences.saveOnboardingAnswers(answers);
+  }
+
+  @override
+  Future<OnboardingAnswersLocalModel?> getOnboardingAnswers() async {
+    return _userPreferences.getOnboardingAnswers();
+  }
+
+  @override
+  Future<void> saveUserInfo(UserInfoLocalModel userInfo) async {
+    return _userPreferences.saveUserInfo(userInfo);
+  }
+
+  @override
+  Future<UserInfoLocalModel?> getUserInfo() async {
+    return _userPreferences.getUserInfo();
+  }
+}

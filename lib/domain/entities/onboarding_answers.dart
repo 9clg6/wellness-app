@@ -19,19 +19,19 @@ class OnboardingAnswers with EquatableMixin {
   });
 
   /// Frequency index
-  final int? frequencyIndex; // 0: Jamais, 1: Parfois, 2: Souvent
+  final int? frequencyIndex;
 
   /// Discovery source index
-  final int? discoverySourceIndex; // 0: Réseau social, 1: Ami, 2: Autre
+  final int? discoverySourceIndex;
 
   /// Favorite theme index
-  final int? favoriteThemeIndex; // 0..4
+  final int? favoriteThemeIndex;
 
   /// Practice duration index
-  final int? practiceDurationIndex; // 0: Jamais, 1: <1 an, 2: >1 an
+  final int? practiceDurationIndex;
 
   /// Serenity score
-  final int? serenityScore; // 1..5
+  final int? serenityScore;
 
   /// First name
   final String? firstName;
@@ -40,7 +40,7 @@ class OnboardingAnswers with EquatableMixin {
   final int? age;
 
   /// Goal index
-  final int? goalIndex; // 0..n
+  final int? goalIndex;
 
   /// Is quizz complete
   bool get isQuizzComplete =>

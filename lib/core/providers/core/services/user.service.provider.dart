@@ -1,10 +1,16 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:starter_kit/core/providers/core/services/navigation.service.provider.dart';
+import 'package:starter_kit/core/providers/core/usecases/get_onboarding_answers.use_case.provider.dart';
 import 'package:starter_kit/core/providers/core/usecases/get_user.use_case.provider.dart';
+import 'package:starter_kit/core/providers/core/usecases/get_user_info.use_case.provider.dart';
+import 'package:starter_kit/core/providers/core/usecases/is_onboarding_completed.use_case.provider.dart';
 import 'package:starter_kit/core/providers/core/usecases/login.use_case.provider.dart';
 import 'package:starter_kit/core/providers/core/usecases/logout.use_case.provider.dart';
 import 'package:starter_kit/core/providers/core/usecases/save_auth.use_case.provider.dart';
+import 'package:starter_kit/core/providers/core/usecases/save_onboarding_answers.use_case.provider.dart';
+import 'package:starter_kit/core/providers/core/usecases/save_user_info.use_case.provider.dart';
+import 'package:starter_kit/core/providers/core/usecases/set_onboarding_completed.use_case.provider.dart';
 import 'package:starter_kit/core/providers/foundation/services/user.service.dart';
 
 part 'user.service.provider.g.dart';
@@ -18,6 +24,19 @@ Future<UserService> userService(Ref ref) async {
     loginUseCase: await ref.watch(loginUseCaseProvider.future),
     saveAuthUseCase: await ref.watch(saveAuthUseCaseProvider.future),
     logoutUseCase: await ref.watch(logoutUseCaseProvider.future),
-    // dialogService: ref.watch(dialogServiceProvider),
+    saveOnboardingAnswersUseCase: await ref.watch(
+      saveOnboardingAnswersUseCaseProvider.future,
+    ),
+    saveUserInfoUseCase: await ref.watch(saveUserInfoUseCaseProvider.future),
+    getOnboardingAnswersUseCase: await ref.watch(
+      getOnboardingAnswersUseCaseProvider.future,
+    ),
+    getUserInfoUseCase: await ref.watch(getUserInfoUseCaseProvider.future),
+    setOnboardingCompletedUseCase: await ref.watch(
+      setOnboardingCompletedUseCaseProvider.future,
+    ),
+    isOnboardingCompletedUseCase: await ref.watch(
+      isOnboardingCompletedUseCaseProvider.future,
+    ),
   );
 }

@@ -1,6 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:starter_kit/core/providers/data/datasources/local/user.local.data_source.provider.dart';
 import 'package:starter_kit/core/providers/data/datasources/remote/user.remote.data_source.provider.dart';
+import 'package:starter_kit/data/datasources/local/user.local.data_source.dart';
 import 'package:starter_kit/data/datasources/remote/user.remote.data_source.dart';
 import 'package:starter_kit/data/repositories/user.repository.impl.dart';
 import 'package:starter_kit/domain/repositories/user.repository.dart';
@@ -14,5 +16,12 @@ Future<UserRepository> userRepository(Ref ref) async {
     userRemoteDataSourceProvider.future,
   );
 
-  return UserRepositoryImpl(userRemoteDataSource: userRemoteDataSource);
+  final UserLocalDataSource userLocalDataSource = ref.watch(
+    userLocalDataSourceProvider,
+  );
+
+  return UserRepositoryImpl(
+    userRemoteDataSource: userRemoteDataSource,
+    userLocalDataSource: userLocalDataSource,
+  );
 }

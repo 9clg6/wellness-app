@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:starter_kit/domain/entities/testimonial.entity.dart';
 
@@ -25,11 +26,14 @@ class TestimonialCard extends StatelessWidget {
           // Header with emoji and author
           Row(
             children: <Widget>[
-              Text(testimonial.emoji, style: const TextStyle(fontSize: 24)),
+              Text(
+                testimonial.emoji,
+                style: const TextStyle(fontSize: 24),
+              ),
               const SizedBox(width: 12),
               Expanded(
                 child: Text(
-                  testimonial.author,
+                  testimonial.author.tr(),
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w600,
@@ -42,7 +46,7 @@ class TestimonialCard extends StatelessWidget {
           const SizedBox(height: 16),
           // Quote
           Text(
-            testimonial.quote,
+            testimonial.quote.tr(),
             style: const TextStyle(
               fontSize: 16,
               color: Colors.black87,
@@ -53,7 +57,7 @@ class TestimonialCard extends StatelessWidget {
           const SizedBox(height: 12),
           // Source and year
           Text(
-            '${testimonial.source} (${testimonial.year})',
+            '${testimonial.source.tr()} (${testimonial.year})',
             style: TextStyle(
               fontSize: 12,
               color: Colors.grey[500],
