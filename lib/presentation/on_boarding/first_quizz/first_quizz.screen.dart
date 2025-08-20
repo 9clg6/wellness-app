@@ -16,7 +16,7 @@ class FirstPersonalEngagementQuiz extends ConsumerWidget {
   /// Constructor
   const FirstPersonalEngagementQuiz({this.onEnd, super.key});
 
-  /// Callback à la fin du quiz
+  /// Callback at the end of the quiz
   final VoidCallback? onEnd;
 
   @override
@@ -52,7 +52,11 @@ class FirstPersonalEngagementQuiz extends ConsumerWidget {
 class _Q1Frequency extends ConsumerWidget {
   const _Q1Frequency();
 
-  static const List<String> _answers = <String>['Jamais', 'Parfois', 'Souvent'];
+  static final List<String> _answers = <String>[
+    LocaleKeys.jamais.tr(),
+    LocaleKeys.parfois.tr(),
+    LocaleKeys.souvent.tr(),
+  ];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

@@ -7,7 +7,7 @@ import 'package:starter_kit/presentation/on_boarding/on_boarding.view_model.dart
 import 'package:starter_kit/presentation/widgets/custom_loader.dart';
 import 'package:starter_kit/presentation/widgets/text_variant.dart';
 
-/// Étape d'animation de calcul/préparation
+/// Calculation/preparation animation step
 class CalculationStep extends ConsumerStatefulWidget {
   /// Constructor
   const CalculationStep({super.key});
@@ -21,7 +21,6 @@ class _CalculationStepState extends ConsumerState<CalculationStep> {
   void initState() {
     super.initState();
     Future<void>.delayed(const Duration(seconds: 5)).then((_) {
-      if (!mounted) return;
       ref.read(onBoardingViewModelProvider.notifier).nextStep();
     });
   }

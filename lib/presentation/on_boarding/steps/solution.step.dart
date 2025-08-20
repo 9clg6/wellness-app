@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
-import 'package:starter_kit/domain/entities/solution_screen.entity.dart';
+import 'package:starter_kit/domain/entities/solution.entity.dart';
 import 'package:starter_kit/presentation/on_boarding/on_boarding.view_model.dart';
 import 'package:starter_kit/presentation/widgets/continue_button_card.dart';
 import 'package:starter_kit/presentation/widgets/gradient_background.dart';
@@ -21,33 +21,33 @@ class SolutionStep extends ConsumerStatefulWidget {
 class _SolutionStepState extends ConsumerState<SolutionStep> {
   int _index = 0;
 
-  static final List<SolutionScreen> _screens = <SolutionScreen>[
-    const SolutionScreen(
+  static final List<SolutionScreenEntity> _screens = <SolutionScreenEntity>[
+    const SolutionScreenEntity(
       title: LocaleKeys.onboarding_solution_welcome_title,
       text: LocaleKeys.onboarding_solution_welcome_text,
       emoji: LocaleKeys.onboarding_solution_welcome_emoji,
     ),
-    const SolutionScreen(
+    const SolutionScreenEntity(
       title: LocaleKeys.onboarding_solution_facility_title,
       text: LocaleKeys.onboarding_solution_facility_text,
       emoji: LocaleKeys.onboarding_solution_facility_emoji,
     ),
-    const SolutionScreen(
+    const SolutionScreenEntity(
       title: LocaleKeys.onboarding_solution_interface_title,
       text: LocaleKeys.onboarding_solution_interface_text,
       emoji: LocaleKeys.onboarding_solution_interface_emoji,
     ),
-    const SolutionScreen(
+    const SolutionScreenEntity(
       title: LocaleKeys.onboarding_solution_history_title,
       text: LocaleKeys.onboarding_solution_history_text,
       emoji: LocaleKeys.onboarding_solution_history_emoji,
     ),
-    const SolutionScreen(
+    const SolutionScreenEntity(
       title: LocaleKeys.onboarding_solution_stats_title,
       text: LocaleKeys.onboarding_solution_stats_text,
       emoji: LocaleKeys.onboarding_solution_stats_emoji,
     ),
-    const SolutionScreen(
+    const SolutionScreenEntity(
       title: LocaleKeys.onboarding_solution_premium_title,
       text: LocaleKeys.onboarding_solution_premium_text,
       emoji: LocaleKeys.onboarding_solution_premium_emoji,
@@ -76,8 +76,8 @@ class _SolutionStepState extends ConsumerState<SolutionStep> {
                 index: _index,
                 children: _screens
                     .map(
-                      (SolutionScreen screen) =>
-                          SolutionScreenCard(screen: screen),
+                      (SolutionScreenEntity entity) =>
+                          SolutionScreenCard(entity: entity),
                     )
                     .toList(),
               ),

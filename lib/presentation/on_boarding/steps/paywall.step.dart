@@ -6,7 +6,7 @@ import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 import 'package:starter_kit/presentation/on_boarding/on_boarding.view_model.dart';
 import 'package:starter_kit/presentation/widgets/text_variant.dart';
 
-/// Étape paywall personnalisé
+/// Custom paywall step
 // TODO(clement): Add paywall with RevenueCat and RevenueService
 class PaywallStep extends ConsumerWidget {
   /// Constructor

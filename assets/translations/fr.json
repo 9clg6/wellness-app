@@ -163,5 +163,8 @@
   "onboarding_miniDiagnostic_button": "Super ! 🌼",
   "onboarding_education_button": "Je commence 🌸",
   "home_entry_card_label": "Aujourd'hui, j'ai réussi à...",
-  "review_leave_review": "Merci 🙏"
+  "review_leave_review": "Merci 🙏",
+  "parfois": "Parfois",
+  "souvent": "Souvent",
+  "jamais": "Jamais"
 }

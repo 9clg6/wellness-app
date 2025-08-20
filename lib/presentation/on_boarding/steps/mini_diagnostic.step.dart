@@ -8,7 +8,7 @@ import 'package:starter_kit/presentation/widgets/continue_button_card.dart';
 import 'package:starter_kit/presentation/widgets/gradient_background.dart';
 import 'package:starter_kit/presentation/widgets/text_variant.dart';
 
-/// Étape mini-diagnostic positif
+/// Positive mini-diagnostic step
 class MiniDiagnosticStep extends ConsumerWidget {
   /// Constructor
   const MiniDiagnosticStep({super.key});

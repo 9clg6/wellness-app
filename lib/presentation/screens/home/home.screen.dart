@@ -109,7 +109,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     final HomeViewModel viewModel = ref.read(homeViewModelProvider.notifier);
     try {
       viewModel.secondFieldController.dispose();
-    } on Exception catch (_) {}
+    } on Exception catch (_) {
+      debugPrint('Error disposing second field controller');
+    }
     super.dispose();
   }
 }

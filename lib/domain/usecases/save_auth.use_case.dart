@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:starter_kit/domain/entities/auth.entity.dart';
 import 'package:starter_kit/domain/repositories/authentication.repository.dart';
 import 'package:starter_kit/foundation/interfaces/future.usecases.dart';
@@ -14,7 +13,6 @@ class SaveAuthUseCase extends FutureUseCaseWithParams<void, AuthEntity> {
 
   @override
   Future<void> invoke(AuthEntity params) async {
-    debugPrint('saveAuth');
     await _repository.saveAuth(params);
   }
 }

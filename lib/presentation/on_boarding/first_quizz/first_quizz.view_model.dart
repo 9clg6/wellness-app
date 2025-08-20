@@ -111,7 +111,7 @@ class FirstQuizzViewModel extends _$FirstQuizzViewModel {
     return answers != null;
   }
 
-  /// Sélection avec feedback UI (icone) puis avance après ~500ms
+  /// Selection with feedback UI (icon) then advance after ~500ms
   void _selectWithDelay(int uiSelectedIndex, VoidCallback action) {
     state = state.copyWith(selectedResponseIndex: uiSelectedIndex);
     Future<void>.delayed(const Duration(milliseconds: 500), () {

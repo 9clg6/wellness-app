@@ -7,7 +7,7 @@ part of 'get_onboarding_answers.use_case.provider.dart';
 // **************************************************************************
 
 String _$getOnboardingAnswersUseCaseHash() =>
-    r'3b4d8aee483871d9a052261cbf2153339b407ab9';
+    r'1e9c73f86498409a8b28fbc8c5516980a7140b9d';
 
 /// Get onboarding answers use case provider
 ///

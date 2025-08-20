@@ -4,13 +4,14 @@ import 'package:starter_kit/foundation/interfaces/future.usecases.dart';
 /// Logout Use Case
 class LogoutUseCase extends FutureUseCase<void> {
   /// Logout Use Case constructor
-  LogoutUseCase({required this.repository});
+  LogoutUseCase({required AuthenticationRepository repository})
+    : _repository = repository;
 
   /// repository
-  final AuthenticationRepository repository;
+  final AuthenticationRepository _repository;
 
   @override
   Future<void> invoke() async {
-    return repository.deleteAuth();
+    return _repository.deleteAuth();
   }
 }

@@ -8,7 +8,7 @@ import 'package:starter_kit/presentation/widgets/continue_button_card.dart';
 import 'package:starter_kit/presentation/widgets/gradient_background.dart';
 import 'package:starter_kit/presentation/widgets/text_variant.dart';
 
-/// Étape de pré-activation émotionnelle
+/// Emotional pre-activation step
 class PreActivationStep extends ConsumerWidget {
   /// Constructor
   const PreActivationStep({super.key});

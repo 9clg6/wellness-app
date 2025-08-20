@@ -7,7 +7,7 @@ part of 'is_onboarding_completed.use_case.provider.dart';
 // **************************************************************************
 
 String _$isOnboardingCompletedUseCaseHash() =>
-    r'e7ca697357e2e1ab68ecb5487d42b2bfa09933a4';
+    r'b1507273399769372630630662b4d16ac9307fa5';
 
 /// Is onboarding completed use case provider
 ///

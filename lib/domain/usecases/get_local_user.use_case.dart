@@ -5,7 +5,8 @@ import 'package:starter_kit/foundation/interfaces/future.usecases.dart';
 /// Use case to get local user
 class GetLocalUserUseCase extends FutureUseCase<UserEntity?> {
   /// Constructor
-  GetLocalUserUseCase(this._userRepository);
+  GetLocalUserUseCase({required UserRepository userRepository})
+    : _userRepository = userRepository;
 
   final UserRepository _userRepository;
 

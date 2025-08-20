@@ -31,7 +31,7 @@ class AppRouter extends RootStackRouter {
   ];
 }
 
-/// Onboarding guard - vérifie que l'onboarding n'est pas déjà passé
+/// Onboarding guard - check if the onboarding has already been completed
 class OnboardingGuard extends AutoRouteGuard {
   @override
   Future<void> onNavigation(
