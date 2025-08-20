@@ -1,15 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:starter_kit/domain/entities/solution_screen.entity.dart';
+import 'package:starter_kit/domain/entities/solution.entity.dart';
 import 'package:starter_kit/presentation/widgets/text_variant.dart';
 
 /// Widget to display a solution screen card
 class SolutionScreenCard extends StatelessWidget {
   /// Constructor
-  const SolutionScreenCard({required this.screen, super.key});
+  const SolutionScreenCard({required this.entity, super.key});
 
   /// The solution screen to display
-  final SolutionScreen screen;
+  final SolutionScreenEntity entity;
 
   @override
   Widget build(BuildContext context) {
@@ -21,18 +21,18 @@ class SolutionScreenCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             // Emoji
-            Text(screen.emoji.tr(), style: const TextStyle(fontSize: 80)),
+            Text(entity.emoji.tr(), style: const TextStyle(fontSize: 80)),
             const SizedBox(height: 32),
             // Title
             TextVariant(
-              screen.title.tr(),
+              entity.title.tr(),
               textAlign: TextAlign.center,
               variantType: TextVariantType.titleLarge,
             ),
             const SizedBox(height: 16),
             // Text
             TextVariant(
-              screen.text.tr(),
+              entity.text.tr(),
               textAlign: TextAlign.center,
               variantType: TextVariantType.bodyLarge,
             ),

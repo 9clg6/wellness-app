@@ -207,7 +207,7 @@ class UserService {
   Future<bool> isOnboardingCompleted() async {
     debugPrint('[UserService] isOnboardingCompleted');
     return currentUser?.isOnboardingCompleted ??
-        await _isOnboardingCompletedUseCase.execute();
+        await _isOnboardingCompletedUseCase.invoke();
   }
 
   /// Mark onboarding as completed

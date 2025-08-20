@@ -5,13 +5,9 @@ import 'package:starter_kit/domain/entities/auth.entity.dart';
 import 'package:starter_kit/domain/usecases/get_auth.use_case.dart';
 import 'package:starter_kit/foundation/interfaces/results.usecases.dart';
 
-///
 /// [TokenInterceptor]
-///
 class TokenInterceptor {
-  ///
   /// Constructor
-  ///
   TokenInterceptor({
     required DioClient dioClient,
     required GetAuthUseCase getAuthUseCase,
@@ -51,12 +47,12 @@ class TokenInterceptor {
                   handler.next(requestOptions);
                   return;
                 } else {
-                  // Si le status n'est pas success, on continue sans token
+                  // If the status is not success, continue without token
                   handler.next(requestOptions);
                   return;
                 }
               } else {
-                // Si removeAuthToken est présent, on continue sans token
+                // If removeAuthToken is present, continue without token
                 handler.next(requestOptions);
                 return;
               }

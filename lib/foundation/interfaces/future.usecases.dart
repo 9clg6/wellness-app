@@ -34,7 +34,7 @@ Future<ResultState<T>> _futureCatcher<T>(Future<T> Function() invoke) async {
     final T result = await invoke().timeout(
       const Duration(seconds: 15),
       onTimeout: () {
-        throw TimeoutException("L'opération a expiré après 15 secondes");
+        throw TimeoutException('Operation timed out after 15 seconds');
       },
     );
     return ResultState<T>.success(result);

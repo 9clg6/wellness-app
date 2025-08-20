@@ -7,7 +7,7 @@ part of 'get_local_user.use_case.provider.dart';
 // **************************************************************************
 
 String _$getLocalUserUseCaseHash() =>
-    r'cdd415187d823f7fa02daad3e6186efcf3ece8ab';
+    r'ebe0051cecae2667ce89195f2f68ef0cada73051';
 
 /// Get local user use case provider
 ///

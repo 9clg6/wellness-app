@@ -6,7 +6,7 @@ import 'package:starter_kit/foundation/config/app_config.dart';
 class DioAuthenticationClient extends DioForNative {
   DioAuthenticationClient._(String baseUrl) : super(_baseOptions(baseUrl));
 
-  /// basic factory
+  /// Basic factory
   factory DioAuthenticationClient.basic(AppConfig appConfig) {
     return DioAuthenticationClient._(appConfig.authBaseUrl);
   }

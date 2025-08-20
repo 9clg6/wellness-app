@@ -7,7 +7,7 @@ final class AppConfigProd implements AppConfig {
   String get baseUrl => 'https://api.example.com';
 
   @override
-  String get appName => 'Starter Kit';
+  String get appName => 'Wellness App';
 
   @override
   Environment get env => Environment.production;

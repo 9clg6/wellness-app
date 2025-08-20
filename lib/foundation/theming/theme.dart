@@ -17,23 +17,23 @@ class MaterialTheme {
     return const ColorScheme(
       brightness: Brightness.light,
 
-      // Couleur d'accent principale (un rose doux/positif)
+      // Primary accent color (a soft/positive pink)
       primary: Color(0xFFFF6DAA),
       onPrimary: Color(0xFFFFFFFF),
 
-      // Accent secondaire (lavande / violet pastel)
+      // Secondary accent color (lavender / pastel violet)
       secondary: Color(0xFFB794F6),
       onSecondary: Color(0xFFFFFFFF),
 
-      // Accent tertiaire (pêche/rosé)
+      // Tertiary accent color (peach/pink)
       tertiary: Color(0xFFFFB3B3),
       onTertiary: Color(0xFF3A071E),
 
-      // États d'erreur (rouge rosé doux, pas trop agressif)
+      // Error states (soft pink/red, not too aggressive)
       error: Color(0xFFE57373),
       onError: Color(0xFFFFFFFF),
 
-      // Containers (fonds adoucis, pastels inspirés du dégradé rose→jaune)
+      // Containers (soft backgrounds, pastel gradients inspired by pink→yellow)
       primaryContainer: Color(0xFFFFE4EC),
       onPrimaryContainer: Color(0xFF5C1034),
 
@@ -46,7 +46,7 @@ class MaterialTheme {
       errorContainer: Color(0xFFFFDAD6),
       onErrorContainer: Color(0xFF3B0907),
 
-      // Surfaces (fonds clairs et doux)
+      // Surfaces (light and soft backgrounds)
       surfaceDim: Color(0xFFF2EDF5),
       surface: Color(0xFFFFFBFF),
       surfaceBright: Color(0xFFFFFFFF),
@@ -54,20 +54,20 @@ class MaterialTheme {
       onInverseSurface: Color(0xFFF5EFF7),
       inversePrimary: Color(0xFFEFBBD9),
 
-      // Containers de surface
+      // Surface containers
       surfaceContainerLowest: Color(0xFFFFFFFF),
       surfaceContainerLow: Color(0xFFFDF5F9),
       surfaceContainer: Color(0xFFF9EEF5),
       surfaceContainerHigh: Color(0xFFF5EAF2),
       surfaceContainerHighest: Color(0xFFF0E5ED),
 
-      // Textes et outline
+      // Texts and outlines
       onSurface: Color(0xFF1C1B1F),
       onSurfaceVariant: Color(0xFF6D6D73),
       outline: Color(0xFFB6B6BD),
       outlineVariant: Color(0xFFDADAE0),
 
-      // Divers
+      // Miscellaneous
       scrim: Color(0xFF000000),
       shadow: Color(0x33000000),
     );
@@ -78,7 +78,7 @@ class MaterialTheme {
     ColorScheme colorScheme,
   ) {
     return baseTextTheme.copyWith(
-      // Labels (chips, boutons, tags)
+      // Labels (chips, buttons, tags)
       labelSmall: baseTextTheme.labelSmall!.copyWith(
         color: colorScheme.onSurfaceVariant,
         fontSize: 11,
@@ -103,7 +103,7 @@ class MaterialTheme {
         letterSpacing: 0.1,
       ),
 
-      // Body (texte courant, paragraphes)
+      // Body (current text, paragraphs)
       bodySmall: baseTextTheme.bodySmall!.copyWith(
         color: colorScheme.onSurfaceVariant,
         fontSize: 12,
@@ -131,7 +131,7 @@ class MaterialTheme {
         letterSpacing: 0.5,
       ),
 
-      // Titles (titres de sections, cartes)
+      // Titles (section titles, cards)
       titleSmall: baseTextTheme.titleSmall!.copyWith(
         color: colorScheme.onSurface,
         fontSize: 14,
@@ -156,7 +156,7 @@ class MaterialTheme {
         letterSpacing: 0,
       ),
 
-      // Headlines (titres de pages, sections principales)
+      // Headlines (page titles, main sections)
       headlineSmall: baseTextTheme.headlineSmall!.copyWith(
         color: colorScheme.onSurface,
         fontSize: 24,
@@ -165,6 +165,7 @@ class MaterialTheme {
         letterSpacing: 0,
       ),
 
+      // Headline medium
       headlineMedium: baseTextTheme.headlineMedium!.copyWith(
         color: colorScheme.onSurface,
         fontSize: 28,
@@ -173,6 +174,7 @@ class MaterialTheme {
         letterSpacing: 0,
       ),
 
+      // Headline large
       headlineLarge: baseTextTheme.headlineLarge!.copyWith(
         color: colorScheme.onSurface,
         fontSize: 32,
@@ -181,7 +183,7 @@ class MaterialTheme {
         letterSpacing: 0,
       ),
 
-      // Display (texte hero, chiffres importants)
+      // Display (hero text, important numbers)
       displaySmall: baseTextTheme.displaySmall!.copyWith(
         color: colorScheme.onSurface,
         fontSize: 36,
@@ -190,6 +192,7 @@ class MaterialTheme {
         letterSpacing: -0.25,
       ),
 
+      // Display medium
       displayMedium: baseTextTheme.displayMedium!.copyWith(
         color: colorScheme.onSurface,
         fontSize: 45,
@@ -198,6 +201,7 @@ class MaterialTheme {
         letterSpacing: 0,
       ),
 
+      // Display large
       displayLarge: baseTextTheme.displayLarge!.copyWith(
         color: colorScheme.onSurface,
         fontSize: 57,

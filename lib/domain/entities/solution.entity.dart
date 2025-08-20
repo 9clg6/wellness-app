@@ -1,7 +1,7 @@
 /// Class to represent a solution screen
-class SolutionScreen {
+class SolutionScreenEntity {
   /// Constructor
-  const SolutionScreen({
+  const SolutionScreenEntity({
     required this.title,
     required this.text,
     required this.emoji,

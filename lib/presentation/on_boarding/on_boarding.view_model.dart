@@ -26,10 +26,10 @@ class OnBoardingViewModel extends _$OnBoardingViewModel {
 
   OnboardingAnswers? _answers;
 
-  /// Réponses collectées
+  /// Collected answers
   OnboardingAnswers get answers => _answers ?? const OnboardingAnswers();
 
-  /// Setter des réponses
+  /// Answers setter
   set answers(OnboardingAnswers answers) {
     _answers = answers;
   }

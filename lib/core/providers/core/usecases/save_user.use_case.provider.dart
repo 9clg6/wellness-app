@@ -12,5 +12,5 @@ Future<SaveUserUseCase> saveUserUseCase(Ref ref) async {
   final UserRepository userRepository = await ref.watch(
     userRepositoryProvider.future,
   );
-  return SaveUserUseCase(userRepository);
+  return SaveUserUseCase(userRepository: userRepository);
 }

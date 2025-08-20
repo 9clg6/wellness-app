@@ -32,7 +32,6 @@ final class AuthenticationLocalDataSourceImpl
 
   @override
   Future<void> saveAuthToken(AuthLocalModel token) async {
-    debugPrint('saveAuthToken: ${token.toJson()}');
     await _authSecureStorage.set(_tokenKey, jsonEncode(token.toJson()));
     debugPrint('Authtoken saved');
   }

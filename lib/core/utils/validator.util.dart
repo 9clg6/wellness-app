@@ -6,16 +6,16 @@ final class ValidatorUtil {
   /// ValidatorUtil constructor
   ValidatorUtil(this.p1, this.type, {this.p2, this.isSignInField = false});
 
-  /// p1
+  /// first parameter
   final String? p1;
 
-  /// p2
+  /// second parameter
   final String? p2;
 
-  /// is sign in field
+  /// is sign in field?
   final bool isSignInField;
 
-  /// type
+  /// field type
   final FormType type;
 
   /// Validator
@@ -46,17 +46,17 @@ final class ValidatorUtil {
 
 /// Form type
 enum FormType {
-  /// password
+  /// Password
   password,
 
-  /// confirm password
+  /// Confirm password
   confirmPassword,
 
-  /// email
+  /// Email
   email,
 }
 
-///
+/// Email regex
 RegExp emailRegex = RegExp(
   r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9\-]+\.[a-zA-Z]+",
 );

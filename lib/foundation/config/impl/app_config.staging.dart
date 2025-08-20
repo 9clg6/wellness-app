@@ -7,7 +7,7 @@ final class AppConfigStaging implements AppConfig {
   String get baseUrl => 'http://starterkit.fr';
 
   @override
-  String get appName => 'Starter Kit - Staging';
+  String get appName => 'Wellness App - Staging';
 
   @override
   Environment get env => Environment.staging;

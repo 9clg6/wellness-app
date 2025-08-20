@@ -6,11 +6,12 @@ import 'package:starter_kit/foundation/config/app_config.dart';
 class DioClient extends DioForNative {
   DioClient._(String baseUrl) : super(_baseOptions(baseUrl));
 
-  /// basic factory
+  /// Basic factory
   factory DioClient.basic(AppConfig appConfig) {
     return DioClient._(appConfig.baseUrl);
   }
 
+  /// Base options
   static BaseOptions _baseOptions(String baseUrl) => BaseOptions()
     ..headers = <String, String>{'Accept': 'application/json'}
     ..followRedirects = true

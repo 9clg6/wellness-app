@@ -1,6 +1,6 @@
 import 'package:starter_kit/domain/entities/happen_action.entity.dart';
 
-/// Service pour gérer les entrées du jour et la streak
+/// Service to manage today's entries
 class HappenActionService {
   /// Entries
   final List<HappenActionEntity> _entries = <HappenActionEntity>[];

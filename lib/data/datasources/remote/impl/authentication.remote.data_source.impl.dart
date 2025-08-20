@@ -12,10 +12,10 @@ final class AuthenticationRemoteDataSourceImpl
   AuthenticationRemoteDataSourceImpl({required AuthenticationEndpoint endpoint})
     : _endpoint = endpoint;
 
-  /// endpoint
+  /// Endpoint
   final AuthenticationEndpoint _endpoint;
 
-  /// login
+  /// Login
   @override
   Future<AuthRemoteModel> login(LoginParam body) async {
     AuthRemoteModel? response;
@@ -35,7 +35,7 @@ final class AuthenticationRemoteDataSourceImpl
     return response;
   }
 
-  /// forget password
+  /// Forget password
   @override
   Future<void> forgetPassword(LoginParam body) async {
     throw UnimplementedError();

@@ -6,7 +6,7 @@ import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 import 'package:starter_kit/presentation/on_boarding/on_boarding.view_model.dart';
 import 'package:starter_kit/presentation/widgets/continue_button_card.dart';
 
-/// Étape d'accueil
+/// Welcome step
 class WelcomeStep extends ConsumerWidget {
   /// Constructor
   const WelcomeStep({super.key});

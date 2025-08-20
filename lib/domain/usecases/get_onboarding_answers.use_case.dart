@@ -5,7 +5,8 @@ import 'package:starter_kit/foundation/interfaces/future.usecases.dart';
 /// Use case to get onboarding answers
 class GetOnboardingAnswersUseCase extends FutureUseCase<OnboardingAnswers?> {
   /// Constructor
-  GetOnboardingAnswersUseCase(this._userRepository);
+  GetOnboardingAnswersUseCase({required UserRepository userRepository})
+    : _userRepository = userRepository;
 
   final UserRepository _userRepository;
 

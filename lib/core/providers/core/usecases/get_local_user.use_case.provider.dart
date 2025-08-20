@@ -12,5 +12,5 @@ Future<GetLocalUserUseCase> getLocalUserUseCase(Ref ref) async {
   final UserRepository userRepository = await ref.watch(
     userRepositoryProvider.future,
   );
-  return GetLocalUserUseCase(userRepository);
+  return GetLocalUserUseCase(userRepository: userRepository);
 }

@@ -2,11 +2,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
+import 'package:starter_kit/domain/entities/education.entity.dart';
 import 'package:starter_kit/presentation/on_boarding/on_boarding.view_model.dart';
 import 'package:starter_kit/presentation/widgets/continue_button_card.dart';
 import 'package:starter_kit/presentation/widgets/text_variant.dart';
 
-/// Étape d'éducation (bénéfices)
+/// Education step (benefits)
 class EducationStep extends ConsumerStatefulWidget {
   /// Constructor
   const EducationStep({super.key});
@@ -19,32 +20,32 @@ class _EducationStepState extends ConsumerState<EducationStep> {
   final PageController _controller = PageController();
   int _index = 0;
 
-  late final List<Map<String, String>> _screens = <Map<String, String>>[
-    <String, String>{
-      'title': LocaleKeys.onboarding_education_screen1_title.tr(),
-      'text': LocaleKeys.onboarding_education_screen1_text.tr(),
-      'visual': LocaleKeys.onboarding_education_screen1_visual.tr(),
-    },
-    <String, String>{
-      'title': LocaleKeys.onboarding_education_screen2_title.tr(),
-      'text': LocaleKeys.onboarding_education_screen2_text.tr(),
-      'visual': LocaleKeys.onboarding_education_screen2_visual.tr(),
-    },
-    <String, String>{
-      'title': LocaleKeys.onboarding_education_screen3_title.tr(),
-      'text': LocaleKeys.onboarding_education_screen3_text.tr(),
-      'visual': LocaleKeys.onboarding_education_screen3_visual.tr(),
-    },
-    <String, String>{
-      'title': LocaleKeys.onboarding_education_screen4_title.tr(),
-      'text': LocaleKeys.onboarding_education_screen4_text.tr(),
-      'visual': LocaleKeys.onboarding_education_screen4_visual.tr(),
-    },
-    <String, String>{
-      'title': LocaleKeys.onboarding_education_screen5_title.tr(),
-      'text': LocaleKeys.onboarding_education_screen5_text.tr(),
-      'visual': LocaleKeys.onboarding_education_screen5_visual.tr(),
-    },
+  late final List<EducationEntity> _screens = <EducationEntity>[
+    EducationEntity(
+      title: LocaleKeys.onboarding_education_screen1_title.tr(),
+      text: LocaleKeys.onboarding_education_screen1_text.tr(),
+      visual: LocaleKeys.onboarding_education_screen1_visual.tr(),
+    ),
+    EducationEntity(
+      title: LocaleKeys.onboarding_education_screen2_title.tr(),
+      text: LocaleKeys.onboarding_education_screen2_text.tr(),
+      visual: LocaleKeys.onboarding_education_screen2_visual.tr(),
+    ),
+    EducationEntity(
+      title: LocaleKeys.onboarding_education_screen3_title.tr(),
+      text: LocaleKeys.onboarding_education_screen3_text.tr(),
+      visual: LocaleKeys.onboarding_education_screen3_visual.tr(),
+    ),
+    EducationEntity(
+      title: LocaleKeys.onboarding_education_screen4_title.tr(),
+      text: LocaleKeys.onboarding_education_screen4_text.tr(),
+      visual: LocaleKeys.onboarding_education_screen4_visual.tr(),
+    ),
+    EducationEntity(
+      title: LocaleKeys.onboarding_education_screen5_title.tr(),
+      text: LocaleKeys.onboarding_education_screen5_text.tr(),
+      visual: LocaleKeys.onboarding_education_screen5_visual.tr(),
+    ),
   ];
 
   void _next() {
@@ -73,22 +74,22 @@ class _EducationStepState extends ConsumerState<EducationStep> {
               physics: const NeverScrollableScrollPhysics(),
               children: _screens
                   .map(
-                    (Map<String, String> screen) => Padding(
+                    (EducationEntity entity) => Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 24),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           // Visuel
-                          TextVariant(screen['visual']!, fontSize: 80),
+                          TextVariant(entity.visual, fontSize: 80),
                           const SizedBox(height: 12),
                           TextVariant(
-                            screen['title']!,
+                            entity.title,
                             textAlign: TextAlign.center,
                             variantType: TextVariantType.titleLarge,
                           ),
                           const SizedBox(height: 24),
                           TextVariant(
-                            screen['text']!,
+                            entity.text,
                             textAlign: TextAlign.center,
                             variantType: TextVariantType.bodyLarge,
                           ),

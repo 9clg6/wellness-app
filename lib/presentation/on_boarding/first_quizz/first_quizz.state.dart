@@ -24,22 +24,22 @@ final class FirstQuizzState with EquatableMixin {
     answers: OnboardingAnswers(),
   );
 
-  /// Index de la question en cours (0..5)
+  /// Current question index (0..5)
   final int currentIndex;
 
-  /// Réponses agrégées
+  /// Aggregated answers
   final OnboardingAnswers answers;
 
-  /// Champs temporaires pour le formulaire de Q6
+  /// Temporary fields for Q6 form
   final String? tempName;
 
-  /// Champs temporaires pour le formulaire de Q6
+  /// Temporary fields for Q6 form
   final String? tempAge;
 
-  /// Le quiz est complété
+  /// Quiz is completed
   final bool isCompleted;
 
-  /// Index sélectionné pour la question en cours (pour l'UI)
+  /// Selected index for current question (for UI)
   final int? selectedResponseIndex;
 
   /// Show button
