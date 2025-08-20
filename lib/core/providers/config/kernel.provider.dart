@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:starter_kit/core/providers/config/appconfig.provider.dart';
@@ -32,7 +33,7 @@ Future<void> kernel(Ref ref) async {
 
   // try {
   //   // Initialize RevenueCat for in-app purchases
-  //   final PurchaseService purchaseService = 
+  //   final PurchaseService purchaseService =
   // ref.read(purchaseServiceProvider);
   //   await purchaseService.initialize();
   // } on Exception catch (e) {
@@ -48,4 +49,6 @@ Future<void> kernel(Ref ref) async {
       ..invalidate(authenticationSecureStorageProvider)
       ..invalidate(authenticationSecureStorageProvider);
   });
+
+  FlutterNativeSplash.remove();
 }
