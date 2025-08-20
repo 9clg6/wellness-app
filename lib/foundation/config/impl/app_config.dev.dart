@@ -7,7 +7,7 @@ final class AppConfigDev implements AppConfig {
   String get baseUrl => 'https://api.example.com';
 
   @override
-  String get appName => 'Starter Kit - Dev';
+  String get appName => 'Wellness App - Dev';
 
   @override
   Environment get env => Environment.development;

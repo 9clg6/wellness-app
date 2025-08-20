@@ -166,5 +166,10 @@ abstract class  LocaleKeys {
   static const onboarding_goals_button_multiple = 'onboarding_goals_button_multiple';
   static const onboarding_miniDiagnostic_button = 'onboarding_miniDiagnostic_button';
   static const onboarding_education_button = 'onboarding_education_button';
+  static const home_entry_card_label = 'home_entry_card_label';
+  static const review_leave_review = 'review_leave_review';
+  static const parfois = 'parfois';
+  static const souvent = 'souvent';
+  static const jamais = 'jamais';
 
 }

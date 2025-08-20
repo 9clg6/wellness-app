@@ -14,5 +14,5 @@ Future<SaveOnboardingAnswersUseCase> saveOnboardingAnswersUseCase(
   final UserRepository userRepository = await ref.watch(
     userRepositoryProvider.future,
   );
-  return SaveOnboardingAnswersUseCase(userRepository);
+  return SaveOnboardingAnswersUseCase(userRepository: userRepository);
 }

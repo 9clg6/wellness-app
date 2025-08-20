@@ -7,6 +7,7 @@ final class SetOnBoardingAsSeenUseCase extends FutureUseCase<void> {
   SetOnBoardingAsSeenUseCase({required UserRepository userRepository})
     : _userRepository = userRepository;
 
+  /// User repository
   final UserRepository _userRepository;
 
   @override

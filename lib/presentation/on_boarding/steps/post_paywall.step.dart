@@ -5,8 +5,10 @@ import 'package:gap/gap.dart';
 import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 import 'package:starter_kit/presentation/on_boarding/on_boarding.view_model.dart';
 import 'package:starter_kit/presentation/widgets/continue_button_card.dart';
+import 'package:starter_kit/presentation/widgets/text_variant.dart';
 
-/// Étape post-paywall (ou après refus)
+/// Post-paywall step (after refusal)
+// TODO(clement): Add post-paywall or free trial handling
 class PostPaywallStep extends ConsumerWidget {
   /// Constructor
   const PostPaywallStep({super.key});
@@ -18,10 +20,10 @@ class PostPaywallStep extends ConsumerWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text(
+          TextVariant(
             LocaleKeys.onboarding_postPaywall_subtitle.tr(),
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 18, color: Colors.black),
+            variantType: TextVariantType.bodyLarge,
           ),
           const Gap(24),
           ContinueButtonCard(

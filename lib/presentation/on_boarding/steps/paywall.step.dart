@@ -4,8 +4,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 import 'package:starter_kit/presentation/on_boarding/on_boarding.view_model.dart';
+import 'package:starter_kit/presentation/widgets/text_variant.dart';
 
-/// Étape paywall personnalisé
+/// Custom paywall step
+// TODO(clement): Add paywall with RevenueCat and RevenueService
 class PaywallStep extends ConsumerWidget {
   /// Constructor
   const PaywallStep({super.key});
@@ -21,10 +23,10 @@ class PaywallStep extends ConsumerWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text(
+          TextVariant(
             LocaleKeys.onboarding_paywall_title.tr(args: <String>[name]),
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 20, color: Colors.black),
+            variantType: TextVariantType.titleMedium,
           ),
           const Gap(24),
           ElevatedButton(
@@ -42,9 +44,10 @@ class PaywallStep extends ConsumerWidget {
             child: Text(LocaleKeys.common_later.tr()),
           ),
           const Gap(12),
-          Text(
+          TextVariant(
             LocaleKeys.onboarding_paywall_cancel.tr(),
-            style: const TextStyle(color: Colors.black54),
+            variantType: TextVariantType.bodySmall,
+            color: Colors.black54,
           ),
         ],
       ),

@@ -17,6 +17,10 @@ abstract class _$UserEntityCWProxy {
 
   UserEntity firstname(String? firstname);
 
+  UserEntity isOnboardingCompleted(bool? isOnboardingCompleted);
+
+  UserEntity streakDays(int streakDays);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UserEntity(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -29,6 +33,8 @@ abstract class _$UserEntityCWProxy {
     String? nickname,
     String? lastname,
     String? firstname,
+    bool? isOnboardingCompleted,
+    int streakDays,
   });
 }
 
@@ -54,6 +60,13 @@ class _$UserEntityCWProxyImpl implements _$UserEntityCWProxy {
   UserEntity firstname(String? firstname) => this(firstname: firstname);
 
   @override
+  UserEntity isOnboardingCompleted(bool? isOnboardingCompleted) =>
+      this(isOnboardingCompleted: isOnboardingCompleted);
+
+  @override
+  UserEntity streakDays(int streakDays) => this(streakDays: streakDays);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `UserEntity(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -66,6 +79,8 @@ class _$UserEntityCWProxyImpl implements _$UserEntityCWProxy {
     Object? nickname = const $CopyWithPlaceholder(),
     Object? lastname = const $CopyWithPlaceholder(),
     Object? firstname = const $CopyWithPlaceholder(),
+    Object? isOnboardingCompleted = const $CopyWithPlaceholder(),
+    Object? streakDays = const $CopyWithPlaceholder(),
   }) {
     return UserEntity(
       id: id == const $CopyWithPlaceholder()
@@ -88,6 +103,15 @@ class _$UserEntityCWProxyImpl implements _$UserEntityCWProxy {
           ? _value.firstname
           // ignore: cast_nullable_to_non_nullable
           : firstname as String?,
+      isOnboardingCompleted:
+          isOnboardingCompleted == const $CopyWithPlaceholder()
+          ? _value.isOnboardingCompleted
+          // ignore: cast_nullable_to_non_nullable
+          : isOnboardingCompleted as bool?,
+      streakDays: streakDays == const $CopyWithPlaceholder()
+          ? _value.streakDays
+          // ignore: cast_nullable_to_non_nullable
+          : streakDays as int,
     );
   }
 }

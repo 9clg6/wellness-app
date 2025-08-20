@@ -7,15 +7,20 @@ part 'real_home.state.g.dart';
 @CopyWith()
 final class RealHomeState with EquatableMixin {
   /// Constructor
-  const RealHomeState({this.isLoading = false});
+  const RealHomeState({required this.surname, this.isLoading = false});
 
   /// Initial state
-  factory RealHomeState.initial({bool isLoading = false}) =>
-      RealHomeState(isLoading: isLoading);
+  factory RealHomeState.initial({
+    bool isLoading = false,
+    String surname = '',
+  }) => RealHomeState(isLoading: isLoading, surname: surname);
 
   /// Is loading
   final bool isLoading;
 
+  /// Surname
+  final String surname;
+
   @override
-  List<Object?> get props => <Object?>[isLoading];
+  List<Object?> get props => <Object?>[isLoading, surname];
 }

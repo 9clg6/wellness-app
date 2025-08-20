@@ -16,9 +16,7 @@ class DialogService {
   /// Dialogs
   bool _isDialogOpen = false;
 
-  ///
   /// Custom showDialog wrapper that includes logging
-  ///
   Future<T?> _showCustomDialog<T>({
     required BuildContext context,
     required WidgetBuilder builder,
@@ -34,10 +32,8 @@ class DialogService {
     );
   }
 
-  ///
-  /// Custom showCupertinoDialog wrapper that includes logging
-  ///
-  // ignore: unused_element TODO REMOVE
+  /// Custom showCupertinoModalPopup wrapper that includes logging
+  // ignore: unused_element Can be use in the future
   Future<T?> _showCupertinoModalPopup<T>({
     required BuildContext context,
     required WidgetBuilder builder,

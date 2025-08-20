@@ -14,16 +14,16 @@ final class LoginBody {
     return LoginBody(username: params.username, password: params.password);
   }
 
-  /// email
+  /// Email
   final String username;
 
-  /// password
+  /// Password
   final String password;
 
-  /// fromJson
+  /// From json
   static LoginBody fromJson(Map<String, dynamic> json) =>
       _$LoginBodyFromJson(json);
 
-  /// toJson
+  /// To json
   Map<String, dynamic> toJson() => _$LoginBodyToJson(this);
 }

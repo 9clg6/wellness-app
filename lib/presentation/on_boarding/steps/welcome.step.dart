@@ -6,7 +6,7 @@ import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 import 'package:starter_kit/presentation/on_boarding/on_boarding.view_model.dart';
 import 'package:starter_kit/presentation/widgets/continue_button_card.dart';
 
-/// Étape d'accueil
+/// Welcome step
 class WelcomeStep extends ConsumerWidget {
   /// Constructor
   const WelcomeStep({super.key});
@@ -14,6 +14,7 @@ class WelcomeStep extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final TextTheme textTheme = Theme.of(context).textTheme;
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final OnBoardingViewModel viewModel = ref.watch(
       onBoardingViewModelProvider.notifier,
     );
@@ -22,7 +23,7 @@ class WelcomeStep extends ConsumerWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(24),
-        color: Colors.white,
+        color: colorScheme.surface,
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -35,7 +36,7 @@ class WelcomeStep extends ConsumerWidget {
                   text: LocaleKeys.onboarding_welcomeMessage.tr(),
                   style: textTheme.titleLarge?.copyWith(
                     fontSize: 22,
-                    color: Colors.black,
+                    color: colorScheme.onSurface,
                     fontWeight: FontWeight.w300,
                   ),
                 ),
@@ -44,7 +45,7 @@ class WelcomeStep extends ConsumerWidget {
                   style: textTheme.titleLarge?.copyWith(
                     fontSize: 24,
                     fontWeight: FontWeight.w500,
-                    color: Colors.pink,
+                    color: colorScheme.primary,
                   ),
                 ),
               ],
@@ -54,9 +55,9 @@ class WelcomeStep extends ConsumerWidget {
           ContinueButtonCard(
             onTap: viewModel.nextStep,
             title: LocaleKeys.onboarding_getStarted.tr(),
-            color: Colors.pink,
+            color: colorScheme.primary,
             textColor: Colors.white,
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w600,
             fontSize: 20,
             width: 250,
           ),

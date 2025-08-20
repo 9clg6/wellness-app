@@ -6,17 +6,20 @@ import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 import 'package:starter_kit/presentation/on_boarding/on_boarding.view_model.dart';
 import 'package:starter_kit/presentation/widgets/continue_button_card.dart';
 import 'package:starter_kit/presentation/widgets/gradient_background.dart';
+import 'package:starter_kit/presentation/widgets/text_variant.dart';
 
-/// Étape mini-diagnostic positif
+/// Positive mini-diagnostic step
 class MiniDiagnosticStep extends ConsumerWidget {
   /// Constructor
   const MiniDiagnosticStep({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final String name =
-        ref.watch(onBoardingViewModelProvider.notifier).answers.firstName ??
-        'Tu';
+    final String name = ref
+        .watch(onBoardingViewModelProvider.notifier)
+        .answers
+        .firstName!;
+        
     final OnBoardingViewModel viewModel = ref.watch(
       onBoardingViewModelProvider.notifier,
     );
@@ -28,21 +31,15 @@ class MiniDiagnosticStep extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+            TextVariant(
               LocaleKeys.onboarding_miniDiagnostic.tr(args: <String>[name]),
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 18,
-                color: Colors.black,
-                fontWeight: FontWeight.w300,
-              ),
+              variantType: TextVariantType.bodyLarge,
             ),
             const Gap(24),
             ContinueButtonCard(
               onTap: viewModel.nextStep,
               title: LocaleKeys.onboarding_miniDiagnostic_button.tr(),
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
             ),
           ],
         ),

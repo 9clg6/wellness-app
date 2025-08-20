@@ -7,7 +7,7 @@ part of 'set_onboarding_completed.use_case.provider.dart';
 // **************************************************************************
 
 String _$setOnboardingCompletedUseCaseHash() =>
-    r'aa6816d31330fcc795c97466db5682966e3969c5';
+    r'ce4d0a4acb1677b97b0cb46d04cb96d510ccc1c7';
 
 /// Set onboarding completed use case provider
 ///

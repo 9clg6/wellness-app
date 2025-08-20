@@ -1,11 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:starter_kit/core/extensions/date.extension.dart';
 import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 import 'package:starter_kit/core/providers/core/services/happen_action.service.provider.dart';
 import 'package:starter_kit/core/providers/core/services/navigation.service.provider.dart';
+import 'package:starter_kit/core/providers/core/services/user.service.provider.dart';
 import 'package:starter_kit/core/providers/foundation/services/happen_action.service.dart';
 import 'package:starter_kit/core/providers/foundation/services/navigation.service.dart';
+import 'package:starter_kit/core/providers/foundation/services/user.service.dart';
 import 'package:starter_kit/domain/entities/happen_action.entity.dart';
 import 'package:starter_kit/presentation/screens/real_home/real_home.state.dart';
 
@@ -27,13 +30,15 @@ class RealHomeViewModel extends _$RealHomeViewModel {
   int get streakDays => getStreak();
 
   @override
-  RealHomeState build() {
+  Future<RealHomeState> build() async {
+    debugPrint('[RealHomeViewModel] build');
     _happenActionService = ref.watch(happenActionServiceProvider);
     _navigationService = ref.watch(navigationServiceProvider);
+    final UserService userService = await ref.watch(userServiceProvider.future);
 
     getStreak();
 
-    return RealHomeState.initial();
+    return RealHomeState.initial(surname: userService.currentUser!.firstname!);
   }
 
   /// Is something happened this day
@@ -109,7 +114,7 @@ class RealHomeViewModel extends _$RealHomeViewModel {
 
   /// On tap add happen action
   void onTapAddHappenAction() {
-    _navigationService.navigateToDailyJourney();
+    _navigationService.navigateToDailyJourney(isFromRealHome: true);
   }
 
   /// Build streak message

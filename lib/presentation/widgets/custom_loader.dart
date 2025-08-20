@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 
 /// Custom Loader Widget
 class CustomLoader extends StatelessWidget {
@@ -8,6 +9,13 @@ class CustomLoader extends StatelessWidget {
   /// Build Method
   @override
   Widget build(BuildContext context) {
-    return const Center(child: CircularProgressIndicator());
+    return const SizedBox(
+      height: 80,
+      width: 80,
+      child: LoadingIndicator(
+        indicatorType: Indicator.ballRotateChase,
+        colors: <Color>[Colors.black],
+      ),
+    );
   }
 }

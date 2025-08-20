@@ -14,5 +14,5 @@ Future<SetOnboardingCompletedUseCase> setOnboardingCompletedUseCase(
   final UserRepository userRepository = await ref.watch(
     userRepositoryProvider.future,
   );
-  return SetOnboardingCompletedUseCase(userRepository);
+  return SetOnboardingCompletedUseCase(userRepository: userRepository);
 }

@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:starter_kit/core/providers/foundation/kernel.provider.dart';
+import 'package:starter_kit/core/providers/config/kernel.provider.dart';
 import 'package:starter_kit/core/providers/presentation/router.provider.dart';
 import 'package:starter_kit/foundation/routing/app_router.dart';
 import 'package:starter_kit/foundation/theming/theme.dart';
@@ -17,6 +17,15 @@ class AppStartup extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final AsyncValue<void> appState = ref.watch(kernelProvider);
+
+    // Detect automatically the system locale
+    final Locale systemLocale = context.deviceLocale;
+    final List<Locale> supportedLocales = context.supportedLocales;
+
+    // If the system locale is supported, use it
+    if (supportedLocales.contains(systemLocale)) {
+      context.setLocale(systemLocale);
+    }
 
     return appState.when(
       data: (_) {
@@ -53,6 +62,7 @@ class RootAppWidget extends ConsumerWidget {
       },
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
+
       themeMode: ThemeMode.light,
       theme: theme.light(),
       locale: context.locale,

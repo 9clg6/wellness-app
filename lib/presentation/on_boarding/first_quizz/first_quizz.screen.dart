@@ -9,13 +9,14 @@ import 'package:starter_kit/presentation/on_boarding/first_quizz/first_quizz.vie
 import 'package:starter_kit/presentation/widgets/continue_button_card.dart';
 import 'package:starter_kit/presentation/widgets/form_input.dart';
 import 'package:starter_kit/presentation/widgets/on_boarding_button.dart';
+import 'package:starter_kit/presentation/widgets/text_variant.dart';
 
 /// First personal engagement quiz
 class FirstPersonalEngagementQuiz extends ConsumerWidget {
   /// Constructor
   const FirstPersonalEngagementQuiz({this.onEnd, super.key});
 
-  /// Callback à la fin du quiz
+  /// Callback at the end of the quiz
   final VoidCallback? onEnd;
 
   @override
@@ -51,7 +52,11 @@ class FirstPersonalEngagementQuiz extends ConsumerWidget {
 class _Q1Frequency extends ConsumerWidget {
   const _Q1Frequency();
 
-  static const List<String> _answers = <String>['Jamais', 'Parfois', 'Souvent'];
+  static final List<String> _answers = <String>[
+    LocaleKeys.jamais.tr(),
+    LocaleKeys.parfois.tr(),
+    LocaleKeys.souvent.tr(),
+  ];
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -68,23 +73,13 @@ class _Q1Frequency extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+            TextVariant(
               LocaleKeys.onboarding_questionTitle.tr(args: const <String>['1']),
-              style: const TextStyle(
-                fontSize: 26,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
-              ),
+              variantType: TextVariantType.displaySmall,
+              fontWeight: FontWeight.w700,
             ),
             const Gap(32),
-            Text(
-              LocaleKeys.onboarding_q1_text.tr(),
-              style: const TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w400,
-                color: Colors.black,
-              ),
-            ),
+            TextVariant(LocaleKeys.onboarding_q1_text.tr()),
             const Gap(46),
             ..._answers.mapIndexed((int index, String answer) {
               final int? selected = ref

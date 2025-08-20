@@ -7,17 +7,16 @@ import 'package:starter_kit/core/providers/foundation/services/navigation.servic
 import 'package:starter_kit/domain/entities/auth.entity.dart';
 import 'package:starter_kit/domain/entities/onboarding_answers.dart';
 import 'package:starter_kit/domain/entities/user.entity.dart';
-import 'package:starter_kit/domain/entities/user_info.entity.dart';
 import 'package:starter_kit/domain/params/login.param.dart';
+import 'package:starter_kit/domain/usecases/get_local_user.use_case.dart';
 import 'package:starter_kit/domain/usecases/get_onboarding_answers.use_case.dart';
 import 'package:starter_kit/domain/usecases/get_user.use_case.dart';
-import 'package:starter_kit/domain/usecases/get_user_info.use_case.dart';
 import 'package:starter_kit/domain/usecases/is_onboarding_completed.use_case.dart';
 import 'package:starter_kit/domain/usecases/login.use_case.dart';
 import 'package:starter_kit/domain/usecases/logout.use_case.dart';
 import 'package:starter_kit/domain/usecases/save_auth.use_case.dart';
 import 'package:starter_kit/domain/usecases/save_onboarding_answers.use_case.dart';
-import 'package:starter_kit/domain/usecases/save_user_info.use_case.dart';
+import 'package:starter_kit/domain/usecases/save_user.use_case.dart';
 import 'package:starter_kit/domain/usecases/set_onboarding_completed.use_case.dart';
 import 'package:starter_kit/foundation/interfaces/results.usecases.dart';
 
@@ -31,32 +30,32 @@ class UserService {
     required SaveAuthUseCase saveAuthUseCase,
     required LogoutUseCase logoutUseCase,
     required SaveOnboardingAnswersUseCase saveOnboardingAnswersUseCase,
-    required SaveUserInfoUseCase saveUserInfoUseCase,
     required GetOnboardingAnswersUseCase getOnboardingAnswersUseCase,
-    required GetUserInfoUseCase getUserInfoUseCase,
     required SetOnboardingCompletedUseCase setOnboardingCompletedUseCase,
     required IsOnboardingCompletedUseCase isOnboardingCompletedUseCase,
+    required GetLocalUserUseCase getLocalUserUseCase,
+    required SaveUserUseCase saveUserUseCase,
   }) : _navigationService = navigationService,
        _getUserUseCase = getUserUseCase,
        _loginUseCase = loginUseCase,
        _saveAuthUseCase = saveAuthUseCase,
        _logoutUseCase = logoutUseCase,
        _saveOnboardingAnswersUseCase = saveOnboardingAnswersUseCase,
-       _saveUserInfoUseCase = saveUserInfoUseCase,
        _getOnboardingAnswersUseCase = getOnboardingAnswersUseCase,
-       _getUserInfoUseCase = getUserInfoUseCase,
        _setOnboardingCompletedUseCase = setOnboardingCompletedUseCase,
-       _isOnboardingCompletedUseCase = isOnboardingCompletedUseCase;
+       _isOnboardingCompletedUseCase = isOnboardingCompletedUseCase,
+       _getLocalUserUseCase = getLocalUserUseCase,
+       _saveUserUseCase = saveUserUseCase;
 
   late final NavigationService _navigationService;
   late final GetUserUseCase _getUserUseCase;
+  late final GetLocalUserUseCase _getLocalUserUseCase;
   late final LoginUseCase _loginUseCase;
   late final SaveAuthUseCase _saveAuthUseCase;
   late final LogoutUseCase _logoutUseCase;
+  late final SaveUserUseCase _saveUserUseCase;
   late final SaveOnboardingAnswersUseCase _saveOnboardingAnswersUseCase;
-  late final SaveUserInfoUseCase _saveUserInfoUseCase;
   late final GetOnboardingAnswersUseCase _getOnboardingAnswersUseCase;
-  late final GetUserInfoUseCase _getUserInfoUseCase;
   late final SetOnboardingCompletedUseCase _setOnboardingCompletedUseCase;
   late final IsOnboardingCompletedUseCase _isOnboardingCompletedUseCase;
 
@@ -73,10 +72,43 @@ class UserService {
   /// Is authenticated
   bool get isAuthenticated => currentUser != null;
 
+  /// Streak days
+  int get streakDays => currentUser?.streakDays ?? 0;
+
   /// Load user
-  Future<void> loadUser() async {
-    final ResultState<UserEntity> user = await _getUserUseCase.execute();
-    _userSubject.add(user.data);
+  Future<void> loadLocalUser() async {
+    debugPrint('[UserService] loadLocalUser');
+    final ResultState<UserEntity?> localUser = await _getLocalUserUseCase
+        .execute();
+
+    if (localUser.status == StateStatus.success) {
+      if (localUser.data == null) {
+        await createDefaultUser();
+      } else {
+        _userSubject.add(localUser.data);
+      }
+    } else {
+      debugPrint('loadLocalUser: error: ${localUser.exception}');
+    }
+  }
+
+  /// Create default user for onboarding
+  Future<void> createDefaultUser() async {
+    debugPrint('[UserService] createDefaultUser');
+    _userSubject.add(UserEntity());
+  }
+
+  /// Update user firstname during onboarding
+  Future<void> updateUserFirstname(String firstName) async {
+    debugPrint('[UserService] updateUserFirstname');
+    final UserEntity? currentUser = _userSubject.value;
+    if (currentUser != null) {
+      final UserEntity updatedUser = currentUser.copyWith(firstname: firstName);
+      _userSubject.add(updatedUser);
+
+      // Save to local storage
+      await _saveUserUseCase.execute(updatedUser);
+    }
   }
 
   /// Dispose
@@ -131,9 +163,6 @@ class UserService {
         onFinish();
         await _saveAuthUseCase.execute(data);
 
-        // Email saving logic should be moved to a use case
-        // For now, we'll skip it to avoid UserPreferencesStorage dependency
-
         final ResultState<UserEntity> user = await _getUserUseCase.execute();
         _userSubject.add(user.data);
         _navigationService.navigateToHome(replace: true);
@@ -164,10 +193,6 @@ class UserService {
   Future<void> logout() async {
     try {
       await _logoutUseCase.execute();
-
-      // Email clearing logic should be moved to a use case
-      // For now, we'll skip it to avoid UserPreferencesStorage dependency
-
       _userSubject.add(null);
 
       _navigationService.navigateToSignInPage();
@@ -180,31 +205,54 @@ class UserService {
 
   /// Check if onboarding is completed
   Future<bool> isOnboardingCompleted() async {
-    return _isOnboardingCompletedUseCase.execute();
+    debugPrint('[UserService] isOnboardingCompleted');
+    return currentUser?.isOnboardingCompleted ??
+        await _isOnboardingCompletedUseCase.invoke();
   }
 
   /// Mark onboarding as completed
   Future<void> setOnboardingCompleted() async {
-    await _setOnboardingCompletedUseCase.execute();
+    debugPrint('[UserService] setOnboardingCompleted');
+    final UserEntity? currentUser = _userSubject.value;
+    if (currentUser != null) {
+      final UserEntity updatedUser = currentUser.copyWith(
+        isOnboardingCompleted: true,
+      );
+      updateAndSaveUser(updatedUser);
+    } else {
+      await _setOnboardingCompletedUseCase.execute();
+    }
   }
 
   /// Save onboarding answers
   Future<void> saveOnboardingAnswers(OnboardingAnswers answers) async {
+    debugPrint('[UserService] saveOnboardingAnswers');
     await _saveOnboardingAnswersUseCase.execute(answers);
   }
 
   /// Get onboarding answers
   Future<OnboardingAnswers?> getOnboardingAnswers() async {
-    return _getOnboardingAnswersUseCase.execute();
+    debugPrint('[UserService] getOnboardingAnswers');
+    final ResultState<OnboardingAnswers?> onboardingAnswers =
+        await _getOnboardingAnswersUseCase.execute();
+
+    return onboardingAnswers.data;
   }
 
-  /// Save user info after onboarding
-  Future<void> saveUserInfo(UserInfoEntity userInfo) async {
-    await _saveUserInfoUseCase.execute(userInfo);
+  /// Increase streak days
+  void increaseStreakDays() {
+    final UserEntity? currentUser = _userSubject.value;
+    if (currentUser != null) {
+      final UserEntity updatedUser = currentUser.copyWith(
+        streakDays: currentUser.streakDays + 1,
+      );
+      updateAndSaveUser(updatedUser);
+    }
   }
 
-  /// Get user info
-  Future<UserInfoEntity?> getUserInfo() async {
-    return _getUserInfoUseCase.execute();
+  /// Update and save user
+  void updateAndSaveUser(UserEntity user) {
+    _userSubject.add(user);
+    _saveUserUseCase.execute(user);
   }
 }

@@ -14,5 +14,5 @@ Future<IsOnboardingCompletedUseCase> isOnboardingCompletedUseCase(
   final UserRepository userRepository = await ref.watch(
     userRepositoryProvider.future,
   );
-  return IsOnboardingCompletedUseCase(userRepository);
+  return IsOnboardingCompletedUseCase(userRepository: userRepository);
 }

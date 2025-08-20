@@ -2,7 +2,6 @@
 
 import 'package:starter_kit/domain/entities/onboarding_answers.dart';
 import 'package:starter_kit/domain/entities/user.entity.dart';
-import 'package:starter_kit/domain/entities/user_info.entity.dart';
 
 /// User Repository
 abstract class UserRepository {
@@ -27,9 +26,9 @@ abstract class UserRepository {
   /// Get onboarding answers
   Future<OnboardingAnswers?> getOnboardingAnswers();
 
-  /// Save user info after onboarding
-  Future<void> saveUserInfo(UserInfoEntity userInfo);
+  /// Save user after onboarding
+  Future<void> saveUser(UserEntity user);
 
-  /// Get user info
-  Future<UserInfoEntity?> getUserInfo();
+  /// Get user from local storage
+  Future<UserEntity?> getLocalUser();
 }

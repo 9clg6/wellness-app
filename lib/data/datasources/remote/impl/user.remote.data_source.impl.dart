@@ -8,7 +8,7 @@ final class UserRemoteDataSourceImpl extends UserRemoteDataSource {
   UserRemoteDataSourceImpl({required UserEndpoint endpoint})
     : _endpoint = endpoint;
 
-  /// endpoint
+  /// Endpoint
   final UserEndpoint _endpoint;
 
   @override

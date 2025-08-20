@@ -7,7 +7,7 @@ part of 'save_onboarding_answers.use_case.provider.dart';
 // **************************************************************************
 
 String _$saveOnboardingAnswersUseCaseHash() =>
-    r'216922b60d3b8cc6b27ebd9aef2f28a4177f556a';
+    r'522e4d61c5c1b084dcb1537f6dd0ce9028c4eee2';
 
 /// Save onboarding answers use case provider
 ///

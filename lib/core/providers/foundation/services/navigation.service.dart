@@ -11,9 +11,9 @@ class NavigationService {
   /// Navigate to home
   void navigateToHome({bool replace = false}) {
     if (replace) {
-      _appRouter.replace(const HomeRoute());
+      _appRouter.replace(HomeRoute());
     } else {
-      _appRouter.push(const HomeRoute());
+      _appRouter.push(HomeRoute());
     }
   }
 
@@ -51,7 +51,7 @@ class NavigationService {
   }
 
   /// Navigate to daily journey
-  void navigateToDailyJourney() {
-    _appRouter.push(const HomeRoute());
+  void navigateToDailyJourney({bool isFromRealHome = false}) {
+    _appRouter.push(HomeRoute(isFromRealHome: isFromRealHome));
   }
 }

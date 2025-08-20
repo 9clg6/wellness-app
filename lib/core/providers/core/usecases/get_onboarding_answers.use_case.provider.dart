@@ -12,5 +12,5 @@ Future<GetOnboardingAnswersUseCase> getOnboardingAnswersUseCase(Ref ref) async {
   final UserRepository userRepository = await ref.watch(
     userRepositoryProvider.future,
   );
-  return GetOnboardingAnswersUseCase(userRepository);
+  return GetOnboardingAnswersUseCase(userRepository: userRepository);
 }

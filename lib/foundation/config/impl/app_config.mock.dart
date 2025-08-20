@@ -7,7 +7,7 @@ final class AppConfigMock implements AppConfig {
   String get baseUrl => '';
 
   @override
-  String get appName => 'Starter Kit - Mock';
+  String get appName => 'Wellness App - Mock';
   
   @override
   Environment get env => Environment.mock;

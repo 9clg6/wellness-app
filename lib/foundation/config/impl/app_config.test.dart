@@ -7,7 +7,7 @@ final class AppConfigTest implements AppConfig {
   String get baseUrl => '';
 
   @override
-  String get appName => 'Starter Kit - Test';
+  String get appName => 'Wellness App - Test';
 
   @override
   Environment get env => Environment.test;

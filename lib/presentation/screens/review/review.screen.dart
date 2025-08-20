@@ -3,13 +3,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:mesh_gradient/mesh_gradient.dart';
 import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
-import 'package:starter_kit/domain/entities/happen_action.entity.dart';
 import 'package:starter_kit/presentation/screens/review/review.state.dart';
 import 'package:starter_kit/presentation/screens/review/review.view_model.dart';
-import 'package:starter_kit/presentation/screens/review/widgets/arc_wheel_view.dart';
+import 'package:starter_kit/presentation/widgets/arc_wheel_view.dart';
 import 'package:starter_kit/presentation/widgets/custom_button.dart';
+import 'package:starter_kit/presentation/widgets/custom_loader.dart';
+import 'package:starter_kit/presentation/widgets/gradient_background.dart';
+import 'package:starter_kit/presentation/widgets/text_variant.dart';
 
 /// Review screen
 @RoutePage()
@@ -25,79 +26,66 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen>
     with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
-    final ReviewState state = ref.watch(reviewViewModelProvider);
-    final ReviewViewModel viewModel = ref.watch(
-      reviewViewModelProvider.notifier,
-    );
-
-    final List<HappenActionEntity> entries = state.entries;
+    final AsyncValue<ReviewState> state = ref.watch(reviewViewModelProvider);
 
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Colors.white,
-      body: Stack(
-        children: <Widget>[
-          Positioned.fill(
-            child: Opacity(
-              opacity: 0.5,
-              child: MeshGradient(
-                options: MeshGradientOptions(noiseIntensity: 1),
-                controller: MeshGradientController(
-                  points: <MeshGradientPoint>[
-                    MeshGradientPoint(
-                      position: const Offset(0.3, 0.3),
-                      color: Colors.white,
+      body: state.when(
+        data: (ReviewState data) => _HasDataBody(),
+        error: (Object error, StackTrace stackTrace) => TextVariant(
+          error.toString(),
+          color: Theme.of(context).colorScheme.error,
+        ),
+        loading: CustomLoader.new,
+      ),
+    );
+  }
+}
+
+class _HasDataBody extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final ReviewViewModel viewModel = ref.watch(
+      reviewViewModelProvider.notifier,
+    );
+    final AsyncValue<ReviewState> state = ref.watch(reviewViewModelProvider);
+
+    return GradientBackground(
+      stackKey: GlobalKey(),
+      randomGradient: true,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: state.requireValue.entries.isEmpty
+            ? Center(
+                child: Text(
+                  LocaleKeys.reviewScreenNoEntries.tr(),
+                  style: const TextStyle(fontSize: 16),
+                ),
+              )
+            : Center(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    SizedBox(
+                      height: 200,
+                      child: ReviewArcWheel(
+                        entries: state.requireValue.entries,
+                      ),
                     ),
-                    MeshGradientPoint(
-                      position: const Offset(0.4, 0.5),
-                      color: Colors.green,
-                    ),
-                    MeshGradientPoint(
-                      position: const Offset(0.7, 0.4),
-                      color: Colors.blue,
-                    ),
-                    MeshGradientPoint(
-                      position: const Offset(0.7, 0.9),
-                      color: Colors.red,
+                    const Gap(22),
+                    SizedBox(
+                      width: 160,
+                      child: CustomButton(
+                        title: LocaleKeys.review_leave_review.tr(),
+                        backgroundColor: Colors.black,
+                        onTap: viewModel.leaveReview,
+                        boldTitle: true,
+                      ),
                     ),
                   ],
-                  vsync: this,
                 ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16),
-            child: entries.isEmpty
-                ? Center(
-                    child: Text(
-                      LocaleKeys.reviewScreenNoEntries.tr(),
-                      style: const TextStyle(fontSize: 16),
-                    ),
-                  )
-                : Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        SizedBox(
-                          height: 200,
-                          child: ReviewArcWheel(entries: entries),
-                        ),
-                        const Gap(22),
-                        SizedBox(
-                          width: 160,
-                          child: CustomButton(
-                            title: 'Merci 🙏',
-                            backgroundColor: Colors.black,
-                            onTap: viewModel.leaveReview,
-                            boldTitle: true,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-          ),
-        ],
       ),
     );
   }
