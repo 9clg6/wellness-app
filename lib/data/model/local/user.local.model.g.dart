@@ -13,6 +13,8 @@ UserLocalModel _$UserLocalModelFromJson(Map<String, dynamic> json) =>
       nickname: json['nickname'] as String?,
       lastname: json['lastname'] as String?,
       firstname: json['firstname'] as String?,
+      isOnboardingCompleted: json['isOnboardingCompleted'] as bool?,
+      streakDays: (json['streakDays'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$UserLocalModelToJson(UserLocalModel instance) =>
@@ -22,4 +24,6 @@ Map<String, dynamic> _$UserLocalModelToJson(UserLocalModel instance) =>
       'nickname': instance.nickname,
       'lastname': instance.lastname,
       'firstname': instance.firstname,
+      'isOnboardingCompleted': instance.isOnboardingCompleted,
+      'streakDays': instance.streakDays,
     };

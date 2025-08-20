@@ -15,6 +15,8 @@ class UserEntity with EquatableMixin {
     this.nickname,
     this.lastname,
     this.firstname,
+    this.isOnboardingCompleted,
+    this.streakDays = 0,
   });
 
   /// fromLocal
@@ -25,6 +27,8 @@ class UserEntity with EquatableMixin {
       nickname: userLocalModel.nickname,
       lastname: userLocalModel.lastname,
       firstname: userLocalModel.firstname,
+      isOnboardingCompleted: userLocalModel.isOnboardingCompleted,
+      streakDays: userLocalModel.streakDays,
     );
   }
 
@@ -54,6 +58,12 @@ class UserEntity with EquatableMixin {
   /// firstname
   final String? firstname;
 
+  /// is onboarding completed
+  final bool? isOnboardingCompleted;
+
+  /// streak days
+  final int streakDays;
+
   @override
   String toString() {
     return 'User: $id - $email - $nickname - $lastname - $firstname';
@@ -61,10 +71,12 @@ class UserEntity with EquatableMixin {
 
   @override
   List<Object?> get props => <Object?>[
-        id,
-        email,
-        nickname,
-        lastname,
-        firstname,
-      ];
+    id,
+    email,
+    nickname,
+    lastname,
+    firstname,
+    isOnboardingCompleted,
+    streakDays,
+  ];
 }

@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 import 'package:starter_kit/presentation/widgets/tappable_componenent.dart';
+import 'package:starter_kit/presentation/widgets/text_variant.dart';
 
 /// Continue button card
 class ContinueButtonCard extends StatelessWidget {
@@ -12,9 +13,9 @@ class ContinueButtonCard extends StatelessWidget {
     super.key,
     this.width,
     this.centerTitle = true,
-    this.color = Colors.white,
-    this.textColor = Colors.black,
-    this.fontWeight = FontWeight.w300,
+    this.color,
+    this.textColor,
+    this.fontWeight,
     this.fontSize = 16,
   });
 
@@ -34,27 +35,29 @@ class ContinueButtonCard extends StatelessWidget {
   final double fontSize;
 
   /// Color
-  final Color color;
+  final Color? color;
 
   /// Text color
-  final Color textColor;
+  final Color? textColor;
 
   /// Font weight
-  final FontWeight fontWeight;
+  final FontWeight? fontWeight;
 
   /// Build
   @override
   Widget build(BuildContext context) {
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+
     return TappableComponent(
       onTap: onTap,
-      color: Colors.white,
+      color: color ?? colorScheme.primary,
       borderRadius: BorderRadius.circular(32),
       child: Container(
         alignment: Alignment.center,
         padding: const EdgeInsets.all(16),
         width: width,
         decoration: BoxDecoration(
-          color: color,
+          color: color ?? colorScheme.primary,
           borderRadius: BorderRadius.circular(32),
           boxShadow: <BoxShadow>[
             BoxShadow(
@@ -70,13 +73,11 @@ class ContinueButtonCard extends StatelessWidget {
               ? MainAxisAlignment.center
               : MainAxisAlignment.start,
           children: <Widget>[
-            Text(
+            TextVariant(
               title ?? LocaleKeys.continueBtn.tr(),
-              style: TextStyle(
-                fontSize: fontSize,
-                fontWeight: fontWeight,
-                color: textColor,
-              ),
+              variantType: TextVariantType.bodyLarge,
+              color: textColor ?? Theme.of(context).colorScheme.onPrimary,
+              fontWeight: fontWeight ?? FontWeight.w500,
             ),
           ],
         ),

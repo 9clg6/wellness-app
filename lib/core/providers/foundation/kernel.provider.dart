@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:starter_kit/core/providers/config/appconfig.provider.dart';
@@ -17,6 +18,7 @@ part 'kernel.provider.g.dart';
 /// Kernel provider
 @Riverpod(keepAlive: true)
 Future<void> kernel(Ref ref) async {
+  debugPrint('[KernelProvider] Starting initialization');
   final AppConfig _ = ref.watch(appConfigProvider);
 
   final DioClient dioClient = await ref.watch(dioClientProvider.future);
@@ -26,7 +28,7 @@ Future<void> kernel(Ref ref) async {
   );
 
   final UserService userService = await ref.watch(userServiceProvider.future);
-  await userService.loadUser();
+  await userService.loadLocalUser();
 
   // try {
   //   // Initialize RevenueCat for in-app purchases

@@ -7,7 +7,7 @@ part of 'on_boarding.view_model.dart';
 // **************************************************************************
 
 String _$onBoardingViewModelHash() =>
-    r'b803e80e66d59181a1c695bc422b716b50577851';
+    r'48206888796876ec19d4a6e363800303d08fdffc';
 
 /// On boarding view model
 ///

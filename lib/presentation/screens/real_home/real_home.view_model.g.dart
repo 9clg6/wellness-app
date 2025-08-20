@@ -6,14 +6,14 @@ part of 'real_home.view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$realHomeViewModelHash() => r'41399da1e2cc456ef19a234bbd81aa0180ad57ee';
+String _$realHomeViewModelHash() => r'b343c24ca4a45bd59b98cbbf3f27ded2e79ea311';
 
 /// Real home view model
 ///
 /// Copied from [RealHomeViewModel].
 @ProviderFor(RealHomeViewModel)
 final realHomeViewModelProvider =
-    AutoDisposeNotifierProvider<RealHomeViewModel, RealHomeState>.internal(
+    AutoDisposeAsyncNotifierProvider<RealHomeViewModel, RealHomeState>.internal(
       RealHomeViewModel.new,
       name: r'realHomeViewModelProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -23,6 +23,6 @@ final realHomeViewModelProvider =
       allTransitiveDependencies: null,
     );
 
-typedef _$RealHomeViewModel = AutoDisposeNotifier<RealHomeState>;
+typedef _$RealHomeViewModel = AutoDisposeAsyncNotifier<RealHomeState>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

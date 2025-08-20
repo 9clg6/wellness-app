@@ -105,8 +105,6 @@ class _SolutionStepState extends ConsumerState<SolutionStep> {
               child: ContinueButtonCard(
                 onTap: _next,
                 title: LocaleKeys.common_next.tr(),
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
               ),
             ),
           ],

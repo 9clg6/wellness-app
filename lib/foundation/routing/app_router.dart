@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:starter_kit/core/providers/core/services/user.service.provider.dart';
 import 'package:starter_kit/core/providers/foundation/services/user.service.dart';
@@ -19,6 +20,7 @@ class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => <AutoRoute>[
     AutoRoute(page: AuthenticationRoute.page),
+    AutoRoute(page: HomeRoute.page),
     AutoRoute(
       page: RealHomeRoute.page,
       guards: <AutoRouteGuard>[OnboardingGuard()],
@@ -46,10 +48,12 @@ class OnboardingGuard extends AutoRouteGuard {
     );
 
     if (await userService.isOnboardingCompleted()) {
+      debugPrint('[OnboardingGuard] isOnboardingCompleted: true');
       resolver.next();
       return;
     }
 
+    debugPrint('[OnboardingGuard] isOnboardingCompleted: false');
     await resolver.redirectUntil(const OnBoardingRoute());
   }
 }

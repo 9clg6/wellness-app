@@ -1,4 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 import 'package:starter_kit/presentation/widgets/form_input.dart';
 
 /// Entry card
@@ -39,6 +41,7 @@ class EntryCard extends StatelessWidget {
   /// Build
   @override
   Widget build(BuildContext context) {
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
     return Container(
       width: double.infinity,
       height: height,
@@ -46,11 +49,13 @@ class EntryCard extends StatelessWidget {
       decoration:
           decoration as BoxDecoration? ??
           BoxDecoration(
-            color: Colors.white,
-            border: Border.all(color: Colors.black.withValues(alpha: 0.1)),
+            color: colorScheme.onPrimary,
+            border: Border.all(
+              color: colorScheme.outline.withValues(alpha: 0.1),
+            ),
             boxShadow: <BoxShadow>[
               BoxShadow(
-                color: Colors.black.withValues(alpha: 0.15),
+                color: colorScheme.onSurface.withValues(alpha: 0.15),
                 blurRadius: 16,
                 spreadRadius: 1,
               ),
@@ -66,16 +71,10 @@ class EntryCard extends StatelessWidget {
           children: <Widget>[
             Flexible(
               child: FormInput(
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyMedium?.copyWith(color: Colors.black),
                 minLines: null,
                 expands: true,
                 controller: happenController,
-                labelText: "Aujourd'hui, j'ai réussi à...",
-                labelStyle: Theme.of(
-                  context,
-                ).textTheme.bodyMedium?.copyWith(color: Colors.black),
+                labelText: LocaleKeys.home_entry_card_label.tr(),
                 onChanged: onHappenChanged,
               ),
             ),

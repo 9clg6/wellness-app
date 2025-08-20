@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:starter_kit/domain/entities/solution_screen.entity.dart';
+import 'package:starter_kit/presentation/widgets/text_variant.dart';
 
 /// Widget to display a solution screen card
 class SolutionScreenCard extends StatelessWidget {
@@ -23,27 +24,17 @@ class SolutionScreenCard extends StatelessWidget {
             Text(screen.emoji.tr(), style: const TextStyle(fontSize: 80)),
             const SizedBox(height: 32),
             // Title
-            Text(
+            TextVariant(
               screen.title.tr(),
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
-                height: 1.3,
-              ),
+              variantType: TextVariantType.titleLarge,
             ),
             const SizedBox(height: 16),
             // Text
-            Text(
+            TextVariant(
               screen.text.tr(),
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 18,
-                color: Colors.black,
-                fontWeight: FontWeight.w300,
-                height: 1.4,
-              ),
+              variantType: TextVariantType.bodyLarge,
             ),
           ],
         ),

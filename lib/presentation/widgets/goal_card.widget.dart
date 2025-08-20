@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:starter_kit/domain/entities/goal.entity.dart';
+import 'package:starter_kit/presentation/widgets/text_variant.dart';
 
 /// Widget to display a goal card
 class GoalCard extends StatelessWidget {
@@ -23,15 +24,16 @@ class GoalCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
         decoration: BoxDecoration(
-          color: isSelected ? goal.color : Colors.white,
+          color: isSelected ? goal.color : colorScheme.surface,
           borderRadius: BorderRadius.circular(16),
           border: Border.all(
-            color: isSelected ? goal.color : Colors.grey[300]!,
+            color: isSelected ? goal.color : colorScheme.outline,
             width: isSelected ? 2 : 1,
           ),
           boxShadow: isSelected
@@ -44,7 +46,7 @@ class GoalCard extends StatelessWidget {
                 ]
               : <BoxShadow>[
                   BoxShadow(
-                    color: Colors.grey[200]!,
+                    color: colorScheme.outline,
                     blurRadius: 4,
                     offset: const Offset(0, 2),
                   ),
@@ -55,27 +57,28 @@ class GoalCard extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(goal.emoji, style: const TextStyle(fontSize: 32)),
+              TextVariant(
+                goal.emoji,
+                variantType: TextVariantType.headlineMedium,
+              ),
               const SizedBox(height: 12),
-              Text(
+              TextVariant(
                 goal.title.tr(),
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w600,
-                  color: isSelected ? Colors.white : Colors.black87,
-                ),
+                variantType: TextVariantType.titleSmall,
+                fontWeight: FontWeight.w600,
+                color: isSelected
+                    ? colorScheme.onPrimary
+                    : colorScheme.onSurface,
               ),
               const SizedBox(height: 4),
-              Text(
+              TextVariant(
                 goal.description.tr(),
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 11,
-                  color: isSelected ? Colors.white70 : Colors.grey[500],
-                  fontStyle: FontStyle.italic,
-                  fontWeight: FontWeight.w500,
-                ),
+                variantType: TextVariantType.labelSmall,
+                color: isSelected
+                    ? colorScheme.onPrimary
+                    : colorScheme.outline,
               ),
             ],
           ),

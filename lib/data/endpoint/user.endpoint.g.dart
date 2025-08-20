@@ -27,7 +27,7 @@ class _UserEndpoint implements UserEndpoint {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/own_user',
+            '/me',
             queryParameters: queryParameters,
             data: _data,
           )

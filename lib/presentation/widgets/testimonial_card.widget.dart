@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:starter_kit/domain/entities/testimonial.entity.dart';
+import 'package:starter_kit/presentation/widgets/text_variant.dart';
 
 /// Widget to display a testimonial card
 class TestimonialCard extends StatelessWidget {
@@ -12,57 +13,45 @@ class TestimonialCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.grey[50],
+        color: colorScheme.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: Colors.pink[100]!),
+        border: Border.all(color: colorScheme.primary),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          // Header with emoji and author
           Row(
             children: <Widget>[
-              Text(
+              TextVariant(
                 testimonial.emoji,
-                style: const TextStyle(fontSize: 24),
+                variantType: TextVariantType.displaySmall,
               ),
               const SizedBox(width: 12),
               Expanded(
-                child: Text(
+                child: TextVariant(
                   testimonial.author.tr(),
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.pink[700],
-                  ),
+                  variantType: TextVariantType.titleMedium,
+                  fontWeight: FontWeight.w600,
+                  color: colorScheme.primary,
                 ),
               ),
             ],
           ),
           const SizedBox(height: 16),
-          // Quote
-          Text(
+          TextVariant(
             testimonial.quote.tr(),
-            style: const TextStyle(
-              fontSize: 16,
-              color: Colors.black87,
-              height: 1.5,
-              fontWeight: FontWeight.w400,
-            ),
           ),
           const SizedBox(height: 12),
-          // Source and year
-          Text(
+          TextVariant(
             '${testimonial.source.tr()} (${testimonial.year})',
-            style: TextStyle(
-              fontSize: 12,
-              color: Colors.grey[500],
-              fontStyle: FontStyle.italic,
-            ),
+            variantType: TextVariantType.bodySmall,
+            color: colorScheme.outline,
           ),
         ],
       ),
