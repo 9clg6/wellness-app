@@ -28,18 +28,51 @@ class AuthenticationRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [HomeScreen]
-class HomeRoute extends PageRouteInfo<void> {
-  const HomeRoute({List<PageRouteInfo>? children})
-    : super(HomeRoute.name, initialChildren: children);
+class HomeRoute extends PageRouteInfo<HomeRouteArgs> {
+  HomeRoute({
+    Key? key,
+    bool isFromRealHome = false,
+    List<PageRouteInfo>? children,
+  }) : super(
+         HomeRoute.name,
+         args: HomeRouteArgs(key: key, isFromRealHome: isFromRealHome),
+         initialChildren: children,
+       );
 
   static const String name = 'HomeRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const HomeScreen();
+      final args = data.argsAs<HomeRouteArgs>(
+        orElse: () => const HomeRouteArgs(),
+      );
+      return HomeScreen(key: args.key, isFromRealHome: args.isFromRealHome);
     },
   );
+}
+
+class HomeRouteArgs {
+  const HomeRouteArgs({this.key, this.isFromRealHome = false});
+
+  final Key? key;
+
+  final bool isFromRealHome;
+
+  @override
+  String toString() {
+    return 'HomeRouteArgs{key: $key, isFromRealHome: $isFromRealHome}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! HomeRouteArgs) return false;
+    return key == other.key && isFromRealHome == other.isFromRealHome;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ isFromRealHome.hashCode;
 }
 
 /// generated route for

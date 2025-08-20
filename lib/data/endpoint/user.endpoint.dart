@@ -13,6 +13,6 @@ abstract class UserEndpoint {
   factory UserEndpoint(Dio dio) = _UserEndpoint;
 
   /// get user
-  @GET('/own_user')
+  @GET('/me')
   Future<List<UserRemoteModel>> getUser();
 }

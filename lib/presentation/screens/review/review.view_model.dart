@@ -4,8 +4,10 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 import 'package:starter_kit/core/providers/core/services/happen_action.service.provider.dart';
 import 'package:starter_kit/core/providers/core/services/navigation.service.provider.dart';
+import 'package:starter_kit/core/providers/core/services/user.service.provider.dart';
 import 'package:starter_kit/core/providers/foundation/services/happen_action.service.dart';
 import 'package:starter_kit/core/providers/foundation/services/navigation.service.dart';
+import 'package:starter_kit/core/providers/foundation/services/user.service.dart';
 import 'package:starter_kit/core/providers/presentation/router.provider.dart';
 import 'package:starter_kit/domain/entities/happen_action.entity.dart';
 import 'package:starter_kit/presentation/screens/review/review.state.dart';
@@ -17,23 +19,28 @@ part 'review.view_model.g.dart';
 @riverpod
 class ReviewViewModel extends _$ReviewViewModel {
   /// Happen action service
-  late final HappenActionService _service;
+  late final HappenActionService _happenActionService;
 
   late final NavigationService _navigationService;
+
+  /// User service
+  late final UserService _userService;
 
   /// Overlay state
   late final OverlayState overlay;
 
-  /// Controller interne du TopSnackBar pour pouvoir le fermer
+  /// Snackbar controller
   AnimationController? _snackController;
 
   @override
-  ReviewState build() {
-    _service = ref.watch(happenActionServiceProvider);
+  Future<ReviewState> build() async {
+    debugPrint('[ReviewViewModel] build');
+    _happenActionService = ref.watch(happenActionServiceProvider);
     _navigationService = ref.watch(navigationServiceProvider);
+    _userService = await ref.watch(userServiceProvider.future);
 
     final List<HappenActionEntity> entries = List<HappenActionEntity>.from(
-      _service.entries,
+      _happenActionService.entries,
     );
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -83,25 +90,26 @@ class ReviewViewModel extends _$ReviewViewModel {
 
     return ReviewState(
       isLoading: false,
-      streakDays: _service.streakDays,
+      streakDays: _userService.streakDays,
       entries: entries,
     );
   }
 
   /// Refresh data from the home view model
-  void refreshFromHome() {
-    final HappenActionService service = ref.read(happenActionServiceProvider);
-    state = state.copyWith(
-      isLoading: false,
-      streakDays: service.streakDays,
-      entries: List<HappenActionEntity>.from(service.entries),
+  Future<void> refreshFromHome() async {
+    state = AsyncData<ReviewState>(
+      state.value!.copyWith(
+        isLoading: false,
+        streakDays: _userService.streakDays,
+        entries: List<HappenActionEntity>.from(_happenActionService.entries),
+      ),
     );
   }
 
   /// Leave review
   void leaveReview() {
     _snackController?.reverse();
-    _service.incrementStreak();
+    _userService.increaseStreakDays();
     _navigationService.navigateToRealHome(replace: true);
   }
 }

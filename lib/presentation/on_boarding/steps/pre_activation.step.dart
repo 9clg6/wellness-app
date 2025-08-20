@@ -6,6 +6,7 @@ import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 import 'package:starter_kit/presentation/on_boarding/on_boarding.view_model.dart';
 import 'package:starter_kit/presentation/widgets/continue_button_card.dart';
 import 'package:starter_kit/presentation/widgets/gradient_background.dart';
+import 'package:starter_kit/presentation/widgets/text_variant.dart';
 
 /// Étape de pré-activation émotionnelle
 class PreActivationStep extends ConsumerWidget {
@@ -25,10 +26,10 @@ class PreActivationStep extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+            TextVariant(
               LocaleKeys.onboarding_preActivation_title.tr(),
               textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 20, color: Colors.black),
+              variantType: TextVariantType.titleMedium,
             ),
             const Gap(24),
             ContinueButtonCard(

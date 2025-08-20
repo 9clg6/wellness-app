@@ -37,7 +37,7 @@ class DialogService {
   ///
   /// Custom showCupertinoDialog wrapper that includes logging
   ///
-  // ignore: unused_element TODO REMOVE
+  // ignore: unused_element Can be use in the future
   Future<T?> _showCupertinoModalPopup<T>({
     required BuildContext context,
     required WidgetBuilder builder,

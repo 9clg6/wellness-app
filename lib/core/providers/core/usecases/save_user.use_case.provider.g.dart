@@ -1,32 +1,30 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'get_user_info.use_case.provider.dart';
+part of 'save_user.use_case.provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getUserInfoUseCaseHash() =>
-    r'8edf98add723119c5fd6be0cfdd312129fe52c35';
+String _$saveUserUseCaseHash() => r'bce85ef8641ee39c7158216985e6afc1c5ec7f3a';
 
-/// Get user info use case provider
+/// Save user use case provider
 ///
-/// Copied from [getUserInfoUseCase].
-@ProviderFor(getUserInfoUseCase)
-final getUserInfoUseCaseProvider =
-    AutoDisposeFutureProvider<GetUserInfoUseCase>.internal(
-      getUserInfoUseCase,
-      name: r'getUserInfoUseCaseProvider',
+/// Copied from [saveUserUseCase].
+@ProviderFor(saveUserUseCase)
+final saveUserUseCaseProvider =
+    AutoDisposeFutureProvider<SaveUserUseCase>.internal(
+      saveUserUseCase,
+      name: r'saveUserUseCaseProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
           ? null
-          : _$getUserInfoUseCaseHash,
+          : _$saveUserUseCaseHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef GetUserInfoUseCaseRef =
-    AutoDisposeFutureProviderRef<GetUserInfoUseCase>;
+typedef SaveUserUseCaseRef = AutoDisposeFutureProviderRef<SaveUserUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

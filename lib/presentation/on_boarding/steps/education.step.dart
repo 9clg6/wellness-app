@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 import 'package:starter_kit/presentation/on_boarding/on_boarding.view_model.dart';
 import 'package:starter_kit/presentation/widgets/continue_button_card.dart';
+import 'package:starter_kit/presentation/widgets/text_variant.dart';
 
 /// Étape d'éducation (bénéfices)
 class EducationStep extends ConsumerStatefulWidget {
@@ -61,6 +62,7 @@ class _EducationStepState extends ConsumerState<EducationStep> {
 
   @override
   Widget build(BuildContext context) {
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 42),
       child: Column(
@@ -77,31 +79,18 @@ class _EducationStepState extends ConsumerState<EducationStep> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           // Visuel
-                          Text(
-                            screen['visual']!,
-                            style: const TextStyle(fontSize: 80),
-                          ),
-                          const SizedBox(height: 32),
-                          // Titre
-                          Text(
+                          TextVariant(screen['visual']!, fontSize: 80),
+                          const SizedBox(height: 12),
+                          TextVariant(
                             screen['title']!,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
-                            ),
+                            variantType: TextVariantType.titleLarge,
                           ),
                           const SizedBox(height: 24),
-                          // Texte
-                          Text(
+                          TextVariant(
                             screen['text']!,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 18,
-                              color: Colors.black87,
-                              height: 1.4,
-                            ),
+                            variantType: TextVariantType.bodyLarge,
                           ),
                         ],
                       ),
@@ -114,12 +103,10 @@ class _EducationStepState extends ConsumerState<EducationStep> {
             padding: const EdgeInsets.only(bottom: 24),
             child: ContinueButtonCard(
               onTap: _next,
-              color: Colors.pink[100]!,
+              color: colorScheme.primary,
               title: _index == _screens.length - 1
                   ? LocaleKeys.onboarding_education_button.tr()
                   : LocaleKeys.common_next.tr(),
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
             ),
           ),
         ],

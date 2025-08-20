@@ -1,5 +1,5 @@
 import 'package:starter_kit/data/model/local/onboarding_answers.local.model.dart';
-import 'package:starter_kit/data/model/local/user_info.local.model.dart';
+import 'package:starter_kit/data/model/local/user.local.model.dart';
 
 /// User local data source
 abstract class UserLocalDataSource {
@@ -21,9 +21,9 @@ abstract class UserLocalDataSource {
   /// Get onboarding answers
   Future<OnboardingAnswersLocalModel?> getOnboardingAnswers();
 
-  /// Save user info after onboarding
-  Future<void> saveUserInfo(UserInfoLocalModel userInfo);
+  /// Save user after onboarding
+  Future<void> saveUser(UserLocalModel user);
 
-  /// Get user info
-  Future<UserInfoLocalModel?> getUserInfo();
+  /// Get user
+  Future<UserLocalModel?> getUser();
 }

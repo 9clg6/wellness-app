@@ -1,11 +1,10 @@
 import 'package:starter_kit/data/datasources/local/user.local.data_source.dart';
 import 'package:starter_kit/data/datasources/remote/user.remote.data_source.dart';
 import 'package:starter_kit/data/model/local/onboarding_answers.local.model.dart';
-import 'package:starter_kit/data/model/local/user_info.local.model.dart';
+import 'package:starter_kit/data/model/local/user.local.model.dart';
 import 'package:starter_kit/data/model/remote/user.remote.model.dart';
 import 'package:starter_kit/domain/entities/onboarding_answers.dart';
 import 'package:starter_kit/domain/entities/user.entity.dart';
-import 'package:starter_kit/domain/entities/user_info.entity.dart';
 import 'package:starter_kit/domain/repositories/user.repository.dart';
 
 /// User Repository
@@ -44,9 +43,8 @@ final class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<UserInfoEntity?> getUserInfo() async {
-    final UserInfoLocalModel? localModel = await _userLocalDataSource
-        .getUserInfo();
+  Future<UserEntity?> getLocalUser() async {
+    final UserLocalModel? localModel = await _userLocalDataSource.getUser();
     return localModel?.toEntity();
   }
 
@@ -76,15 +74,8 @@ final class UserRepositoryImpl extends UserRepository {
   }
 
   @override
-  Future<void> saveUserInfo(UserInfoEntity userInfo) async {
-    final UserInfoLocalModel localModel = UserInfoLocalModel(
-      firstName: userInfo.firstName,
-      age: userInfo.age,
-      goalIndex: userInfo.goalIndex,
-      completedAt: userInfo.completedAt?.toIso8601String(),
-      onboardingAnswers: userInfo.onboardingAnswers,
-    );
-    return _userLocalDataSource.saveUserInfo(localModel);
+  Future<void> saveUser(UserEntity user) async {
+    return _userLocalDataSource.saveUser(UserLocalModel.fromEntity(user));
   }
 
   @override

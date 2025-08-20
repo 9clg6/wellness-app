@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:starter_kit/data/model/local/onboarding_answers.local.model.dart';
-import 'package:starter_kit/data/model/local/user_info.local.model.dart';
+import 'package:starter_kit/data/model/local/user.local.model.dart';
 
 /// User Preferences Storage
 class UserPreferencesStorage {
@@ -13,7 +13,7 @@ class UserPreferencesStorage {
   static const String _emailKey = 'user_email_key';
   static const String _onboardingCompletedKey = 'onboarding_completed';
   static const String _onboardingAnswersKey = 'onboarding_answers';
-  static const String _userInfoKey = 'user_info';
+  static const String _userKey = 'user';
 
   /// Get SharedPreferences instance
   Future<SharedPreferences> get _prefs async {
@@ -61,7 +61,7 @@ class UserPreferencesStorage {
     final SharedPreferences prefs = await _prefs;
     await prefs.remove(_onboardingCompletedKey);
     await prefs.remove(_onboardingAnswersKey);
-    await prefs.remove(_userInfoKey);
+    await prefs.remove(_userKey);
   }
 
   /// Save onboarding answers
@@ -90,27 +90,27 @@ class UserPreferencesStorage {
     return null;
   }
 
-  /// Save user info after onboarding
-  Future<void> saveUserInfo(UserInfoLocalModel localModel) async {
+  /// Save user after onboarding
+  Future<void> saveUser(UserLocalModel localModel) async {
     final SharedPreferences prefs = await _prefs;
-    final String userInfoJson = jsonEncode(localModel.toJson());
-    await prefs.setString(_userInfoKey, userInfoJson);
+    final String userJson = jsonEncode(localModel.toJson());
+    await prefs.setString(_userKey, userJson);
   }
 
-  /// Get user info
-  Future<UserInfoLocalModel?> getUserInfo() async {
+  /// Get user
+  Future<UserLocalModel?> getUser() async {
     try {
       final SharedPreferences prefs = await _prefs;
-      final String? userInfoString = prefs.getString(_userInfoKey);
+      final String? userString = prefs.getString(_userKey);
 
-      if (userInfoString != null) {
-        final Map<String, dynamic> userInfoMap =
-            jsonDecode(userInfoString) as Map<String, dynamic>;
+      if (userString != null) {
+        final Map<String, dynamic> userMap =
+            jsonDecode(userString) as Map<String, dynamic>;
 
-        return UserInfoLocalModel.fromJson(userInfoMap);
+        return UserLocalModel.fromJson(userMap);
       }
     } on Exception catch (e) {
-      debugPrint('Error getting user info: $e');
+      debugPrint('Error getting user: $e');
       rethrow;
     }
     return null;

@@ -1,6 +1,6 @@
 import 'package:starter_kit/data/datasources/local/user.local.data_source.dart';
 import 'package:starter_kit/data/model/local/onboarding_answers.local.model.dart';
-import 'package:starter_kit/data/model/local/user_info.local.model.dart';
+import 'package:starter_kit/data/model/local/user.local.model.dart';
 import 'package:starter_kit/data/storages/user_preferences.storage.dart';
 
 /// User local data source impl
@@ -44,12 +44,12 @@ final class UserLocalDatasourceImpl implements UserLocalDataSource {
   }
 
   @override
-  Future<void> saveUserInfo(UserInfoLocalModel userInfo) async {
-    return _userPreferences.saveUserInfo(userInfo);
+  Future<void> saveUser(UserLocalModel user) async {
+    return _userPreferences.saveUser(user);
   }
 
   @override
-  Future<UserInfoLocalModel?> getUserInfo() async {
-    return _userPreferences.getUserInfo();
+  Future<UserLocalModel?> getUser() async {
+    return _userPreferences.getUser();
   }
 }

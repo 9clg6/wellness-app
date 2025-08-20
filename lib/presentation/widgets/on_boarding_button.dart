@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:starter_kit/presentation/widgets/tappable_componenent.dart';
+import 'package:starter_kit/presentation/widgets/text_variant.dart';
 
 /// On boarding button
 class OnBoardingButton extends StatelessWidget {
@@ -42,13 +43,9 @@ class OnBoardingButton extends StatelessWidget {
               size: 24,
             ),
             const Gap(8),
-            Text(
+            TextVariant(
               title,
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-                color: Colors.black,
-              ),
+              fontWeight: FontWeight.w600,
             ),
           ],
         ),

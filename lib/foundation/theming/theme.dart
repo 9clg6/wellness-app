@@ -16,135 +16,194 @@ class MaterialTheme {
   static ColorScheme lightScheme() {
     return const ColorScheme(
       brightness: Brightness.light,
-      primary: Color(0xFF0055FF),
+
+      // Couleur d'accent principale (un rose doux/positif)
+      primary: Color(0xFFFF6DAA),
       onPrimary: Color(0xFFFFFFFF),
-      secondary: Color(0xFF65558F),
+
+      // Accent secondaire (lavande / violet pastel)
+      secondary: Color(0xFFB794F6),
       onSecondary: Color(0xFFFFFFFF),
-      tertiary: Color(0xFF8B4A61),
-      onTertiary: Color(0xFFFFFFFF),
-      error: Color(0xFF904A43),
+
+      // Accent tertiaire (pêche/rosé)
+      tertiary: Color(0xFFFFB3B3),
+      onTertiary: Color(0xFF3A071E),
+
+      // États d'erreur (rouge rosé doux, pas trop agressif)
+      error: Color(0xFFE57373),
       onError: Color(0xFFFFFFFF),
-      primaryContainer: Color(0xFF202A42),
-      onPrimaryContainer: Color(0xFFD4DEF6),
-      secondaryContainer: Color(0xFFE9DDFF),
-      onSecondaryContainer: Color(0xFF210F47),
-      tertiaryContainer: Color(0xFFFFD9E3),
-      onTertiaryContainer: Color(0xFF3A071E),
+
+      // Containers (fonds adoucis, pastels inspirés du dégradé rose→jaune)
+      primaryContainer: Color(0xFFFFE4EC),
+      onPrimaryContainer: Color(0xFF5C1034),
+
+      secondaryContainer: Color(0xFFEDE7F6),
+      onSecondaryContainer: Color(0xFF2C0F52),
+
+      tertiaryContainer: Color(0xFFFFE0E0),
+      onTertiaryContainer: Color(0xFF4A0F1E),
+
       errorContainer: Color(0xFFFFDAD6),
       onErrorContainer: Color(0xFF3B0907),
-      surfaceDim: Color(0xFFDED8E0),
-      surface: Color(0xFF0C0D16),
-      surfaceBright: Color(0xFFFDF7FF),
+
+      // Surfaces (fonds clairs et doux)
+      surfaceDim: Color(0xFFF2EDF5),
+      surface: Color(0xFFFFFBFF),
+      surfaceBright: Color(0xFFFFFFFF),
       inverseSurface: Color(0xFF322F35),
       onInverseSurface: Color(0xFFF5EFF7),
-      inversePrimary: Color(0xFFCFBDFE),
+      inversePrimary: Color(0xFFEFBBD9),
+
+      // Containers de surface
       surfaceContainerLowest: Color(0xFFFFFFFF),
-      surfaceContainerLow: Color(0xFFF8F2FA),
-      surfaceContainer: Color(0xFF1F2130),
-      surfaceContainerHigh: Color(0xFF2E303F),
-      surfaceContainerHighest: Color(0xFFE6E0E9),
-      onSurface: Color(0xFFFDF7FF),
-      onSurfaceVariant: Color(0xFF85858B),
-      outline: Color(0xFFC7C8CF),
-      outlineVariant: Color(0xFF363F55),
+      surfaceContainerLow: Color(0xFFFDF5F9),
+      surfaceContainer: Color(0xFFF9EEF5),
+      surfaceContainerHigh: Color(0xFFF5EAF2),
+      surfaceContainerHighest: Color(0xFFF0E5ED),
+
+      // Textes et outline
+      onSurface: Color(0xFF1C1B1F),
+      onSurfaceVariant: Color(0xFF6D6D73),
+      outline: Color(0xFFB6B6BD),
+      outlineVariant: Color(0xFFDADAE0),
+
+      // Divers
       scrim: Color(0xFF000000),
-      shadow: Color(0xFF000000),
+      shadow: Color(0x33000000),
     );
   }
 
   TextTheme _createMaterial3TextTheme(
-    TextTheme textTheme,
+    TextTheme baseTextTheme,
     ColorScheme colorScheme,
   ) {
-    return textTheme.copyWith(
-      labelMedium: textTheme.labelMedium!.copyWith(
-        color: colorScheme.onSurface,
-        fontSize: 14,
-        fontWeight: FontWeight.w400,
+    return baseTextTheme.copyWith(
+      // Labels (chips, boutons, tags)
+      labelSmall: baseTextTheme.labelSmall!.copyWith(
+        color: colorScheme.onSurfaceVariant,
+        fontSize: 11,
+        fontWeight: FontWeight.w500,
         fontFamily: defaultFontFamily,
+        letterSpacing: 0.5,
       ),
-      labelLarge: textTheme.labelLarge!.copyWith(
-        color: colorScheme.onSurface,
-        fontSize: 16,
-        fontWeight: FontWeight.w600,
-        fontFamily: defaultFontFamily,
-      ),
-      headlineSmall: textTheme.headlineSmall!.copyWith(
-        color: colorScheme.onSurface,
-        fontWeight: FontWeight.w300,
-        fontFamily: defaultFontFamily,
-        fontSize: 20,
-        letterSpacing: 0,
-      ),
-      bodyLarge: textTheme.bodyLarge!.copyWith(
-        color: colorScheme.onSurface,
-        fontSize: 16,
-        fontFamily: defaultFontFamily,
-        fontWeight: FontWeight.w300,
-        letterSpacing: 0,
-      ),
-      labelSmall: textTheme.labelSmall!.copyWith(
-        color: colorScheme.onSurface,
-        fontSize: 12,
-        fontFamily: defaultFontFamily,
-        fontWeight: FontWeight.w400,
-        letterSpacing: 0,
-      ),
-      displayMedium: textTheme.displayMedium!.copyWith(
-        color: colorScheme.onSurface,
-        fontWeight: FontWeight.w400,
-        fontFamily: defaultFontFamily,
-        fontSize: 40,
-        letterSpacing: -1,
-      ),
-      bodyMedium: textTheme.bodyMedium!.copyWith(
-        color: colorScheme.onSurface,
-        fontSize: 14,
-        fontFamily: defaultFontFamily,
-        fontWeight: FontWeight.w300,
 
-        letterSpacing: 0,
-      ),
-      headlineMedium: textTheme.headlineMedium!.copyWith(
-        color: colorScheme.onSurface,
-        fontWeight: FontWeight.w600,
-        fontSize: 24,
-        letterSpacing: 0,
-      ),
-      displayLarge: textTheme.displayLarge!.copyWith(
-        color: colorScheme.onSurface,
-        fontSize: 48,
-        fontWeight: FontWeight.bold,
+      labelMedium: baseTextTheme.labelMedium!.copyWith(
+        color: colorScheme.onSurfaceVariant,
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
         fontFamily: defaultFontFamily,
+        letterSpacing: 0.5,
       ),
-      displaySmall: textTheme.displaySmall!.copyWith(
+
+      labelLarge: baseTextTheme.labelLarge!.copyWith(
+        color: colorScheme.onSurfaceVariant,
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        fontFamily: defaultFontFamily,
+        letterSpacing: 0.1,
+      ),
+
+      // Body (texte courant, paragraphes)
+      bodySmall: baseTextTheme.bodySmall!.copyWith(
+        color: colorScheme.onSurfaceVariant,
+        fontSize: 12,
+        fontWeight: FontWeight.w400,
+        fontFamily: defaultFontFamily,
+        height: 1.33,
+        letterSpacing: 0.4,
+      ),
+
+      bodyMedium: baseTextTheme.bodyMedium!.copyWith(
         color: colorScheme.onSurface,
-        height: 1.2,
-        fontSize: 48,
-        letterSpacing: -1,
-        fontWeight: FontWeight.bold,
+        fontSize: 14,
+        fontWeight: FontWeight.w400,
+        fontFamily: defaultFontFamily,
+        height: 1.43,
+        letterSpacing: 0.25,
       ),
-      headlineLarge: textTheme.headlineLarge!.copyWith(
+
+      bodyLarge: baseTextTheme.bodyLarge!.copyWith(
+        color: colorScheme.onSurface,
+        fontSize: 16,
+        fontWeight: FontWeight.w400,
+        fontFamily: defaultFontFamily,
+        height: 1.5,
+        letterSpacing: 0.5,
+      ),
+
+      // Titles (titres de sections, cartes)
+      titleSmall: baseTextTheme.titleSmall!.copyWith(
+        color: colorScheme.onSurface,
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        fontFamily: defaultFontFamily,
+        letterSpacing: 0.1,
+      ),
+
+      titleMedium: baseTextTheme.titleMedium!.copyWith(
+        color: colorScheme.onSurface,
+        fontSize: 16,
+        fontWeight: FontWeight.w500,
+        fontFamily: defaultFontFamily,
+        letterSpacing: 0.15,
+      ),
+
+      titleLarge: baseTextTheme.titleLarge!.copyWith(
+        color: colorScheme.onSurface,
+        fontSize: 22,
+        fontWeight: FontWeight.w600,
+        fontFamily: defaultFontFamily,
+        letterSpacing: 0,
+      ),
+
+      // Headlines (titres de pages, sections principales)
+      headlineSmall: baseTextTheme.headlineSmall!.copyWith(
+        color: colorScheme.onSurface,
+        fontSize: 24,
+        fontWeight: FontWeight.w400,
+        fontFamily: defaultFontFamily,
+        letterSpacing: 0,
+      ),
+
+      headlineMedium: baseTextTheme.headlineMedium!.copyWith(
+        color: colorScheme.onSurface,
+        fontSize: 28,
+        fontWeight: FontWeight.w400,
+        fontFamily: defaultFontFamily,
+        letterSpacing: 0,
+      ),
+
+      headlineLarge: baseTextTheme.headlineLarge!.copyWith(
         color: colorScheme.onSurface,
         fontSize: 32,
-        fontWeight: FontWeight.bold,
-      ),
-      titleMedium: textTheme.titleMedium!.copyWith(
-        color: colorScheme.onSurface,
-        fontWeight: FontWeight.w500,
-        fontSize: 16,
+        fontWeight: FontWeight.w400,
         fontFamily: defaultFontFamily,
+        letterSpacing: 0,
       ),
-      titleLarge: textTheme.titleLarge!.copyWith(
+
+      // Display (texte hero, chiffres importants)
+      displaySmall: baseTextTheme.displaySmall!.copyWith(
         color: colorScheme.onSurface,
-        fontWeight: FontWeight.bold,
-        fontSize: 16,
+        fontSize: 36,
+        fontWeight: FontWeight.w400,
         fontFamily: defaultFontFamily,
+        letterSpacing: -0.25,
       ),
-      bodySmall: textTheme.bodySmall!.copyWith(
+
+      displayMedium: baseTextTheme.displayMedium!.copyWith(
         color: colorScheme.onSurface,
-        fontSize: 12,
+        fontSize: 45,
+        fontWeight: FontWeight.w400,
         fontFamily: defaultFontFamily,
+        letterSpacing: 0,
+      ),
+
+      displayLarge: baseTextTheme.displayLarge!.copyWith(
+        color: colorScheme.onSurface,
+        fontSize: 57,
+        fontWeight: FontWeight.w400,
+        fontFamily: defaultFontFamily,
+        letterSpacing: -0.25,
       ),
     );
   }

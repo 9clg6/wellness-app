@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:starter_kit/core/providers/core/services/navigation.service.provider.dart';
+import 'package:starter_kit/core/providers/core/services/onboarding.service.provider.dart';
 import 'package:starter_kit/core/providers/core/services/user.service.provider.dart';
 import 'package:starter_kit/core/providers/foundation/services/navigation.service.dart';
 import 'package:starter_kit/core/providers/foundation/services/user.service.dart';
 import 'package:starter_kit/domain/entities/onboarding_answers.dart';
-import 'package:starter_kit/domain/entities/user_info.entity.dart';
 import 'package:starter_kit/presentation/on_boarding/on_boarding.state.dart';
 
 part 'on_boarding.view_model.g.dart';
@@ -47,29 +47,19 @@ class OnBoardingViewModel extends _$OnBoardingViewModel {
   Future<void> completeOnboarding() async {
     final UserService userService = await ref.read(userServiceProvider.future);
 
-    // Save onboarding answers
-    await userService.saveOnboardingAnswers(answers);
-
-    // Mark onboarding as completed
-    await userService.setOnboardingCompleted();
-
-    // Save user info
-    final UserInfoEntity userInfo = UserInfoEntity(
-      firstName: answers.firstName,
-      age: answers.age,
-      goalIndex: answers.goalIndex,
-      completedAt: DateTime.now(),
-      onboardingAnswers: <String, dynamic>{
-        'frequencyIndex': answers.frequencyIndex,
-        'discoverySourceIndex': answers.discoverySourceIndex,
-        'favoriteThemeIndex': answers.favoriteThemeIndex,
-        'practiceDurationIndex': answers.practiceDurationIndex,
-        'serenityScore': answers.serenityScore,
-      },
+    final OnboardingService onboardingService = ref.read(
+      onboardingServiceProvider.notifier,
     );
-    await userService.saveUserInfo(userInfo);
+    final OnboardingAnswers currentAnswers = onboardingService.state;
 
-    // Navigate to home
+    if (!currentAnswers.isQuizzComplete) {
+      return;
+    }
+
+    await userService.saveOnboardingAnswers(currentAnswers);
+    await userService.setOnboardingCompleted();
+    await userService.updateUserFirstname(currentAnswers.firstName!);
+
     _navigationService.navigateToRealHome(replace: true);
   }
 

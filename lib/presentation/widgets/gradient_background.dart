@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:mesh_gradient/mesh_gradient.dart';
 
@@ -5,15 +7,16 @@ import 'package:mesh_gradient/mesh_gradient.dart';
 class GradientBackground extends StatefulWidget {
   /// Constructor
   const GradientBackground({
-    required this.stackKey,
+    this.stackKey,
     this.children,
     this.child,
     super.key,
     this.opacity,
+    this.randomGradient = false,
   });
 
   /// Stack key
-  final GlobalKey<ScaffoldState> stackKey;
+  final GlobalKey<ScaffoldState>? stackKey;
 
   /// Children
   final List<Widget>? children;
@@ -24,12 +27,62 @@ class GradientBackground extends StatefulWidget {
   /// Opacity
   final double? opacity;
 
+  /// Random gradient
+  final bool randomGradient;
+
   @override
   State<GradientBackground> createState() => _GradientBackgroundState();
 }
 
 class _GradientBackgroundState extends State<GradientBackground>
     with TickerProviderStateMixin {
+  @override
+  void initState() {
+    super.initState();
+
+    if (widget.randomGradient) {
+      _colors = _getRandomColors();
+    } else {
+      _colors = <Color>[
+        Colors.white,
+        Colors.pink,
+        Colors.orange,
+        Colors.purple,
+      ];
+    }
+  }
+
+  late final List<Color> _colors;
+
+  List<Color> _getRandomColors() {
+    return <Color>[
+      Color.fromARGB(
+        255,
+        Random().nextInt(255),
+        Random().nextInt(255),
+        Random().nextInt(255),
+      ),
+      Color.fromARGB(
+        255,
+        Random().nextInt(255),
+        Random().nextInt(255),
+        Random().nextInt(255),
+      ),
+      Color.fromARGB(
+        255,
+        Random().nextInt(255),
+        Random().nextInt(255),
+        Random().nextInt(255),
+      ),
+      Color.fromARGB(
+        255,
+        Random().nextInt(255),
+        Random().nextInt(255),
+        Random().nextInt(255),
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     assert(
@@ -40,7 +93,7 @@ class _GradientBackgroundState extends State<GradientBackground>
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
-        key: widget.stackKey,
+        key: widget.stackKey ?? GlobalKey(),
         fit: StackFit.expand,
         alignment: Alignment.center,
         children: <Widget>[
@@ -52,19 +105,19 @@ class _GradientBackgroundState extends State<GradientBackground>
                 points: <MeshGradientPoint>[
                   MeshGradientPoint(
                     position: const Offset(0.3, 0.3),
-                    color: Colors.white,
+                    color: _colors[0],
                   ),
                   MeshGradientPoint(
                     position: const Offset(0.4, 0.5),
-                    color: Colors.pink,
+                    color: _colors[1],
                   ),
                   MeshGradientPoint(
                     position: const Offset(0.7, 0.4),
-                    color: Colors.orange,
+                    color: _colors[2],
                   ),
                   MeshGradientPoint(
                     position: const Offset(0.7, 0.9),
-                    color: Colors.purple,
+                    color: _colors[3],
                   ),
                 ],
                 vsync: this,

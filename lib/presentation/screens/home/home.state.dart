@@ -1,5 +1,6 @@
 import 'package:copy_with_extension/copy_with_extension.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 
 part 'home.state.g.dart';
@@ -14,6 +15,10 @@ class HomeState with EquatableMixin {
     required this.showValidationButton,
     required this.topMotivationText,
     this.step = 0,
+    this.showOverlay = false,
+    this.messageStep = 0,
+    this.rectAnimation,
+    this.radiusAnimation,
   });
 
   /// Initial Constructor
@@ -23,7 +28,14 @@ class HomeState with EquatableMixin {
     this.showValidationButton = false,
     this.topMotivationText = LocaleKeys.positiveMomentMessage3,
     this.step = 0,
+    this.showOverlay = false,
+    this.messageStep = 0,
+    this.rectAnimation,
+    this.radiusAnimation,
   });
+
+  /// Total steps to complete a day
+  final int totalSteps = 3;
 
   /// Whether the home screen is loading
   final bool isLoading;
@@ -40,6 +52,24 @@ class HomeState with EquatableMixin {
   /// Step
   final int step;
 
+  /// Whether the overlay is shown
+  final bool showOverlay;
+
+  /// Current message step (0, 1, 2)
+  final int messageStep;
+
+  /// Rectangle animation for overlay
+  final Animation<RelativeRect>? rectAnimation;
+
+  /// Radius animation for overlay
+  final Animation<double>? radiusAnimation;
+
+  /// Remaining cards to fill including the current one
+  int get remainingCards {
+    final int remaining = totalSteps - step;
+    return remaining <= 0 ? 0 : remaining;
+  }
+
   @override
   List<Object?> get props => <Object?>[
     isLoading,
@@ -47,5 +77,9 @@ class HomeState with EquatableMixin {
     showValidationButton,
     topMotivationText,
     step,
+    showOverlay,
+    messageStep,
+    rectAnimation,
+    radiusAnimation,
   ];
 }

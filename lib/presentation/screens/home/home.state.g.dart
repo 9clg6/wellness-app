@@ -17,6 +17,14 @@ abstract class _$HomeStateCWProxy {
 
   HomeState step(int step);
 
+  HomeState showOverlay(bool showOverlay);
+
+  HomeState messageStep(int messageStep);
+
+  HomeState rectAnimation(Animation<RelativeRect>? rectAnimation);
+
+  HomeState radiusAnimation(Animation<double>? radiusAnimation);
+
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `HomeState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -29,6 +37,10 @@ abstract class _$HomeStateCWProxy {
     bool showValidationButton,
     String topMotivationText,
     int step,
+    bool showOverlay,
+    int messageStep,
+    Animation<RelativeRect>? rectAnimation,
+    Animation<double>? radiusAnimation,
   });
 }
 
@@ -57,6 +69,20 @@ class _$HomeStateCWProxyImpl implements _$HomeStateCWProxy {
   HomeState step(int step) => this(step: step);
 
   @override
+  HomeState showOverlay(bool showOverlay) => this(showOverlay: showOverlay);
+
+  @override
+  HomeState messageStep(int messageStep) => this(messageStep: messageStep);
+
+  @override
+  HomeState rectAnimation(Animation<RelativeRect>? rectAnimation) =>
+      this(rectAnimation: rectAnimation);
+
+  @override
+  HomeState radiusAnimation(Animation<double>? radiusAnimation) =>
+      this(radiusAnimation: radiusAnimation);
+
+  @override
   /// This function **does support** nullification of nullable fields. All `null` values passed to `non-nullable` fields will be ignored. You can also use `HomeState(...).copyWith.fieldName(...)` to override fields one at a time with nullification support.
   ///
   /// Usage
@@ -69,6 +95,10 @@ class _$HomeStateCWProxyImpl implements _$HomeStateCWProxy {
     Object? showValidationButton = const $CopyWithPlaceholder(),
     Object? topMotivationText = const $CopyWithPlaceholder(),
     Object? step = const $CopyWithPlaceholder(),
+    Object? showOverlay = const $CopyWithPlaceholder(),
+    Object? messageStep = const $CopyWithPlaceholder(),
+    Object? rectAnimation = const $CopyWithPlaceholder(),
+    Object? radiusAnimation = const $CopyWithPlaceholder(),
   }) {
     return HomeState(
       isLoading: isLoading == const $CopyWithPlaceholder()
@@ -91,6 +121,22 @@ class _$HomeStateCWProxyImpl implements _$HomeStateCWProxy {
           ? _value.step
           // ignore: cast_nullable_to_non_nullable
           : step as int,
+      showOverlay: showOverlay == const $CopyWithPlaceholder()
+          ? _value.showOverlay
+          // ignore: cast_nullable_to_non_nullable
+          : showOverlay as bool,
+      messageStep: messageStep == const $CopyWithPlaceholder()
+          ? _value.messageStep
+          // ignore: cast_nullable_to_non_nullable
+          : messageStep as int,
+      rectAnimation: rectAnimation == const $CopyWithPlaceholder()
+          ? _value.rectAnimation
+          // ignore: cast_nullable_to_non_nullable
+          : rectAnimation as Animation<RelativeRect>?,
+      radiusAnimation: radiusAnimation == const $CopyWithPlaceholder()
+          ? _value.radiusAnimation
+          // ignore: cast_nullable_to_non_nullable
+          : radiusAnimation as Animation<double>?,
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:starter_kit/domain/entities/happen_action.entity.dart';
-import 'package:starter_kit/presentation/screens/review/widgets/review_card.dart';
+import 'package:starter_kit/presentation/widgets/review_card.dart';
 
 /// Review arc wheel
 class ReviewArcWheel extends StatefulWidget {

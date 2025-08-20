@@ -1,5 +1,5 @@
 /// Abstract interface for base use case
-// ignore_for_file: one_member_abstracts, dangling_library_doc_comments TODO rm
+// ignore_for_file: one_member_abstracts, dangling_library_doc_comments
 
 abstract interface class BaseUseCase<R> {
   /// execute

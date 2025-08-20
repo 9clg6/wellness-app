@@ -177,7 +177,9 @@ class CodegenLoader extends AssetLoader{
   "onboarding_goals_button_single": "Continuer avec {} objectif",
   "onboarding_goals_button_multiple": "Continuer avec {} objectifs",
   "onboarding_miniDiagnostic_button": "Super ! 🌼",
-  "onboarding_education_button": "Je commence 🌸"
+  "onboarding_education_button": "Je commence 🌸",
+  "home_entry_card_label": "Aujourd'hui, j'ai réussi à...",
+  "review_leave_review": "Merci 🙏"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"fr": _fr};
 }

@@ -7,6 +7,7 @@ import 'package:starter_kit/domain/entities/goal.entity.dart';
 import 'package:starter_kit/presentation/on_boarding/on_boarding.view_model.dart';
 import 'package:starter_kit/presentation/widgets/continue_button_card.dart';
 import 'package:starter_kit/presentation/widgets/goal_card.widget.dart';
+import 'package:starter_kit/presentation/widgets/text_variant.dart';
 
 /// Personalized goals step
 class GoalsStep extends ConsumerStatefulWidget {
@@ -112,21 +113,18 @@ class _GoalsStepState extends ConsumerState<GoalsStep> {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(top: 32, bottom: 16),
-              child: Text(
+              child: TextVariant(
                 LocaleKeys.onboarding_goals_title.tr(),
-                style: const TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
+                variantType: TextVariantType.headlineMedium,
+                fontWeight: FontWeight.w700,
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 32),
-              child: Text(
+              child: TextVariant(
                 LocaleKeys.onboarding_goals_subtitle.tr(),
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 16, color: Colors.grey[600]),
+                variantType: TextVariantType.bodyLarge,
               ),
             ),
             Expanded(
@@ -161,15 +159,10 @@ class _GoalsStepState extends ConsumerState<GoalsStep> {
                   : LocaleKeys.onboarding_goals_button_multiple.tr(
                       args: <String>[_selectedGoals.length.toString()],
                     ),
-              color: _selectedGoals.isNotEmpty
-                  ? Colors.pink[400]!
-                  : Colors.grey[300]!,
-              textColor: _selectedGoals.isNotEmpty
-                  ? Colors.white
-                  : Colors.black,
-              fontSize: 20,
+              color: _selectedGoals.isNotEmpty ? null : Colors.grey[300]!,
+              textColor: _selectedGoals.isNotEmpty ? null : Colors.black,
               fontWeight: _selectedGoals.isNotEmpty
-                  ? FontWeight.w700
+                  ? null
                   : FontWeight.w500,
             ),
           ],

@@ -6,6 +6,7 @@ import 'package:starter_kit/domain/entities/testimonial.entity.dart';
 import 'package:starter_kit/presentation/on_boarding/on_boarding.view_model.dart';
 import 'package:starter_kit/presentation/widgets/continue_button_card.dart';
 import 'package:starter_kit/presentation/widgets/testimonial_card.widget.dart';
+import 'package:starter_kit/presentation/widgets/text_variant.dart';
 
 /// Testimonials step
 class TestimonialsStep extends ConsumerWidget {
@@ -14,6 +15,7 @@ class TestimonialsStep extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final OnBoardingViewModel viewModel = ref.watch(
       onBoardingViewModelProvider.notifier,
     );
@@ -75,33 +77,23 @@ class TestimonialsStep extends ConsumerWidget {
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           children: <Widget>[
-            // Section title
             Padding(
               padding: const EdgeInsets.only(top: 32, bottom: 12),
-              child: Text(
+              child: TextVariant(
                 LocaleKeys.onboarding_testimonials_title.tr(),
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.pink[700],
-                ),
+                variantType: TextVariantType.headlineMedium,
+                fontWeight: FontWeight.w700,
+                color: colorScheme.primary,
               ),
             ),
-            // Subtitle
             Padding(
               padding: const EdgeInsets.only(bottom: 32),
-              child: Text(
+              child: TextVariant(
                 LocaleKeys.onboarding_testimonials_subtitle.tr(),
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey[600],
-                  fontWeight: FontWeight.w500,
-                ),
               ),
             ),
-            // Scientific testimonials list
             Expanded(
               child: ListView.builder(
                 itemCount: testimonials.length,
@@ -114,7 +106,7 @@ class TestimonialsStep extends ConsumerWidget {
             ContinueButtonCard(
               onTap: viewModel.nextStep,
               title: LocaleKeys.continueBtn.tr(),
-              color: Colors.pink[400]!,
+              color: Colors.pink[400],
               textColor: Colors.white,
               fontSize: 20,
               fontWeight: FontWeight.w700,
