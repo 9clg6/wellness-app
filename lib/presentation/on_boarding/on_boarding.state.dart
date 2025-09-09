@@ -1,11 +1,10 @@
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'on_boarding.state.g.dart';
+part 'on_boarding.state.freezed.dart';
 
 ///
-@CopyWith()
-final class OnBoardingState with EquatableMixin {
+@Freezed(copyWith: true)
+final class OnBoardingState with _$OnBoardingState {
   /// Constructor
   const OnBoardingState({this.currentStep = 0, this.selectedOption});
 
@@ -13,11 +12,10 @@ final class OnBoardingState with EquatableMixin {
   factory OnBoardingState.initial() => const OnBoardingState();
 
   /// Current step
+  @override
   final int currentStep;
 
   /// Selected option
-  final int? selectedOption;
-
   @override
-  List<Object?> get props => <Object?>[currentStep, selectedOption];
+  final int? selectedOption;
 }

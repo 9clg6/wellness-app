@@ -1,11 +1,10 @@
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'onboarding_answers.g.dart';
+part 'onboarding_answers.freezed.dart';
 
 /// Onboarding an swers
-@CopyWith()
-class OnboardingAnswers with EquatableMixin {
+@Freezed(copyWith: true)
+class OnboardingAnswers with _$OnboardingAnswers {
   /// Constructor
   const OnboardingAnswers({
     this.frequencyIndex,
@@ -19,27 +18,35 @@ class OnboardingAnswers with EquatableMixin {
   });
 
   /// Frequency index
+  @override
   final int? frequencyIndex;
 
   /// Discovery source index
+  @override
   final int? discoverySourceIndex;
 
   /// Favorite theme index
+  @override
   final int? favoriteThemeIndex;
 
   /// Practice duration index
+  @override
   final int? practiceDurationIndex;
 
   /// Serenity score
+  @override
   final int? serenityScore;
 
   /// First name
+  @override
   final String? firstName;
 
   /// Age
+  @override
   final int? age;
 
   /// Goal index
+  @override
   final int? goalIndex;
 
   /// Is quizz complete
@@ -51,16 +58,4 @@ class OnboardingAnswers with EquatableMixin {
       serenityScore != null &&
       firstName != null &&
       (age != null && age! > 0);
-
-  @override
-  List<Object?> get props => <Object?>[
-    frequencyIndex,
-    discoverySourceIndex,
-    favoriteThemeIndex,
-    practiceDurationIndex,
-    serenityScore,
-    firstName,
-    age,
-    goalIndex,
-  ];
 }

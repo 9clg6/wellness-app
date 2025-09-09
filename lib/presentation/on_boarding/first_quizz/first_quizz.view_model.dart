@@ -43,7 +43,7 @@ class FirstQuizzViewModel extends _$FirstQuizzViewModel {
       curve: Curves.easeInOut,
     );
 
-    state = state.copyWithNull(selectedResponseIndex: true);
+    state = state.copyWith(selectedResponseIndex: null);
   }
 
   /// Q1 - Frequency
