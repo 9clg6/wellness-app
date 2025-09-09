@@ -7,7 +7,7 @@ part of 'first_quizz.view_model.dart';
 // **************************************************************************
 
 String _$firstQuizzViewModelHash() =>
-    r'b7dea4e5b5669db64ad82e2a2e8fdfce9dcf0549';
+    r'e1a8168476dc6818d31917752353244eb8f3e3e9';
 
 /// First quizz view model
 ///

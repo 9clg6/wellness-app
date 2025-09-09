@@ -1,13 +1,12 @@
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:starter_kit/data/model/local/auth.local.model.dart';
 import 'package:starter_kit/data/model/remote/auth.remote.model.dart';
 
-part 'auth.entity.g.dart';
+part 'auth.entity.freezed.dart';
 
 /// Auth Entity
-@CopyWith()
-final class AuthEntity with EquatableMixin {
+@Freezed(copyWith: true)
+final class AuthEntity with _$AuthEntity {
   /// Auth Entity constructor
   AuthEntity({this.token});
 
@@ -22,8 +21,6 @@ final class AuthEntity with EquatableMixin {
   }
 
   /// token
-  final String? token;
-
   @override
-  List<Object?> get props => <Object?>[token];
+  final String? token;
 }

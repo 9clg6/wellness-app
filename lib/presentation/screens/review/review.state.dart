@@ -1,12 +1,11 @@
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:starter_kit/domain/entities/happen_action.entity.dart';
 
-part 'review.state.g.dart';
+part 'review.state.freezed.dart';
 
 /// Review state
-@CopyWith()
-class ReviewState with EquatableMixin {
+@Freezed(copyWith: true)
+class ReviewState with _$ReviewState {
   /// Constructor
   ReviewState({
     required this.isLoading,
@@ -21,14 +20,14 @@ class ReviewState with EquatableMixin {
       entries = const <HappenActionEntity>[];
 
   /// Loading flag
+  @override
   final bool isLoading;
 
   /// Streak of consecutive days
+  @override
   final int streakDays;
 
   /// Today's entries
-  final List<HappenActionEntity> entries;
-
   @override
-  List<Object?> get props => <Object?>[isLoading, streakDays, entries];
+  final List<HappenActionEntity> entries;
 }

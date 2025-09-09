@@ -1,11 +1,10 @@
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'real_home.state.g.dart';
+part 'real_home.state.freezed.dart';
 
 /// Real home state
-@CopyWith()
-final class RealHomeState with EquatableMixin {
+@Freezed(copyWith: true)
+final class RealHomeState with _$RealHomeState {
   /// Constructor
   const RealHomeState({required this.surname, this.isLoading = false});
 
@@ -16,11 +15,10 @@ final class RealHomeState with EquatableMixin {
   }) => RealHomeState(isLoading: isLoading, surname: surname);
 
   /// Is loading
+  @override
   final bool isLoading;
 
   /// Surname
-  final String surname;
-
   @override
-  List<Object?> get props => <Object?>[isLoading, surname];
+  final String surname;
 }
