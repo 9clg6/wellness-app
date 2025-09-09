@@ -1,11 +1,10 @@
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'authentication.state.g.dart';
+part 'authentication.state.freezed.dart';
 
 /// Authentication State
-@CopyWith()
-final class AuthenticationState with EquatableMixin {
+@Freezed(copyWith: true)
+final class AuthenticationState with _$AuthenticationState {
   /// constructor
   AuthenticationState({required this.loading, this.isPasswordVisible = false});
 
@@ -15,11 +14,10 @@ final class AuthenticationState with EquatableMixin {
   }
 
   /// loading
+  @override
   final bool loading;
 
   /// is password visible
-  final bool isPasswordVisible;
-
   @override
-  List<Object?> get props => <Object?>[loading, isPasswordVisible];
+  final bool isPasswordVisible;
 }

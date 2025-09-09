@@ -1,11 +1,10 @@
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:equatable/equatable.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'happen_action.entity.g.dart';
+part 'happen_action.entity.freezed.dart';
 
 /// Happen action entity
-@CopyWith()
-final class HappenActionEntity with EquatableMixin {
+@Freezed(copyWith: true)
+final class HappenActionEntity with _$HappenActionEntity {
   /// Constructor
   const HappenActionEntity({
     required this.happen,
@@ -14,14 +13,14 @@ final class HappenActionEntity with EquatableMixin {
   });
 
   /// Happen
+  @override
   final String happen;
 
   /// Action
+  @override
   final String action;
 
   /// Date
-  final DateTime date;
-
   @override
-  List<Object?> get props => <Object?>[happen, action, date];
+  final DateTime date;
 }

@@ -1,13 +1,12 @@
-import 'package:copy_with_extension/copy_with_extension.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 
-part 'home.state.g.dart';
+part 'home.state.freezed.dart';
 
 /// Home state
-@CopyWith()
-class HomeState with EquatableMixin {
+@Freezed(copyWith: true)
+class HomeState with _$HomeState {
   /// Constructor
   HomeState({
     required this.isLoading,
@@ -35,33 +34,43 @@ class HomeState with EquatableMixin {
   });
 
   /// Total steps to complete a day
+  @override
   final int totalSteps = 3;
 
   /// Whether the home screen is loading
+  @override
   final bool isLoading;
 
   /// Whether the second field should be shown
+  @override
   final bool showSecondField;
 
   /// Whether the validation button should be shown
+  @override
   final bool showValidationButton;
 
   /// Top motivation text
+  @override
   final String topMotivationText;
 
   /// Step
+  @override
   final int step;
 
   /// Whether the overlay is shown
+  @override
   final bool showOverlay;
 
   /// Current message step (0, 1, 2)
+  @override
   final int messageStep;
 
   /// Rectangle animation for overlay
+  @override
   final Animation<RelativeRect>? rectAnimation;
 
   /// Radius animation for overlay
+  @override
   final Animation<double>? radiusAnimation;
 
   /// Remaining cards to fill including the current one
@@ -69,17 +78,4 @@ class HomeState with EquatableMixin {
     final int remaining = totalSteps - step;
     return remaining <= 0 ? 0 : remaining;
   }
-
-  @override
-  List<Object?> get props => <Object?>[
-    isLoading,
-    showSecondField,
-    showValidationButton,
-    topMotivationText,
-    step,
-    showOverlay,
-    messageStep,
-    rectAnimation,
-    radiusAnimation,
-  ];
 }
