@@ -39,7 +39,7 @@ class CodegenLoader extends AssetLoader{
   "reviewScreenNoEntries": "No entries for today",
   "continueBtn": "Continue 🌻",
   "reviewScreenTitle2": "😍 Congratulations! You've managed to find 3 positive events today! 😍\n\nLet's review them!",
-  "reviewScreenTitle3": "☀️ Make your day more beautiful ☀️",
+  "reviewScreenTitle3": "Make your day more beautiful",
   "reviewScreenTitle4": "Note 3 things that marked you today",
   "hello": "Hello",
   "common_next": "Next",
@@ -182,7 +182,11 @@ class CodegenLoader extends AssetLoader{
   "review_leave_review": "Thank you 🙏",
   "parfois": "Sometimes",
   "souvent": "Often",
-  "jamais": "Never"
+  "jamais": "Never",
+  "reviewScreenStreakEmpty": "Enter 3 positive events to start your streak",
+  "errorPlaceholder_title": "An error occurred",
+  "errorPlaceholder_description": "Please try again later.\n\n{}",
+  "errorPlaceholder_retry": "Retry"
 };
 static const Map<String,dynamic> _fr = {
   "first": "Bonjour",
@@ -209,7 +213,7 @@ static const Map<String,dynamic> _fr = {
   "reviewScreenNoEntries": "Aucune entrée pour aujourd'hui",
   "continueBtn": "Continuer 🌻",
   "reviewScreenTitle2": "😍 Félicitation ! Vous avez réussi à trouver 3 événements positifs aujourd'hui ! 😍\n\nPassez les en revue !",
-  "reviewScreenTitle3": "☀️ Rends ta journée plus belle ☀️",
+  "reviewScreenTitle3": "Rends ta journée plus belle",
   "reviewScreenTitle4": "Notes 3 choses qui t'ont marquées aujourd'hui",
   "hello": "Bonjour",
   "common_next": "Suivant",
@@ -352,7 +356,11 @@ static const Map<String,dynamic> _fr = {
   "review_leave_review": "Merci 🙏",
   "parfois": "Parfois",
   "souvent": "Souvent",
-  "jamais": "Jamais"
+  "jamais": "Jamais",
+  "reviewScreenStreakEmpty": "Saisissez 3 événements positifs pour commencer votre streak",
+  "errorPlaceholder_title": "Une erreur est survenue",
+  "errorPlaceholder_description": "Veuillez réessayer plus tard.\n\n{}",
+  "errorPlaceholder_retry": "Réessayer"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": _en, "fr": _fr};
 }

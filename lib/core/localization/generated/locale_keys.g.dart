@@ -171,5 +171,9 @@ abstract class  LocaleKeys {
   static const parfois = 'parfois';
   static const souvent = 'souvent';
   static const jamais = 'jamais';
+  static const reviewScreenStreakEmpty = 'reviewScreenStreakEmpty';
+  static const errorPlaceholder_title = 'errorPlaceholder_title';
+  static const errorPlaceholder_description = 'errorPlaceholder_description';
+  static const errorPlaceholder_retry = 'errorPlaceholder_retry';
 
 }

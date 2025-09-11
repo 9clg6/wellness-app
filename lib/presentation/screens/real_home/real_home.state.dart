@@ -6,13 +6,22 @@ part 'real_home.state.freezed.dart';
 @Freezed(copyWith: true)
 final class RealHomeState with _$RealHomeState {
   /// Constructor
-  const RealHomeState({required this.surname, this.isLoading = false});
+  const RealHomeState({
+    required this.surname,
+    this.isLoading = false,
+    this.isTodayEventsFilled = false,
+  });
 
   /// Initial state
   factory RealHomeState.initial({
     bool isLoading = false,
     String surname = '',
-  }) => RealHomeState(isLoading: isLoading, surname: surname);
+    bool isTodayEventsFilled = false,
+  }) => RealHomeState(
+    isLoading: isLoading,
+    surname: surname,
+    isTodayEventsFilled: isTodayEventsFilled,
+  );
 
   /// Is loading
   @override
@@ -21,4 +30,8 @@ final class RealHomeState with _$RealHomeState {
   /// Surname
   @override
   final String surname;
+
+  /// Is today events filled
+  @override
+  final bool isTodayEventsFilled;
 }

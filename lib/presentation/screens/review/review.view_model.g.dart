@@ -6,7 +6,7 @@ part of 'review.view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$reviewViewModelHash() => r'9dca1cf522b154ea54513e268cae7323623ec4d7';
+String _$reviewViewModelHash() => r'c0026673c9d94e0c6aee3eb4557356e51ef4bdc7';
 
 /// Review view model
 ///

@@ -9,8 +9,8 @@ import 'package:starter_kit/presentation/screens/review/review.view_model.dart';
 import 'package:starter_kit/presentation/widgets/arc_wheel_view.dart';
 import 'package:starter_kit/presentation/widgets/custom_button.dart';
 import 'package:starter_kit/presentation/widgets/custom_loader.dart';
+import 'package:starter_kit/presentation/widgets/error_placeholder.dart';
 import 'package:starter_kit/presentation/widgets/gradient_background.dart';
-import 'package:starter_kit/presentation/widgets/text_variant.dart';
 
 /// Review screen
 @RoutePage()
@@ -33,10 +33,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen>
       backgroundColor: Colors.white,
       body: state.when(
         data: (ReviewState data) => _HasDataBody(),
-        error: (Object error, StackTrace stackTrace) => TextVariant(
-          error.toString(),
-          color: Theme.of(context).colorScheme.error,
-        ),
+        error: ErrorPlaceholder.new,
         loading: CustomLoader.new,
       ),
     );

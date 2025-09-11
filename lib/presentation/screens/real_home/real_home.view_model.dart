@@ -32,19 +32,23 @@ class RealHomeViewModel extends _$RealHomeViewModel {
   @override
   Future<RealHomeState> build() async {
     debugPrint('[RealHomeViewModel] build');
-    _happenActionService = ref.watch(happenActionServiceProvider);
-    _navigationService = ref.watch(navigationServiceProvider);
+    _happenActionService = await ref.watch(happenActionServiceProvider.future);
     final UserService userService = await ref.watch(userServiceProvider.future);
+    _navigationService = ref.watch(navigationServiceProvider);
 
     getStreak();
 
-    return RealHomeState.initial(surname: userService.currentUser!.firstname!);
+    return RealHomeState.initial(
+      surname: userService.currentUser!.firstname!,
+      isTodayEventsFilled: _happenActionService.isTodayEventsFilled,
+    );
   }
 
   /// Is something happened this day
-  bool isSomethingHappenedThisDay({required DateTime date}) {
+  bool isSomethingHappenedThisDay({DateTime? date}) {
     return _happenActionService.entries.any(
-      (HappenActionEntity entry) => entry.date.isSameDate(date),
+      (HappenActionEntity entry) =>
+          entry.date.isSameDate(date ?? DateTime.now()),
     );
   }
 
@@ -113,8 +117,15 @@ class RealHomeViewModel extends _$RealHomeViewModel {
   }
 
   /// On tap add happen action
-  void onTapAddHappenAction() {
-    _navigationService.navigateToDailyJourney(isFromRealHome: true);
+  Future<void> onTapAddHappenAction() async {
+    final bool? isTodayEventsFilled = await _navigationService
+        .navigateToDailyJourney(isFromRealHome: true);
+
+    if (isTodayEventsFilled == null) return;
+
+    state = AsyncData<RealHomeState>(
+      state.value!.copyWith(isTodayEventsFilled: isTodayEventsFilled),
+    );
   }
 
   /// Build streak message
@@ -122,7 +133,7 @@ class RealHomeViewModel extends _$RealHomeViewModel {
     switch (streakDays) {
       case < 3:
         return LocaleKeys.onboarding_streak_message_1.tr(
-          args: <String>[(3 - streakDays).toString()],
+          args: <String>[(7 - streakDays).toString()],
         );
       case 3:
         return LocaleKeys.onboarding_streak_message_2.tr();
@@ -131,4 +142,7 @@ class RealHomeViewModel extends _$RealHomeViewModel {
     }
     return '';
   }
+
+  /// On tap analyze with ai
+  void onTapAnalyzeWithAi() {}
 }
