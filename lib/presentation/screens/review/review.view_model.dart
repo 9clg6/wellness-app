@@ -35,7 +35,7 @@ class ReviewViewModel extends _$ReviewViewModel {
   @override
   Future<ReviewState> build() async {
     debugPrint('[ReviewViewModel] build');
-    _happenActionService = ref.watch(happenActionServiceProvider);
+    _happenActionService = await ref.watch(happenActionServiceProvider.future);
     _navigationService = ref.watch(navigationServiceProvider);
     _userService = await ref.watch(userServiceProvider.future);
 
@@ -95,21 +95,10 @@ class ReviewViewModel extends _$ReviewViewModel {
     );
   }
 
-  /// Refresh data from the home view model
-  Future<void> refreshFromHome() async {
-    state = AsyncData<ReviewState>(
-      state.value!.copyWith(
-        isLoading: false,
-        streakDays: _userService.streakDays,
-        entries: List<HappenActionEntity>.from(_happenActionService.entries),
-      ),
-    );
-  }
-
   /// Leave review
   void leaveReview() {
     _snackController?.reverse();
     _userService.increaseStreakDays();
-    _navigationService.navigateToRealHome(replace: true);
+    _navigationService.pop(result: true);
   }
 }

@@ -23,7 +23,7 @@
   "reviewScreenNoEntries": "No entries for today",
   "continueBtn": "Continue 🌻",
   "reviewScreenTitle2": "😍 Congratulations! You've managed to find 3 positive events today! 😍\n\nLet's review them!",
-  "reviewScreenTitle3": "☀️ Make your day more beautiful ☀️",
+  "reviewScreenTitle3": "Make your day more beautiful",
   "reviewScreenTitle4": "Note 3 things that marked you today",
   "hello": "Hello",
   "common_next": "Next",
@@ -166,5 +166,9 @@
   "review_leave_review": "Thank you 🙏",
   "parfois": "Sometimes",
   "souvent": "Often",
-  "jamais": "Never"
+  "jamais": "Never",
+  "reviewScreenStreakEmpty": "Enter 3 positive events to start your streak",
+  "errorPlaceholder_title": "An error occurred",
+  "errorPlaceholder_description": "Please try again later.\n\n{}",
+  "errorPlaceholder_retry": "Retry"
 }

@@ -1,13 +1,16 @@
+import 'package:animate_gradient/animate_gradient.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
+import 'package:starter_kit/core/extensions/date.extension.dart';
 import 'package:starter_kit/core/extensions/string.extension.dart';
 import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 import 'package:starter_kit/presentation/screens/real_home/real_home.state.dart';
 import 'package:starter_kit/presentation/screens/real_home/real_home.view_model.dart';
 import 'package:starter_kit/presentation/widgets/custom_loader.dart';
+import 'package:starter_kit/presentation/widgets/error_placeholder.dart';
 import 'package:starter_kit/presentation/widgets/gradient_background.dart';
 import 'package:starter_kit/presentation/widgets/tappable_componenent.dart';
 import 'package:starter_kit/presentation/widgets/text_variant.dart';
@@ -31,8 +34,13 @@ class _RealHomeScreenState extends ConsumerState<RealHomeScreen> {
     );
     return state.when(
       data: _HasDataBody.new,
-      error: (Object error, StackTrace stackTrace) => const SizedBox.shrink(),
-      loading: () => const SizedBox.shrink(),
+      error: (Object error, StackTrace stackTrace) => Center(
+        child: TextVariant(
+          error.toString(),
+          color: Theme.of(context).colorScheme.error,
+        ),
+      ),
+      loading: CustomLoader.new,
     );
   }
 }
@@ -43,37 +51,93 @@ class _HasDataBodyState extends ConsumerState<_HasDataBody>
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme colorScheme = Theme.of(context).colorScheme;
     final AsyncValue<RealHomeState> state = ref.watch(
       realHomeViewModelProvider,
     );
 
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.transparent,
       extendBodyBehindAppBar: true,
       appBar: _HomeAppBar(),
       body: state.when(
         data: (RealHomeState data) => GradientBackground(
-          opacity: 0.3,
-          randomGradient: true,
+          opacity: 0.2,
           child: Center(
             child: Padding(
-              padding: const EdgeInsets.only(left: 16, right: 16, top: 28),
+              padding: const EdgeInsets.only(left: 16, right: 16),
               child: ListView(
                 children: <Widget>[
+                  if (!data.isTodayEventsFilled) ...<Widget>[_MainActionBtn()],
+                  const _AnalyzeWithAiBtn(),
+                  const Gap(24),
                   _BigContainerStreak(),
                   const Gap(16),
                   _RowContainerStreak(),
-                  _MainActionBtn(),
+                  const Gap(16),
                 ],
               ),
             ),
           ),
         ),
-        error: (Object error, StackTrace stackTrace) => Center(
-          child: TextVariant('Error: $error', color: colorScheme.error),
-        ),
+        error: ErrorPlaceholder.new,
         loading: CustomLoader.new,
+      ),
+    );
+  }
+}
+
+class _AnalyzeWithAiBtn extends ConsumerWidget {
+  const _AnalyzeWithAiBtn();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final RealHomeViewModel viewModel = ref.watch(
+      realHomeViewModelProvider.notifier,
+    );
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+
+    return TappableComponent(
+      color: Colors.transparent,
+      splashColor: colorScheme.onPrimary.withAlpha(30),
+      onTap: viewModel.onTapAnalyzeWithAi,
+      borderRadius: BorderRadius.circular(24),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(24),
+        child: AnimateGradient(
+          primaryEnd: Alignment.bottomLeft,
+          secondaryBegin: Alignment.topRight,
+          primaryColors: <Color>[
+            colorScheme.secondary,
+            colorScheme.tertiary,
+            colorScheme.primary,
+          ],
+          secondaryColors: <Color>[
+            colorScheme.primary,
+            colorScheme.secondary,
+            colorScheme.tertiary,
+          ],
+          duration: const Duration(seconds: 1),
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: colorScheme.secondary, width: 2),
+              borderRadius: BorderRadius.circular(24),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 8),
+            child: const Row(
+              children: <Widget>[
+                Icon(Icons.auto_awesome, size: 26),
+                Gap(28),
+                Flexible(
+                  child: TextVariant(
+                    "Analyser mes événements à l'aide de l'IA",
+                    variantType: TextVariantType.titleMedium,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -151,50 +215,39 @@ class _MainActionBtn extends ConsumerWidget {
     );
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 32),
-      child: IntrinsicHeight(
-        child: TappableComponent(
-          color: colorScheme.primary,
-          splashColor: colorScheme.onPrimary.withAlpha(30),
-          onTap: viewModel.onTapAddHappenAction,
+    return TappableComponent(
+      color: colorScheme.primary,
+      splashColor: colorScheme.onPrimary.withAlpha(30),
+      onTap: viewModel.onTapAddHappenAction,
+      borderRadius: BorderRadius.circular(24),
+      boxShadow: <BoxShadow>[
+        BoxShadow(
+          color: colorScheme.shadow.withAlpha(100),
+          blurRadius: 1,
+          offset: const Offset(0, 5),
+          spreadRadius: 1,
+        ),
+      ],
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(24),
-          child: Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: colorScheme.outline.withValues(alpha: 0.2),
-              borderRadius: BorderRadius.circular(24),
-              boxShadow: <BoxShadow>[
-                BoxShadow(
-                  color: colorScheme.onPrimary.withAlpha(80),
-                  blurRadius: 10,
-                  spreadRadius: 1,
-                  blurStyle: BlurStyle.inner,
-                ),
-              ],
-              gradient: LinearGradient(
-                colors: <Color>[
-                  colorScheme.onPrimary.withAlpha(10),
-                  colorScheme.onPrimary.withAlpha(20),
-                  colorScheme.onPrimary.withAlpha(90),
-                ],
-              ),
+          border: Border.all(color: colorScheme.onPrimary.withAlpha(20)),
+        ),
+        child: Column(
+          children: <Widget>[
+            TextVariant(
+              LocaleKeys.reviewScreenTitle3.tr(),
+              variantType: TextVariantType.bodyLarge,
+              fontWeight: FontWeight.bold,
+              color: colorScheme.onPrimary,
             ),
-            child: Column(
-              children: <Widget>[
-                TextVariant(
-                  LocaleKeys.reviewScreenTitle3.tr(),
-                  variantType: TextVariantType.bodyLarge,
-                  fontWeight: FontWeight.bold,
-                  color: colorScheme.onPrimary,
-                ),
-                TextVariant(
-                  LocaleKeys.reviewScreenTitle4.tr(),
-                  color: colorScheme.onPrimary,
-                ),
-              ],
+            TextVariant(
+              LocaleKeys.reviewScreenTitle4.tr(),
+              color: colorScheme.onPrimary,
+              fontWeight: FontWeight.w300,
             ),
-          ),
+          ],
         ),
       ),
     );
@@ -204,10 +257,8 @@ class _MainActionBtn extends ConsumerWidget {
 class _RowContainerStreak extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final RealHomeViewModel viewModel = ref.watch(
-      realHomeViewModelProvider.notifier,
-    );
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
+
     return Builder(
       builder: (BuildContext context) {
         final DateTime today = DateTime.now();
@@ -215,27 +266,29 @@ class _RowContainerStreak extends ConsumerWidget {
         final DateTime firstDayOfWeek = today.subtract(Duration(days: weekDay));
 
         return Container(
-          padding: const EdgeInsets.symmetric(vertical: 4),
+          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(16),
             color: colorScheme.surface,
             border: Border.all(
               color: colorScheme.outline.withValues(alpha: 0.2),
             ),
+            boxShadow: <BoxShadow>[
+              BoxShadow(
+                color: colorScheme.onSurface.withAlpha(30),
+                blurRadius: 10,
+                spreadRadius: 1,
+              ),
+            ],
           ),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.end,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: List<Widget>.generate(7, (int index) {
               final bool isThisDayCurrent = index == weekDay;
-              final DateTime currentDay = firstDayOfWeek.add(
-                Duration(days: index),
-              );
-              final bool isSomethingHappened = viewModel
-                  .isSomethingHappenedThisDay(date: currentDay);
-              final bool isInStreak = viewModel.isThisDayInStreak(
-                date: currentDay,
-              );
+              final DateTime currentDay = firstDayOfWeek
+                  .add(Duration(days: index))
+                  .dateWithoutTime;
 
               return Padding(
                 padding: const EdgeInsets.symmetric(vertical: 4),
@@ -243,31 +296,20 @@ class _RowContainerStreak extends ConsumerWidget {
                   mainAxisSize: MainAxisSize.min,
 
                   children: <Widget>[
-                    if (viewModel.isThisDayInStreak(date: currentDay))
-                      const Icon(
-                        Icons.local_fire_department_rounded,
-                        color: Colors.red,
-                        size: 22,
-                      )
-                    else if (isSomethingHappened)
-                      const Icon(Icons.check, color: Colors.green, size: 22)
-                    else if (isThisDayCurrent &&
-                        !isSomethingHappened &&
-                        !isInStreak)
-                      const TextVariant(
-                        '😭',
-                        variantType: TextVariantType.titleLarge,
-                      ),
+                    _StreakIcon(date: currentDay),
                     Container(
                       padding: const EdgeInsets.symmetric(
-                        horizontal: 12,
+                        horizontal: 8,
                         vertical: 12,
                       ),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
+                        border: Border.all(
+                          color: colorScheme.outline.withValues(alpha: 0.1),
+                        ),
                         color: isThisDayCurrent
                             ? colorScheme.onSurface
-                            : colorScheme.onPrimary,
+                            : colorScheme.surfaceContainerLowest,
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
@@ -275,7 +317,7 @@ class _RowContainerStreak extends ConsumerWidget {
                           TextVariant(
                             DateFormat('EEE').format(currentDay).capitalize,
                             color: isThisDayCurrent
-                                ? colorScheme.onPrimary
+                                ? Colors.white
                                 : colorScheme.onSurface,
                           ),
                           TextVariant(
@@ -284,7 +326,7 @@ class _RowContainerStreak extends ConsumerWidget {
                                 .day
                                 .toString(),
                             color: isThisDayCurrent
-                                ? colorScheme.onPrimary
+                                ? Colors.white
                                 : colorScheme.onSurface,
                           ),
                         ],
@@ -301,6 +343,39 @@ class _RowContainerStreak extends ConsumerWidget {
   }
 }
 
+class _StreakIcon extends ConsumerWidget {
+  const _StreakIcon({required this.date});
+  final DateTime date;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final RealHomeViewModel viewModel = ref.watch(
+      realHomeViewModelProvider.notifier,
+    );
+    final bool isTodaySet = viewModel.isSomethingHappenedThisDay(date: date);
+    final bool isInStreak = viewModel.isThisDayInStreak(date: date);
+    late Widget icon;
+
+    if (isInStreak) {
+      icon = const Icon(
+        Icons.local_fire_department_rounded,
+        color: Colors.red,
+        size: 22,
+      );
+    } else if (isTodaySet) {
+      icon = const Icon(Icons.check, color: Colors.green, size: 22);
+    } else if (date == DateTime.now().dateWithoutTime &&
+        !isTodaySet &&
+        !isInStreak) {
+      icon = const TextVariant('😭', variantType: TextVariantType.titleLarge);
+    } else {
+      icon = const SizedBox.shrink();
+    }
+
+    return icon;
+  }
+}
+
 class _BigContainerStreak extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -308,6 +383,8 @@ class _BigContainerStreak extends ConsumerWidget {
       realHomeViewModelProvider.notifier,
     );
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
+    final int streakDays = viewModel.streakDays;
+    final bool isStreakEmpty = streakDays == 0;
 
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
@@ -315,6 +392,13 @@ class _BigContainerStreak extends ConsumerWidget {
         borderRadius: BorderRadius.circular(16),
         color: colorScheme.surface,
         border: Border.all(color: colorScheme.outline.withValues(alpha: 0.3)),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: colorScheme.onSurface.withAlpha(30),
+            blurRadius: 10,
+            spreadRadius: 1,
+          ),
+        ],
       ),
       child: Column(
         children: <Widget>[
@@ -322,7 +406,7 @@ class _BigContainerStreak extends ConsumerWidget {
             padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 6),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(22),
-              color: colorScheme.surfaceContainer,
+              color: colorScheme.surfaceContainerLowest,
               border: Border.all(
                 color: colorScheme.outline.withValues(alpha: 0.2),
               ),
@@ -336,31 +420,26 @@ class _BigContainerStreak extends ConsumerWidget {
             ),
             child: Row(
               children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: Container(
-                    padding: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: colorScheme.surfaceContainerHigh,
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: colorScheme.outline.withValues(alpha: 0.1),
-                      ),
-                    ),
-                    child:  const Icon(
-                      Icons.local_fire_department_sharp,
-                      color: Colors.red,
-                      size: 42,
-                    ),
+                const Gap(8),
+                if (!isStreakEmpty) ...<Widget>[
+                  const Icon(
+                    Icons.local_fire_department_sharp,
+                    color: Colors.red,
+                    size: 32,
                   ),
-                ),
-                TextVariant(
-                  LocaleKeys.reviewScreenStreak.tr(
-                    args: <String>[viewModel.streakDays.toString()],
+                  const Gap(8),
+                ],
+                Flexible(
+                  child: TextVariant(
+                    isStreakEmpty
+                        ? LocaleKeys.reviewScreenStreakEmpty.tr()
+                        : LocaleKeys.reviewScreenStreak.tr(
+                            args: <String>[streakDays.toString()],
+                          ),
+                    variantType: TextVariantType.bodyLarge,
+                    fontWeight: FontWeight.w500,
+                    color: colorScheme.onSurface,
                   ),
-                  variantType: TextVariantType.bodyLarge,
-                  fontWeight: FontWeight.w500,
-                  color: colorScheme.onSurface,
                 ),
               ],
             ),

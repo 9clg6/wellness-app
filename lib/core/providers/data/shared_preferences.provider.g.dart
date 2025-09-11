@@ -1,29 +1,29 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'kernel.provider.dart';
+part of 'shared_preferences.provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$kernelHash() => r'81fd51e97e91c3f634951df9bf5f1f54d2064235';
+String _$sharedPreferencesHash() => r'50d46e3f8d9f32715d0f3efabdce724e4b2593b4';
 
-/// Kernel provider
+/// Provider for SharedPreferences
 ///
-/// Copied from [kernel].
-@ProviderFor(kernel)
-final kernelProvider = FutureProvider<void>.internal(
-  kernel,
-  name: r'kernelProvider',
+/// Copied from [sharedPreferences].
+@ProviderFor(sharedPreferences)
+final sharedPreferencesProvider = FutureProvider<SharedPreferences>.internal(
+  sharedPreferences,
+  name: r'sharedPreferencesProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$kernelHash,
+      : _$sharedPreferencesHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef KernelRef = FutureProviderRef<void>;
+typedef SharedPreferencesRef = FutureProviderRef<SharedPreferences>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

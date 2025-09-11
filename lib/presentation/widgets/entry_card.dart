@@ -49,7 +49,7 @@ class EntryCard extends StatelessWidget {
       decoration:
           decoration as BoxDecoration? ??
           BoxDecoration(
-            color: colorScheme.onPrimary,
+            color: Colors.white,
             border: Border.all(
               color: colorScheme.outline.withValues(alpha: 0.1),
             ),

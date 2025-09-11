@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:starter_kit/foundation/routing/app_router.dart';
 
 /// Navigation service
@@ -11,8 +12,10 @@ class NavigationService {
   /// Navigate to home
   void navigateToHome({bool replace = false}) {
     if (replace) {
+      debugPrint('navigateToHome replace');
       _appRouter.replace(HomeRoute());
     } else {
+      debugPrint('navigateToHome push');
       _appRouter.push(HomeRoute());
     }
   }
@@ -28,30 +31,35 @@ class NavigationService {
   }
 
   /// Pop
-  void pop() {
-    _appRouter.maybePop();
+  void pop({bool? result}) {
+    _appRouter.maybePop(result);
   }
 
   /// Navigate to real home
   void navigateToRealHome({bool replace = false}) {
     if (replace) {
+      debugPrint('navigateToRealHome replace');
       _appRouter.replace(const RealHomeRoute());
     } else {
+      debugPrint('navigateToRealHome push');
       _appRouter.push(const RealHomeRoute());
     }
   }
 
   /// Navigate to review
-  void navigateToReview({bool replace = false}) {
+  Future<bool?> navigateToReview({bool replace = false}) {
     if (replace) {
-      _appRouter.replace(const ReviewRoute());
+      debugPrint('navigateToReview replace');
+      return _appRouter.replace<bool?>(const ReviewRoute());
     } else {
-      _appRouter.push(const ReviewRoute());
+      debugPrint('navigateToReview push');
+      return _appRouter.push<bool?>(const ReviewRoute());
     }
   }
 
   /// Navigate to daily journey
-  void navigateToDailyJourney({bool isFromRealHome = false}) {
-    _appRouter.push(HomeRoute(isFromRealHome: isFromRealHome));
+  Future<bool?> navigateToDailyJourney({bool isFromRealHome = false}) {
+    debugPrint('navigateToDailyJourney push');
+    return _appRouter.push<bool?>(HomeRoute(isFromRealHome: isFromRealHome));
   }
 }

@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:confetti/confetti.dart' show ConfettiController;
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +6,7 @@ import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
 import 'package:starter_kit/core/providers/core/services/happen_action.service.provider.dart';
 import 'package:starter_kit/core/providers/core/services/navigation.service.provider.dart';
 import 'package:starter_kit/core/providers/core/services/user.service.provider.dart';
+import 'package:starter_kit/core/providers/foundation/services/happen_action.service.dart';
 import 'package:starter_kit/core/providers/foundation/services/navigation.service.dart';
 import 'package:starter_kit/core/providers/foundation/services/user.service.dart';
 import 'package:starter_kit/core/providers/presentation/router.provider.dart';
@@ -23,10 +22,13 @@ class HomeViewModel extends _$HomeViewModel {
   /// page controller
   final TextEditingController happenController = TextEditingController();
 
-  late final NavigationService _navigationService;
-
   /// Because controller
   final TextEditingController becauseController = TextEditingController();
+
+  /// Happen action service
+  late final HappenActionService _happenActionService;
+
+  late final NavigationService _navigationService;
 
   /// Debouncer
   final Debouncer _debouncer = Debouncer(milliseconds: 500);
@@ -54,19 +56,35 @@ class HomeViewModel extends _$HomeViewModel {
   final ConfettiController controllerCenter = ConfettiController();
 
   @override
-  HomeState build() {
+  Future<HomeState> build() async {
     debugPrint('[HomeViewModel] build');
     _navigationService = ref.watch(navigationServiceProvider);
+    _happenActionService = await ref.watch(happenActionServiceProvider.future);
+    ref.onDispose(() {
+      secondFieldController.dispose();
+      happenController.dispose();
+      becauseController.dispose();
+      controllerCenter.dispose();
+    });
 
-    listenSelf((HomeState? prev, HomeState next) {
-      final bool wasShown = prev?.showSecondField ?? false;
-      if (!wasShown && next.showSecondField) {
+    listenSelf((AsyncValue<HomeState>? prev, AsyncValue<HomeState> next) {
+      if (prev == null || next.value == null) return;
+      if (prev.hasValue == false || next.hasValue == false) return;
+
+      final bool wasShown = prev.requireValue.showSecondField;
+      if (!wasShown && next.requireValue.showSecondField) {
         secondFieldController.forward(from: 0);
       }
     });
 
-    listenSelf((HomeState? prev, HomeState next) {
-      if (prev?.topMotivationText == next.topMotivationText) return;
+    listenSelf((AsyncValue<HomeState>? prev, AsyncValue<HomeState> next) {
+      if (prev == null || next.value == null) return;
+      if (prev.hasValue == false || next.hasValue == false) return;
+
+      if (prev.requireValue.topMotivationText ==
+          next.requireValue.topMotivationText) {
+        return;
+      }
       final BuildContext? context = ref
           .watch(routerProvider)
           .navigatorKey
@@ -103,7 +121,7 @@ class HomeViewModel extends _$HomeViewModel {
           ),
           child: Center(
             child: Text(
-              state.topMotivationText.tr(),
+              state.requireValue.topMotivationText.tr(),
               style: const TextStyle(
                 fontSize: 16,
                 color: Colors.black,
@@ -121,14 +139,18 @@ class HomeViewModel extends _$HomeViewModel {
   /// Handle on form's content change
   void onHappenFieldChange(String value) {
     _debouncer.run(() {
-      state = state.copyWith(showSecondField: true);
+      state = AsyncValue<HomeState>.data(
+        state.requireValue.copyWith(showSecondField: true),
+      );
     });
   }
 
   /// Handle on form's content change
   void onActionFieldChange(String value) {
     _debouncer.run(() {
-      state = state.copyWith(showValidationButton: true);
+      state = AsyncValue<HomeState>.data(
+        state.requireValue.copyWith(showValidationButton: true),
+      );
     });
   }
 
@@ -137,29 +159,32 @@ class HomeViewModel extends _$HomeViewModel {
 
   /// Save happen action content via service
   void saveHappenActionContent() {
-    ref
-        .watch(happenActionServiceProvider)
-        .addEntry(
-          happen: happenController.text,
-          action: becauseController.text,
-        );
+    _happenActionService.addEntry(
+      happen: happenController.text,
+      action: becauseController.text,
+    );
   }
 
   /// Clear form
   void clearForm() {
     happenController.clear();
     becauseController.clear();
-    state = state.copyWith(showSecondField: false, showValidationButton: false);
+    state = AsyncValue<HomeState>.data(
+      state.requireValue.copyWith(
+        showSecondField: false,
+        showValidationButton: false,
+      ),
+    );
   }
 
   /// Set step
   void increaseStep() {
-    final int step = state.step + 1;
+    final int step = state.requireValue.step + 1;
     final String topMotivationText = switch (step) {
-      1 => LocaleKeys.secondPositiveMomentMessage.tr(),
-      2 => LocaleKeys.thirdPositiveMomentMessage.tr(),
-      3 => LocaleKeys.fourthPositiveMomentMessage.tr(),
-      _ => state.topMotivationText,
+      1 => LocaleKeys.secondPositiveMomentMessage,
+      2 => LocaleKeys.thirdPositiveMomentMessage,
+      3 => LocaleKeys.fourthPositiveMomentMessage,
+      _ => state.requireValue.topMotivationText,
     };
 
     if (step == 3) {
@@ -168,28 +193,30 @@ class HomeViewModel extends _$HomeViewModel {
       });
     }
 
-    state = state.copyWith(step: step, topMotivationText: topMotivationText);
+    state = AsyncValue<HomeState>.data(
+      state.requireValue.copyWith(
+        step: step,
+        topMotivationText: topMotivationText,
+      ),
+    );
   }
 
   /// Whether all steps have been completed
-  bool get hasCompletedAllSteps => state.step >= state.totalSteps;
+  bool get hasCompletedAllSteps =>
+      state.requireValue.step >= state.requireValue.totalSteps;
 
   /// Reset to a fresh day (and clear previous entries)
   void resetDay() {
-    ref.watch(happenActionServiceProvider).clearEntries();
+    _happenActionService.clearEntries();
     happenController.clear();
     becauseController.clear();
-    state = HomeState.initial(isLoading: false);
+    state = AsyncValue<HomeState>.data(HomeState.initial(isLoading: false));
   }
 
   /// Trigger full completed
-  void triggerFullCompleted() {
-    ref.watch(navigationServiceProvider).navigateToReview();
-  }
-
-  /// Navigate to daily journey
-  void navigateToDailyJourney() {
-    _navigationService.navigateToDailyJourney();
+  Future<void> triggerFullCompleted() async {
+    final bool? result = await _navigationService.navigateToReview();
+    _navigationService.pop(result: result);
   }
 
   /// Handle flower tap animation and logic
@@ -201,7 +228,6 @@ class HomeViewModel extends _$HomeViewModel {
       return;
     }
 
-    // Récupération des contextes
     final BuildContext? stackContext = stackKey.currentContext;
     final BuildContext? flowerContext = flowerKey.currentContext;
 
@@ -210,7 +236,6 @@ class HomeViewModel extends _$HomeViewModel {
       return;
     }
 
-    // Calculs géométriques
     final RenderBox stackBox = stackContext.findRenderObject()! as RenderBox;
     final RenderBox flowerBox = flowerContext.findRenderObject()! as RenderBox;
 
@@ -239,25 +264,26 @@ class HomeViewModel extends _$HomeViewModel {
       curve: Curves.bounceOut,
     );
 
-    // Mise à jour de l'état
-    state = state.copyWith(
-      showOverlay: true,
-      rectAnimation: RelativeRectTween(
-        begin: begin,
-        end: RelativeRect.fill,
-      ).animate(curve),
-      radiusAnimation: Tween<double>(begin: 32, end: 0).animate(curve),
+    state = AsyncValue<HomeState>.data(
+      state.requireValue.copyWith(
+        showOverlay: true,
+        rectAnimation: RelativeRectTween(
+          begin: begin,
+          end: RelativeRect.fill,
+        ).animate(curve),
+        radiusAnimation: Tween<double>(begin: 32, end: 0).animate(curve),
+      ),
     );
 
-    // Animation
     await expandController.forward(from: 0);
 
-    // Délai et mise à jour du message
     await Future<void>.delayed(const Duration(milliseconds: 800));
-    final bool isLast = state.step + 1 >= state.totalSteps;
-    state = state.copyWith(messageStep: isLast ? 2 : 1);
+    final bool isLast =
+        state.requireValue.step + 1 >= state.requireValue.totalSteps;
+    state = AsyncValue<HomeState>.data(
+      state.requireValue.copyWith(messageStep: isLast ? 2 : 1),
+    );
 
-    // Sauvegarde et nettoyage
     await Future<void>.delayed(const Duration(seconds: 1));
     saveHappenActionContent();
     clearForm();
@@ -268,44 +294,11 @@ class HomeViewModel extends _$HomeViewModel {
     required AnimationController expandController,
   }) async {
     await expandController.reverse();
-    state = state.copyWith(showOverlay: false, messageStep: 0);
+    state = AsyncValue<HomeState>.data(
+      state.requireValue.copyWith(showOverlay: false, messageStep: 0),
+    );
 
     await Future<void>.delayed(const Duration(milliseconds: 500));
     increaseStep();
-  }
-
-  /// Handle review navigation
-  void onReviewTap() {
-    _navigationService.navigateToReview();
-  }
-
-  /// A custom Path to paint stars.
-  Path drawStar(Size size) {
-    // Method to convert degrees to radians
-    double degToRad(double deg) => deg * (pi / 180.0);
-
-    const int numberOfPoints = 5;
-    final double halfWidth = size.width / 2;
-    final double externalRadius = halfWidth;
-    final double internalRadius = halfWidth / 2.5;
-    final double degreesPerStep = degToRad(360 / numberOfPoints);
-    final double halfDegreesPerStep = degreesPerStep / 2;
-    final Path path = Path();
-    final double fullAngle = degToRad(360);
-    path.moveTo(size.width, halfWidth);
-
-    for (double step = 0; step < fullAngle; step += degreesPerStep) {
-      path
-        ..lineTo(
-          halfWidth + externalRadius * cos(step),
-          halfWidth + externalRadius * sin(step),
-        )
-        ..lineTo(
-          halfWidth + internalRadius * cos(step + halfDegreesPerStep),
-          halfWidth + internalRadius * sin(step + halfDegreesPerStep),
-        );
-    }
-    path.close();
-    return path;
   }
 }

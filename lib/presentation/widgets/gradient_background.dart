@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:mesh_gradient/mesh_gradient.dart';
 
 /// Widget to display a gradient background
 class GradientBackground extends StatefulWidget {
@@ -45,9 +44,9 @@ class _GradientBackgroundState extends State<GradientBackground>
     } else {
       _colors = <Color>[
         Colors.white,
-        Colors.pink,
-        Colors.orange,
-        Colors.purple,
+        const Color(0xFFF1E2FA),
+        const Color(0xFFFCDAEA),
+        const Color(0xFFD8C0FF),
       ];
     }
   }
@@ -99,28 +98,14 @@ class _GradientBackgroundState extends State<GradientBackground>
         children: <Widget>[
           Opacity(
             opacity: widget.opacity ?? 0.5,
-            child: MeshGradient(
-              options: MeshGradientOptions(noiseIntensity: 1),
-              controller: MeshGradientController(
-                points: <MeshGradientPoint>[
-                  MeshGradientPoint(
-                    position: const Offset(0.3, 0.3),
-                    color: _colors[0],
-                  ),
-                  MeshGradientPoint(
-                    position: const Offset(0.4, 0.5),
-                    color: _colors[1],
-                  ),
-                  MeshGradientPoint(
-                    position: const Offset(0.7, 0.4),
-                    color: _colors[2],
-                  ),
-                  MeshGradientPoint(
-                    position: const Offset(0.7, 0.9),
-                    color: _colors[3],
-                  ),
-                ],
-                vsync: this,
+            child: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: _colors,
+                  stops: const <double>[0, 0.3, 0.7, 1],
+                ),
               ),
             ),
           ),

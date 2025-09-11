@@ -23,7 +23,7 @@
   "reviewScreenNoEntries": "Aucune entrée pour aujourd'hui",
   "continueBtn": "Continuer 🌻",
   "reviewScreenTitle2": "😍 Félicitation ! Vous avez réussi à trouver 3 événements positifs aujourd'hui ! 😍\n\nPassez les en revue !",
-  "reviewScreenTitle3": "☀️ Rends ta journée plus belle ☀️",
+  "reviewScreenTitle3": "Rends ta journée plus belle",
   "reviewScreenTitle4": "Notes 3 choses qui t'ont marquées aujourd'hui",
   "hello": "Bonjour",
   "common_next": "Suivant",
@@ -166,5 +166,9 @@
   "review_leave_review": "Merci 🙏",
   "parfois": "Parfois",
   "souvent": "Souvent",
-  "jamais": "Jamais"
+  "jamais": "Jamais",
+  "reviewScreenStreakEmpty": "Saisissez 3 événements positifs pour commencer votre streak",
+  "errorPlaceholder_title": "Une erreur est survenue",
+  "errorPlaceholder_description": "Veuillez réessayer plus tard.\n\n{}",
+  "errorPlaceholder_retry": "Réessayer"
 }

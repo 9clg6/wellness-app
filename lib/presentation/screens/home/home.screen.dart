@@ -63,7 +63,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    final HomeState state = ref.watch(homeViewModelProvider);
+    final AsyncValue<HomeState> state = ref.watch(homeViewModelProvider);
     final double height = MediaQuery.of(context).size.height;
 
     return Scaffold(
@@ -76,29 +76,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                 icon: const Icon(Icons.close),
               ),
             ),
-      body: GradientBackground(
-        stackKey: GlobalKey(),
-        children: <Widget>[
-          Positioned(
-            top: 0.33 * height,
-            left: 0,
-            right: 0,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: _MainCardArea(
-                height: height,
-                expandController: _expandController,
-              ),
-            ),
-          ),
-          if (state.showOverlay &&
-              state.rectAnimation != null &&
-              state.radiusAnimation != null)
-            _CongratsOverlayParent(
-              expandController: _expandController,
-              messageFade: _messageFade,
-            ),
-        ],
+      body: state.when(
+        data: (HomeState data) => _HasDataBody(
+          data: data,
+          height: height,
+          expandController: _expandController,
+          messageFade: _messageFade,
+        ),
+        error: (Object error, StackTrace stackTrace) => const SizedBox.shrink(),
+        loading: () => const SizedBox.shrink(),
       ),
     );
   }
@@ -106,13 +92,50 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
   @override
   void dispose() {
     _expandController.dispose();
-    final HomeViewModel viewModel = ref.read(homeViewModelProvider.notifier);
-    try {
-      viewModel.secondFieldController.dispose();
-    } on Exception catch (_) {
-      debugPrint('Error disposing second field controller');
-    }
     super.dispose();
+  }
+}
+
+class _HasDataBody extends StatelessWidget {
+  const _HasDataBody({
+    required this.data,
+    required this.height,
+    required AnimationController expandController,
+    required Animation<double> messageFade,
+  }) : _expandController = expandController,
+       _messageFade = messageFade;
+
+  final HomeState data;
+  final double height;
+  final AnimationController _expandController;
+  final Animation<double> _messageFade;
+
+  @override
+  Widget build(BuildContext context) {
+    return GradientBackground(
+      stackKey: GlobalKey(),
+      children: <Widget>[
+        Positioned(
+          top: 0.33 * height,
+          left: 0,
+          right: 0,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: _MainCardArea(
+              height: height,
+              expandController: _expandController,
+            ),
+          ),
+        ),
+        if (data.showOverlay &&
+            data.rectAnimation != null &&
+            data.radiusAnimation != null)
+          _CongratsOverlayParent(
+            expandController: _expandController,
+            messageFade: _messageFade,
+          ),
+      ],
+    );
   }
 }
 
@@ -128,7 +151,7 @@ class _CongratsOverlayParent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final HomeState state = ref.watch(homeViewModelProvider);
+    final HomeState state = ref.watch(homeViewModelProvider).requireValue;
 
     return Positioned.fill(
       child: IgnorePointer(
@@ -182,7 +205,7 @@ class _CongratsOverlay extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final HomeState state = ref.watch(homeViewModelProvider);
+    final HomeState state = ref.watch(homeViewModelProvider).requireValue;
 
     return FadeTransition(
       opacity: _messageFade,
@@ -258,10 +281,11 @@ class _LastCongratsChildState extends ConsumerState<_LastCongratsChild> {
               child: ContinueButtonCard(
                 title: LocaleKeys.seeReview.tr(),
                 color: Colors.black,
+                textColor: Colors.white,
                 width: 220,
                 onTap: () {
                   viewModel
-                    ..onReviewTap()
+                    ..triggerFullCompleted()
                     ..onOverlayClose(expandController: widget.expandController);
                 },
               ),
@@ -301,6 +325,7 @@ class SecondCongratsChild extends ConsumerWidget {
         ContinueButtonCard(
           title: LocaleKeys.yes.tr(),
           color: Colors.black,
+          textColor: Colors.white,
           width: 200,
           onTap: () =>
               viewModel.onOverlayClose(expandController: _expandController),
@@ -339,9 +364,7 @@ class _StackCardParent extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final HomeViewModel viewModel = ref.watch(homeViewModelProvider.notifier);
-    final HomeState state = ref.watch(homeViewModelProvider);
-
-    debugPrint('remainingCards: ${state.remainingCards}');
+    final HomeState state = ref.watch(homeViewModelProvider).requireValue;
 
     return SizedBox(
       height: height * 0.3,
@@ -388,7 +411,7 @@ class _NextButton extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final HomeViewModel viewModel = ref.watch(homeViewModelProvider.notifier);
-    final HomeState state = ref.watch(homeViewModelProvider);
+    final HomeState state = ref.watch(homeViewModelProvider).requireValue;
 
     return AnimatedSwitcher(
       duration: const Duration(milliseconds: 300),
