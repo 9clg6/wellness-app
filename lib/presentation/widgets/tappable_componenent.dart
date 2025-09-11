@@ -10,6 +10,7 @@ class TappableComponent extends StatelessWidget {
     this.borderRadius,
     this.splashColor,
     super.key,
+    this.boxShadow,
   });
 
   /// The child widget
@@ -27,23 +28,30 @@ class TappableComponent extends StatelessWidget {
   /// The border radius of the component
   final BorderRadius? borderRadius;
 
+  /// The box shadow of the component
+  final List<BoxShadow>? boxShadow;
+
   @override
   Widget build(BuildContext context) {
     final BorderRadius radius = borderRadius ?? BorderRadius.circular(12);
 
     return Material(
       type: MaterialType.transparency,
-      child: Ink(
-        decoration: BoxDecoration(
-          color: color,
-          borderRadius: radius,
-        ),
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: radius,
-          splashColor: splashColor,
-          highlightColor: Colors.transparent,
-          child: child,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 2),
+        child: Ink(
+          decoration: BoxDecoration(
+            color: color,
+            borderRadius: radius,
+            boxShadow: boxShadow,
+          ),
+          child: InkWell(
+            onTap: onTap,
+            borderRadius: radius,
+            splashColor: splashColor,
+            highlightColor: Colors.transparent,
+            child: child,
+          ),
         ),
       ),
     );

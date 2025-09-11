@@ -70,6 +70,7 @@ dependencies:
   loading_indicator: ^3.1.1
   purchases_flutter: ^9.2.1
   google_fonts: ^6.3.0
+  animate_gradient: ^0.0.3
 
 dependency_overrides:
   protobuf: ^3.1.0

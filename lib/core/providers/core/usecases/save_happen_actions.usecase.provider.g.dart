@@ -1,32 +1,32 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'happen_action.service.provider.dart';
+part of 'save_happen_actions.usecase.provider.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$happenActionServiceHash() =>
-    r'ff4da77d2e07054553c817a0b312c7d66a8b5783';
+String _$saveHappenActionsUseCaseHash() =>
+    r'8af5d899c81a57acad10d2f3ebc914a6ab7b1e0f';
 
-/// Provider pour HappenActionService
+/// Provider for SaveHappenActionsUseCase
 ///
-/// Copied from [happenActionService].
-@ProviderFor(happenActionService)
-final happenActionServiceProvider =
-    AutoDisposeFutureProvider<HappenActionService>.internal(
-      happenActionService,
-      name: r'happenActionServiceProvider',
+/// Copied from [saveHappenActionsUseCase].
+@ProviderFor(saveHappenActionsUseCase)
+final saveHappenActionsUseCaseProvider =
+    AutoDisposeFutureProvider<SaveHappenActionsUseCase>.internal(
+      saveHappenActionsUseCase,
+      name: r'saveHappenActionsUseCaseProvider',
       debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
           ? null
-          : _$happenActionServiceHash,
+          : _$saveHappenActionsUseCaseHash,
       dependencies: null,
       allTransitiveDependencies: null,
     );
 
 @Deprecated('Will be removed in 3.0. Use Ref instead')
 // ignore: unused_element
-typedef HappenActionServiceRef =
-    AutoDisposeFutureProviderRef<HappenActionService>;
+typedef SaveHappenActionsUseCaseRef =
+    AutoDisposeFutureProviderRef<SaveHappenActionsUseCase>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package

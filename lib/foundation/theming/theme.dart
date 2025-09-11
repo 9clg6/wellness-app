@@ -15,59 +15,56 @@ class MaterialTheme {
   ///
   static ColorScheme lightScheme() {
     return const ColorScheme(
+      // Brightness
       brightness: Brightness.light,
 
-      // Primary accent color (a soft/positive pink)
-      primary: Color(0xFFFF6DAA),
-      onPrimary: Color(0xFFFFFFFF),
+      // Primary (soft pink)
+      primary: Color(0xFFD8C0FF),
+      onPrimary: Color(
+        0xFF3B0077,
+      ), // Texte sur primary (meilleur contraste)
+      primaryContainer: Color(0xFFEADDFF),
+      onPrimaryContainer: Color(0xFF140033),
 
-      // Secondary accent color (lavender / pastel violet)
-      secondary: Color(0xFFB794F6),
-      onSecondary: Color(0xFFFFFFFF),
+      // Secondary (lavender)
+      secondary: Color(0xFFF1E2FA),
+      onSecondary: Color(0xFF3B0077),
+      secondaryContainer: Color(0xFFE8D9FF),
+      onSecondaryContainer: Color(0xFF1D003D),
 
-      // Tertiary accent color (peach/pink)
-      tertiary: Color(0xFFFFB3B3),
-      onTertiary: Color(0xFF3A071E),
+      // Tertiary (peach)
+      tertiary: Color(0xFFFCDAEA),
+      onTertiary: Color(0xFF4A1B00),
+      tertiaryContainer: Color(0xFFFFDBCE),
+      onTertiaryContainer: Color(0xFF3B0000),
 
-      // Error states (soft pink/red, not too aggressive)
+      // Error
       error: Color(0xFFE57373),
       onError: Color(0xFFFFFFFF),
-
-      // Containers (soft backgrounds, pastel gradients inspired by pink→yellow)
-      primaryContainer: Color(0xFFFFE4EC),
-      onPrimaryContainer: Color(0xFF5C1034),
-
-      secondaryContainer: Color(0xFFEDE7F6),
-      onSecondaryContainer: Color(0xFF2C0F52),
-
-      tertiaryContainer: Color(0xFFFFE0E0),
-      onTertiaryContainer: Color(0xFF4A0F1E),
-
       errorContainer: Color(0xFFFFDAD6),
       onErrorContainer: Color(0xFF3B0907),
 
-      // Surfaces (light and soft backgrounds)
-      surfaceDim: Color(0xFFF2EDF5),
+      // Surfaces (fond, cartes, etc.)
       surface: Color(0xFFFFFBFF),
+      onSurface: Color(0xFF1C1B1F),
+      surfaceDim: Color(0xFFE0E0E0),
       surfaceBright: Color(0xFFFFFFFF),
-      inverseSurface: Color(0xFF322F35),
+      surfaceContainerLowest: Color(0xFFFFFFFF),
+      surfaceContainerLow: Color(0xFFF8F8F8),
+      surfaceContainer: Color(0xFFF2F2F2),
+      surfaceContainerHigh: Color(0xFFEDEDED),
+      surfaceContainerHighest: Color(0xFFE6E6E6),
+
+      // Outline (bordures, diviseurs)
+      outline: Color(0xFF79747E), // Gris neutre pour les bordures
+      outlineVariant: Color(0xFFCAC4D0),
+
+      // Inverse (pour les surfaces inversées)
+      inverseSurface: Color(0xFF323033),
       onInverseSurface: Color(0xFFF5EFF7),
       inversePrimary: Color(0xFFEFBBD9),
 
-      // Surface containers
-      surfaceContainerLowest: Color(0xFFFFFFFF),
-      surfaceContainerLow: Color(0xFFFDF5F9),
-      surfaceContainer: Color(0xFFF9EEF5),
-      surfaceContainerHigh: Color(0xFFF5EAF2),
-      surfaceContainerHighest: Color(0xFFF0E5ED),
-
-      // Texts and outlines
-      onSurface: Color(0xFF1C1B1F),
-      onSurfaceVariant: Color(0xFF6D6D73),
-      outline: Color(0xFFB6B6BD),
-      outlineVariant: Color(0xFFDADAE0),
-
-      // Miscellaneous
+      // Autres
       scrim: Color(0xFF000000),
       shadow: Color(0x33000000),
     );
