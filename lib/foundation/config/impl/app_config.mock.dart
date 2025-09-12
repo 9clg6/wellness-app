@@ -13,7 +13,7 @@ final class AppConfigMock implements AppConfig {
   Environment get env => Environment.mock;
   
   @override
-  String get authBaseUrl => '';
+  String get openApiBaseUrl => '';
 
   @override
   bool get isProd => false;

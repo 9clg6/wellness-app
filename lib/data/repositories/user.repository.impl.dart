@@ -24,10 +24,10 @@ final class UserRepositoryImpl extends UserRepository {
 
   @override
   Future<UserEntity> getUser() async {
-    final List<UserRemoteModel> userRemoteModels = await _userRemoteDataSource
+    final UserRemoteModel userRemoteModel = await _userRemoteDataSource
         .getUser();
 
-    return UserEntity.fromRemote(userRemoteModels.first);
+    return UserEntity.fromRemote(userRemoteModel);
   }
 
   @override

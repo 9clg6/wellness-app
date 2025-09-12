@@ -20,23 +20,35 @@ class ErrorPlaceholder extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Column(
-      children: <Widget>[
-        Icon(Icons.error, size: 40, color: Theme.of(context).colorScheme.error),
-        const Gap(16),
-        TextVariant(
-          LocaleKeys.errorPlaceholder_description.tr(
-            args: <String>[error.toString()],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 26),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          Icon(
+            Icons.error,
+            size: 40,
+            color: Theme.of(context).colorScheme.error,
           ),
-        ),
-        const Gap(16),
-        TextButton(
-          onPressed: () {
-            ref.invalidate(kernelProvider);
-          },
-          child: TextVariant(LocaleKeys.errorPlaceholder_retry.tr()),
-        ),
-      ],
+          const Gap(16),
+          TextVariant(
+            LocaleKeys.errorPlaceholder_description.tr(
+              args: <String>[error.toString()],
+            ),
+            textAlign: TextAlign.center,
+          ),
+          const Gap(16),
+          TextButton(
+            onPressed: () {
+              ref.invalidate(kernelProvider);
+            },
+            child: TextVariant(
+              LocaleKeys.errorPlaceholder_retry.tr(),
+              variantType: TextVariantType.titleMedium,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

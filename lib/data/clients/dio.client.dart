@@ -8,15 +8,14 @@ class DioClient extends DioForNative {
 
   /// Basic factory
   factory DioClient.basic(AppConfig appConfig) {
-    return DioClient._(appConfig.baseUrl);
+    return DioClient._(appConfig.openApiBaseUrl);
   }
 
   /// Base options
   static BaseOptions _baseOptions(String baseUrl) => BaseOptions()
-    ..headers = <String, String>{'Accept': 'application/json'}
     ..followRedirects = true
     ..baseUrl = baseUrl
-    ..connectTimeout = const Duration(seconds: 30)
+    ..connectTimeout = const Duration(seconds: 120)
     ..maxRedirects = 5
     ..contentType = Headers.jsonContentType;
 

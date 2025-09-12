@@ -10,12 +10,12 @@ PODS:
     - FlutterMacOS
   - permission_handler_apple (9.3.0):
     - Flutter
-  - purchases_flutter (9.2.1):
+  - purchases_flutter (9.5.0):
     - Flutter
-    - PurchasesHybridCommon (= 16.2.2)
-  - PurchasesHybridCommon (16.2.2):
-    - RevenueCat (= 5.34.0)
-  - RevenueCat (5.34.0)
+    - PurchasesHybridCommon (= 17.5.0)
+  - PurchasesHybridCommon (17.5.0):
+    - RevenueCat (= 5.37.0)
+  - RevenueCat (5.37.0)
   - shared_preferences_foundation (0.0.1):
     - Flutter
     - FlutterMacOS
@@ -62,12 +62,12 @@ SPEC CHECKSUMS:
   geolocator_apple: 66b711889fd333205763b83c9dcf0a57a28c7afd
   path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
   permission_handler_apple: 9878588469a2b0d0fc1e048d9f43605f92e6cec2
-  purchases_flutter: 0d71a9620d3ba19ffd97f27b66d74ba39ca5d28f
-  PurchasesHybridCommon: 62f852419aae7041792217593998f7ac3f8b567d
-  RevenueCat: eb2aa042789d9c99ad5172bd96e28b96286d6ada
+  purchases_flutter: 7beb863d2a55c97a68cc96f22b4f9f1078bae680
+  PurchasesHybridCommon: 7d56bf25c61e2c8a62e5b23d7bf16b5060420fe9
+  RevenueCat: fc4ad171bbfbfb974210f0b26ce470b007be111f
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
   webview_flutter_wkwebview: a4af96a051138e28e29f60101d094683b9f82188
 
-PODFILE CHECKSUM: 894d3840127cb0755b8f98c70aaa381f32a9bc1e
+PODFILE CHECKSUM: b86cb4b45d5c557115a49574185724f69ab61bd2
 
 COCOAPODS: 1.16.2
