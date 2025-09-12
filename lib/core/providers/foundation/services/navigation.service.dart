@@ -62,4 +62,9 @@ class NavigationService {
     debugPrint('navigateToDailyJourney push');
     return _appRouter.push<bool?>(HomeRoute(isFromRealHome: isFromRealHome));
   }
+
+  /// Navigate to analyze with ai
+  void navigateToAnalyzeWithAi() {
+    _appRouter.push(const AiAnalyzeRoute());
+  }
 }

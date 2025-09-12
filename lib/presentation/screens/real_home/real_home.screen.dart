@@ -74,6 +74,7 @@ class _HasDataBodyState extends ConsumerState<_HasDataBody>
                   const Gap(16),
                   _RowContainerStreak(),
                   const Gap(16),
+                  const _ReviewOldEventsBtn(),
                 ],
               ),
             ),
@@ -81,6 +82,49 @@ class _HasDataBodyState extends ConsumerState<_HasDataBody>
         ),
         error: ErrorPlaceholder.new,
         loading: CustomLoader.new,
+      ),
+    );
+  }
+}
+
+class _ReviewOldEventsBtn extends ConsumerWidget {
+  const _ReviewOldEventsBtn();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final ColorScheme colorScheme = Theme.of(context).colorScheme;
+    final RealHomeViewModel viewModel = ref.watch(
+      realHomeViewModelProvider.notifier,
+    );
+
+    return TappableComponent(
+      color: Colors.transparent,
+      splashColor: colorScheme.onPrimary.withAlpha(30),
+      onTap: viewModel.onTapReviewOldEvents,
+      borderRadius: BorderRadius.circular(24),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(24),
+        child: Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: colorScheme.primary),
+            borderRadius: BorderRadius.circular(24),
+          ),
+          padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 8),
+          child: Row(
+            children: <Widget>[
+              Icon(Icons.history, size: 26, color: colorScheme.onPrimary),
+              const Gap(28),
+              Flexible(
+                child: TextVariant(
+                  LocaleKeys.reviewScreenReviewOldEvents.tr(),
+                  variantType: TextVariantType.titleMedium,
+                  fontSize: 16,
+                  color: colorScheme.onPrimary,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -123,13 +167,13 @@ class _AnalyzeWithAiBtn extends ConsumerWidget {
               borderRadius: BorderRadius.circular(24),
             ),
             padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 8),
-            child: const Row(
+            child: Row(
               children: <Widget>[
-                Icon(Icons.auto_awesome, size: 26),
-                Gap(28),
+                const Icon(Icons.auto_awesome, size: 26),
+                const Gap(28),
                 Flexible(
                   child: TextVariant(
-                    "Analyser mes événements à l'aide de l'IA",
+                    LocaleKeys.reviewScreenAnalyzeWithAi.tr(),
                     variantType: TextVariantType.titleMedium,
                     fontSize: 16,
                   ),
@@ -222,7 +266,7 @@ class _MainActionBtn extends ConsumerWidget {
       borderRadius: BorderRadius.circular(24),
       boxShadow: <BoxShadow>[
         BoxShadow(
-          color: colorScheme.shadow.withAlpha(100),
+          color: colorScheme.primary.withAlpha(100),
           blurRadius: 1,
           offset: const Offset(0, 5),
           spreadRadius: 1,
@@ -294,9 +338,9 @@ class _RowContainerStreak extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(vertical: 4),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-
                   children: <Widget>[
                     _StreakIcon(date: currentDay),
+                    const Gap(4),
                     Container(
                       padding: const EdgeInsets.symmetric(
                         horizontal: 8,

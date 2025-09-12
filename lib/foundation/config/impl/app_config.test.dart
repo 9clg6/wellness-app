@@ -13,7 +13,7 @@ final class AppConfigTest implements AppConfig {
   Environment get env => Environment.test;
   
   @override
-  String get authBaseUrl => '';
+  String get openApiBaseUrl => '';
 
   @override
   bool get isProd => false;

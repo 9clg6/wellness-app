@@ -39,9 +39,8 @@ class ReviewViewModel extends _$ReviewViewModel {
     _navigationService = ref.watch(navigationServiceProvider);
     _userService = await ref.watch(userServiceProvider.future);
 
-    final List<HappenActionEntity> entries = List<HappenActionEntity>.from(
-      _happenActionService.entries,
-    );
+    final List<HappenActionEntity> entries =
+        _happenActionService.todayEntry;
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final BuildContext? context = ref

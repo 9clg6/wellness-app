@@ -9,7 +9,7 @@ import 'package:starter_kit/core/providers/core/services/user.service.provider.d
 import 'package:starter_kit/core/providers/foundation/services/happen_action.service.dart';
 import 'package:starter_kit/core/providers/foundation/services/navigation.service.dart';
 import 'package:starter_kit/core/providers/foundation/services/user.service.dart';
-import 'package:starter_kit/domain/entities/happen_action.entity.dart';
+import 'package:starter_kit/domain/entities/daily_happen_action.entity.dart';
 import 'package:starter_kit/presentation/screens/real_home/real_home.state.dart';
 
 part 'real_home.view_model.g.dart';
@@ -46,16 +46,21 @@ class RealHomeViewModel extends _$RealHomeViewModel {
 
   /// Is something happened this day
   bool isSomethingHappenedThisDay({DateTime? date}) {
+    final DateTime targetDate = date ?? DateTime.now();
     return _happenActionService.entries.any(
-      (HappenActionEntity entry) =>
-          entry.date.isSameDate(date ?? DateTime.now()),
+      (DailyHappenActionEntity dailyEntry) =>
+          dailyEntry.date.isSameDate(targetDate) && dailyEntry.isComplete,
     );
   }
 
   /// Get streak
   int getStreak() {
     final Set<DateTime> daysWithEntries = _happenActionService.entries
-        .map((HappenActionEntity e) => e.date.dateWithoutTime)
+        .where((DailyHappenActionEntity dailyEntry) => dailyEntry.isComplete)
+        .map(
+          (DailyHappenActionEntity dailyEntry) =>
+              dailyEntry.date.dateWithoutTime,
+        )
         .toSet();
 
     int streak = 0;
@@ -131,18 +136,23 @@ class RealHomeViewModel extends _$RealHomeViewModel {
   /// Build streak message
   String buildStreakMessage() {
     switch (streakDays) {
-      case < 3:
+      case < 7:
         return LocaleKeys.onboarding_streak_message_1.tr(
           args: <String>[(7 - streakDays).toString()],
         );
-      case 3:
+      case 7:
         return LocaleKeys.onboarding_streak_message_2.tr();
-      case > 3:
+      case > 7:
         return LocaleKeys.onboarding_streak_message_3.tr();
     }
     return '';
   }
 
   /// On tap analyze with ai
-  void onTapAnalyzeWithAi() {}
+  void onTapAnalyzeWithAi() {
+    _navigationService.navigateToAnalyzeWithAi();
+  }
+
+  /// On tap review old events
+  void onTapReviewOldEvents() {}
 }

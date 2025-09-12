@@ -1,4 +1,4 @@
-import 'package:starter_kit/data/model/happen_action.local_model.dart';
+import 'package:starter_kit/data/model/local/happen_action.local_model.dart';
 
 /// Interface for local data source
 abstract class HappenActionLocalDataSource {

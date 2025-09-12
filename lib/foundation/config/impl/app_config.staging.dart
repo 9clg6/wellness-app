@@ -13,7 +13,7 @@ final class AppConfigStaging implements AppConfig {
   Environment get env => Environment.staging;
 
   @override
-  String get authBaseUrl => 'https://starterkit.fr/prod/api';
+  String get openApiBaseUrl => 'https://api.openai.com/v1/';
 
   @override
   bool get isProd => false;

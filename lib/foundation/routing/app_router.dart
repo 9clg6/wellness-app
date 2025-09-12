@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:starter_kit/core/providers/core/services/user.service.provider.dart';
 import 'package:starter_kit/core/providers/foundation/services/user.service.dart';
 import 'package:starter_kit/presentation/on_boarding/on_boarding.screen.dart';
+import 'package:starter_kit/presentation/screens/ai_analyze/ai_analyze.screen.dart';
 import 'package:starter_kit/presentation/screens/authentication/authentication.screen.dart';
 import 'package:starter_kit/presentation/screens/home/home.screen.dart';
 import 'package:starter_kit/presentation/screens/real_home/real_home.screen.dart';
@@ -28,6 +29,7 @@ class AppRouter extends RootStackRouter {
     ),
     AutoRoute(page: ReviewRoute.page),
     AutoRoute(page: OnBoardingRoute.page),
+    AutoRoute(page: AiAnalyzeRoute.page),
   ];
 }
 

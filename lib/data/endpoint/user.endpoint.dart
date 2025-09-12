@@ -14,5 +14,5 @@ abstract class UserEndpoint {
 
   /// get user
   @GET('/me')
-  Future<List<UserRemoteModel>> getUser();
+  Future<UserRemoteModel> getUser();
 }

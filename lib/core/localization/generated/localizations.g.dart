@@ -186,7 +186,10 @@ class CodegenLoader extends AssetLoader{
   "reviewScreenStreakEmpty": "Enter 3 positive events to start your streak",
   "errorPlaceholder_title": "An error occurred",
   "errorPlaceholder_description": "Please try again later.\n\n{}",
-  "errorPlaceholder_retry": "Retry"
+  "errorPlaceholder_retry": "Retry",
+  "reviewScreenReviewOldEvents": "Review my past events",
+  "reviewScreenAnalyzeWithAi": "Analyze my events with AI",
+  "aiAnalyze_loading": "Your events are being analyzed..."
 };
 static const Map<String,dynamic> _fr = {
   "first": "Bonjour",
@@ -360,7 +363,10 @@ static const Map<String,dynamic> _fr = {
   "reviewScreenStreakEmpty": "Saisissez 3 événements positifs pour commencer votre streak",
   "errorPlaceholder_title": "Une erreur est survenue",
   "errorPlaceholder_description": "Veuillez réessayer plus tard.\n\n{}",
-  "errorPlaceholder_retry": "Réessayer"
+  "errorPlaceholder_retry": "Réessayer",
+  "reviewScreenReviewOldEvents": "Revoir mes événements passés",
+  "reviewScreenAnalyzeWithAi": "Analyser mes événements à l'aide de l'IA",
+  "aiAnalyze_loading": "Vos événements sont en cours d'analyse..."
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": _en, "fr": _fr};
 }

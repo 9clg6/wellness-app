@@ -13,7 +13,7 @@ final class AppConfigProd implements AppConfig {
   Environment get env => Environment.production;
   
   @override
-  String get authBaseUrl => 'https://api.example.com/auth';
+  String get openApiBaseUrl => 'https://api.openai.com/v1/';
 
   @override
   bool get isProd => true;
