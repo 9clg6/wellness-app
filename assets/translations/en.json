@@ -170,5 +170,8 @@
   "reviewScreenStreakEmpty": "Enter 3 positive events to start your streak",
   "errorPlaceholder_title": "An error occurred",
   "errorPlaceholder_description": "Please try again later.\n\n{}",
-  "errorPlaceholder_retry": "Retry"
+  "errorPlaceholder_retry": "Retry",
+  "reviewScreenReviewOldEvents": "Review my past events",
+  "reviewScreenAnalyzeWithAi": "Analyze my events with AI",
+  "aiAnalyze_loading": "Your events are being analyzed..."
 }

@@ -170,5 +170,10 @@
   "reviewScreenStreakEmpty": "Saisissez 3 événements positifs pour commencer votre streak",
   "errorPlaceholder_title": "Une erreur est survenue",
   "errorPlaceholder_description": "Veuillez réessayer plus tard.\n\n{}",
-  "errorPlaceholder_retry": "Réessayer"
+  "errorPlaceholder_retry": "Réessayer",
+  "reviewScreenReviewOldEvents": "Revoir mes événements passés",
+  "reviewScreenAnalyzeWithAi": "Analyser mes événements à l'aide de l'IA",
+  "aiAnalyze_loading": "Vos événements sont en cours d'analyse..."
+
+
 }

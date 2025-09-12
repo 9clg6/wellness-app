@@ -8,7 +8,7 @@ abstract class AppConfig {
     required this.appName,
     required this.baseUrl,
     required this.env,
-    required this.authBaseUrl,
+    required this.openApiBaseUrl,
   });
 
   /// Environment
@@ -18,7 +18,7 @@ abstract class AppConfig {
   final String appName;
 
   ///Auth base url
-  final String authBaseUrl;
+  final String openApiBaseUrl;
 
   /// Base url
   final String baseUrl;

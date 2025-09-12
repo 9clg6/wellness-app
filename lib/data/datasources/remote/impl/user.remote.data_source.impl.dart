@@ -12,7 +12,7 @@ final class UserRemoteDataSourceImpl extends UserRemoteDataSource {
   final UserEndpoint _endpoint;
 
   @override
-  Future<List<UserRemoteModel>> getUser() {
+  Future<UserRemoteModel> getUser() {
     return _endpoint.getUser();
   }
 }

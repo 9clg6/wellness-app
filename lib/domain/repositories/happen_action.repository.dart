@@ -1,19 +1,21 @@
-import 'package:starter_kit/domain/entities/happen_action.entity.dart';
+import 'package:starter_kit/domain/entities/daily_happen_action.entity.dart';
 
 /// Interface for happen action repository
 abstract class HappenActionRepository {
-  /// Get all happen actions
-  Future<List<HappenActionEntity>> getHappenActions();
+  /// Get all daily happen actions
+  Future<List<DailyHappenActionEntity>> getHappenActions();
 
-  /// Save happen action
-  Future<void> saveHappenAction(HappenActionEntity happenAction);
+  /// Save daily happen action
+  Future<void> saveHappenAction(DailyHappenActionEntity dailyHappenAction);
 
-  /// Save all happen actions
-  Future<void> saveHappenActions(List<HappenActionEntity> happenActions);
+  /// Save all daily happen actions
+  Future<void> saveHappenActions(
+    List<DailyHappenActionEntity> dailyHappenActions,
+  );
 
-  /// Delete happen action by date
+  /// Delete daily happen action by date
   Future<void> deleteHappenActionByDate(DateTime date);
 
-  /// Clear all happen actions
+  /// Clear all daily happen actions
   Future<void> clearHappenActions();
 }

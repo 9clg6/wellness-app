@@ -5,7 +5,6 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:starter_kit/core/providers/config/appconfig.provider.dart';
 import 'package:starter_kit/core/providers/core/services/happen_action.service.provider.dart';
 import 'package:starter_kit/core/providers/core/services/user.service.provider.dart';
-import 'package:starter_kit/core/providers/core/usecases/get_auth.use_case.provider.dart';
 import 'package:starter_kit/core/providers/data/clients/dio_client.provider.dart';
 import 'package:starter_kit/core/providers/data/datasources/local/authentication.local.data_source.provider.dart';
 import 'package:starter_kit/core/providers/data/repositories/authentication.repository.provider.dart';
@@ -27,7 +26,6 @@ Future<void> kernel(Ref ref) async {
   final DioClient dioClient = await ref.watch(dioClientProvider.future);
   TokenInterceptor(
     dioClient: dioClient,
-    getAuthUseCase: await ref.watch(getAuthUseCaseProvider.future),
   );
 
   final UserService userService = await ref.watch(userServiceProvider.future);

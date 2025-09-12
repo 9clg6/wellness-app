@@ -1,11 +1,13 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:starter_kit/domain/entities/user.entity.dart';
 
+part 'user.local.model.freezed.dart';
 part 'user.local.model.g.dart';
 
 /// User Local Model
+@freezed
 @JsonSerializable()
-final class UserLocalModel {
+final class UserLocalModel with _$UserLocalModel {
   /// User Local Model constructor
   UserLocalModel({
     this.id,
@@ -47,23 +49,30 @@ final class UserLocalModel {
   );
 
   /// id
+  @override
   final int? id;
 
   /// email
+  @override
   final String? email;
 
   /// nickname
+  @override
   final String? nickname;
 
   /// lastname
+  @override
   final String? lastname;
 
   /// firstname
+  @override
   final String? firstname;
 
   /// is onboarding completed
+  @override
   final bool? isOnboardingCompleted;
 
   /// streak days
+  @override
   final int streakDays;
 }

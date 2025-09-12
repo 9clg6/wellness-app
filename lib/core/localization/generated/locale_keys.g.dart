@@ -175,5 +175,8 @@ abstract class  LocaleKeys {
   static const errorPlaceholder_title = 'errorPlaceholder_title';
   static const errorPlaceholder_description = 'errorPlaceholder_description';
   static const errorPlaceholder_retry = 'errorPlaceholder_retry';
+  static const reviewScreenReviewOldEvents = 'reviewScreenReviewOldEvents';
+  static const reviewScreenAnalyzeWithAi = 'reviewScreenAnalyzeWithAi';
+  static const aiAnalyze_loading = 'aiAnalyze_loading';
 
 }

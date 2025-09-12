@@ -8,7 +8,7 @@ class DioAuthenticationClient extends DioForNative {
 
   /// Basic factory
   factory DioAuthenticationClient.basic(AppConfig appConfig) {
-    return DioAuthenticationClient._(appConfig.authBaseUrl);
+    return DioAuthenticationClient._(appConfig.openApiBaseUrl);
   }
 
   static BaseOptions _baseOptions(String baseUrl) => BaseOptions()
