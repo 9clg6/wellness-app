@@ -173,5 +173,12 @@
   "errorPlaceholder_retry": "Retry",
   "reviewScreenReviewOldEvents": "Review my past events",
   "reviewScreenAnalyzeWithAi": "Analyze my events with AI",
-  "aiAnalyze_loading": "Your events are being analyzed..."
+  "aiAnalyze_loading": "Your events are being analyzed...",
+  "aiAnalyze_title": "New week\nNew start",
+  "aiAnalyze_subtitle": "But first, let's review all the positive things that happened the last 7 days.",
+  "aiAnalyze_humeurGenerale": "General mood",
+  "aiAnalyze_categorieDominante": "Dominant category",
+  "aiAnalyze_progressionSemaine": "Week progression",
+  "aiAnalyze_momentMarquant": "Moment marquant",
+  "aiAnalyze_suggestions": "Suggestions"
 }

@@ -5,18 +5,18 @@ import 'package:starter_kit/data/model/remote/user.remote.model.dart';
 part 'user.entity.freezed.dart';
 
 /// User Entity
-@Freezed(copyWith: true)
-class UserEntity with _$UserEntity {
+@freezed
+abstract class UserEntity with _$UserEntity {
   /// User Entity constructor
-  UserEntity({
-    this.id,
-    this.email,
-    this.nickname,
-    this.lastname,
-    this.firstname,
-    this.isOnboardingCompleted,
-    this.streakDays = 0,
-  });
+  factory UserEntity({
+    int? id,
+    String? email,
+    String? nickname,
+    String? lastname,
+    String? firstname,
+    bool? isOnboardingCompleted,
+    @Default(0) int streakDays,
+  }) = _UserEntity;
 
   /// fromLocal
   factory UserEntity.fromLocal(UserLocalModel userLocalModel) {
@@ -42,33 +42,6 @@ class UserEntity with _$UserEntity {
     );
   }
 
-  /// id
-  @override
-  final int? id;
-
-  /// email
-  @override
-  final String? email;
-
-  /// username
-  @override
-  final String? nickname;
-
-  /// lastname
-  @override
-  final String? lastname;
-
-  /// firstname
-  @override
-  final String? firstname;
-
-  /// is onboarding completed
-  @override
-  final bool? isOnboardingCompleted;
-
-  /// streak days
-  @override
-  final int streakDays;
 
   @override
   String toString() {

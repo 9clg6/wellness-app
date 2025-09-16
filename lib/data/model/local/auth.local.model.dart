@@ -1,13 +1,15 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:starter_kit/domain/entities/auth.entity.dart';
 
+part 'auth.local.model.freezed.dart';
 part 'auth.local.model.g.dart';
 
-/// Auth Remote Model
-@JsonSerializable(fieldRename: FieldRename.snake)
-final class AuthLocalModel {
+/// Auth Local Model
+@freezed
+abstract class AuthLocalModel with _$AuthLocalModel {
   /// Auth Remote Model constructor
-  AuthLocalModel({this.token});
+  factory AuthLocalModel({@JsonKey(name: 'token') required String? token}) =
+      _AuthLocalModel;
 
   /// fromEntity
   factory AuthLocalModel.fromEntity(AuthEntity params) {
@@ -17,10 +19,4 @@ final class AuthLocalModel {
   /// fromJson
   factory AuthLocalModel.fromJson(Map<String, dynamic> json) =>
       _$AuthLocalModelFromJson(json);
-
-  /// token
-  final String? token;
-
-  /// toJson
-  Map<String, dynamic> toJson() => _$AuthLocalModelToJson(this);
 }

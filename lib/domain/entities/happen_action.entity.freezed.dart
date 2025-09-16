@@ -63,7 +63,7 @@ class _$HappenActionEntityCopyWithImpl<$Res>
 /// Create a copy of HappenActionEntity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? happen = null,Object? action = null,}) {
-  return _then(HappenActionEntity(
+  return _then(_self.copyWith(
 happen: null == happen ? _self.happen : happen // ignore: cast_nullable_to_non_nullable
 as String,action: null == action ? _self.action : action // ignore: cast_nullable_to_non_nullable
 as String,
@@ -87,10 +87,11 @@ extension HappenActionEntityPatterns on HappenActionEntity {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _HappenActionEntity value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _:
+case _HappenActionEntity() when $default != null:
+return $default(_that);case _:
   return orElse();
 
 }
@@ -108,10 +109,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _HappenActionEntity value)  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _HappenActionEntity():
+return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -128,10 +130,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _HappenActionEntity value)?  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _HappenActionEntity() when $default != null:
+return $default(_that);case _:
   return null;
 
 }
@@ -148,9 +151,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String happen,  String action)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _:
+case _HappenActionEntity() when $default != null:
+return $default(_that.happen,_that.action);case _:
   return orElse();
 
 }
@@ -168,9 +172,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String happen,  String action)  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _HappenActionEntity():
+return $default(_that.happen,_that.action);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -187,13 +192,82 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String happen,  String action)?  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _HappenActionEntity() when $default != null:
+return $default(_that.happen,_that.action);case _:
   return null;
 
 }
 }
+
+}
+
+/// @nodoc
+
+
+class _HappenActionEntity implements HappenActionEntity {
+   _HappenActionEntity({required this.happen, required this.action});
+  
+
+@override final  String happen;
+@override final  String action;
+
+/// Create a copy of HappenActionEntity
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$HappenActionEntityCopyWith<_HappenActionEntity> get copyWith => __$HappenActionEntityCopyWithImpl<_HappenActionEntity>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HappenActionEntity&&(identical(other.happen, happen) || other.happen == happen)&&(identical(other.action, action) || other.action == action));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,happen,action);
+
+@override
+String toString() {
+  return 'HappenActionEntity(happen: $happen, action: $action)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$HappenActionEntityCopyWith<$Res> implements $HappenActionEntityCopyWith<$Res> {
+  factory _$HappenActionEntityCopyWith(_HappenActionEntity value, $Res Function(_HappenActionEntity) _then) = __$HappenActionEntityCopyWithImpl;
+@override @useResult
+$Res call({
+ String happen, String action
+});
+
+
+
+
+}
+/// @nodoc
+class __$HappenActionEntityCopyWithImpl<$Res>
+    implements _$HappenActionEntityCopyWith<$Res> {
+  __$HappenActionEntityCopyWithImpl(this._self, this._then);
+
+  final _HappenActionEntity _self;
+  final $Res Function(_HappenActionEntity) _then;
+
+/// Create a copy of HappenActionEntity
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? happen = null,Object? action = null,}) {
+  return _then(_HappenActionEntity(
+happen: null == happen ? _self.happen : happen // ignore: cast_nullable_to_non_nullable
+as String,action: null == action ? _self.action : action // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
 
 }
 

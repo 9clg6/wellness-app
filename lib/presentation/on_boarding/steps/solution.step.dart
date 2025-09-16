@@ -22,32 +22,32 @@ class _SolutionStepState extends ConsumerState<SolutionStep> {
   int _index = 0;
 
   static final List<SolutionScreenEntity> _screens = <SolutionScreenEntity>[
-    const SolutionScreenEntity(
+    SolutionScreenEntity(
       title: LocaleKeys.onboarding_solution_welcome_title,
       text: LocaleKeys.onboarding_solution_welcome_text,
       emoji: LocaleKeys.onboarding_solution_welcome_emoji,
     ),
-    const SolutionScreenEntity(
+    SolutionScreenEntity(
       title: LocaleKeys.onboarding_solution_facility_title,
       text: LocaleKeys.onboarding_solution_facility_text,
       emoji: LocaleKeys.onboarding_solution_facility_emoji,
     ),
-    const SolutionScreenEntity(
+    SolutionScreenEntity(
       title: LocaleKeys.onboarding_solution_interface_title,
       text: LocaleKeys.onboarding_solution_interface_text,
       emoji: LocaleKeys.onboarding_solution_interface_emoji,
     ),
-    const SolutionScreenEntity(
+    SolutionScreenEntity(
       title: LocaleKeys.onboarding_solution_history_title,
       text: LocaleKeys.onboarding_solution_history_text,
       emoji: LocaleKeys.onboarding_solution_history_emoji,
     ),
-    const SolutionScreenEntity(
+    SolutionScreenEntity(
       title: LocaleKeys.onboarding_solution_stats_title,
       text: LocaleKeys.onboarding_solution_stats_text,
       emoji: LocaleKeys.onboarding_solution_stats_emoji,
     ),
-    const SolutionScreenEntity(
+    SolutionScreenEntity(
       title: LocaleKeys.onboarding_solution_premium_title,
       text: LocaleKeys.onboarding_solution_premium_text,
       emoji: LocaleKeys.onboarding_solution_premium_emoji,

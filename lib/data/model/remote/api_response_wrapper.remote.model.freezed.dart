@@ -15,13 +15,15 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ApiResponseWrapper {
 
- List<ApiMessageModel> get output;
+@JsonKey(name: 'output') List<ApiMessageModel> get output;
 /// Create a copy of ApiResponseWrapper
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $ApiResponseWrapperCopyWith<ApiResponseWrapper> get copyWith => _$ApiResponseWrapperCopyWithImpl<ApiResponseWrapper>(this as ApiResponseWrapper, _$identity);
 
+  /// Serializes this ApiResponseWrapper to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -46,7 +48,7 @@ abstract mixin class $ApiResponseWrapperCopyWith<$Res>  {
   factory $ApiResponseWrapperCopyWith(ApiResponseWrapper value, $Res Function(ApiResponseWrapper) _then) = _$ApiResponseWrapperCopyWithImpl;
 @useResult
 $Res call({
- List<ApiMessageModel> output
+@JsonKey(name: 'output') List<ApiMessageModel> output
 });
 
 
@@ -64,7 +66,7 @@ class _$ApiResponseWrapperCopyWithImpl<$Res>
 /// Create a copy of ApiResponseWrapper
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? output = null,}) {
-  return _then(ApiResponseWrapper(
+  return _then(_self.copyWith(
 output: null == output ? _self.output : output // ignore: cast_nullable_to_non_nullable
 as List<ApiMessageModel>,
   ));
@@ -87,10 +89,11 @@ extension ApiResponseWrapperPatterns on ApiResponseWrapper {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ApiResponseWrapper value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _:
+case _ApiResponseWrapper() when $default != null:
+return $default(_that);case _:
   return orElse();
 
 }
@@ -108,10 +111,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ApiResponseWrapper value)  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _ApiResponseWrapper():
+return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -128,10 +132,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ApiResponseWrapper value)?  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _ApiResponseWrapper() when $default != null:
+return $default(_that);case _:
   return null;
 
 }
@@ -148,9 +153,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'output')  List<ApiMessageModel> output)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _:
+case _ApiResponseWrapper() when $default != null:
+return $default(_that.output);case _:
   return orElse();
 
 }
@@ -168,9 +174,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'output')  List<ApiMessageModel> output)  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _ApiResponseWrapper():
+return $default(_that.output);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -187,13 +194,89 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'output')  List<ApiMessageModel> output)?  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _ApiResponseWrapper() when $default != null:
+return $default(_that.output);case _:
   return null;
 
 }
 }
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _ApiResponseWrapper implements ApiResponseWrapper {
+   _ApiResponseWrapper({@JsonKey(name: 'output') required final  List<ApiMessageModel> output}): _output = output;
+  factory _ApiResponseWrapper.fromJson(Map<String, dynamic> json) => _$ApiResponseWrapperFromJson(json);
+
+ final  List<ApiMessageModel> _output;
+@override@JsonKey(name: 'output') List<ApiMessageModel> get output {
+  if (_output is EqualUnmodifiableListView) return _output;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_output);
+}
+
+
+/// Create a copy of ApiResponseWrapper
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ApiResponseWrapperCopyWith<_ApiResponseWrapper> get copyWith => __$ApiResponseWrapperCopyWithImpl<_ApiResponseWrapper>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ApiResponseWrapperToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ApiResponseWrapper&&const DeepCollectionEquality().equals(other._output, _output));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_output));
+
+@override
+String toString() {
+  return 'ApiResponseWrapper(output: $output)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ApiResponseWrapperCopyWith<$Res> implements $ApiResponseWrapperCopyWith<$Res> {
+  factory _$ApiResponseWrapperCopyWith(_ApiResponseWrapper value, $Res Function(_ApiResponseWrapper) _then) = __$ApiResponseWrapperCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'output') List<ApiMessageModel> output
+});
+
+
+
+
+}
+/// @nodoc
+class __$ApiResponseWrapperCopyWithImpl<$Res>
+    implements _$ApiResponseWrapperCopyWith<$Res> {
+  __$ApiResponseWrapperCopyWithImpl(this._self, this._then);
+
+  final _ApiResponseWrapper _self;
+  final $Res Function(_ApiResponseWrapper) _then;
+
+/// Create a copy of ApiResponseWrapper
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? output = null,}) {
+  return _then(_ApiResponseWrapper(
+output: null == output ? _self._output : output // ignore: cast_nullable_to_non_nullable
+as List<ApiMessageModel>,
+  ));
+}
+
 
 }
 

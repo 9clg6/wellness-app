@@ -22,60 +22,60 @@ class _GoalsStepState extends ConsumerState<GoalsStep> {
   final Set<int> _selectedGoals = <int>{};
 
   static final List<Goal> _goals = <Goal>[
-    const Goal(
+    Goal(
       id: 0,
       title: LocaleKeys.onboarding_goals_stress_title,
       emoji: '😌',
-      color: Color(0xFF4CAF50), // Green
+      color: const Color(0xFF4CAF50), // Green
       description: LocaleKeys.onboarding_goals_stress_description,
     ),
-    const Goal(
+    Goal(
       id: 1,
       title: LocaleKeys.onboarding_goals_sleep_title,
       emoji: '😴',
-      color: Color(0xFF2196F3), // Blue
+      color: const Color(0xFF2196F3), // Blue
       description: LocaleKeys.onboarding_goals_sleep_description,
     ),
-    const Goal(
+    Goal(
       id: 2,
       title: LocaleKeys.onboarding_goals_confidence_title,
       emoji: '💪',
-      color: Color(0xFFFF9800), // Orange
+      color: const Color(0xFFFF9800), // Orange
       description: LocaleKeys.onboarding_goals_confidence_description,
     ),
-    const Goal(
+    Goal(
       id: 3,
       title: LocaleKeys.onboarding_goals_gratitude_title,
       emoji: '🙏',
-      color: Color(0xFF9C27B0), // Purple
+      color: const Color(0xFF9C27B0), // Purple
       description: LocaleKeys.onboarding_goals_gratitude_description,
     ),
-    const Goal(
+    Goal(
       id: 4,
       title: LocaleKeys.onboarding_goals_emotions_title,
       emoji: '🧘',
-      color: Color(0xFF607D8B), // Blue Grey
+      color: const Color(0xFF607D8B), // Blue Grey
       description: LocaleKeys.onboarding_goals_emotions_description,
     ),
-    const Goal(
+    Goal(
       id: 5,
       title: LocaleKeys.onboarding_goals_relationships_title,
       emoji: '❤️',
-      color: Color(0xFFE91E63), // Pink
+      color: const Color(0xFFE91E63), // Pink
       description: LocaleKeys.onboarding_goals_relationships_description,
     ),
-    const Goal(
+    Goal(
       id: 6,
       title: LocaleKeys.onboarding_goals_meaning_title,
       emoji: '🎯',
-      color: Color(0xFF795548), // Brown
+      color: const Color(0xFF795548), // Brown
       description: LocaleKeys.onboarding_goals_meaning_description,
     ),
-    const Goal(
+    Goal(
       id: 7,
       title: LocaleKeys.onboarding_goals_resilience_title,
       emoji: '🌱',
-      color: Color(0xFF8BC34A), // Light Green
+      color: const Color(0xFF8BC34A), // Light Green
       description: LocaleKeys.onboarding_goals_resilience_description,
     ),
   ];
@@ -161,9 +161,7 @@ class _GoalsStepState extends ConsumerState<GoalsStep> {
                     ),
               color: _selectedGoals.isNotEmpty ? null : Colors.grey[300]!,
               textColor: _selectedGoals.isNotEmpty ? null : Colors.black,
-              fontWeight: _selectedGoals.isNotEmpty
-                  ? null
-                  : FontWeight.w500,
+              fontWeight: _selectedGoals.isNotEmpty ? null : FontWeight.w500,
             ),
           ],
         ),

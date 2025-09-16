@@ -59,7 +59,7 @@ class _$UserEntityCopyWithImpl<$Res>
 /// Create a copy of UserEntity
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? email = freezed,Object? nickname = freezed,Object? lastname = freezed,Object? firstname = freezed,Object? isOnboardingCompleted = freezed,Object? streakDays = null,}) {
-  return _then(UserEntity(
+  return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String?,nickname: freezed == nickname ? _self.nickname : nickname // ignore: cast_nullable_to_non_nullable
@@ -88,10 +88,11 @@ extension UserEntityPatterns on UserEntity {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _UserEntity value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _:
+case _UserEntity() when $default != null:
+return $default(_that);case _:
   return orElse();
 
 }
@@ -109,10 +110,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _UserEntity value)  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _UserEntity():
+return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -129,10 +131,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _UserEntity value)?  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _UserEntity() when $default != null:
+return $default(_that);case _:
   return null;
 
 }
@@ -149,9 +152,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  String? email,  String? nickname,  String? lastname,  String? firstname,  bool? isOnboardingCompleted,  int streakDays)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _:
+case _UserEntity() when $default != null:
+return $default(_that.id,_that.email,_that.nickname,_that.lastname,_that.firstname,_that.isOnboardingCompleted,_that.streakDays);case _:
   return orElse();
 
 }
@@ -169,9 +173,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  String? email,  String? nickname,  String? lastname,  String? firstname,  bool? isOnboardingCompleted,  int streakDays)  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _UserEntity():
+return $default(_that.id,_that.email,_that.nickname,_that.lastname,_that.firstname,_that.isOnboardingCompleted,_that.streakDays);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -188,13 +193,88 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  String? email,  String? nickname,  String? lastname,  String? firstname,  bool? isOnboardingCompleted,  int streakDays)?  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _UserEntity() when $default != null:
+return $default(_that.id,_that.email,_that.nickname,_that.lastname,_that.firstname,_that.isOnboardingCompleted,_that.streakDays);case _:
   return null;
 
 }
 }
+
+}
+
+/// @nodoc
+
+
+class _UserEntity implements UserEntity {
+   _UserEntity({this.id, this.email, this.nickname, this.lastname, this.firstname, this.isOnboardingCompleted, this.streakDays = 0});
+  
+
+@override final  int? id;
+@override final  String? email;
+@override final  String? nickname;
+@override final  String? lastname;
+@override final  String? firstname;
+@override final  bool? isOnboardingCompleted;
+@override@JsonKey() final  int streakDays;
+
+/// Create a copy of UserEntity
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$UserEntityCopyWith<_UserEntity> get copyWith => __$UserEntityCopyWithImpl<_UserEntity>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserEntity&&(identical(other.id, id) || other.id == id)&&(identical(other.email, email) || other.email == email)&&(identical(other.nickname, nickname) || other.nickname == nickname)&&(identical(other.lastname, lastname) || other.lastname == lastname)&&(identical(other.firstname, firstname) || other.firstname == firstname)&&(identical(other.isOnboardingCompleted, isOnboardingCompleted) || other.isOnboardingCompleted == isOnboardingCompleted)&&(identical(other.streakDays, streakDays) || other.streakDays == streakDays));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,id,email,nickname,lastname,firstname,isOnboardingCompleted,streakDays);
+
+
+
+}
+
+/// @nodoc
+abstract mixin class _$UserEntityCopyWith<$Res> implements $UserEntityCopyWith<$Res> {
+  factory _$UserEntityCopyWith(_UserEntity value, $Res Function(_UserEntity) _then) = __$UserEntityCopyWithImpl;
+@override @useResult
+$Res call({
+ int? id, String? email, String? nickname, String? lastname, String? firstname, bool? isOnboardingCompleted, int streakDays
+});
+
+
+
+
+}
+/// @nodoc
+class __$UserEntityCopyWithImpl<$Res>
+    implements _$UserEntityCopyWith<$Res> {
+  __$UserEntityCopyWithImpl(this._self, this._then);
+
+  final _UserEntity _self;
+  final $Res Function(_UserEntity) _then;
+
+/// Create a copy of UserEntity
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? email = freezed,Object? nickname = freezed,Object? lastname = freezed,Object? firstname = freezed,Object? isOnboardingCompleted = freezed,Object? streakDays = null,}) {
+  return _then(_UserEntity(
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String?,nickname: freezed == nickname ? _self.nickname : nickname // ignore: cast_nullable_to_non_nullable
+as String?,lastname: freezed == lastname ? _self.lastname : lastname // ignore: cast_nullable_to_non_nullable
+as String?,firstname: freezed == firstname ? _self.firstname : firstname // ignore: cast_nullable_to_non_nullable
+as String?,isOnboardingCompleted: freezed == isOnboardingCompleted ? _self.isOnboardingCompleted : isOnboardingCompleted // ignore: cast_nullable_to_non_nullable
+as bool?,streakDays: null == streakDays ? _self.streakDays : streakDays // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
 
 }
 

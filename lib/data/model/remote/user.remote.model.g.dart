@@ -6,8 +6,8 @@ part of 'user.remote.model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-UserRemoteModel _$UserRemoteModelFromJson(Map<String, dynamic> json) =>
-    UserRemoteModel(
+_UserRemoteModel _$UserRemoteModelFromJson(Map<String, dynamic> json) =>
+    _UserRemoteModel(
       id: (json['id'] as num?)?.toInt(),
       email: json['email'] as String?,
       nickname: json['nickname'] as String?,
@@ -15,7 +15,7 @@ UserRemoteModel _$UserRemoteModelFromJson(Map<String, dynamic> json) =>
       firstname: json['firstname'] as String?,
     );
 
-Map<String, dynamic> _$UserRemoteModelToJson(UserRemoteModel instance) =>
+Map<String, dynamic> _$UserRemoteModelToJson(_UserRemoteModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'email': instance.email,

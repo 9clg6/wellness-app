@@ -6,8 +6,8 @@ part of 'auth.local.model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-AuthLocalModel _$AuthLocalModelFromJson(Map<String, dynamic> json) =>
-    AuthLocalModel(token: json['token'] as String?);
+_AuthLocalModel _$AuthLocalModelFromJson(Map<String, dynamic> json) =>
+    _AuthLocalModel(token: json['token'] as String?);
 
-Map<String, dynamic> _$AuthLocalModelToJson(AuthLocalModel instance) =>
+Map<String, dynamic> _$AuthLocalModelToJson(_AuthLocalModel instance) =>
     <String, dynamic>{'token': instance.token};

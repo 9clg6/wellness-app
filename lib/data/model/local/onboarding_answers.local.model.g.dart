@@ -6,9 +6,9 @@ part of 'onboarding_answers.local.model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-OnboardingAnswersLocalModel _$OnboardingAnswersLocalModelFromJson(
+_OnboardingAnswersLocalModel _$OnboardingAnswersLocalModelFromJson(
   Map<String, dynamic> json,
-) => OnboardingAnswersLocalModel(
+) => _OnboardingAnswersLocalModel(
   frequencyIndex: (json['frequencyIndex'] as num?)?.toInt(),
   discoverySourceIndex: (json['discoverySourceIndex'] as num?)?.toInt(),
   favoriteThemeIndex: (json['favoriteThemeIndex'] as num?)?.toInt(),
@@ -20,7 +20,7 @@ OnboardingAnswersLocalModel _$OnboardingAnswersLocalModelFromJson(
 );
 
 Map<String, dynamic> _$OnboardingAnswersLocalModelToJson(
-  OnboardingAnswersLocalModel instance,
+  _OnboardingAnswersLocalModel instance,
 ) => <String, dynamic>{
   'frequencyIndex': instance.frequencyIndex,
   'discoverySourceIndex': instance.discoverySourceIndex,

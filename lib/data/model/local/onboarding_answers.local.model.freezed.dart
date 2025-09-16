@@ -15,13 +15,15 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$OnboardingAnswersLocalModel {
 
- int? get frequencyIndex; int? get discoverySourceIndex; int? get favoriteThemeIndex; int? get practiceDurationIndex; int? get serenityScore; String? get firstName; int? get age; int? get goalIndex;
+@JsonKey(name: 'frequencyIndex') int? get frequencyIndex;@JsonKey(name: 'discoverySourceIndex') int? get discoverySourceIndex;@JsonKey(name: 'favoriteThemeIndex') int? get favoriteThemeIndex;@JsonKey(name: 'practiceDurationIndex') int? get practiceDurationIndex;@JsonKey(name: 'serenityScore') int? get serenityScore;@JsonKey(name: 'firstName') String? get firstName;@JsonKey(name: 'age') int? get age;@JsonKey(name: 'goalIndex') int? get goalIndex;
 /// Create a copy of OnboardingAnswersLocalModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $OnboardingAnswersLocalModelCopyWith<OnboardingAnswersLocalModel> get copyWith => _$OnboardingAnswersLocalModelCopyWithImpl<OnboardingAnswersLocalModel>(this as OnboardingAnswersLocalModel, _$identity);
 
+  /// Serializes this OnboardingAnswersLocalModel to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -46,7 +48,7 @@ abstract mixin class $OnboardingAnswersLocalModelCopyWith<$Res>  {
   factory $OnboardingAnswersLocalModelCopyWith(OnboardingAnswersLocalModel value, $Res Function(OnboardingAnswersLocalModel) _then) = _$OnboardingAnswersLocalModelCopyWithImpl;
 @useResult
 $Res call({
- int? frequencyIndex, int? discoverySourceIndex, int? favoriteThemeIndex, int? practiceDurationIndex, int? serenityScore, String? firstName, int? age, int? goalIndex
+@JsonKey(name: 'frequencyIndex') int? frequencyIndex,@JsonKey(name: 'discoverySourceIndex') int? discoverySourceIndex,@JsonKey(name: 'favoriteThemeIndex') int? favoriteThemeIndex,@JsonKey(name: 'practiceDurationIndex') int? practiceDurationIndex,@JsonKey(name: 'serenityScore') int? serenityScore,@JsonKey(name: 'firstName') String? firstName,@JsonKey(name: 'age') int? age,@JsonKey(name: 'goalIndex') int? goalIndex
 });
 
 
@@ -64,7 +66,7 @@ class _$OnboardingAnswersLocalModelCopyWithImpl<$Res>
 /// Create a copy of OnboardingAnswersLocalModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? frequencyIndex = freezed,Object? discoverySourceIndex = freezed,Object? favoriteThemeIndex = freezed,Object? practiceDurationIndex = freezed,Object? serenityScore = freezed,Object? firstName = freezed,Object? age = freezed,Object? goalIndex = freezed,}) {
-  return _then(OnboardingAnswersLocalModel(
+  return _then(_self.copyWith(
 frequencyIndex: freezed == frequencyIndex ? _self.frequencyIndex : frequencyIndex // ignore: cast_nullable_to_non_nullable
 as int?,discoverySourceIndex: freezed == discoverySourceIndex ? _self.discoverySourceIndex : discoverySourceIndex // ignore: cast_nullable_to_non_nullable
 as int?,favoriteThemeIndex: freezed == favoriteThemeIndex ? _self.favoriteThemeIndex : favoriteThemeIndex // ignore: cast_nullable_to_non_nullable
@@ -94,10 +96,11 @@ extension OnboardingAnswersLocalModelPatterns on OnboardingAnswersLocalModel {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _OnboardingAnswersLocalModel value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _:
+case _OnboardingAnswersLocalModel() when $default != null:
+return $default(_that);case _:
   return orElse();
 
 }
@@ -115,10 +118,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _OnboardingAnswersLocalModel value)  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _OnboardingAnswersLocalModel():
+return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -135,10 +139,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _OnboardingAnswersLocalModel value)?  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _OnboardingAnswersLocalModel() when $default != null:
+return $default(_that);case _:
   return null;
 
 }
@@ -155,9 +160,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'frequencyIndex')  int? frequencyIndex, @JsonKey(name: 'discoverySourceIndex')  int? discoverySourceIndex, @JsonKey(name: 'favoriteThemeIndex')  int? favoriteThemeIndex, @JsonKey(name: 'practiceDurationIndex')  int? practiceDurationIndex, @JsonKey(name: 'serenityScore')  int? serenityScore, @JsonKey(name: 'firstName')  String? firstName, @JsonKey(name: 'age')  int? age, @JsonKey(name: 'goalIndex')  int? goalIndex)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _:
+case _OnboardingAnswersLocalModel() when $default != null:
+return $default(_that.frequencyIndex,_that.discoverySourceIndex,_that.favoriteThemeIndex,_that.practiceDurationIndex,_that.serenityScore,_that.firstName,_that.age,_that.goalIndex);case _:
   return orElse();
 
 }
@@ -175,9 +181,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'frequencyIndex')  int? frequencyIndex, @JsonKey(name: 'discoverySourceIndex')  int? discoverySourceIndex, @JsonKey(name: 'favoriteThemeIndex')  int? favoriteThemeIndex, @JsonKey(name: 'practiceDurationIndex')  int? practiceDurationIndex, @JsonKey(name: 'serenityScore')  int? serenityScore, @JsonKey(name: 'firstName')  String? firstName, @JsonKey(name: 'age')  int? age, @JsonKey(name: 'goalIndex')  int? goalIndex)  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _OnboardingAnswersLocalModel():
+return $default(_that.frequencyIndex,_that.discoverySourceIndex,_that.favoriteThemeIndex,_that.practiceDurationIndex,_that.serenityScore,_that.firstName,_that.age,_that.goalIndex);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -194,13 +201,97 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'frequencyIndex')  int? frequencyIndex, @JsonKey(name: 'discoverySourceIndex')  int? discoverySourceIndex, @JsonKey(name: 'favoriteThemeIndex')  int? favoriteThemeIndex, @JsonKey(name: 'practiceDurationIndex')  int? practiceDurationIndex, @JsonKey(name: 'serenityScore')  int? serenityScore, @JsonKey(name: 'firstName')  String? firstName, @JsonKey(name: 'age')  int? age, @JsonKey(name: 'goalIndex')  int? goalIndex)?  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _OnboardingAnswersLocalModel() when $default != null:
+return $default(_that.frequencyIndex,_that.discoverySourceIndex,_that.favoriteThemeIndex,_that.practiceDurationIndex,_that.serenityScore,_that.firstName,_that.age,_that.goalIndex);case _:
   return null;
 
 }
 }
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _OnboardingAnswersLocalModel implements OnboardingAnswersLocalModel {
+   _OnboardingAnswersLocalModel({@JsonKey(name: 'frequencyIndex') required this.frequencyIndex, @JsonKey(name: 'discoverySourceIndex') required this.discoverySourceIndex, @JsonKey(name: 'favoriteThemeIndex') required this.favoriteThemeIndex, @JsonKey(name: 'practiceDurationIndex') required this.practiceDurationIndex, @JsonKey(name: 'serenityScore') required this.serenityScore, @JsonKey(name: 'firstName') required this.firstName, @JsonKey(name: 'age') required this.age, @JsonKey(name: 'goalIndex') required this.goalIndex});
+  factory _OnboardingAnswersLocalModel.fromJson(Map<String, dynamic> json) => _$OnboardingAnswersLocalModelFromJson(json);
+
+@override@JsonKey(name: 'frequencyIndex') final  int? frequencyIndex;
+@override@JsonKey(name: 'discoverySourceIndex') final  int? discoverySourceIndex;
+@override@JsonKey(name: 'favoriteThemeIndex') final  int? favoriteThemeIndex;
+@override@JsonKey(name: 'practiceDurationIndex') final  int? practiceDurationIndex;
+@override@JsonKey(name: 'serenityScore') final  int? serenityScore;
+@override@JsonKey(name: 'firstName') final  String? firstName;
+@override@JsonKey(name: 'age') final  int? age;
+@override@JsonKey(name: 'goalIndex') final  int? goalIndex;
+
+/// Create a copy of OnboardingAnswersLocalModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$OnboardingAnswersLocalModelCopyWith<_OnboardingAnswersLocalModel> get copyWith => __$OnboardingAnswersLocalModelCopyWithImpl<_OnboardingAnswersLocalModel>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$OnboardingAnswersLocalModelToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OnboardingAnswersLocalModel&&(identical(other.frequencyIndex, frequencyIndex) || other.frequencyIndex == frequencyIndex)&&(identical(other.discoverySourceIndex, discoverySourceIndex) || other.discoverySourceIndex == discoverySourceIndex)&&(identical(other.favoriteThemeIndex, favoriteThemeIndex) || other.favoriteThemeIndex == favoriteThemeIndex)&&(identical(other.practiceDurationIndex, practiceDurationIndex) || other.practiceDurationIndex == practiceDurationIndex)&&(identical(other.serenityScore, serenityScore) || other.serenityScore == serenityScore)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.age, age) || other.age == age)&&(identical(other.goalIndex, goalIndex) || other.goalIndex == goalIndex));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,frequencyIndex,discoverySourceIndex,favoriteThemeIndex,practiceDurationIndex,serenityScore,firstName,age,goalIndex);
+
+@override
+String toString() {
+  return 'OnboardingAnswersLocalModel(frequencyIndex: $frequencyIndex, discoverySourceIndex: $discoverySourceIndex, favoriteThemeIndex: $favoriteThemeIndex, practiceDurationIndex: $practiceDurationIndex, serenityScore: $serenityScore, firstName: $firstName, age: $age, goalIndex: $goalIndex)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$OnboardingAnswersLocalModelCopyWith<$Res> implements $OnboardingAnswersLocalModelCopyWith<$Res> {
+  factory _$OnboardingAnswersLocalModelCopyWith(_OnboardingAnswersLocalModel value, $Res Function(_OnboardingAnswersLocalModel) _then) = __$OnboardingAnswersLocalModelCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'frequencyIndex') int? frequencyIndex,@JsonKey(name: 'discoverySourceIndex') int? discoverySourceIndex,@JsonKey(name: 'favoriteThemeIndex') int? favoriteThemeIndex,@JsonKey(name: 'practiceDurationIndex') int? practiceDurationIndex,@JsonKey(name: 'serenityScore') int? serenityScore,@JsonKey(name: 'firstName') String? firstName,@JsonKey(name: 'age') int? age,@JsonKey(name: 'goalIndex') int? goalIndex
+});
+
+
+
+
+}
+/// @nodoc
+class __$OnboardingAnswersLocalModelCopyWithImpl<$Res>
+    implements _$OnboardingAnswersLocalModelCopyWith<$Res> {
+  __$OnboardingAnswersLocalModelCopyWithImpl(this._self, this._then);
+
+  final _OnboardingAnswersLocalModel _self;
+  final $Res Function(_OnboardingAnswersLocalModel) _then;
+
+/// Create a copy of OnboardingAnswersLocalModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? frequencyIndex = freezed,Object? discoverySourceIndex = freezed,Object? favoriteThemeIndex = freezed,Object? practiceDurationIndex = freezed,Object? serenityScore = freezed,Object? firstName = freezed,Object? age = freezed,Object? goalIndex = freezed,}) {
+  return _then(_OnboardingAnswersLocalModel(
+frequencyIndex: freezed == frequencyIndex ? _self.frequencyIndex : frequencyIndex // ignore: cast_nullable_to_non_nullable
+as int?,discoverySourceIndex: freezed == discoverySourceIndex ? _self.discoverySourceIndex : discoverySourceIndex // ignore: cast_nullable_to_non_nullable
+as int?,favoriteThemeIndex: freezed == favoriteThemeIndex ? _self.favoriteThemeIndex : favoriteThemeIndex // ignore: cast_nullable_to_non_nullable
+as int?,practiceDurationIndex: freezed == practiceDurationIndex ? _self.practiceDurationIndex : practiceDurationIndex // ignore: cast_nullable_to_non_nullable
+as int?,serenityScore: freezed == serenityScore ? _self.serenityScore : serenityScore // ignore: cast_nullable_to_non_nullable
+as int?,firstName: freezed == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
+as String?,age: freezed == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
+as int?,goalIndex: freezed == goalIndex ? _self.goalIndex : goalIndex // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+
 
 }
 

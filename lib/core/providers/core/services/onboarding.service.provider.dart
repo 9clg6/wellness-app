@@ -8,7 +8,7 @@ part 'onboarding.service.provider.g.dart';
 @Riverpod(keepAlive: true)
 class OnboardingService extends _$OnboardingService {
   @override
-  OnboardingAnswers build() => const OnboardingAnswers();
+  OnboardingAnswers build() => OnboardingAnswers();
 
   /// Set the frequency
   void setFrequency(int index) {
@@ -55,6 +55,6 @@ class OnboardingService extends _$OnboardingService {
   /// Reset the onboarding answers
   void reset() {
     debugPrint('[OnboardingService] reset');
-    state = const OnboardingAnswers();
+    state = OnboardingAnswers();
   }
 }
