@@ -75,7 +75,7 @@ class HappenActionRepositoryImpl implements HappenActionRepository {
 
       // Ensure we have exactly 3 happen actions
       while (happenActions.length < 3) {
-        happenActions.add(const HappenActionEntity(happen: '', action: ''));
+        happenActions.add(HappenActionEntity(happen: '', action: ''));
       }
 
       return DailyHappenActionEntity.create(

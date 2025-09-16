@@ -6,18 +6,18 @@ part 'user.local.model.g.dart';
 
 /// User Local Model
 @freezed
-@JsonSerializable()
-final class UserLocalModel with _$UserLocalModel {
+abstract class UserLocalModel with _$UserLocalModel {
   /// User Local Model constructor
-  UserLocalModel({
-    this.id,
-    this.email,
-    this.nickname,
-    this.lastname,
-    this.firstname,
-    this.isOnboardingCompleted,
-    this.streakDays = 0,
-  });
+  factory UserLocalModel({
+    @JsonKey(name: 'id') required int? id,
+    @JsonKey(name: 'email') required String? email,
+    @JsonKey(name: 'nickname') required String? nickname,
+    @JsonKey(name: 'lastname') required String? lastname,
+    @JsonKey(name: 'firstname') required String? firstname,
+    @JsonKey(name: 'isOnboardingCompleted')
+    required bool? isOnboardingCompleted,
+    @JsonKey(name: 'streakDays') required int streakDays,
+  }) = _UserLocalModel;
 
   /// fromEntity
   factory UserLocalModel.fromEntity(UserEntity user) => UserLocalModel(
@@ -33,11 +33,11 @@ final class UserLocalModel with _$UserLocalModel {
   /// fromJson
   factory UserLocalModel.fromJson(Map<String, dynamic> json) =>
       _$UserLocalModelFromJson(json);
+}
 
-  /// toJson
-  Map<String, dynamic> toJson() => _$UserLocalModelToJson(this);
-
-  /// toEntity
+/// Extension for UserLocalModel utilities
+extension UserLocalModelExtension on UserLocalModel {
+  /// Convert to domain entity
   UserEntity toEntity() => UserEntity(
     id: id,
     email: email,
@@ -47,32 +47,4 @@ final class UserLocalModel with _$UserLocalModel {
     isOnboardingCompleted: isOnboardingCompleted,
     streakDays: streakDays,
   );
-
-  /// id
-  @override
-  final int? id;
-
-  /// email
-  @override
-  final String? email;
-
-  /// nickname
-  @override
-  final String? nickname;
-
-  /// lastname
-  @override
-  final String? lastname;
-
-  /// firstname
-  @override
-  final String? firstname;
-
-  /// is onboarding completed
-  @override
-  final bool? isOnboardingCompleted;
-
-  /// streak days
-  @override
-  final int streakDays;
 }

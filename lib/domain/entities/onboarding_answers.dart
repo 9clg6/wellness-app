@@ -2,53 +2,24 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'onboarding_answers.freezed.dart';
 
-/// Onboarding an swers
-@Freezed(copyWith: true)
-class OnboardingAnswers with _$OnboardingAnswers {
+/// Onboarding answers
+@freezed
+abstract class OnboardingAnswers with _$OnboardingAnswers {
   /// Constructor
-  const OnboardingAnswers({
-    this.frequencyIndex,
-    this.discoverySourceIndex,
-    this.favoriteThemeIndex,
-    this.practiceDurationIndex,
-    this.serenityScore,
-    this.firstName,
-    this.age,
-    this.goalIndex,
-  });
+  factory OnboardingAnswers({
+    int? frequencyIndex,
+    int? discoverySourceIndex,
+    int? favoriteThemeIndex,
+    int? practiceDurationIndex,
+    int? serenityScore,
+    String? firstName,
+    int? age,
+    int? goalIndex,
+  }) = _OnboardingAnswers;
+}
 
-  /// Frequency index
-  @override
-  final int? frequencyIndex;
-
-  /// Discovery source index
-  @override
-  final int? discoverySourceIndex;
-
-  /// Favorite theme index
-  @override
-  final int? favoriteThemeIndex;
-
-  /// Practice duration index
-  @override
-  final int? practiceDurationIndex;
-
-  /// Serenity score
-  @override
-  final int? serenityScore;
-
-  /// First name
-  @override
-  final String? firstName;
-
-  /// Age
-  @override
-  final int? age;
-
-  /// Goal index
-  @override
-  final int? goalIndex;
-
+/// Extension for OnboardingAnswers utilities
+extension OnboardingAnswersExtension on OnboardingAnswers {
   /// Is quizz complete
   bool get isQuizzComplete =>
       frequencyIndex != null &&

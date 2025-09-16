@@ -11,7 +11,7 @@ final class AiService {
   AiService(this._analyzeWithAIUseCase);
 
   /// Version of the prompt
-  static const int version = 7;
+  static const int version = 12;
 
   /// Analyze with AI use case
   final AnalyzeWithAIUseCase _analyzeWithAIUseCase;

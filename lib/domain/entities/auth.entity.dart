@@ -5,10 +5,10 @@ import 'package:starter_kit/data/model/remote/auth.remote.model.dart';
 part 'auth.entity.freezed.dart';
 
 /// Auth Entity
-@Freezed(copyWith: true)
-final class AuthEntity with _$AuthEntity {
+@freezed
+abstract class AuthEntity with _$AuthEntity {
   /// Auth Entity constructor
-  AuthEntity({this.token});
+  factory AuthEntity({String? token}) = _AuthEntity;
 
   /// fromLocal
   factory AuthEntity.fromLocal(AuthLocalModel authLocalModel) {
@@ -20,7 +20,4 @@ final class AuthEntity with _$AuthEntity {
     return AuthEntity(token: loginResult.token);
   }
 
-  /// token
-  @override
-  final String? token;
 }

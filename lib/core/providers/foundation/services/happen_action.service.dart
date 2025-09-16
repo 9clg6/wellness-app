@@ -67,16 +67,16 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
       // Mock data - Day 1
       DailyHappenActionEntity.create(
         date: DateTime.now().subtract(const Duration(days: 1)),
-        first: const HappenActionEntity(
+        first: HappenActionEntity(
           happen: "J'ai reçu un compliment de mon manager sur mon travail",
           action: "J'ai pris le temps de bien préparer ma présentation",
         ),
-        second: const HappenActionEntity(
+        second: HappenActionEntity(
           happen: "J'ai terminé ma séance de sport sans abandonner",
           action:
               "J'ai écouté une musique motivante et j'ai pensé à mes objectifs",
         ),
-        third: const HappenActionEntity(
+        third: HappenActionEntity(
           happen: "J'ai eu une conversation agréable avec un ami",
           action:
               "J'ai pris l'initiative de l'appeler pour prendre de ses nouvelles",
@@ -86,18 +86,18 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
       // Mock data - Day 2
       DailyHappenActionEntity.create(
         date: DateTime.now().subtract(const Duration(days: 2)),
-        first: const HappenActionEntity(
+        first: HappenActionEntity(
           happen:
               'Ma candidature a été acceptée pour le poste de mes rêves dans une startup innovante',
           action:
               "J'ai passé 3 mois à me former sur les nouvelles technologies, j'ai créé un portfolio GitHub impressionnant, j'ai fait du networking lors d'événements tech, et j'ai préparé méticuleusement mes entretiens en étudiant l'entreprise",
         ),
-        second: const HappenActionEntity(
+        second: HappenActionEntity(
           happen: "J'ai évité une dispute avec mon colocataire",
           action:
               "J'ai gardé le silence au lieu de répondre quand il était de mauvaise humeur",
         ),
-        third: const HappenActionEntity(
+        third: HappenActionEntity(
           happen: "J'ai réussi à me lever tôt sans appuyer sur snooze",
           action:
               "J'ai mis mon réveil loin du lit et j'ai préparé mes affaires la veille",
@@ -107,19 +107,19 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
       // Mock data - Day 3
       DailyHappenActionEntity.create(
         date: DateTime.now().subtract(const Duration(days: 3)),
-        first: const HappenActionEntity(
+        first: HappenActionEntity(
           happen:
               'Mon projet perso a reçu 100 étoiles sur GitHub cette semaine',
           action:
               "J'ai partagé le projet sur Twitter et LinkedIn, j'ai répondu à tous les commentaires, et j'ai ajouté de la documentation détaillée",
         ),
-        second: const HappenActionEntity(
+        second: HappenActionEntity(
           happen:
               "J'ai finalement réussi à perdre 3 kilos après des mois d'efforts, mais je me sens épuisé",
           action:
               "J'ai suivi un régime strict, je me suis entraîné 5 fois par semaine, j'ai arrêté de manger tard le soir, j'ai bu plus d'eau, mais j'ai aussi sacrifié mes sorties sociales et je dors moins bien",
         ),
-        third: const HappenActionEntity(
+        third: HappenActionEntity(
           happen: "J'ai aidé un collègue à résoudre un problème technique",
           action:
               "J'ai pris le temps d'écouter son problème et j'ai partagé mes connaissances",
@@ -129,18 +129,18 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
       // Mock data - Day 4
       DailyHappenActionEntity.create(
         date: DateTime.now().subtract(const Duration(days: 4)),
-        first: const HappenActionEntity(
+        first: HappenActionEntity(
           happen: "Mon meilleur ami m'a dit qu'il était fier de moi",
           action:
               "J'ai été honnête avec lui sur mes difficultés et j'ai accepté son aide",
         ),
-        second: const HappenActionEntity(
+        second: HappenActionEntity(
           happen:
               "J'ai réussi à économiser assez d'argent pour partir en vacances",
           action:
               "J'ai réduit mes sorties au restaurant, j'ai annulé quelques abonnements inutiles, j'ai vendu des objets que je n'utilisais plus sur Le Bon Coin, et j'ai trouvé un petit boulot le weekend",
         ),
-        third: const HappenActionEntity(
+        third: HappenActionEntity(
           happen: "J'ai évité de me faire virer grâce à une explication rapide",
           action:
               "Quand mon patron m'a demandé pourquoi j'avais raté la deadline, j'ai admis mon erreur et proposé une solution immédiate",
@@ -150,18 +150,18 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
       // Mock data - Day 5
       DailyHappenActionEntity.create(
         date: DateTime.now().subtract(const Duration(days: 5)),
-        first: const HappenActionEntity(
+        first: HappenActionEntity(
           happen:
               "J'ai gagné le premier prix d'un concours de photographie local, ce qui m'a donné confiance en mon art",
           action:
               "J'ai passé des heures à étudier la composition et la lumière, j'ai fait plus de 200 photos pour trouver LA bonne, j'ai lu des livres sur la photographie, j'ai demandé des conseils à des photographes expérimentés sur Instagram, et j'ai pris des risques créatifs que je n'aurais jamais pris avant",
         ),
-        second: const HappenActionEntity(
+        second: HappenActionEntity(
           happen: "J'ai enfin réussi à réparer ma voiture moi-même",
           action:
               "J'ai regardé des tutoriels YouTube et j'ai acheté les outils nécessaires",
         ),
-        third: const HappenActionEntity(
+        third: HappenActionEntity(
           happen:
               "J'ai eu le courage de dire non à une demande qui ne me convenait pas",
           action:
@@ -209,13 +209,13 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
         date: today,
         first: index == 0
             ? newHappenAction
-            : const HappenActionEntity(happen: '', action: ''),
+            : HappenActionEntity(happen: '', action: ''),
         second: index == 1
             ? newHappenAction
-            : const HappenActionEntity(happen: '', action: ''),
+            : HappenActionEntity(happen: '', action: ''),
         third: index == 2
             ? newHappenAction
-            : const HappenActionEntity(happen: '', action: ''),
+            : HappenActionEntity(happen: '', action: ''),
       );
 
       state = <DailyHappenActionEntity>[...state, updatedToday];

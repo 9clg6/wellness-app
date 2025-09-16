@@ -5,20 +5,13 @@ part 'api_message.remote.model.g.dart';
 
 /// Model representing a message in the API response output array
 @freezed
-@JsonSerializable()
-class ApiMessageModel with _$ApiMessageModel {
+abstract class ApiMessageModel with _$ApiMessageModel {
   /// Constructor
-  ApiMessageModel({required this.content});
+  factory ApiMessageModel({
+    @JsonKey(name: 'content') required dynamic content,
+  }) = _ApiMessageModel;
 
   /// fromJson
   factory ApiMessageModel.fromJson(Map<String, dynamic> json) =>
       _$ApiMessageModelFromJson(json);
-
-  /// toJson
-  Map<String, dynamic> toJson() => _$ApiMessageModelToJson(this);
-
-  /// Message content - can be string or array of content blocks
-  @override
-  @JsonKey(name: 'content')
-  final dynamic content;
 }

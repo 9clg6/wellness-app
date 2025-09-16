@@ -19,7 +19,7 @@ final class FirstQuizzState with _$FirstQuizzState {
 
   /// Initial state
   factory FirstQuizzState.initial() =>
-      const FirstQuizzState(currentIndex: 0, answers: OnboardingAnswers());
+      FirstQuizzState(currentIndex: 0, answers: OnboardingAnswers());
 
   /// Current question index (0..5)
   @override

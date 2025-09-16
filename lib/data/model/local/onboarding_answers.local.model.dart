@@ -6,24 +6,26 @@ part 'onboarding_answers.local.model.g.dart';
 
 /// Local model for onboarding answers with JSON serialization
 @freezed
-@JsonSerializable()
-class OnboardingAnswersLocalModel with _$OnboardingAnswersLocalModel {
+abstract class OnboardingAnswersLocalModel with _$OnboardingAnswersLocalModel {
   /// Constructor
-  const OnboardingAnswersLocalModel({
-    this.frequencyIndex,
-    this.discoverySourceIndex,
-    this.favoriteThemeIndex,
-    this.practiceDurationIndex,
-    this.serenityScore,
-    this.firstName,
-    this.age,
-    this.goalIndex,
-  });
+  factory OnboardingAnswersLocalModel({
+    @JsonKey(name: 'frequencyIndex') required int? frequencyIndex,
+    @JsonKey(name: 'discoverySourceIndex') required int? discoverySourceIndex,
+    @JsonKey(name: 'favoriteThemeIndex') required int? favoriteThemeIndex,
+    @JsonKey(name: 'practiceDurationIndex') required int? practiceDurationIndex,
+    @JsonKey(name: 'serenityScore') required int? serenityScore,
+    @JsonKey(name: 'firstName') required String? firstName,
+    @JsonKey(name: 'age') required int? age,
+    @JsonKey(name: 'goalIndex') required int? goalIndex,
+  }) = _OnboardingAnswersLocalModel;
 
   /// fromJson
   factory OnboardingAnswersLocalModel.fromJson(Map<String, dynamic> json) =>
       _$OnboardingAnswersLocalModelFromJson(json);
+}
 
+/// Extension for OnboardingAnswersLocalModel utilities
+extension OnboardingAnswersLocalModelExtension on OnboardingAnswersLocalModel {
   /// Convert to domain entity
   OnboardingAnswers toEntity() {
     return OnboardingAnswers(
@@ -37,39 +39,4 @@ class OnboardingAnswersLocalModel with _$OnboardingAnswersLocalModel {
       goalIndex: goalIndex,
     );
   }
-
-  /// toJson
-  Map<String, dynamic> toJson() => _$OnboardingAnswersLocalModelToJson(this);
-
-  /// Frequency index
-  @override
-  final int? frequencyIndex;
-
-  /// Discovery source index
-  @override
-  final int? discoverySourceIndex;
-
-  /// Favorite theme index
-  @override
-  final int? favoriteThemeIndex;
-
-  /// Practice duration index
-  @override
-  final int? practiceDurationIndex;
-
-  /// Serenity score
-  @override
-  final int? serenityScore;
-
-  /// First name
-  @override
-  final String? firstName;
-
-  /// Age
-  @override
-  final int? age;
-
-  /// Goal index
-  @override
-  final int? goalIndex;
 }

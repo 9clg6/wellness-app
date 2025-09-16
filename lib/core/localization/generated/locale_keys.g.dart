@@ -178,5 +178,12 @@ abstract class  LocaleKeys {
   static const reviewScreenReviewOldEvents = 'reviewScreenReviewOldEvents';
   static const reviewScreenAnalyzeWithAi = 'reviewScreenAnalyzeWithAi';
   static const aiAnalyze_loading = 'aiAnalyze_loading';
+  static const aiAnalyze_title = 'aiAnalyze_title';
+  static const aiAnalyze_subtitle = 'aiAnalyze_subtitle';
+  static const aiAnalyze_humeurGenerale = 'aiAnalyze_humeurGenerale';
+  static const aiAnalyze_categorieDominante = 'aiAnalyze_categorieDominante';
+  static const aiAnalyze_progressionSemaine = 'aiAnalyze_progressionSemaine';
+  static const aiAnalyze_momentMarquant = 'aiAnalyze_momentMarquant';
+  static const aiAnalyze_suggestions = 'aiAnalyze_suggestions';
 
 }
