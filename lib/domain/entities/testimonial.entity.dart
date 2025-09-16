@@ -1,26 +1,16 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'testimonial.entity.freezed.dart';
+
 /// Class to represent a testimonial
-class Testimonial {
+@freezed
+abstract class Testimonial with _$Testimonial {
   /// Constructor
-  const Testimonial({
-    required this.quote,
-    required this.author,
-    required this.source,
-    required this.year,
-    required this.emoji,
-  });
-
-  /// Quote or study result
-  final String quote;
-
-  /// Study author(s)
-  final String author;
-
-  /// Publication source/journal
-  final String source;
-
-  /// Publication year
-  final int year;
-
-  /// Representative emoji
-  final String emoji;
+  factory Testimonial({
+      required String quote,
+    required String author,
+    required String source,
+    required int year,
+    required String emoji,
+  }) = _Testimonial;
 }

@@ -6,7 +6,7 @@ part of 'onboarding.service.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$onboardingServiceHash() => r'201bcbfbe628545ff353c5e0687063901c200675';
+String _$onboardingServiceHash() => r'7ea1fde462f862f10dd070ca7c7edced16db069d';
 
 /// Service d'onboarding: source de vérité des réponses + API de mise à jour
 ///

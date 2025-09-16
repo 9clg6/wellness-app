@@ -6,16 +6,16 @@ part of 'happen_action.local_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-HappenActionLocalModel _$HappenActionLocalModelFromJson(
+_HappenActionLocalModel _$HappenActionLocalModelFromJson(
   Map<String, dynamic> json,
-) => HappenActionLocalModel(
+) => _HappenActionLocalModel(
   happen: json['happen'] as String,
   action: json['action'] as String,
   date: DateTime.parse(json['date'] as String),
 );
 
 Map<String, dynamic> _$HappenActionLocalModelToJson(
-  HappenActionLocalModel instance,
+  _HappenActionLocalModel instance,
 ) => <String, dynamic>{
   'happen': instance.happen,
   'action': instance.action,

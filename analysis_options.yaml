@@ -12,6 +12,7 @@ analyzer:
     collection_methods_unrelated_type: warning
     unrelated_type_equality_checks: warning
     one_member_abstracts: ignore
+    invalid_annotation_target: ignore
 
   exclude:
     - test/.test_coverage.dart

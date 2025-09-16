@@ -173,7 +173,12 @@
   "errorPlaceholder_retry": "Réessayer",
   "reviewScreenReviewOldEvents": "Revoir mes événements passés",
   "reviewScreenAnalyzeWithAi": "Analyser mes événements à l'aide de l'IA",
-  "aiAnalyze_loading": "Vos événements sont en cours d'analyse..."
-
-
+  "aiAnalyze_loading": "Vos événements sont en cours d'analyse...",
+  "aiAnalyze_title": "Nouvelle semaine\nNouveau départ",
+  "aiAnalyze_subtitle": "Mais d'abord revenons sur toutes les choses positives des 7 derniers jours.",
+  "aiAnalyze_humeurGenerale": "Humeur générale",
+  "aiAnalyze_categorieDominante": "Catégorie dominante",
+  "aiAnalyze_progressionSemaine": "Progression de la semaine",
+  "aiAnalyze_momentMarquant": "Moment marquant",
+  "aiAnalyze_suggestions": "Suggestions"
 }

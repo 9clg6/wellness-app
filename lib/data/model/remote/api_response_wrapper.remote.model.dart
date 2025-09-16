@@ -9,25 +9,20 @@ part 'api_response_wrapper.remote.model.g.dart';
 
 /// Model representing the complete API response wrapper
 @freezed
-@JsonSerializable()
-class ApiResponseWrapper with _$ApiResponseWrapper {
+abstract class ApiResponseWrapper with _$ApiResponseWrapper {
   /// Constructor
-  ApiResponseWrapper({required this.output});
+  factory ApiResponseWrapper({
+    @JsonKey(name: 'output') required List<ApiMessageModel> output,
+  }) = _ApiResponseWrapper;
 
   /// fromJson
   factory ApiResponseWrapper.fromJson(Map<String, dynamic> json) =>
       _$ApiResponseWrapperFromJson(json);
+}
 
-  /// toJson
-  Map<String, dynamic> toJson() => _$ApiResponseWrapperToJson(this);
-
-  /// Output messages array
-  @override
-  @JsonKey(name: 'output')
-  final List<ApiMessageModel> output;
-
+/// Extension for ApiResponseWrapper utilities
+extension ApiResponseWrapperExtension on ApiResponseWrapper {
   /// AI Analysis extracted from the first valid message
-  @JsonKey(includeFromJson: false, includeToJson: false)
   AIAnalysisModel? get aiAnalysis {
     if (output.isEmpty) return null;
 

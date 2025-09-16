@@ -189,7 +189,14 @@ class CodegenLoader extends AssetLoader{
   "errorPlaceholder_retry": "Retry",
   "reviewScreenReviewOldEvents": "Review my past events",
   "reviewScreenAnalyzeWithAi": "Analyze my events with AI",
-  "aiAnalyze_loading": "Your events are being analyzed..."
+  "aiAnalyze_loading": "Your events are being analyzed...",
+  "aiAnalyze_title": "New week\nNew start",
+  "aiAnalyze_subtitle": "But first, let's review all the positive things that happened the last 7 days.",
+  "aiAnalyze_humeurGenerale": "General mood",
+  "aiAnalyze_categorieDominante": "Dominant category",
+  "aiAnalyze_progressionSemaine": "Week progression",
+  "aiAnalyze_momentMarquant": "Moment marquant",
+  "aiAnalyze_suggestions": "Suggestions"
 };
 static const Map<String,dynamic> _fr = {
   "first": "Bonjour",
@@ -366,7 +373,14 @@ static const Map<String,dynamic> _fr = {
   "errorPlaceholder_retry": "Réessayer",
   "reviewScreenReviewOldEvents": "Revoir mes événements passés",
   "reviewScreenAnalyzeWithAi": "Analyser mes événements à l'aide de l'IA",
-  "aiAnalyze_loading": "Vos événements sont en cours d'analyse..."
+  "aiAnalyze_loading": "Vos événements sont en cours d'analyse...",
+  "aiAnalyze_title": "Nouvelle semaine\nNouveau départ",
+  "aiAnalyze_subtitle": "Mais d'abord revenons sur toutes les choses positives des 7 derniers jours.",
+  "aiAnalyze_humeurGenerale": "Humeur générale",
+  "aiAnalyze_categorieDominante": "Catégorie dominante",
+  "aiAnalyze_progressionSemaine": "Progression de la semaine",
+  "aiAnalyze_momentMarquant": "Moment marquant",
+  "aiAnalyze_suggestions": "Suggestions"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": _en, "fr": _fr};
 }

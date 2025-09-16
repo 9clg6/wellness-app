@@ -4,33 +4,36 @@ part 'ai_analysis.entity.freezed.dart';
 
 /// Entity representing AI analysis results
 @freezed
-class AIAnalysisEntity with _$AIAnalysisEntity {
+abstract class AIAnalysisEntity with _$AIAnalysisEntity {
   /// Constructor
-  AIAnalysisEntity({
-    required this.positiveElements,
-    required this.tendance,
-    required this.improvementAxes,
-    required this.progressAnalysis,
-    required this.conclusion,
-  });
+  factory AIAnalysisEntity({
+    required StatsConfiance statsConfiance,
+    required CategorieDominante categorieDominante,
+    required String humeurGenerale,
+    required String momentMarquant,
+    required String progressionSemaine,
+    required String analyseGlobale,
+    required List<String> suggestions,
+  }) = _AIAnalysisEntity;
+}
 
-  /// Positive elements identified in the analysis
-  @override
-  final List<String> positiveElements;
+/// Confidence statistics data
+@freezed
+abstract class StatsConfiance with _$StatsConfiance {
+  /// Constructor
+  factory StatsConfiance({
+    required int joursRemplis,
+    required int streak,
+    required double pourcentageCompletion,
+  }) = _StatsConfiance;
+}
 
-  /// Overall trend analysis
-  @override
-  final String tendance;
-
-  /// Areas for improvement
-  @override
-  final List<String> improvementAxes;
-
-  /// Progress analysis
-  @override
-  final String progressAnalysis;
-
-  /// Final conclusion and recommendations
-  @override
-  final String conclusion;
+/// Dominant category data
+@freezed
+abstract class CategorieDominante with _$CategorieDominante {
+  /// Constructor
+  factory CategorieDominante({
+    required String nom,
+    required double proportion,
+  }) = _CategorieDominante;
 }

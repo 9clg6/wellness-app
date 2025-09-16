@@ -15,13 +15,15 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$ApiMessageModel {
 
- dynamic get content;
+@JsonKey(name: 'content') dynamic get content;
 /// Create a copy of ApiMessageModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
 $ApiMessageModelCopyWith<ApiMessageModel> get copyWith => _$ApiMessageModelCopyWithImpl<ApiMessageModel>(this as ApiMessageModel, _$identity);
 
+  /// Serializes this ApiMessageModel to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -46,7 +48,7 @@ abstract mixin class $ApiMessageModelCopyWith<$Res>  {
   factory $ApiMessageModelCopyWith(ApiMessageModel value, $Res Function(ApiMessageModel) _then) = _$ApiMessageModelCopyWithImpl;
 @useResult
 $Res call({
- dynamic content
+@JsonKey(name: 'content') dynamic content
 });
 
 
@@ -64,7 +66,7 @@ class _$ApiMessageModelCopyWithImpl<$Res>
 /// Create a copy of ApiMessageModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? content = freezed,}) {
-  return _then(ApiMessageModel(
+  return _then(_self.copyWith(
 content: freezed == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
 as dynamic,
   ));
@@ -87,10 +89,11 @@ extension ApiMessageModelPatterns on ApiMessageModel {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ApiMessageModel value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _:
+case _ApiMessageModel() when $default != null:
+return $default(_that);case _:
   return orElse();
 
 }
@@ -108,10 +111,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ApiMessageModel value)  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _ApiMessageModel():
+return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -128,10 +132,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ApiMessageModel value)?  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _ApiMessageModel() when $default != null:
+return $default(_that);case _:
   return null;
 
 }
@@ -148,9 +153,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'content')  dynamic content)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _:
+case _ApiMessageModel() when $default != null:
+return $default(_that.content);case _:
   return orElse();
 
 }
@@ -168,9 +174,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'content')  dynamic content)  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _ApiMessageModel():
+return $default(_that.content);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -187,13 +194,83 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'content')  dynamic content)?  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _ApiMessageModel() when $default != null:
+return $default(_that.content);case _:
   return null;
 
 }
 }
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _ApiMessageModel implements ApiMessageModel {
+   _ApiMessageModel({@JsonKey(name: 'content') required this.content});
+  factory _ApiMessageModel.fromJson(Map<String, dynamic> json) => _$ApiMessageModelFromJson(json);
+
+@override@JsonKey(name: 'content') final  dynamic content;
+
+/// Create a copy of ApiMessageModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ApiMessageModelCopyWith<_ApiMessageModel> get copyWith => __$ApiMessageModelCopyWithImpl<_ApiMessageModel>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$ApiMessageModelToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ApiMessageModel&&const DeepCollectionEquality().equals(other.content, content));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(content));
+
+@override
+String toString() {
+  return 'ApiMessageModel(content: $content)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ApiMessageModelCopyWith<$Res> implements $ApiMessageModelCopyWith<$Res> {
+  factory _$ApiMessageModelCopyWith(_ApiMessageModel value, $Res Function(_ApiMessageModel) _then) = __$ApiMessageModelCopyWithImpl;
+@override @useResult
+$Res call({
+@JsonKey(name: 'content') dynamic content
+});
+
+
+
+
+}
+/// @nodoc
+class __$ApiMessageModelCopyWithImpl<$Res>
+    implements _$ApiMessageModelCopyWith<$Res> {
+  __$ApiMessageModelCopyWithImpl(this._self, this._then);
+
+  final _ApiMessageModel _self;
+  final $Res Function(_ApiMessageModel) _then;
+
+/// Create a copy of ApiMessageModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? content = freezed,}) {
+  return _then(_ApiMessageModel(
+content: freezed == content ? _self.content : content // ignore: cast_nullable_to_non_nullable
+as dynamic,
+  ));
+}
+
 
 }
 

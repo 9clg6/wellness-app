@@ -1,18 +1,14 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'education.entity.freezed.dart';
+
 /// Class to represent an education screen
-final class EducationEntity {
+@freezed
+abstract class EducationEntity with _$EducationEntity {
   /// Constructor
-  const EducationEntity({
-    required this.title,
-    required this.text,
-    required this.visual,
-  });
-
-  /// Screen title
-  final String title;
-
-  /// Screen text
-  final String text;
-
-  /// Screen visual
-  final String visual;
+  factory EducationEntity({
+    required String title,
+    required String text,
+    required String visual,
+  }) = _EducationEntity;
 }

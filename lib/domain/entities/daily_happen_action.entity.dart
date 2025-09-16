@@ -4,13 +4,13 @@ import 'package:starter_kit/domain/entities/happen_action.entity.dart';
 part 'daily_happen_action.entity.freezed.dart';
 
 /// Daily happen action entity containing 3 happen actions
-@Freezed(copyWith: true)
-final class DailyHappenActionEntity with _$DailyHappenActionEntity {
+@freezed
+abstract class DailyHappenActionEntity with _$DailyHappenActionEntity {
   /// Constructor
-  const DailyHappenActionEntity({
-    required this.date,
-    required this.happenActions,
-  });
+  factory DailyHappenActionEntity({
+    required DateTime date,
+    required List<HappenActionEntity> happenActions,
+  }) = _DailyHappenActionEntity;
 
   /// Factory constructor to create with exactly 3 happen actions
   factory DailyHappenActionEntity.create({
@@ -24,15 +24,10 @@ final class DailyHappenActionEntity with _$DailyHappenActionEntity {
       happenActions: <HappenActionEntity>[first, second, third],
     );
   }
+}
 
-  /// Date of the daily happen actions
-  @override
-  final DateTime date;
-
-  /// List of 3 happen actions for the day
-  @override
-  final List<HappenActionEntity> happenActions;
-
+/// Extension for DailyHappenActionEntity utilities
+extension DailyHappenActionEntityExtension on DailyHappenActionEntity {
   /// Check if all 3 happen actions are filled
   bool get isComplete => happenActions.length == 3;
 
@@ -57,7 +52,7 @@ final class DailyHappenActionEntity with _$DailyHappenActionEntity {
       happenActions,
     );
     while (newActions.length <= index) {
-      newActions.add(const HappenActionEntity(happen: '', action: ''));
+      newActions.add(HappenActionEntity(happen: '', action: ''));
     }
     newActions[index] = happenAction;
 

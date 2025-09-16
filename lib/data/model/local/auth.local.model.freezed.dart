@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'auth.entity.dart';
+part of 'auth.local.model.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -11,41 +11,44 @@ part of 'auth.entity.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
-/// @nodoc
-mixin _$AuthEntity {
 
- String? get token;
-/// Create a copy of AuthEntity
+/// @nodoc
+mixin _$AuthLocalModel {
+
+@JsonKey(name: 'token') String? get token;
+/// Create a copy of AuthLocalModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$AuthEntityCopyWith<AuthEntity> get copyWith => _$AuthEntityCopyWithImpl<AuthEntity>(this as AuthEntity, _$identity);
+$AuthLocalModelCopyWith<AuthLocalModel> get copyWith => _$AuthLocalModelCopyWithImpl<AuthLocalModel>(this as AuthLocalModel, _$identity);
 
+  /// Serializes this AuthLocalModel to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthEntity&&(identical(other.token, token) || other.token == token));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AuthLocalModel&&(identical(other.token, token) || other.token == token));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,token);
 
 @override
 String toString() {
-  return 'AuthEntity(token: $token)';
+  return 'AuthLocalModel(token: $token)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $AuthEntityCopyWith<$Res>  {
-  factory $AuthEntityCopyWith(AuthEntity value, $Res Function(AuthEntity) _then) = _$AuthEntityCopyWithImpl;
+abstract mixin class $AuthLocalModelCopyWith<$Res>  {
+  factory $AuthLocalModelCopyWith(AuthLocalModel value, $Res Function(AuthLocalModel) _then) = _$AuthLocalModelCopyWithImpl;
 @useResult
 $Res call({
- String? token
+@JsonKey(name: 'token') String? token
 });
 
 
@@ -53,14 +56,14 @@ $Res call({
 
 }
 /// @nodoc
-class _$AuthEntityCopyWithImpl<$Res>
-    implements $AuthEntityCopyWith<$Res> {
-  _$AuthEntityCopyWithImpl(this._self, this._then);
+class _$AuthLocalModelCopyWithImpl<$Res>
+    implements $AuthLocalModelCopyWith<$Res> {
+  _$AuthLocalModelCopyWithImpl(this._self, this._then);
 
-  final AuthEntity _self;
-  final $Res Function(AuthEntity) _then;
+  final AuthLocalModel _self;
+  final $Res Function(AuthLocalModel) _then;
 
-/// Create a copy of AuthEntity
+/// Create a copy of AuthLocalModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? token = freezed,}) {
   return _then(_self.copyWith(
@@ -72,8 +75,8 @@ as String?,
 }
 
 
-/// Adds pattern-matching-related methods to [AuthEntity].
-extension AuthEntityPatterns on AuthEntity {
+/// Adds pattern-matching-related methods to [AuthLocalModel].
+extension AuthLocalModelPatterns on AuthLocalModel {
 /// A variant of `map` that fallback to returning `orElse`.
 ///
 /// It is equivalent to doing:
@@ -86,10 +89,10 @@ extension AuthEntityPatterns on AuthEntity {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _AuthEntity value)?  $default,{required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _AuthLocalModel value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _AuthEntity() when $default != null:
+case _AuthLocalModel() when $default != null:
 return $default(_that);case _:
   return orElse();
 
@@ -108,10 +111,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _AuthEntity value)  $default,){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _AuthLocalModel value)  $default,){
 final _that = this;
 switch (_that) {
-case _AuthEntity():
+case _AuthLocalModel():
 return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
@@ -129,10 +132,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _AuthEntity value)?  $default,){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _AuthLocalModel value)?  $default,){
 final _that = this;
 switch (_that) {
-case _AuthEntity() when $default != null:
+case _AuthLocalModel() when $default != null:
 return $default(_that);case _:
   return null;
 
@@ -150,9 +153,9 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? token)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(name: 'token')  String? token)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _AuthEntity() when $default != null:
+case _AuthLocalModel() when $default != null:
 return $default(_that.token);case _:
   return orElse();
 
@@ -171,9 +174,9 @@ return $default(_that.token);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? token)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(name: 'token')  String? token)  $default,) {final _that = this;
 switch (_that) {
-case _AuthEntity():
+case _AuthLocalModel():
 return $default(_that.token);case _:
   throw StateError('Unexpected subclass');
 
@@ -191,9 +194,9 @@ return $default(_that.token);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? token)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(name: 'token')  String? token)?  $default,) {final _that = this;
 switch (_that) {
-case _AuthEntity() when $default != null:
+case _AuthLocalModel() when $default != null:
 return $default(_that.token);case _:
   return null;
 
@@ -203,45 +206,48 @@ return $default(_that.token);case _:
 }
 
 /// @nodoc
+@JsonSerializable()
 
+class _AuthLocalModel implements AuthLocalModel {
+   _AuthLocalModel({@JsonKey(name: 'token') required this.token});
+  factory _AuthLocalModel.fromJson(Map<String, dynamic> json) => _$AuthLocalModelFromJson(json);
 
-class _AuthEntity implements AuthEntity {
-   _AuthEntity({this.token});
-  
+@override@JsonKey(name: 'token') final  String? token;
 
-@override final  String? token;
-
-/// Create a copy of AuthEntity
+/// Create a copy of AuthLocalModel
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-_$AuthEntityCopyWith<_AuthEntity> get copyWith => __$AuthEntityCopyWithImpl<_AuthEntity>(this, _$identity);
+_$AuthLocalModelCopyWith<_AuthLocalModel> get copyWith => __$AuthLocalModelCopyWithImpl<_AuthLocalModel>(this, _$identity);
 
-
+@override
+Map<String, dynamic> toJson() {
+  return _$AuthLocalModelToJson(this, );
+}
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthEntity&&(identical(other.token, token) || other.token == token));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthLocalModel&&(identical(other.token, token) || other.token == token));
 }
 
-
+@JsonKey(includeFromJson: false, includeToJson: false)
 @override
 int get hashCode => Object.hash(runtimeType,token);
 
 @override
 String toString() {
-  return 'AuthEntity(token: $token)';
+  return 'AuthLocalModel(token: $token)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class _$AuthEntityCopyWith<$Res> implements $AuthEntityCopyWith<$Res> {
-  factory _$AuthEntityCopyWith(_AuthEntity value, $Res Function(_AuthEntity) _then) = __$AuthEntityCopyWithImpl;
+abstract mixin class _$AuthLocalModelCopyWith<$Res> implements $AuthLocalModelCopyWith<$Res> {
+  factory _$AuthLocalModelCopyWith(_AuthLocalModel value, $Res Function(_AuthLocalModel) _then) = __$AuthLocalModelCopyWithImpl;
 @override @useResult
 $Res call({
- String? token
+@JsonKey(name: 'token') String? token
 });
 
 
@@ -249,17 +255,17 @@ $Res call({
 
 }
 /// @nodoc
-class __$AuthEntityCopyWithImpl<$Res>
-    implements _$AuthEntityCopyWith<$Res> {
-  __$AuthEntityCopyWithImpl(this._self, this._then);
+class __$AuthLocalModelCopyWithImpl<$Res>
+    implements _$AuthLocalModelCopyWith<$Res> {
+  __$AuthLocalModelCopyWithImpl(this._self, this._then);
 
-  final _AuthEntity _self;
-  final $Res Function(_AuthEntity) _then;
+  final _AuthLocalModel _self;
+  final $Res Function(_AuthLocalModel) _then;
 
-/// Create a copy of AuthEntity
+/// Create a copy of AuthLocalModel
 /// with the given fields replaced by the non-null parameter values.
 @override @pragma('vm:prefer-inline') $Res call({Object? token = freezed,}) {
-  return _then(_AuthEntity(
+  return _then(_AuthLocalModel(
 token: freezed == token ? _self.token : token // ignore: cast_nullable_to_non_nullable
 as String?,
   ));

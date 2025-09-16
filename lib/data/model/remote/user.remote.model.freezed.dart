@@ -22,6 +22,8 @@ mixin _$UserRemoteModel {
 @pragma('vm:prefer-inline')
 $UserRemoteModelCopyWith<UserRemoteModel> get copyWith => _$UserRemoteModelCopyWithImpl<UserRemoteModel>(this as UserRemoteModel, _$identity);
 
+  /// Serializes this UserRemoteModel to a JSON map.
+  Map<String, dynamic> toJson();
 
 
 @override
@@ -64,7 +66,7 @@ class _$UserRemoteModelCopyWithImpl<$Res>
 /// Create a copy of UserRemoteModel
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? email = freezed,Object? nickname = freezed,Object? lastname = freezed,Object? firstname = freezed,}) {
-  return _then(UserRemoteModel(
+  return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
 as int?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String?,nickname: freezed == nickname ? _self.nickname : nickname // ignore: cast_nullable_to_non_nullable
@@ -91,10 +93,11 @@ extension UserRemoteModelPatterns on UserRemoteModel {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _UserRemoteModel value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _:
+case _UserRemoteModel() when $default != null:
+return $default(_that);case _:
   return orElse();
 
 }
@@ -112,10 +115,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _UserRemoteModel value)  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _UserRemoteModel():
+return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -132,10 +136,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _UserRemoteModel value)?  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _UserRemoteModel() when $default != null:
+return $default(_that);case _:
   return null;
 
 }
@@ -152,9 +157,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  String? email,  String? nickname,  String? lastname,  String? firstname)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _:
+case _UserRemoteModel() when $default != null:
+return $default(_that.id,_that.email,_that.nickname,_that.lastname,_that.firstname);case _:
   return orElse();
 
 }
@@ -172,9 +178,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  String? email,  String? nickname,  String? lastname,  String? firstname)  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _UserRemoteModel():
+return $default(_that.id,_that.email,_that.nickname,_that.lastname,_that.firstname);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -191,13 +198,91 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  String? email,  String? nickname,  String? lastname,  String? firstname)?  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _UserRemoteModel() when $default != null:
+return $default(_that.id,_that.email,_that.nickname,_that.lastname,_that.firstname);case _:
   return null;
 
 }
 }
+
+}
+
+/// @nodoc
+@JsonSerializable()
+
+class _UserRemoteModel implements UserRemoteModel {
+   _UserRemoteModel({this.id, this.email, this.nickname, this.lastname, this.firstname});
+  factory _UserRemoteModel.fromJson(Map<String, dynamic> json) => _$UserRemoteModelFromJson(json);
+
+@override final  int? id;
+@override final  String? email;
+@override final  String? nickname;
+@override final  String? lastname;
+@override final  String? firstname;
+
+/// Create a copy of UserRemoteModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$UserRemoteModelCopyWith<_UserRemoteModel> get copyWith => __$UserRemoteModelCopyWithImpl<_UserRemoteModel>(this, _$identity);
+
+@override
+Map<String, dynamic> toJson() {
+  return _$UserRemoteModelToJson(this, );
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _UserRemoteModel&&(identical(other.id, id) || other.id == id)&&(identical(other.email, email) || other.email == email)&&(identical(other.nickname, nickname) || other.nickname == nickname)&&(identical(other.lastname, lastname) || other.lastname == lastname)&&(identical(other.firstname, firstname) || other.firstname == firstname));
+}
+
+@JsonKey(includeFromJson: false, includeToJson: false)
+@override
+int get hashCode => Object.hash(runtimeType,id,email,nickname,lastname,firstname);
+
+@override
+String toString() {
+  return 'UserRemoteModel(id: $id, email: $email, nickname: $nickname, lastname: $lastname, firstname: $firstname)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$UserRemoteModelCopyWith<$Res> implements $UserRemoteModelCopyWith<$Res> {
+  factory _$UserRemoteModelCopyWith(_UserRemoteModel value, $Res Function(_UserRemoteModel) _then) = __$UserRemoteModelCopyWithImpl;
+@override @useResult
+$Res call({
+ int? id, String? email, String? nickname, String? lastname, String? firstname
+});
+
+
+
+
+}
+/// @nodoc
+class __$UserRemoteModelCopyWithImpl<$Res>
+    implements _$UserRemoteModelCopyWith<$Res> {
+  __$UserRemoteModelCopyWithImpl(this._self, this._then);
+
+  final _UserRemoteModel _self;
+  final $Res Function(_UserRemoteModel) _then;
+
+/// Create a copy of UserRemoteModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? email = freezed,Object? nickname = freezed,Object? lastname = freezed,Object? firstname = freezed,}) {
+  return _then(_UserRemoteModel(
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String?,nickname: freezed == nickname ? _self.nickname : nickname // ignore: cast_nullable_to_non_nullable
+as String?,lastname: freezed == lastname ? _self.lastname : lastname // ignore: cast_nullable_to_non_nullable
+as String?,firstname: freezed == firstname ? _self.firstname : firstname // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
 
 }
 

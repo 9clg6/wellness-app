@@ -63,7 +63,7 @@ class _$OnboardingAnswersCopyWithImpl<$Res>
 /// Create a copy of OnboardingAnswers
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? frequencyIndex = freezed,Object? discoverySourceIndex = freezed,Object? favoriteThemeIndex = freezed,Object? practiceDurationIndex = freezed,Object? serenityScore = freezed,Object? firstName = freezed,Object? age = freezed,Object? goalIndex = freezed,}) {
-  return _then(OnboardingAnswers(
+  return _then(_self.copyWith(
 frequencyIndex: freezed == frequencyIndex ? _self.frequencyIndex : frequencyIndex // ignore: cast_nullable_to_non_nullable
 as int?,discoverySourceIndex: freezed == discoverySourceIndex ? _self.discoverySourceIndex : discoverySourceIndex // ignore: cast_nullable_to_non_nullable
 as int?,favoriteThemeIndex: freezed == favoriteThemeIndex ? _self.favoriteThemeIndex : favoriteThemeIndex // ignore: cast_nullable_to_non_nullable
@@ -93,10 +93,11 @@ extension OnboardingAnswersPatterns on OnboardingAnswers {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _OnboardingAnswers value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _:
+case _OnboardingAnswers() when $default != null:
+return $default(_that);case _:
   return orElse();
 
 }
@@ -114,10 +115,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _OnboardingAnswers value)  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _OnboardingAnswers():
+return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -134,10 +136,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _OnboardingAnswers value)?  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _OnboardingAnswers() when $default != null:
+return $default(_that);case _:
   return null;
 
 }
@@ -154,9 +157,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? frequencyIndex,  int? discoverySourceIndex,  int? favoriteThemeIndex,  int? practiceDurationIndex,  int? serenityScore,  String? firstName,  int? age,  int? goalIndex)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _:
+case _OnboardingAnswers() when $default != null:
+return $default(_that.frequencyIndex,_that.discoverySourceIndex,_that.favoriteThemeIndex,_that.practiceDurationIndex,_that.serenityScore,_that.firstName,_that.age,_that.goalIndex);case _:
   return orElse();
 
 }
@@ -174,9 +178,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? frequencyIndex,  int? discoverySourceIndex,  int? favoriteThemeIndex,  int? practiceDurationIndex,  int? serenityScore,  String? firstName,  int? age,  int? goalIndex)  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _OnboardingAnswers():
+return $default(_that.frequencyIndex,_that.discoverySourceIndex,_that.favoriteThemeIndex,_that.practiceDurationIndex,_that.serenityScore,_that.firstName,_that.age,_that.goalIndex);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -193,13 +198,94 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? frequencyIndex,  int? discoverySourceIndex,  int? favoriteThemeIndex,  int? practiceDurationIndex,  int? serenityScore,  String? firstName,  int? age,  int? goalIndex)?  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _OnboardingAnswers() when $default != null:
+return $default(_that.frequencyIndex,_that.discoverySourceIndex,_that.favoriteThemeIndex,_that.practiceDurationIndex,_that.serenityScore,_that.firstName,_that.age,_that.goalIndex);case _:
   return null;
 
 }
 }
+
+}
+
+/// @nodoc
+
+
+class _OnboardingAnswers implements OnboardingAnswers {
+   _OnboardingAnswers({this.frequencyIndex, this.discoverySourceIndex, this.favoriteThemeIndex, this.practiceDurationIndex, this.serenityScore, this.firstName, this.age, this.goalIndex});
+  
+
+@override final  int? frequencyIndex;
+@override final  int? discoverySourceIndex;
+@override final  int? favoriteThemeIndex;
+@override final  int? practiceDurationIndex;
+@override final  int? serenityScore;
+@override final  String? firstName;
+@override final  int? age;
+@override final  int? goalIndex;
+
+/// Create a copy of OnboardingAnswers
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$OnboardingAnswersCopyWith<_OnboardingAnswers> get copyWith => __$OnboardingAnswersCopyWithImpl<_OnboardingAnswers>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OnboardingAnswers&&(identical(other.frequencyIndex, frequencyIndex) || other.frequencyIndex == frequencyIndex)&&(identical(other.discoverySourceIndex, discoverySourceIndex) || other.discoverySourceIndex == discoverySourceIndex)&&(identical(other.favoriteThemeIndex, favoriteThemeIndex) || other.favoriteThemeIndex == favoriteThemeIndex)&&(identical(other.practiceDurationIndex, practiceDurationIndex) || other.practiceDurationIndex == practiceDurationIndex)&&(identical(other.serenityScore, serenityScore) || other.serenityScore == serenityScore)&&(identical(other.firstName, firstName) || other.firstName == firstName)&&(identical(other.age, age) || other.age == age)&&(identical(other.goalIndex, goalIndex) || other.goalIndex == goalIndex));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,frequencyIndex,discoverySourceIndex,favoriteThemeIndex,practiceDurationIndex,serenityScore,firstName,age,goalIndex);
+
+@override
+String toString() {
+  return 'OnboardingAnswers(frequencyIndex: $frequencyIndex, discoverySourceIndex: $discoverySourceIndex, favoriteThemeIndex: $favoriteThemeIndex, practiceDurationIndex: $practiceDurationIndex, serenityScore: $serenityScore, firstName: $firstName, age: $age, goalIndex: $goalIndex)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$OnboardingAnswersCopyWith<$Res> implements $OnboardingAnswersCopyWith<$Res> {
+  factory _$OnboardingAnswersCopyWith(_OnboardingAnswers value, $Res Function(_OnboardingAnswers) _then) = __$OnboardingAnswersCopyWithImpl;
+@override @useResult
+$Res call({
+ int? frequencyIndex, int? discoverySourceIndex, int? favoriteThemeIndex, int? practiceDurationIndex, int? serenityScore, String? firstName, int? age, int? goalIndex
+});
+
+
+
+
+}
+/// @nodoc
+class __$OnboardingAnswersCopyWithImpl<$Res>
+    implements _$OnboardingAnswersCopyWith<$Res> {
+  __$OnboardingAnswersCopyWithImpl(this._self, this._then);
+
+  final _OnboardingAnswers _self;
+  final $Res Function(_OnboardingAnswers) _then;
+
+/// Create a copy of OnboardingAnswers
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? frequencyIndex = freezed,Object? discoverySourceIndex = freezed,Object? favoriteThemeIndex = freezed,Object? practiceDurationIndex = freezed,Object? serenityScore = freezed,Object? firstName = freezed,Object? age = freezed,Object? goalIndex = freezed,}) {
+  return _then(_OnboardingAnswers(
+frequencyIndex: freezed == frequencyIndex ? _self.frequencyIndex : frequencyIndex // ignore: cast_nullable_to_non_nullable
+as int?,discoverySourceIndex: freezed == discoverySourceIndex ? _self.discoverySourceIndex : discoverySourceIndex // ignore: cast_nullable_to_non_nullable
+as int?,favoriteThemeIndex: freezed == favoriteThemeIndex ? _self.favoriteThemeIndex : favoriteThemeIndex // ignore: cast_nullable_to_non_nullable
+as int?,practiceDurationIndex: freezed == practiceDurationIndex ? _self.practiceDurationIndex : practiceDurationIndex // ignore: cast_nullable_to_non_nullable
+as int?,serenityScore: freezed == serenityScore ? _self.serenityScore : serenityScore // ignore: cast_nullable_to_non_nullable
+as int?,firstName: freezed == firstName ? _self.firstName : firstName // ignore: cast_nullable_to_non_nullable
+as String?,age: freezed == age ? _self.age : age // ignore: cast_nullable_to_non_nullable
+as int?,goalIndex: freezed == goalIndex ? _self.goalIndex : goalIndex // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+
 
 }
 

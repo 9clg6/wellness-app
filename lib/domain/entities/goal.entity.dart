@@ -1,28 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'goal.entity.freezed.dart';
 
 /// Class to represent a goal
-class Goal {
+@freezed
+abstract class Goal with _$Goal {
   /// Constructor
-  const Goal({
-    required this.id,
-    required this.title,
-    required this.emoji,
-    required this.color,
-    required this.description,
-  });
-
-  /// Unique identifier
-  final int id;
-
-  /// Goal title
-  final String title;
-
-  /// Goal emoji
-  final String emoji;
-
-  /// Button color
-  final Color color;
-
-  /// Short description
-  final String description;
+  factory Goal({
+    required int id,
+    required String title,
+    required String emoji,
+    required Color color,
+    required String description,
+  }) = _Goal;
 }

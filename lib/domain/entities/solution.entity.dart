@@ -1,18 +1,14 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'solution.entity.freezed.dart';
+
 /// Class to represent a solution screen
-class SolutionScreenEntity {
+@freezed
+abstract class SolutionScreenEntity with _$SolutionScreenEntity {
   /// Constructor
-  const SolutionScreenEntity({
-    required this.title,
-    required this.text,
-    required this.emoji,
-  });
-
-  /// Screen title
-  final String title;
-
-  /// Screen text
-  final String text;
-
-  /// Screen emoji
-  final String emoji;
+  factory SolutionScreenEntity({
+    required String title,
+    required String text,
+    required String emoji,
+  }) = _SolutionScreenEntity;
 }
