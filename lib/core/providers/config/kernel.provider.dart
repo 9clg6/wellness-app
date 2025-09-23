@@ -26,17 +26,23 @@ Future<void> kernel(Ref ref) async {
   final AppConfig _ = ref.watch(appConfigProvider);
 
   final DioClient dioClient = await ref.watch(dioClientProvider.future);
-  TokenInterceptor(
-    dioClient: dioClient,
-  );
+  TokenInterceptor(dioClient: dioClient);
 
-  final UserService userService = await ref.watch(userServiceProvider.future);
-  await userService.loadLocalUser();
+  try {
+    final UserService userService = await ref.watch(userServiceProvider.future);
+    await userService.loadLocalUser();
+  } on Exception catch (e) {
+    debugPrint('User service initialization error: $e');
+  }
 
-  final HappenActionService happenActionService = await ref.watch(
-    happenActionServiceProvider.future,
-  );
-  await happenActionService.init();
+  try {
+    final HappenActionService happenActionService = await ref.watch(
+      happenActionServiceProvider.future,
+    );
+    await happenActionService.init();
+  } on Exception catch (e) {
+    debugPrint('Happen action service initialization error: $e');
+  }
 
   try {
     // Initialize RevenueCat for in-app purchases

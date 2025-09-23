@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:welly/core/localization/generated/locale_keys.g.dart';
 import 'package:welly/core/providers/core/services/happen_action.service.provider.dart';
 import 'package:welly/core/providers/core/services/navigation.service.provider.dart';
@@ -11,7 +12,6 @@ import 'package:welly/core/providers/foundation/services/user.service.dart';
 import 'package:welly/core/providers/presentation/router.provider.dart';
 import 'package:welly/domain/entities/happen_action.entity.dart';
 import 'package:welly/presentation/screens/review/review.state.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 part 'review.view_model.g.dart';
 
@@ -39,8 +39,7 @@ class ReviewViewModel extends _$ReviewViewModel {
     _navigationService = ref.watch(navigationServiceProvider);
     _userService = await ref.watch(userServiceProvider.future);
 
-    final List<HappenActionEntity> entries =
-        _happenActionService.todayEntry;
+    final List<HappenActionEntity> entries = _happenActionService.todayEntry;
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final BuildContext? context = ref
@@ -95,8 +94,19 @@ class ReviewViewModel extends _$ReviewViewModel {
 
   /// Leave review
   void leaveReview() {
-    _snackController?.reverse();
+    _closeSnackBar();
     _userService.increaseStreakDays();
     _navigationService.pop(result: true);
+  }
+
+  /// Close snackbar
+  void _closeSnackBar() {
+    _snackController?.reverse();
+  }
+
+  /// Dispose resources
+  void dispose() {
+    _closeSnackBar();
+    _snackController?.dispose();
   }
 }

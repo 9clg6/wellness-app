@@ -78,17 +78,23 @@ class UserService {
   /// Load user
   Future<void> loadLocalUser() async {
     debugPrint('[UserService] loadLocalUser');
-    final ResultState<UserEntity?> localUser = await _getLocalUserUseCase
-        .execute();
+    try {
+      final ResultState<UserEntity?> localUser = await _getLocalUserUseCase
+          .execute();
 
-    if (localUser.status == StateStatus.success) {
-      if (localUser.data == null) {
-        await createDefaultUser();
+      if (localUser.status == StateStatus.success) {
+        if (localUser.data == null) {
+          await createDefaultUser();
+        } else {
+          _userSubject.add(localUser.data);
+        }
       } else {
-        _userSubject.add(localUser.data);
+        debugPrint('[UserService] loadLocalUser error: ${localUser.exception}');
+        await createDefaultUser(); // Fallback to default user
       }
-    } else {
-      debugPrint('loadLocalUser: error: ${localUser.exception}');
+    } on Exception catch (e) {
+      debugPrint('[UserService] loadLocalUser critical error: $e');
+      await createDefaultUser(); // Fallback to default user
     }
   }
 

@@ -2,6 +2,7 @@ import 'package:confetti/confetti.dart' show ConfettiController;
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:top_snackbar_flutter/top_snack_bar.dart';
 import 'package:welly/core/localization/generated/locale_keys.g.dart';
 import 'package:welly/core/providers/core/services/happen_action.service.provider.dart';
 import 'package:welly/core/providers/core/services/navigation.service.provider.dart';
@@ -12,7 +13,6 @@ import 'package:welly/core/providers/foundation/services/user.service.dart';
 import 'package:welly/core/providers/presentation/router.provider.dart';
 import 'package:welly/core/utils/debouncer.util.dart';
 import 'package:welly/presentation/screens/home/home.state.dart';
-import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 part 'home.view_model.g.dart';
 
@@ -48,18 +48,21 @@ class HomeViewModel extends _$HomeViewModel {
   /// Flower key
   final GlobalKey flowerKey = GlobalKey();
 
-  // TODO(clement): persistence
-  /// Streak days (simple placeholder without persistence)
+  /// Streak days
   int streakDays = 1;
 
   /// Confetti controller
   final ConfettiController controllerCenter = ConfettiController();
+
+  /// Is from real home
+  bool isFromRealHome = false;
 
   @override
   Future<HomeState> build() async {
     debugPrint('[HomeViewModel] build');
     _navigationService = ref.watch(navigationServiceProvider);
     _happenActionService = await ref.watch(happenActionServiceProvider.future);
+
     ref.onDispose(() {
       secondFieldController.dispose();
       happenController.dispose();
@@ -159,9 +162,13 @@ class HomeViewModel extends _$HomeViewModel {
 
   /// Save happen action content via service
   void saveHappenActionContent() {
+    debugPrint(
+      '[HomeViewModel] Saving happen action - Step: ${state.requireValue.step}, Happen: "${happenController.text}", Action: "${becauseController.text}"',
+    );
     _happenActionService.addEntry(
       happen: happenController.text,
       action: becauseController.text,
+      index: state.requireValue.step,
     );
   }
 
@@ -214,17 +221,26 @@ class HomeViewModel extends _$HomeViewModel {
   }
 
   /// Trigger full completed
-  Future<void> triggerFullCompleted() async {
+  Future<void> triggerFullCompleted({bool isFromRealHome = false}) async {
+    _happenActionService.markTodayEventsAsFilled();
+
     final bool? result = await _navigationService.navigateToReview();
-    _navigationService.pop(result: result);
+
+    if (isFromRealHome) {
+      _navigationService.pop(result: result);
+    } else {
+      _navigationService.navigateToRealHome(replace: true);
+    }
   }
 
   /// Handle flower tap animation and logic
   Future<void> onFlowerTap({
     required AnimationController expandController,
   }) async {
+    debugPrint('[HomeViewModel] onFlowerTap called');
+    
     if (happenController.text.isEmpty || becauseController.text.isEmpty) {
-      debugPrint('[HomeViewModel] Empty fields');
+      debugPrint('[HomeViewModel] Empty fields - Happen: "${happenController.text}", Action: "${becauseController.text}"');
       return;
     }
 
@@ -236,55 +252,23 @@ class HomeViewModel extends _$HomeViewModel {
       return;
     }
 
-    final RenderBox stackBox = stackContext.findRenderObject()! as RenderBox;
-    final RenderBox flowerBox = flowerContext.findRenderObject()! as RenderBox;
-
-    final Offset flowerGlobalTopLeft = flowerBox.localToGlobal(Offset.zero);
-    final Offset flowerTopLeftInStack = stackBox.globalToLocal(
-      flowerGlobalTopLeft,
-    );
-
-    final Size flowerSize = flowerBox.size;
-    final Size stackSize = stackBox.size;
-
-    final Rect beginRect = Rect.fromLTWH(
-      flowerTopLeftInStack.dx,
-      flowerTopLeftInStack.dy,
-      flowerSize.width,
-      flowerSize.height,
-    );
-
-    final RelativeRect begin = RelativeRect.fromRect(
-      beginRect,
-      Offset.zero & stackSize,
-    );
-
-    final Animation<double> curve = CurvedAnimation(
-      parent: expandController,
-      curve: Curves.bounceOut,
-    );
-
+    debugPrint('[HomeViewModel] Starting animation');
     state = AsyncValue<HomeState>.data(
-      state.requireValue.copyWith(
-        showOverlay: true,
-        rectAnimation: RelativeRectTween(
-          begin: begin,
-          end: RelativeRect.fill,
-        ).animate(curve),
-        radiusAnimation: Tween<double>(begin: 32, end: 0).animate(curve),
-      ),
+      state.requireValue.copyWith(showOverlay: true),
     );
 
     await expandController.forward(from: 0);
+    debugPrint('[HomeViewModel] Animation completed');
 
-    await Future<void>.delayed(const Duration(milliseconds: 800));
+    await Future<void>.delayed(const Duration(milliseconds: 400));
     final bool isLast =
         state.requireValue.step + 1 >= HomeStateExtension.totalSteps;
+
     state = AsyncValue<HomeState>.data(
       state.requireValue.copyWith(messageStep: isLast ? 2 : 1),
     );
 
-    await Future<void>.delayed(const Duration(seconds: 1));
+    await Future<void>.delayed(const Duration(milliseconds: 600));
     saveHappenActionContent();
     clearForm();
   }

@@ -22,6 +22,8 @@ if [ $# -lt 1 ]; then
 fi
 
 PLATFORM=$1
+
+
 shift
 
 # Validate platform
@@ -55,8 +57,17 @@ echo "Running fastlane for $PLATFORM with args: $@"
 if [ "$PLATFORM" = "ios" ] && ([ "$1" = "build" ] || [ "$1" = "beta" ]); then
     echo "Using direct Flutter build with CocoaPods-compatible Ruby"
     export PATH="/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin:$PATH"
-    # Navigate to project root for Flutter build
-    cd "$(dirname "$0")"
+    # Navigate to project root for Flutter build (go back from ios/ to project root)
+    cd "$(dirname "$0")/.."
+    PROJECT_ROOT="$(pwd)"
+    if [ "$PLATFORM" = "ios" ]; then
+        if [ -f "ios/fastlane/.env" ]; then
+            echo "Loading environment variables from .env file for iOS..."
+            export $(cat ios/fastlane/.env | grep -v '^#' | xargs)
+        else
+            echo "Warning: .env file not found in ios/fastlane/. Make sure to set iOS environment variables manually."
+        fi
+    fi
     fvm flutter clean
     fvm flutter pub get
     fvm flutter build ios --release --flavor prod --no-codesign
@@ -64,6 +75,12 @@ if [ "$PLATFORM" = "ios" ] && ([ "$1" = "build" ] || [ "$1" = "beta" ]); then
     # If this is a beta build, continue with the fastlane beta process after build
     if [ "$1" = "beta" ]; then
         echo "Proceeding with TestFlight upload via fastlane..."
+        # Navigate to iOS fastlane directory and load env vars again
+        cd "$PROJECT_ROOT/ios/fastlane"
+        if [ -f ".env" ]; then
+            echo "Loading environment variables for fastlane..."
+            export $(cat .env | grep -v '^#' | xargs)
+        fi
         fastlane beta_upload
     fi
 else
