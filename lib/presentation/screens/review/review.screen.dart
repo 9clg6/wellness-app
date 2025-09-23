@@ -3,14 +3,14 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
-import 'package:starter_kit/presentation/screens/review/review.state.dart';
-import 'package:starter_kit/presentation/screens/review/review.view_model.dart';
-import 'package:starter_kit/presentation/widgets/arc_wheel_view.dart';
-import 'package:starter_kit/presentation/widgets/custom_button.dart';
-import 'package:starter_kit/presentation/widgets/custom_loader.dart';
-import 'package:starter_kit/presentation/widgets/error_placeholder.dart';
-import 'package:starter_kit/presentation/widgets/gradient_background.dart';
+import 'package:welly/core/localization/generated/locale_keys.g.dart';
+import 'package:welly/presentation/screens/review/review.state.dart';
+import 'package:welly/presentation/screens/review/review.view_model.dart';
+import 'package:welly/presentation/widgets/arc_wheel_view.dart';
+import 'package:welly/presentation/widgets/custom_button.dart';
+import 'package:welly/presentation/widgets/custom_loader.dart';
+import 'package:welly/presentation/widgets/error_placeholder.dart';
+import 'package:welly/presentation/widgets/gradient_background.dart';
 
 /// Review screen
 @RoutePage()

@@ -1,8 +1,8 @@
 import 'dart:convert';
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:starter_kit/data/model/remote/ai_analysis.remote.model.dart';
-import 'package:starter_kit/data/model/remote/api_message.remote.model.dart';
+import 'package:welly/data/model/remote/ai_analysis.remote.model.dart';
+import 'package:welly/data/model/remote/api_message.remote.model.dart';
 
 part 'api_response_wrapper.remote.model.freezed.dart';
 part 'api_response_wrapper.remote.model.g.dart';

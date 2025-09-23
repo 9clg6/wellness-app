@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:starter_kit/domain/entities/onboarding_answers.dart';
+import 'package:welly/domain/entities/onboarding_answers.dart';
 
 part 'onboarding.service.provider.g.dart';
 

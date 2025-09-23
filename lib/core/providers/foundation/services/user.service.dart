@@ -3,22 +3,22 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:starter_kit/core/providers/foundation/services/navigation.service.dart';
-import 'package:starter_kit/domain/entities/auth.entity.dart';
-import 'package:starter_kit/domain/entities/onboarding_answers.dart';
-import 'package:starter_kit/domain/entities/user.entity.dart';
-import 'package:starter_kit/domain/params/login.param.dart';
-import 'package:starter_kit/domain/usecases/get_local_user.use_case.dart';
-import 'package:starter_kit/domain/usecases/get_onboarding_answers.use_case.dart';
-import 'package:starter_kit/domain/usecases/get_user.use_case.dart';
-import 'package:starter_kit/domain/usecases/is_onboarding_completed.use_case.dart';
-import 'package:starter_kit/domain/usecases/login.use_case.dart';
-import 'package:starter_kit/domain/usecases/logout.use_case.dart';
-import 'package:starter_kit/domain/usecases/save_auth.use_case.dart';
-import 'package:starter_kit/domain/usecases/save_onboarding_answers.use_case.dart';
-import 'package:starter_kit/domain/usecases/save_user.use_case.dart';
-import 'package:starter_kit/domain/usecases/set_onboarding_completed.use_case.dart';
-import 'package:starter_kit/foundation/interfaces/results.usecases.dart';
+import 'package:welly/core/providers/foundation/services/navigation.service.dart';
+import 'package:welly/domain/entities/auth.entity.dart';
+import 'package:welly/domain/entities/onboarding_answers.dart';
+import 'package:welly/domain/entities/user.entity.dart';
+import 'package:welly/domain/params/login.param.dart';
+import 'package:welly/domain/usecases/get_local_user.use_case.dart';
+import 'package:welly/domain/usecases/get_onboarding_answers.use_case.dart';
+import 'package:welly/domain/usecases/get_user.use_case.dart';
+import 'package:welly/domain/usecases/is_onboarding_completed.use_case.dart';
+import 'package:welly/domain/usecases/login.use_case.dart';
+import 'package:welly/domain/usecases/logout.use_case.dart';
+import 'package:welly/domain/usecases/save_auth.use_case.dart';
+import 'package:welly/domain/usecases/save_onboarding_answers.use_case.dart';
+import 'package:welly/domain/usecases/save_user.use_case.dart';
+import 'package:welly/domain/usecases/set_onboarding_completed.use_case.dart';
+import 'package:welly/foundation/interfaces/results.usecases.dart';
 
 /// User service
 class UserService {

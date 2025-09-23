@@ -2,18 +2,20 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:starter_kit/core/providers/config/appconfig.provider.dart';
-import 'package:starter_kit/core/providers/core/services/happen_action.service.provider.dart';
-import 'package:starter_kit/core/providers/core/services/user.service.provider.dart';
-import 'package:starter_kit/core/providers/data/clients/dio_client.provider.dart';
-import 'package:starter_kit/core/providers/data/datasources/local/authentication.local.data_source.provider.dart';
-import 'package:starter_kit/core/providers/data/repositories/authentication.repository.provider.dart';
-import 'package:starter_kit/core/providers/data/storages/authentication.secure_storage.provider.dart';
-import 'package:starter_kit/core/providers/foundation/services/happen_action.service.dart';
-import 'package:starter_kit/core/providers/foundation/services/user.service.dart';
-import 'package:starter_kit/data/clients/dio.client.dart';
-import 'package:starter_kit/data/clients/interceptors/token.interceptor.dart';
-import 'package:starter_kit/foundation/config/app_config.dart';
+import 'package:welly/core/providers/config/appconfig.provider.dart';
+import 'package:welly/core/providers/core/services/happen_action.service.provider.dart';
+import 'package:welly/core/providers/core/services/purchase.service.provider.dart';
+import 'package:welly/core/providers/core/services/user.service.provider.dart';
+import 'package:welly/core/providers/data/clients/dio_client.provider.dart';
+import 'package:welly/core/providers/data/datasources/local/authentication.local.data_source.provider.dart';
+import 'package:welly/core/providers/data/repositories/authentication.repository.provider.dart';
+import 'package:welly/core/providers/data/storages/authentication.secure_storage.provider.dart';
+import 'package:welly/core/providers/foundation/services/happen_action.service.dart';
+import 'package:welly/core/providers/foundation/services/purchase.service.dart';
+import 'package:welly/core/providers/foundation/services/user.service.dart';
+import 'package:welly/data/clients/dio.client.dart';
+import 'package:welly/data/clients/interceptors/token.interceptor.dart';
+import 'package:welly/foundation/config/app_config.dart';
 
 part 'kernel.provider.g.dart';
 
@@ -36,14 +38,13 @@ Future<void> kernel(Ref ref) async {
   );
   await happenActionService.init();
 
-  // try {
-  //   // Initialize RevenueCat for in-app purchases
-  //   final PurchaseService purchaseService =
-  // ref.read(purchaseServiceProvider);
-  //   await purchaseService.initialize();
-  // } on Exception catch (e) {
-  //   debugPrint('RevenueCat initialization error: $e');
-  // }
+  try {
+    // Initialize RevenueCat for in-app purchases
+    final PurchaseService purchaseService = ref.watch(purchaseServiceProvider);
+    await purchaseService.initialize();
+  } on Exception catch (e) {
+    debugPrint('RevenueCat initialization error: $e');
+  }
 
   ref.onDispose(() {
     ref

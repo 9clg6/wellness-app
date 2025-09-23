@@ -4,15 +4,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
-import 'package:starter_kit/presentation/screens/home/home.state.dart';
-import 'package:starter_kit/presentation/screens/home/home.view_model.dart';
-import 'package:starter_kit/presentation/widgets/cards_stack_indicator.dart';
-import 'package:starter_kit/presentation/widgets/continue_button_card.dart';
-import 'package:starter_kit/presentation/widgets/entry_card.dart';
-import 'package:starter_kit/presentation/widgets/form_input.dart';
-import 'package:starter_kit/presentation/widgets/gradient_background.dart';
-import 'package:starter_kit/presentation/widgets/text_variant.dart';
+import 'package:welly/core/localization/generated/locale_keys.g.dart';
+import 'package:welly/presentation/screens/home/home.state.dart';
+import 'package:welly/presentation/screens/home/home.view_model.dart';
+import 'package:welly/presentation/widgets/cards_stack_indicator.dart';
+import 'package:welly/presentation/widgets/continue_button_card.dart';
+import 'package:welly/presentation/widgets/entry_card.dart';
+import 'package:welly/presentation/widgets/form_input.dart';
+import 'package:welly/presentation/widgets/gradient_background.dart';
+import 'package:welly/presentation/widgets/text_variant.dart';
 
 /// Home Screen
 @RoutePage()
@@ -68,14 +68,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
 
     return Scaffold(
       backgroundColor: Colors.white,
+      extendBodyBehindAppBar: true,
       appBar: widget.isFromRealHome
-          ? null
-          : AppBar(
+          ? AppBar(
               leading: IconButton(
                 onPressed: context.maybePop,
                 icon: const Icon(Icons.close),
               ),
-            ),
+            )
+          : null,
       body: state.when(
         data: (HomeState data) => _HasDataBody(
           data: data,

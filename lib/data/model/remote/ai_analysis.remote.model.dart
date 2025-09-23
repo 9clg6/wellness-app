@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:starter_kit/domain/entities/ai_analysis.entity.dart';
+import 'package:welly/domain/entities/ai_analysis.entity.dart';
 
 part 'ai_analysis.remote.model.freezed.dart';
 part 'ai_analysis.remote.model.g.dart';

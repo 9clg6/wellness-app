@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:starter_kit/presentation/widgets/tappable_componenent.dart';
-import 'package:starter_kit/presentation/widgets/text_variant.dart';
+import 'package:welly/presentation/widgets/tappable_componenent.dart';
+import 'package:welly/presentation/widgets/text_variant.dart';
 
 /// On boarding button
 class OnBoardingButton extends StatelessWidget {

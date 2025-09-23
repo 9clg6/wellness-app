@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:starter_kit/foundation/routing/app_router.dart';
+import 'package:welly/foundation/routing/app_router.dart';
 
 /// Navigation service
 class NavigationService {

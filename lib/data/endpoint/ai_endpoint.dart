@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
-import 'package:starter_kit/data/bodies/analyze_with_ai_param.dart';
-import 'package:starter_kit/data/model/remote/api_response_wrapper.remote.model.dart';
+import 'package:welly/data/bodies/analyze_with_ai_param.dart';
+import 'package:welly/data/model/remote/api_response_wrapper.remote.model.dart';
 
 part 'ai_endpoint.g.dart';
 

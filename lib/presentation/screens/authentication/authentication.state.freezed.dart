@@ -63,7 +63,7 @@ class _$AuthenticationStateCopyWithImpl<$Res>
 /// Create a copy of AuthenticationState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? loading = null,Object? isPasswordVisible = null,}) {
-  return _then(AuthenticationState(
+  return _then(_self.copyWith(
 loading: null == loading ? _self.loading : loading // ignore: cast_nullable_to_non_nullable
 as bool,isPasswordVisible: null == isPasswordVisible ? _self.isPasswordVisible : isPasswordVisible // ignore: cast_nullable_to_non_nullable
 as bool,
@@ -87,10 +87,11 @@ extension AuthenticationStatePatterns on AuthenticationState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _AuthenticationState value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _:
+case _AuthenticationState() when $default != null:
+return $default(_that);case _:
   return orElse();
 
 }
@@ -108,10 +109,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _AuthenticationState value)  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _AuthenticationState():
+return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -128,10 +130,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _AuthenticationState value)?  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _AuthenticationState() when $default != null:
+return $default(_that);case _:
   return null;
 
 }
@@ -148,9 +151,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool loading,  bool isPasswordVisible)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _:
+case _AuthenticationState() when $default != null:
+return $default(_that.loading,_that.isPasswordVisible);case _:
   return orElse();
 
 }
@@ -168,9 +172,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool loading,  bool isPasswordVisible)  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _AuthenticationState():
+return $default(_that.loading,_that.isPasswordVisible);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -187,13 +192,82 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool loading,  bool isPasswordVisible)?  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _AuthenticationState() when $default != null:
+return $default(_that.loading,_that.isPasswordVisible);case _:
   return null;
 
 }
 }
+
+}
+
+/// @nodoc
+
+
+class _AuthenticationState implements AuthenticationState {
+  const _AuthenticationState({required this.loading, required this.isPasswordVisible});
+  
+
+@override final  bool loading;
+@override final  bool isPasswordVisible;
+
+/// Create a copy of AuthenticationState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$AuthenticationStateCopyWith<_AuthenticationState> get copyWith => __$AuthenticationStateCopyWithImpl<_AuthenticationState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AuthenticationState&&(identical(other.loading, loading) || other.loading == loading)&&(identical(other.isPasswordVisible, isPasswordVisible) || other.isPasswordVisible == isPasswordVisible));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,loading,isPasswordVisible);
+
+@override
+String toString() {
+  return 'AuthenticationState(loading: $loading, isPasswordVisible: $isPasswordVisible)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$AuthenticationStateCopyWith<$Res> implements $AuthenticationStateCopyWith<$Res> {
+  factory _$AuthenticationStateCopyWith(_AuthenticationState value, $Res Function(_AuthenticationState) _then) = __$AuthenticationStateCopyWithImpl;
+@override @useResult
+$Res call({
+ bool loading, bool isPasswordVisible
+});
+
+
+
+
+}
+/// @nodoc
+class __$AuthenticationStateCopyWithImpl<$Res>
+    implements _$AuthenticationStateCopyWith<$Res> {
+  __$AuthenticationStateCopyWithImpl(this._self, this._then);
+
+  final _AuthenticationState _self;
+  final $Res Function(_AuthenticationState) _then;
+
+/// Create a copy of AuthenticationState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? loading = null,Object? isPasswordVisible = null,}) {
+  return _then(_AuthenticationState(
+loading: null == loading ? _self.loading : loading // ignore: cast_nullable_to_non_nullable
+as bool,isPasswordVisible: null == isPasswordVisible ? _self.isPasswordVisible : isPasswordVisible // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
 
 }
 

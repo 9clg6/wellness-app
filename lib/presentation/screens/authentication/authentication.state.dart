@@ -3,21 +3,20 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'authentication.state.freezed.dart';
 
 /// Authentication State
-@Freezed(copyWith: true)
-final class AuthenticationState with _$AuthenticationState {
-  /// constructor
-  AuthenticationState({required this.loading, this.isPasswordVisible = false});
+@freezed
+abstract class AuthenticationState with _$AuthenticationState {
+  /// Constructor
+  const factory AuthenticationState({
+    required bool loading,
+    required bool isPasswordVisible,
+  }) = _AuthenticationState;
 
-  /// initial
-  factory AuthenticationState.initial() {
-    return AuthenticationState(loading: false);
-  }
-
-  /// loading
-  @override
-  final bool loading;
-
-  /// is password visible
-  @override
-  final bool isPasswordVisible;
+  /// Initial state
+  factory AuthenticationState.initial({
+    bool loading = false,
+    bool isPasswordVisible = false,
+  }) => AuthenticationState(
+    loading: loading,
+    isPasswordVisible: isPasswordVisible,
+  );
 }

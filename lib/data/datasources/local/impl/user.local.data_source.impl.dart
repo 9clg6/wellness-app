@@ -1,7 +1,7 @@
-import 'package:starter_kit/data/datasources/local/user.local.data_source.dart';
-import 'package:starter_kit/data/model/local/onboarding_answers.local.model.dart';
-import 'package:starter_kit/data/model/local/user.local.model.dart';
-import 'package:starter_kit/data/storages/user_preferences.storage.dart';
+import 'package:welly/data/datasources/local/user.local.data_source.dart';
+import 'package:welly/data/model/local/onboarding_answers.local.model.dart';
+import 'package:welly/data/model/local/user.local.model.dart';
+import 'package:welly/data/storages/user_preferences.storage.dart';
 
 /// User local data source impl
 final class UserLocalDatasourceImpl implements UserLocalDataSource {

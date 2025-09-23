@@ -1,7 +1,7 @@
 // ignore_for_file: one_member_abstracts fck linter
 
-import 'package:starter_kit/domain/entities/onboarding_answers.dart';
-import 'package:starter_kit/domain/entities/user.entity.dart';
+import 'package:welly/domain/entities/onboarding_answers.dart';
+import 'package:welly/domain/entities/user.entity.dart';
 
 /// User Repository
 abstract class UserRepository {

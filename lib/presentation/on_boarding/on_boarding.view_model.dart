@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:starter_kit/core/providers/core/services/navigation.service.provider.dart';
-import 'package:starter_kit/core/providers/core/services/onboarding.service.provider.dart';
-import 'package:starter_kit/core/providers/core/services/user.service.provider.dart';
-import 'package:starter_kit/core/providers/foundation/services/navigation.service.dart';
-import 'package:starter_kit/core/providers/foundation/services/user.service.dart';
-import 'package:starter_kit/domain/entities/onboarding_answers.dart';
-import 'package:starter_kit/presentation/on_boarding/on_boarding.state.dart';
+import 'package:welly/core/providers/core/services/navigation.service.provider.dart';
+import 'package:welly/core/providers/core/services/onboarding.service.provider.dart';
+import 'package:welly/core/providers/core/services/user.service.provider.dart';
+import 'package:welly/core/providers/foundation/services/navigation.service.dart';
+import 'package:welly/core/providers/foundation/services/user.service.dart';
+import 'package:welly/domain/entities/onboarding_answers.dart';
+import 'package:welly/presentation/on_boarding/on_boarding.state.dart';
 
 part 'on_boarding.view_model.g.dart';
 
@@ -60,7 +60,7 @@ class OnBoardingViewModel extends _$OnBoardingViewModel {
     await userService.setOnboardingCompleted();
     await userService.updateUserFirstname(currentAnswers.firstName!);
 
-    _navigationService.navigateToRealHome(replace: true);
+    _navigationService.navigateToHome(replace: true);
   }
 
   /// Select option

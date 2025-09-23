@@ -1,8 +1,8 @@
 // ignore_for_file: lines_longer_than_80_chars clc
 
 import 'package:dio/dio.dart';
-import 'package:starter_kit/data/clients/dio.client.dart';
-import 'package:starter_kit/data/clients/extra_client.dart';
+import 'package:welly/data/clients/dio.client.dart';
+import 'package:welly/data/clients/extra_client.dart';
 
 /// [TokenInterceptor]
 class TokenInterceptor {

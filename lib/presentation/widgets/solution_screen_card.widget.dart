@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:starter_kit/domain/entities/solution.entity.dart';
-import 'package:starter_kit/presentation/widgets/text_variant.dart';
+import 'package:welly/domain/entities/solution.entity.dart';
+import 'package:welly/presentation/widgets/text_variant.dart';
 
 /// Widget to display a solution screen card
 class SolutionScreenCard extends StatelessWidget {

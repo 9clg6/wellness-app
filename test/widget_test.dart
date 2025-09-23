@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:starter_kit/presentation/app.dart';
+import 'package:welly/presentation/app.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();

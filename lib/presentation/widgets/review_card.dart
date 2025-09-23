@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
-import 'package:starter_kit/domain/entities/happen_action.entity.dart';
+import 'package:welly/core/localization/generated/locale_keys.g.dart';
+import 'package:welly/domain/entities/happen_action.entity.dart';
 
 /// Review card
 class ReviewCard extends StatelessWidget {

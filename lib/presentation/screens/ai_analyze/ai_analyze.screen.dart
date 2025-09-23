@@ -4,15 +4,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:starter_kit/core/extensions/string.extension.dart';
-import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
-import 'package:starter_kit/presentation/screens/ai_analyze/ai_analyze.state.dart';
-import 'package:starter_kit/presentation/screens/ai_analyze/ai_analyze.view_model.dart';
-import 'package:starter_kit/presentation/widgets/custom_app_bar.dart';
-import 'package:starter_kit/presentation/widgets/custom_loader.dart';
-import 'package:starter_kit/presentation/widgets/error_placeholder.dart';
-import 'package:starter_kit/presentation/widgets/tappable_componenent.dart';
-import 'package:starter_kit/presentation/widgets/text_variant.dart';
+import 'package:welly/core/extensions/string.extension.dart';
+import 'package:welly/core/localization/generated/locale_keys.g.dart';
+import 'package:welly/presentation/screens/ai_analyze/ai_analyze.state.dart';
+import 'package:welly/presentation/screens/ai_analyze/ai_analyze.view_model.dart';
+import 'package:welly/presentation/widgets/custom_app_bar.dart';
+import 'package:welly/presentation/widgets/custom_loader.dart';
+import 'package:welly/presentation/widgets/error_placeholder.dart';
+import 'package:welly/presentation/widgets/tappable_componenent.dart';
+import 'package:welly/presentation/widgets/text_variant.dart';
 
 /// Ai analyze screen
 @RoutePage()
@@ -85,6 +85,14 @@ class _AiAnalyzeScreenState extends ConsumerState<AiAnalyzeScreen>
                             child: TextVariant(
                               LocaleKeys.aiAnalyze_subtitle.tr(),
                               variantType: TextVariantType.titleMedium,
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                          const Gap(12),
+                          Center(
+                            child: TextVariant(
+                              state.requireValue.dateInterval,
+                              variantType: TextVariantType.titleSmall,
                               textAlign: TextAlign.center,
                             ),
                           ),

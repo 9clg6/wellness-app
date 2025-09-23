@@ -1,4 +1,4 @@
-import 'package:starter_kit/domain/entities/daily_happen_action.entity.dart';
+import 'package:welly/domain/entities/daily_happen_action.entity.dart';
 
 /// Interface for happen action repository
 abstract class HappenActionRepository {

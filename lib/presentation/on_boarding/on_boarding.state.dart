@@ -3,19 +3,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'on_boarding.state.freezed.dart';
 
 ///
-@Freezed(copyWith: true)
-final class OnBoardingState with _$OnBoardingState {
+@freezed
+abstract class OnBoardingState with _$OnBoardingState {
   /// Constructor
-  const OnBoardingState({this.currentStep = 0, this.selectedOption});
+  const factory OnBoardingState({
+    required int currentStep,
+    int? selectedOption,
+  }) = _OnBoardingState;
 
   /// Initial state
-  factory OnBoardingState.initial() => const OnBoardingState();
-
-  /// Current step
-  @override
-  final int currentStep;
-
-  /// Selected option
-  @override
-  final int? selectedOption;
+  factory OnBoardingState.initial() => const OnBoardingState(currentStep: 0);
 }

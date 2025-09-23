@@ -1,5 +1,5 @@
-import 'package:starter_kit/domain/repositories/happen_action.repository.dart';
-import 'package:starter_kit/foundation/interfaces/future.usecases.dart';
+import 'package:welly/domain/repositories/happen_action.repository.dart';
+import 'package:welly/foundation/interfaces/future.usecases.dart';
 
 /// Use case to delete happen action by date
 class DeleteHappenActionByDateUseCase

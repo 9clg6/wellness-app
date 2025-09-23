@@ -6,7 +6,7 @@ part of 'real_home.view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$realHomeViewModelHash() => r'becbc9554d08e092a6bf478296f9482bd4a48a23';
+String _$realHomeViewModelHash() => r'599058d9dcdffe6c914b4b8a0723e300d1bbb98a';
 
 /// Real home view model
 ///
