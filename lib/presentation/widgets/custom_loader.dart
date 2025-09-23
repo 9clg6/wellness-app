@@ -12,12 +12,14 @@ class CustomLoader extends StatelessWidget {
   /// Build Method
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: size,
-      width: size,
-      child: const LoadingIndicator(
-        indicatorType: Indicator.ballRotateChase,
-        colors: <Color>[Colors.black],
+    return Center(
+      child: SizedBox(
+        height: size,
+        width: size,
+        child: const LoadingIndicator(
+          indicatorType: Indicator.ballRotateChase,
+          colors: <Color>[Colors.black],
+        ),
       ),
     );
   }

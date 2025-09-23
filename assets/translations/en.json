@@ -70,7 +70,7 @@
   "onboarding_paywall_annual": "7-day free trial → Annual subscription",
   "onboarding_paywall_monthly": "Monthly subscription",
   "onboarding_paywall_cancel": "Cancelable at any time in 2 clicks",
-  "onboarding_postPaywall_subtitle": "Welcome to the free version (2 entries/day + stats preview).",
+  "onboarding_postPaywall_subtitle": "Welcome to Welly.",
   "onboarding_postPaywall_enter": "Enter the app",
   "onboarding_questionTitle": "Question #{}",
   "onboarding_q1_text": "What is your current frequency of positive writing or reflection?",
@@ -180,5 +180,6 @@
   "aiAnalyze_categorieDominante": "Dominant category",
   "aiAnalyze_progressionSemaine": "Week progression",
   "aiAnalyze_momentMarquant": "Moment marquant",
-  "aiAnalyze_suggestions": "Suggestions"
+  "aiAnalyze_suggestions": "Suggestions",
+  "aiAnalyze_seeReport": "See my AI analysis of the week"
 }

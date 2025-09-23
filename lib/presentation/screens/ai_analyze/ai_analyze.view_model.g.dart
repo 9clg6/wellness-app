@@ -6,7 +6,7 @@ part of 'ai_analyze.view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$aiAnalyzeHash() => r'ba2ba4e1acefeda568d06f59fa845139c11c9f3f';
+String _$aiAnalyzeHash() => r'b39827ccd64c76d5b229e6d78f5ac5d335383184';
 
 /// Ai analyze view model
 ///

@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$HomeState {
 
- int get totalSteps; bool get isLoading; bool get showSecondField; bool get showValidationButton; String get topMotivationText; int get step; bool get showOverlay; int get messageStep; Animation<RelativeRect>? get rectAnimation; Animation<double>? get radiusAnimation;
+ bool get showSecondField; bool get showValidationButton; String get topMotivationText; int get step; bool get showOverlay; int get messageStep; Animation<RelativeRect>? get rectAnimation; Animation<double>? get radiusAnimation;
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $HomeStateCopyWith<HomeState> get copyWith => _$HomeStateCopyWithImpl<HomeState>
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeState&&(identical(other.totalSteps, totalSteps) || other.totalSteps == totalSteps)&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.showSecondField, showSecondField) || other.showSecondField == showSecondField)&&(identical(other.showValidationButton, showValidationButton) || other.showValidationButton == showValidationButton)&&(identical(other.topMotivationText, topMotivationText) || other.topMotivationText == topMotivationText)&&(identical(other.step, step) || other.step == step)&&(identical(other.showOverlay, showOverlay) || other.showOverlay == showOverlay)&&(identical(other.messageStep, messageStep) || other.messageStep == messageStep)&&(identical(other.rectAnimation, rectAnimation) || other.rectAnimation == rectAnimation)&&(identical(other.radiusAnimation, radiusAnimation) || other.radiusAnimation == radiusAnimation));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeState&&(identical(other.showSecondField, showSecondField) || other.showSecondField == showSecondField)&&(identical(other.showValidationButton, showValidationButton) || other.showValidationButton == showValidationButton)&&(identical(other.topMotivationText, topMotivationText) || other.topMotivationText == topMotivationText)&&(identical(other.step, step) || other.step == step)&&(identical(other.showOverlay, showOverlay) || other.showOverlay == showOverlay)&&(identical(other.messageStep, messageStep) || other.messageStep == messageStep)&&(identical(other.rectAnimation, rectAnimation) || other.rectAnimation == rectAnimation)&&(identical(other.radiusAnimation, radiusAnimation) || other.radiusAnimation == radiusAnimation));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,totalSteps,isLoading,showSecondField,showValidationButton,topMotivationText,step,showOverlay,messageStep,rectAnimation,radiusAnimation);
+int get hashCode => Object.hash(runtimeType,showSecondField,showValidationButton,topMotivationText,step,showOverlay,messageStep,rectAnimation,radiusAnimation);
 
 @override
 String toString() {
-  return 'HomeState(totalSteps: $totalSteps, isLoading: $isLoading, showSecondField: $showSecondField, showValidationButton: $showValidationButton, topMotivationText: $topMotivationText, step: $step, showOverlay: $showOverlay, messageStep: $messageStep, rectAnimation: $rectAnimation, radiusAnimation: $radiusAnimation)';
+  return 'HomeState(showSecondField: $showSecondField, showValidationButton: $showValidationButton, topMotivationText: $topMotivationText, step: $step, showOverlay: $showOverlay, messageStep: $messageStep, rectAnimation: $rectAnimation, radiusAnimation: $radiusAnimation)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $HomeStateCopyWith<$Res>  {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) _then) = _$HomeStateCopyWithImpl;
 @useResult
 $Res call({
- bool isLoading, bool showSecondField, bool showValidationButton, String topMotivationText, int step, bool showOverlay, int messageStep, Animation<RelativeRect>? rectAnimation, Animation<double>? radiusAnimation
+ bool showSecondField, bool showValidationButton, String topMotivationText, int step, bool showOverlay, int messageStep, Animation<RelativeRect>? rectAnimation, Animation<double>? radiusAnimation
 });
 
 
@@ -62,10 +62,9 @@ class _$HomeStateCopyWithImpl<$Res>
 
 /// Create a copy of HomeState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? isLoading = null,Object? showSecondField = null,Object? showValidationButton = null,Object? topMotivationText = null,Object? step = null,Object? showOverlay = null,Object? messageStep = null,Object? rectAnimation = freezed,Object? radiusAnimation = freezed,}) {
-  return _then(HomeState(
-isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,showSecondField: null == showSecondField ? _self.showSecondField : showSecondField // ignore: cast_nullable_to_non_nullable
+@pragma('vm:prefer-inline') @override $Res call({Object? showSecondField = null,Object? showValidationButton = null,Object? topMotivationText = null,Object? step = null,Object? showOverlay = null,Object? messageStep = null,Object? rectAnimation = freezed,Object? radiusAnimation = freezed,}) {
+  return _then(_self.copyWith(
+showSecondField: null == showSecondField ? _self.showSecondField : showSecondField // ignore: cast_nullable_to_non_nullable
 as bool,showValidationButton: null == showValidationButton ? _self.showValidationButton : showValidationButton // ignore: cast_nullable_to_non_nullable
 as bool,topMotivationText: null == topMotivationText ? _self.topMotivationText : topMotivationText // ignore: cast_nullable_to_non_nullable
 as String,step: null == step ? _self.step : step // ignore: cast_nullable_to_non_nullable
@@ -94,10 +93,11 @@ extension HomeStatePatterns on HomeState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _HomeState value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _:
+case _HomeState() when $default != null:
+return $default(_that);case _:
   return orElse();
 
 }
@@ -115,10 +115,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _HomeState value)  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _HomeState():
+return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -135,10 +136,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _HomeState value)?  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _HomeState() when $default != null:
+return $default(_that);case _:
   return null;
 
 }
@@ -155,9 +157,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool showSecondField,  bool showValidationButton,  String topMotivationText,  int step,  bool showOverlay,  int messageStep,  Animation<RelativeRect>? rectAnimation,  Animation<double>? radiusAnimation)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _:
+case _HomeState() when $default != null:
+return $default(_that.showSecondField,_that.showValidationButton,_that.topMotivationText,_that.step,_that.showOverlay,_that.messageStep,_that.rectAnimation,_that.radiusAnimation);case _:
   return orElse();
 
 }
@@ -175,9 +178,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool showSecondField,  bool showValidationButton,  String topMotivationText,  int step,  bool showOverlay,  int messageStep,  Animation<RelativeRect>? rectAnimation,  Animation<double>? radiusAnimation)  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _HomeState():
+return $default(_that.showSecondField,_that.showValidationButton,_that.topMotivationText,_that.step,_that.showOverlay,_that.messageStep,_that.rectAnimation,_that.radiusAnimation);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -194,13 +198,94 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool showSecondField,  bool showValidationButton,  String topMotivationText,  int step,  bool showOverlay,  int messageStep,  Animation<RelativeRect>? rectAnimation,  Animation<double>? radiusAnimation)?  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _HomeState() when $default != null:
+return $default(_that.showSecondField,_that.showValidationButton,_that.topMotivationText,_that.step,_that.showOverlay,_that.messageStep,_that.rectAnimation,_that.radiusAnimation);case _:
   return null;
 
 }
 }
+
+}
+
+/// @nodoc
+
+
+class _HomeState implements HomeState {
+  const _HomeState({required this.showSecondField, required this.showValidationButton, required this.topMotivationText, required this.step, required this.showOverlay, required this.messageStep, this.rectAnimation, this.radiusAnimation});
+  
+
+@override final  bool showSecondField;
+@override final  bool showValidationButton;
+@override final  String topMotivationText;
+@override final  int step;
+@override final  bool showOverlay;
+@override final  int messageStep;
+@override final  Animation<RelativeRect>? rectAnimation;
+@override final  Animation<double>? radiusAnimation;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$HomeStateCopyWith<_HomeState> get copyWith => __$HomeStateCopyWithImpl<_HomeState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeState&&(identical(other.showSecondField, showSecondField) || other.showSecondField == showSecondField)&&(identical(other.showValidationButton, showValidationButton) || other.showValidationButton == showValidationButton)&&(identical(other.topMotivationText, topMotivationText) || other.topMotivationText == topMotivationText)&&(identical(other.step, step) || other.step == step)&&(identical(other.showOverlay, showOverlay) || other.showOverlay == showOverlay)&&(identical(other.messageStep, messageStep) || other.messageStep == messageStep)&&(identical(other.rectAnimation, rectAnimation) || other.rectAnimation == rectAnimation)&&(identical(other.radiusAnimation, radiusAnimation) || other.radiusAnimation == radiusAnimation));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,showSecondField,showValidationButton,topMotivationText,step,showOverlay,messageStep,rectAnimation,radiusAnimation);
+
+@override
+String toString() {
+  return 'HomeState(showSecondField: $showSecondField, showValidationButton: $showValidationButton, topMotivationText: $topMotivationText, step: $step, showOverlay: $showOverlay, messageStep: $messageStep, rectAnimation: $rectAnimation, radiusAnimation: $radiusAnimation)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
+  factory _$HomeStateCopyWith(_HomeState value, $Res Function(_HomeState) _then) = __$HomeStateCopyWithImpl;
+@override @useResult
+$Res call({
+ bool showSecondField, bool showValidationButton, String topMotivationText, int step, bool showOverlay, int messageStep, Animation<RelativeRect>? rectAnimation, Animation<double>? radiusAnimation
+});
+
+
+
+
+}
+/// @nodoc
+class __$HomeStateCopyWithImpl<$Res>
+    implements _$HomeStateCopyWith<$Res> {
+  __$HomeStateCopyWithImpl(this._self, this._then);
+
+  final _HomeState _self;
+  final $Res Function(_HomeState) _then;
+
+/// Create a copy of HomeState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? showSecondField = null,Object? showValidationButton = null,Object? topMotivationText = null,Object? step = null,Object? showOverlay = null,Object? messageStep = null,Object? rectAnimation = freezed,Object? radiusAnimation = freezed,}) {
+  return _then(_HomeState(
+showSecondField: null == showSecondField ? _self.showSecondField : showSecondField // ignore: cast_nullable_to_non_nullable
+as bool,showValidationButton: null == showValidationButton ? _self.showValidationButton : showValidationButton // ignore: cast_nullable_to_non_nullable
+as bool,topMotivationText: null == topMotivationText ? _self.topMotivationText : topMotivationText // ignore: cast_nullable_to_non_nullable
+as String,step: null == step ? _self.step : step // ignore: cast_nullable_to_non_nullable
+as int,showOverlay: null == showOverlay ? _self.showOverlay : showOverlay // ignore: cast_nullable_to_non_nullable
+as bool,messageStep: null == messageStep ? _self.messageStep : messageStep // ignore: cast_nullable_to_non_nullable
+as int,rectAnimation: freezed == rectAnimation ? _self.rectAnimation : rectAnimation // ignore: cast_nullable_to_non_nullable
+as Animation<RelativeRect>?,radiusAnimation: freezed == radiusAnimation ? _self.radiusAnimation : radiusAnimation // ignore: cast_nullable_to_non_nullable
+as Animation<double>?,
+  ));
+}
+
 
 }
 

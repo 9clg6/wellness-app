@@ -1,12 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:starter_kit/foundation/config/app_config.dart';
-import 'package:starter_kit/foundation/config/impl/app_config.dev.dart';
-import 'package:starter_kit/foundation/config/impl/app_config.mock.dart';
-import 'package:starter_kit/foundation/config/impl/app_config.prod.dart';
-import 'package:starter_kit/foundation/config/impl/app_config.staging.dart';
-import 'package:starter_kit/foundation/config/impl/app_config.test.dart';
-import 'package:starter_kit/foundation/enum/environment.enum.dart';
+import 'package:welly/foundation/config/app_config.dart';
+import 'package:welly/foundation/config/impl/app_config.dev.dart';
+import 'package:welly/foundation/config/impl/app_config.mock.dart';
+import 'package:welly/foundation/config/impl/app_config.prod.dart';
+import 'package:welly/foundation/config/impl/app_config.staging.dart';
+import 'package:welly/foundation/config/impl/app_config.test.dart';
+import 'package:welly/foundation/enum/environment.enum.dart';
 
 part 'appconfig.provider.g.dart';
 
@@ -23,8 +24,11 @@ AppConfig appConfig(Ref ref) {
     defaultValue: defaultEnv,
   );
 
+  // Debug: print the environment value
+  debugPrint('🔧 Environment detected: $appEnv');
+
   final Environment environment = Environment.values.firstWhere(
-    (Environment element) => element.name == appEnv,
+    (Environment element) => element.type == appEnv,
     orElse: () => Environment.production,
   );
 

@@ -1,13 +1,18 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:welly/foundation/config/app_config.dart';
 
 /// Purchase service for managing in-app purchases with RevenueCat
 class PurchaseService {
   /// Constructor
-  PurchaseService();
+  PurchaseService({required this.appConfig});
+
+  /// App configuration
+  final AppConfig appConfig;
 
   /// Customer info subject
   final BehaviorSubject<CustomerInfo?> _customerInfoSubject =
@@ -36,8 +41,27 @@ class PurchaseService {
   /// Initialize RevenueCat
   Future<void> initialize() async {
     try {
-      // Configure RevenueCat with your API key
+      // Enable debug logs
       await Purchases.setLogLevel(LogLevel.debug);
+
+      // Configure RevenueCat with platform-specific API key
+      PurchasesConfiguration configuration;
+
+      if (Platform.isAndroid) {
+        configuration = PurchasesConfiguration(
+          appConfig.revenueCatGoogleApiKey,
+        );
+        debugPrint('PurchaseService: Using Google Play configuration');
+      } else if (Platform.isIOS) {
+        final String key = appConfig.revenueCatAppleApiKey;
+        debugPrint('PurchaseService: Using Apple configuration: $key');
+        configuration = PurchasesConfiguration(key);
+        debugPrint('PurchaseService: Using Apple configuration');
+      } else {
+        throw UnsupportedError('Platform not supported for RevenueCat');
+      }
+
+      await Purchases.configure(configuration);
 
       // Set user ID if available (optional)
       // await Purchases.logIn(userId);
@@ -70,13 +94,18 @@ class PurchaseService {
   Future<void> _loadOfferings() async {
     try {
       final Offerings offerings = await Purchases.getOfferings();
+      final List<Offering> offeringsList = <Offering>[];
+
       if (offerings.current != null) {
-        _offeringsSubject.add(<Offering>[offerings.current!]);
+        offeringsList.add(offerings.current!);
       }
+
       if (offerings.all.isNotEmpty) {
-        _offeringsSubject.add(offerings.all.values.toList());
+        offeringsList.addAll(offerings.all.values);
       }
-      debugPrint('PurchaseService: Offerings loaded');
+
+      _offeringsSubject.add(offeringsList);
+      debugPrint('PurchaseService: Offerings loaded: ${offeringsList.length}');
     } on Exception catch (e) {
       debugPrint('PurchaseService: Error loading offerings: $e');
       _offeringsSubject.add(<Offering>[]);
@@ -86,8 +115,8 @@ class PurchaseService {
   /// Purchase a package
   Future<bool> purchasePackage(Package package) async {
     try {
-      final PurchaseResult purchaseResult = await Purchases.purchasePackage(
-        package,
+      final PurchaseResult purchaseResult = await Purchases.purchase(
+        PurchaseParams.package(package),
       );
       _customerInfoSubject.add(purchaseResult.customerInfo);
 

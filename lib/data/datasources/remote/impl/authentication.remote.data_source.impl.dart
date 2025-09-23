@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:starter_kit/data/bodies/login.param.dart';
-import 'package:starter_kit/data/datasources/remote/authentication.remote.data_source.dart';
-import 'package:starter_kit/data/endpoint/authentication.endpoint.dart';
-import 'package:starter_kit/data/model/remote/auth.remote.model.dart';
-import 'package:starter_kit/domain/params/login.param.dart';
+import 'package:welly/data/bodies/login.param.dart';
+import 'package:welly/data/datasources/remote/authentication.remote.data_source.dart';
+import 'package:welly/data/endpoint/authentication.endpoint.dart';
+import 'package:welly/data/model/remote/auth.remote.model.dart';
+import 'package:welly/domain/params/login.param.dart';
 
 /// Authentication Data Source
 final class AuthenticationRemoteDataSourceImpl

@@ -86,7 +86,7 @@ class CodegenLoader extends AssetLoader{
   "onboarding_paywall_annual": "7-day free trial → Annual subscription",
   "onboarding_paywall_monthly": "Monthly subscription",
   "onboarding_paywall_cancel": "Cancelable at any time in 2 clicks",
-  "onboarding_postPaywall_subtitle": "Welcome to the free version (2 entries/day + stats preview).",
+  "onboarding_postPaywall_subtitle": "Welcome to Welly.",
   "onboarding_postPaywall_enter": "Enter the app",
   "onboarding_questionTitle": "Question #{}",
   "onboarding_q1_text": "What is your current frequency of positive writing or reflection?",
@@ -196,7 +196,8 @@ class CodegenLoader extends AssetLoader{
   "aiAnalyze_categorieDominante": "Dominant category",
   "aiAnalyze_progressionSemaine": "Week progression",
   "aiAnalyze_momentMarquant": "Moment marquant",
-  "aiAnalyze_suggestions": "Suggestions"
+  "aiAnalyze_suggestions": "Suggestions",
+  "aiAnalyze_seeReport": "See my AI analysis of the week"
 };
 static const Map<String,dynamic> _fr = {
   "first": "Bonjour",
@@ -270,7 +271,7 @@ static const Map<String,dynamic> _fr = {
   "onboarding_paywall_annual": "Essai gratuit 7j → Abonnement annuel",
   "onboarding_paywall_monthly": "Abonnement mensuel",
   "onboarding_paywall_cancel": "Annulable à tout moment en 2 clics",
-  "onboarding_postPaywall_subtitle": "Bienvenue dans la version gratuite (2 entrées/jour + aperçu stats).",
+  "onboarding_postPaywall_subtitle": "Bienvenue dans Welly.",
   "onboarding_postPaywall_enter": "Entrer dans l’app",
   "onboarding_questionTitle": "Question #{}",
   "onboarding_q1_text": "Quelle est ta fréquence actuelle d’écriture ou de réflexion positive ?",
@@ -380,7 +381,8 @@ static const Map<String,dynamic> _fr = {
   "aiAnalyze_categorieDominante": "Catégorie dominante",
   "aiAnalyze_progressionSemaine": "Progression de la semaine",
   "aiAnalyze_momentMarquant": "Moment marquant",
-  "aiAnalyze_suggestions": "Suggestions"
+  "aiAnalyze_suggestions": "Suggestions",
+  "aiAnalyze_seeReport": "Voir mon analyse IA de la semaine"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": _en, "fr": _fr};
 }

@@ -185,5 +185,6 @@ abstract class  LocaleKeys {
   static const aiAnalyze_progressionSemaine = 'aiAnalyze_progressionSemaine';
   static const aiAnalyze_momentMarquant = 'aiAnalyze_momentMarquant';
   static const aiAnalyze_suggestions = 'aiAnalyze_suggestions';
+  static const aiAnalyze_seeReport = 'aiAnalyze_seeReport';
 
 }

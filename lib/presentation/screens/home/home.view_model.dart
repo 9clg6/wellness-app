@@ -2,16 +2,16 @@ import 'package:confetti/confetti.dart' show ConfettiController;
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
-import 'package:starter_kit/core/providers/core/services/happen_action.service.provider.dart';
-import 'package:starter_kit/core/providers/core/services/navigation.service.provider.dart';
-import 'package:starter_kit/core/providers/core/services/user.service.provider.dart';
-import 'package:starter_kit/core/providers/foundation/services/happen_action.service.dart';
-import 'package:starter_kit/core/providers/foundation/services/navigation.service.dart';
-import 'package:starter_kit/core/providers/foundation/services/user.service.dart';
-import 'package:starter_kit/core/providers/presentation/router.provider.dart';
-import 'package:starter_kit/core/utils/debouncer.util.dart';
-import 'package:starter_kit/presentation/screens/home/home.state.dart';
+import 'package:welly/core/localization/generated/locale_keys.g.dart';
+import 'package:welly/core/providers/core/services/happen_action.service.provider.dart';
+import 'package:welly/core/providers/core/services/navigation.service.provider.dart';
+import 'package:welly/core/providers/core/services/user.service.provider.dart';
+import 'package:welly/core/providers/foundation/services/happen_action.service.dart';
+import 'package:welly/core/providers/foundation/services/navigation.service.dart';
+import 'package:welly/core/providers/foundation/services/user.service.dart';
+import 'package:welly/core/providers/presentation/router.provider.dart';
+import 'package:welly/core/utils/debouncer.util.dart';
+import 'package:welly/presentation/screens/home/home.state.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 part 'home.view_model.g.dart';
@@ -95,7 +95,7 @@ class HomeViewModel extends _$HomeViewModel {
       showSnackBar(overlay);
     });
 
-    return HomeState.initial(isLoading: false);
+    return HomeState.initial();
   }
 
   /// Show snack bar
@@ -203,14 +203,14 @@ class HomeViewModel extends _$HomeViewModel {
 
   /// Whether all steps have been completed
   bool get hasCompletedAllSteps =>
-      state.requireValue.step >= state.requireValue.totalSteps;
+      state.requireValue.step >= HomeStateExtension.totalSteps;
 
   /// Reset to a fresh day (and clear previous entries)
   void resetDay() {
     _happenActionService.clearEntries();
     happenController.clear();
     becauseController.clear();
-    state = AsyncValue<HomeState>.data(HomeState.initial(isLoading: false));
+    state = AsyncValue<HomeState>.data(HomeState.initial());
   }
 
   /// Trigger full completed
@@ -279,7 +279,7 @@ class HomeViewModel extends _$HomeViewModel {
 
     await Future<void>.delayed(const Duration(milliseconds: 800));
     final bool isLast =
-        state.requireValue.step + 1 >= state.requireValue.totalSteps;
+        state.requireValue.step + 1 >= HomeStateExtension.totalSteps;
     state = AsyncValue<HomeState>.data(
       state.requireValue.copyWith(messageStep: isLast ? 2 : 1),
     );

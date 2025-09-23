@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$RealHomeState {
 
- bool get isLoading; String get surname; bool get isTodayEventsFilled;
+ String get surname; bool get isTodayEventsFilled; bool get doesReportExist;
 /// Create a copy of RealHomeState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $RealHomeStateCopyWith<RealHomeState> get copyWith => _$RealHomeStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is RealHomeState&&(identical(other.isLoading, isLoading) || other.isLoading == isLoading)&&(identical(other.surname, surname) || other.surname == surname)&&(identical(other.isTodayEventsFilled, isTodayEventsFilled) || other.isTodayEventsFilled == isTodayEventsFilled));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RealHomeState&&(identical(other.surname, surname) || other.surname == surname)&&(identical(other.isTodayEventsFilled, isTodayEventsFilled) || other.isTodayEventsFilled == isTodayEventsFilled)&&(identical(other.doesReportExist, doesReportExist) || other.doesReportExist == doesReportExist));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,isLoading,surname,isTodayEventsFilled);
+int get hashCode => Object.hash(runtimeType,surname,isTodayEventsFilled,doesReportExist);
 
 @override
 String toString() {
-  return 'RealHomeState(isLoading: $isLoading, surname: $surname, isTodayEventsFilled: $isTodayEventsFilled)';
+  return 'RealHomeState(surname: $surname, isTodayEventsFilled: $isTodayEventsFilled, doesReportExist: $doesReportExist)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $RealHomeStateCopyWith<$Res>  {
   factory $RealHomeStateCopyWith(RealHomeState value, $Res Function(RealHomeState) _then) = _$RealHomeStateCopyWithImpl;
 @useResult
 $Res call({
- String surname, bool isLoading, bool isTodayEventsFilled
+ String surname, bool isTodayEventsFilled, bool doesReportExist
 });
 
 
@@ -62,11 +62,11 @@ class _$RealHomeStateCopyWithImpl<$Res>
 
 /// Create a copy of RealHomeState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? surname = null,Object? isLoading = null,Object? isTodayEventsFilled = null,}) {
-  return _then(RealHomeState(
+@pragma('vm:prefer-inline') @override $Res call({Object? surname = null,Object? isTodayEventsFilled = null,Object? doesReportExist = null,}) {
+  return _then(_self.copyWith(
 surname: null == surname ? _self.surname : surname // ignore: cast_nullable_to_non_nullable
-as String,isLoading: null == isLoading ? _self.isLoading : isLoading // ignore: cast_nullable_to_non_nullable
-as bool,isTodayEventsFilled: null == isTodayEventsFilled ? _self.isTodayEventsFilled : isTodayEventsFilled // ignore: cast_nullable_to_non_nullable
+as String,isTodayEventsFilled: null == isTodayEventsFilled ? _self.isTodayEventsFilled : isTodayEventsFilled // ignore: cast_nullable_to_non_nullable
+as bool,doesReportExist: null == doesReportExist ? _self.doesReportExist : doesReportExist // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
 }
@@ -88,10 +88,11 @@ extension RealHomeStatePatterns on RealHomeState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _RealHomeState value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _:
+case _RealHomeState() when $default != null:
+return $default(_that);case _:
   return orElse();
 
 }
@@ -109,10 +110,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _RealHomeState value)  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _RealHomeState():
+return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -129,10 +131,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _RealHomeState value)?  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _RealHomeState() when $default != null:
+return $default(_that);case _:
   return null;
 
 }
@@ -149,9 +152,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String surname,  bool isTodayEventsFilled,  bool doesReportExist)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _:
+case _RealHomeState() when $default != null:
+return $default(_that.surname,_that.isTodayEventsFilled,_that.doesReportExist);case _:
   return orElse();
 
 }
@@ -169,9 +173,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String surname,  bool isTodayEventsFilled,  bool doesReportExist)  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _RealHomeState():
+return $default(_that.surname,_that.isTodayEventsFilled,_that.doesReportExist);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -188,13 +193,84 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String surname,  bool isTodayEventsFilled,  bool doesReportExist)?  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _RealHomeState() when $default != null:
+return $default(_that.surname,_that.isTodayEventsFilled,_that.doesReportExist);case _:
   return null;
 
 }
 }
+
+}
+
+/// @nodoc
+
+
+class _RealHomeState implements RealHomeState {
+  const _RealHomeState({required this.surname, required this.isTodayEventsFilled, required this.doesReportExist});
+  
+
+@override final  String surname;
+@override final  bool isTodayEventsFilled;
+@override final  bool doesReportExist;
+
+/// Create a copy of RealHomeState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$RealHomeStateCopyWith<_RealHomeState> get copyWith => __$RealHomeStateCopyWithImpl<_RealHomeState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _RealHomeState&&(identical(other.surname, surname) || other.surname == surname)&&(identical(other.isTodayEventsFilled, isTodayEventsFilled) || other.isTodayEventsFilled == isTodayEventsFilled)&&(identical(other.doesReportExist, doesReportExist) || other.doesReportExist == doesReportExist));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,surname,isTodayEventsFilled,doesReportExist);
+
+@override
+String toString() {
+  return 'RealHomeState(surname: $surname, isTodayEventsFilled: $isTodayEventsFilled, doesReportExist: $doesReportExist)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$RealHomeStateCopyWith<$Res> implements $RealHomeStateCopyWith<$Res> {
+  factory _$RealHomeStateCopyWith(_RealHomeState value, $Res Function(_RealHomeState) _then) = __$RealHomeStateCopyWithImpl;
+@override @useResult
+$Res call({
+ String surname, bool isTodayEventsFilled, bool doesReportExist
+});
+
+
+
+
+}
+/// @nodoc
+class __$RealHomeStateCopyWithImpl<$Res>
+    implements _$RealHomeStateCopyWith<$Res> {
+  __$RealHomeStateCopyWithImpl(this._self, this._then);
+
+  final _RealHomeState _self;
+  final $Res Function(_RealHomeState) _then;
+
+/// Create a copy of RealHomeState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? surname = null,Object? isTodayEventsFilled = null,Object? doesReportExist = null,}) {
+  return _then(_RealHomeState(
+surname: null == surname ? _self.surname : surname // ignore: cast_nullable_to_non_nullable
+as String,isTodayEventsFilled: null == isTodayEventsFilled ? _self.isTodayEventsFilled : isTodayEventsFilled // ignore: cast_nullable_to_non_nullable
+as bool,doesReportExist: null == doesReportExist ? _self.doesReportExist : doesReportExist // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
 
 }
 

@@ -1,5 +1,5 @@
-import 'package:starter_kit/domain/repositories/authentication.repository.dart';
-import 'package:starter_kit/foundation/interfaces/future.usecases.dart';
+import 'package:welly/domain/repositories/authentication.repository.dart';
+import 'package:welly/foundation/interfaces/future.usecases.dart';
 
 /// Logout Use Case
 class LogoutUseCase extends FutureUseCase<void> {

@@ -1,7 +1,7 @@
 import 'package:sembast/sembast.dart';
-import 'package:starter_kit/core/extensions/date.extension.dart';
-import 'package:starter_kit/data/datasources/local/happen_action.local_data_source.dart';
-import 'package:starter_kit/data/model/local/happen_action.local_model.dart';
+import 'package:welly/core/extensions/date.extension.dart';
+import 'package:welly/data/datasources/local/happen_action.local_data_source.dart';
+import 'package:welly/data/model/local/happen_action.local_model.dart';
 
 /// Implementation of local data source using Sembast
 class HappenActionLocalDataSourceImpl implements HappenActionLocalDataSource {

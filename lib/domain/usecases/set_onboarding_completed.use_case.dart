@@ -1,5 +1,5 @@
-import 'package:starter_kit/domain/repositories/user.repository.dart';
-import 'package:starter_kit/foundation/interfaces/future.usecases.dart';
+import 'package:welly/domain/repositories/user.repository.dart';
+import 'package:welly/foundation/interfaces/future.usecases.dart';
 
 /// Use case to set onboarding as completed
 class SetOnboardingCompletedUseCase extends FutureUseCase<void> {

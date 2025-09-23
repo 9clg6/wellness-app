@@ -1,14 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:starter_kit/core/providers/core/services/user.service.provider.dart';
-import 'package:starter_kit/core/providers/foundation/services/user.service.dart';
-import 'package:starter_kit/presentation/on_boarding/on_boarding.screen.dart';
-import 'package:starter_kit/presentation/screens/ai_analyze/ai_analyze.screen.dart';
-import 'package:starter_kit/presentation/screens/authentication/authentication.screen.dart';
-import 'package:starter_kit/presentation/screens/home/home.screen.dart';
-import 'package:starter_kit/presentation/screens/real_home/real_home.screen.dart';
-import 'package:starter_kit/presentation/screens/review/review.screen.dart';
+import 'package:welly/core/providers/core/services/user.service.provider.dart';
+import 'package:welly/core/providers/foundation/services/user.service.dart';
+import 'package:welly/presentation/on_boarding/on_boarding.screen.dart';
+import 'package:welly/presentation/screens/ai_analyze/ai_analyze.screen.dart';
+import 'package:welly/presentation/screens/authentication/authentication.screen.dart';
+import 'package:welly/presentation/screens/home/home.screen.dart';
+import 'package:welly/presentation/screens/real_home/real_home.screen.dart';
+import 'package:welly/presentation/screens/review/review.screen.dart';
 
 part 'app_router.gr.dart';
 

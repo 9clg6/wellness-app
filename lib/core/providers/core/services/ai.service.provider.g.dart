@@ -6,7 +6,7 @@ part of 'ai.service.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$aiServiceHash() => r'fa370073f664d04c10547f52e98b5beab1eacaed';
+String _$aiServiceHash() => r'ca1005e6ea79983bbb5b068f0bb8dbf68225852c';
 
 /// Ai service provider
 ///

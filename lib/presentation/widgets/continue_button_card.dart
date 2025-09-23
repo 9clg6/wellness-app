@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
-import 'package:starter_kit/presentation/widgets/tappable_componenent.dart';
-import 'package:starter_kit/presentation/widgets/text_variant.dart';
+import 'package:welly/core/localization/generated/locale_keys.g.dart';
+import 'package:welly/presentation/widgets/tappable_componenent.dart';
+import 'package:welly/presentation/widgets/text_variant.dart';
 
 /// Continue button card
 class ContinueButtonCard extends StatelessWidget {

@@ -1,17 +1,17 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:starter_kit/core/providers/core/services/navigation.service.provider.dart';
-import 'package:starter_kit/core/providers/core/usecases/get_local_user.use_case.provider.dart';
-import 'package:starter_kit/core/providers/core/usecases/get_onboarding_answers.use_case.provider.dart';
-import 'package:starter_kit/core/providers/core/usecases/get_user.use_case.provider.dart';
-import 'package:starter_kit/core/providers/core/usecases/is_onboarding_completed.use_case.provider.dart';
-import 'package:starter_kit/core/providers/core/usecases/login.use_case.provider.dart';
-import 'package:starter_kit/core/providers/core/usecases/logout.use_case.provider.dart';
-import 'package:starter_kit/core/providers/core/usecases/save_auth.use_case.provider.dart';
-import 'package:starter_kit/core/providers/core/usecases/save_onboarding_answers.use_case.provider.dart';
-import 'package:starter_kit/core/providers/core/usecases/save_user.use_case.provider.dart';
-import 'package:starter_kit/core/providers/core/usecases/set_onboarding_completed.use_case.provider.dart';
-import 'package:starter_kit/core/providers/foundation/services/user.service.dart';
+import 'package:welly/core/providers/core/services/navigation.service.provider.dart';
+import 'package:welly/core/providers/core/usecases/get_local_user.use_case.provider.dart';
+import 'package:welly/core/providers/core/usecases/get_onboarding_answers.use_case.provider.dart';
+import 'package:welly/core/providers/core/usecases/get_user.use_case.provider.dart';
+import 'package:welly/core/providers/core/usecases/is_onboarding_completed.use_case.provider.dart';
+import 'package:welly/core/providers/core/usecases/login.use_case.provider.dart';
+import 'package:welly/core/providers/core/usecases/logout.use_case.provider.dart';
+import 'package:welly/core/providers/core/usecases/save_auth.use_case.provider.dart';
+import 'package:welly/core/providers/core/usecases/save_onboarding_answers.use_case.provider.dart';
+import 'package:welly/core/providers/core/usecases/save_user.use_case.provider.dart';
+import 'package:welly/core/providers/core/usecases/set_onboarding_completed.use_case.provider.dart';
+import 'package:welly/core/providers/foundation/services/user.service.dart';
 
 part 'user.service.provider.g.dart';
 

@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$FirstQuizzState {
 
- int get currentIndex; OnboardingAnswers get answers; String? get tempName; String? get tempAge; bool get isCompleted; int? get selectedResponseIndex; bool get showBtn;
+ OnboardingAnswers get answers; int get currentIndex; bool get isCompleted; bool get showBtn; String? get tempName; String? get tempAge; int? get selectedResponseIndex;
 /// Create a copy of FirstQuizzState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $FirstQuizzStateCopyWith<FirstQuizzState> get copyWith => _$FirstQuizzStateCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is FirstQuizzState&&(identical(other.currentIndex, currentIndex) || other.currentIndex == currentIndex)&&(identical(other.answers, answers) || other.answers == answers)&&(identical(other.tempName, tempName) || other.tempName == tempName)&&(identical(other.tempAge, tempAge) || other.tempAge == tempAge)&&(identical(other.isCompleted, isCompleted) || other.isCompleted == isCompleted)&&(identical(other.selectedResponseIndex, selectedResponseIndex) || other.selectedResponseIndex == selectedResponseIndex)&&(identical(other.showBtn, showBtn) || other.showBtn == showBtn));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is FirstQuizzState&&(identical(other.answers, answers) || other.answers == answers)&&(identical(other.currentIndex, currentIndex) || other.currentIndex == currentIndex)&&(identical(other.isCompleted, isCompleted) || other.isCompleted == isCompleted)&&(identical(other.showBtn, showBtn) || other.showBtn == showBtn)&&(identical(other.tempName, tempName) || other.tempName == tempName)&&(identical(other.tempAge, tempAge) || other.tempAge == tempAge)&&(identical(other.selectedResponseIndex, selectedResponseIndex) || other.selectedResponseIndex == selectedResponseIndex));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,currentIndex,answers,tempName,tempAge,isCompleted,selectedResponseIndex,showBtn);
+int get hashCode => Object.hash(runtimeType,answers,currentIndex,isCompleted,showBtn,tempName,tempAge,selectedResponseIndex);
 
 @override
 String toString() {
-  return 'FirstQuizzState(currentIndex: $currentIndex, answers: $answers, tempName: $tempName, tempAge: $tempAge, isCompleted: $isCompleted, selectedResponseIndex: $selectedResponseIndex, showBtn: $showBtn)';
+  return 'FirstQuizzState(answers: $answers, currentIndex: $currentIndex, isCompleted: $isCompleted, showBtn: $showBtn, tempName: $tempName, tempAge: $tempAge, selectedResponseIndex: $selectedResponseIndex)';
 }
 
 
@@ -45,11 +45,11 @@ abstract mixin class $FirstQuizzStateCopyWith<$Res>  {
   factory $FirstQuizzStateCopyWith(FirstQuizzState value, $Res Function(FirstQuizzState) _then) = _$FirstQuizzStateCopyWithImpl;
 @useResult
 $Res call({
- int currentIndex, OnboardingAnswers answers, String? tempName, String? tempAge, bool isCompleted, int? selectedResponseIndex, bool showBtn
+ OnboardingAnswers answers, int currentIndex, bool isCompleted, bool showBtn, String? tempName, String? tempAge, int? selectedResponseIndex
 });
 
 
-
+$OnboardingAnswersCopyWith<$Res> get answers;
 
 }
 /// @nodoc
@@ -62,19 +62,28 @@ class _$FirstQuizzStateCopyWithImpl<$Res>
 
 /// Create a copy of FirstQuizzState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? currentIndex = null,Object? answers = null,Object? tempName = freezed,Object? tempAge = freezed,Object? isCompleted = null,Object? selectedResponseIndex = freezed,Object? showBtn = null,}) {
-  return _then(FirstQuizzState(
-currentIndex: null == currentIndex ? _self.currentIndex : currentIndex // ignore: cast_nullable_to_non_nullable
-as int,answers: null == answers ? _self.answers : answers // ignore: cast_nullable_to_non_nullable
-as OnboardingAnswers,tempName: freezed == tempName ? _self.tempName : tempName // ignore: cast_nullable_to_non_nullable
+@pragma('vm:prefer-inline') @override $Res call({Object? answers = null,Object? currentIndex = null,Object? isCompleted = null,Object? showBtn = null,Object? tempName = freezed,Object? tempAge = freezed,Object? selectedResponseIndex = freezed,}) {
+  return _then(_self.copyWith(
+answers: null == answers ? _self.answers : answers // ignore: cast_nullable_to_non_nullable
+as OnboardingAnswers,currentIndex: null == currentIndex ? _self.currentIndex : currentIndex // ignore: cast_nullable_to_non_nullable
+as int,isCompleted: null == isCompleted ? _self.isCompleted : isCompleted // ignore: cast_nullable_to_non_nullable
+as bool,showBtn: null == showBtn ? _self.showBtn : showBtn // ignore: cast_nullable_to_non_nullable
+as bool,tempName: freezed == tempName ? _self.tempName : tempName // ignore: cast_nullable_to_non_nullable
 as String?,tempAge: freezed == tempAge ? _self.tempAge : tempAge // ignore: cast_nullable_to_non_nullable
-as String?,isCompleted: null == isCompleted ? _self.isCompleted : isCompleted // ignore: cast_nullable_to_non_nullable
-as bool,selectedResponseIndex: freezed == selectedResponseIndex ? _self.selectedResponseIndex : selectedResponseIndex // ignore: cast_nullable_to_non_nullable
-as int?,showBtn: null == showBtn ? _self.showBtn : showBtn // ignore: cast_nullable_to_non_nullable
-as bool,
+as String?,selectedResponseIndex: freezed == selectedResponseIndex ? _self.selectedResponseIndex : selectedResponseIndex // ignore: cast_nullable_to_non_nullable
+as int?,
   ));
 }
-
+/// Create a copy of FirstQuizzState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$OnboardingAnswersCopyWith<$Res> get answers {
+  
+  return $OnboardingAnswersCopyWith<$Res>(_self.answers, (value) {
+    return _then(_self.copyWith(answers: value));
+  });
+}
 }
 
 
@@ -92,10 +101,11 @@ extension FirstQuizzStatePatterns on FirstQuizzState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _FirstQuizzState value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _:
+case _FirstQuizzState() when $default != null:
+return $default(_that);case _:
   return orElse();
 
 }
@@ -113,10 +123,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _FirstQuizzState value)  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _FirstQuizzState():
+return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -133,10 +144,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _FirstQuizzState value)?  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _FirstQuizzState() when $default != null:
+return $default(_that);case _:
   return null;
 
 }
@@ -153,9 +165,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( OnboardingAnswers answers,  int currentIndex,  bool isCompleted,  bool showBtn,  String? tempName,  String? tempAge,  int? selectedResponseIndex)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _:
+case _FirstQuizzState() when $default != null:
+return $default(_that.answers,_that.currentIndex,_that.isCompleted,_that.showBtn,_that.tempName,_that.tempAge,_that.selectedResponseIndex);case _:
   return orElse();
 
 }
@@ -173,9 +186,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( OnboardingAnswers answers,  int currentIndex,  bool isCompleted,  bool showBtn,  String? tempName,  String? tempAge,  int? selectedResponseIndex)  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _FirstQuizzState():
+return $default(_that.answers,_that.currentIndex,_that.isCompleted,_that.showBtn,_that.tempName,_that.tempAge,_that.selectedResponseIndex);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -192,14 +206,102 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( OnboardingAnswers answers,  int currentIndex,  bool isCompleted,  bool showBtn,  String? tempName,  String? tempAge,  int? selectedResponseIndex)?  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _FirstQuizzState() when $default != null:
+return $default(_that.answers,_that.currentIndex,_that.isCompleted,_that.showBtn,_that.tempName,_that.tempAge,_that.selectedResponseIndex);case _:
   return null;
 
 }
 }
 
+}
+
+/// @nodoc
+
+
+class _FirstQuizzState implements FirstQuizzState {
+  const _FirstQuizzState({required this.answers, required this.currentIndex, required this.isCompleted, required this.showBtn, this.tempName, this.tempAge, this.selectedResponseIndex});
+  
+
+@override final  OnboardingAnswers answers;
+@override final  int currentIndex;
+@override final  bool isCompleted;
+@override final  bool showBtn;
+@override final  String? tempName;
+@override final  String? tempAge;
+@override final  int? selectedResponseIndex;
+
+/// Create a copy of FirstQuizzState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$FirstQuizzStateCopyWith<_FirstQuizzState> get copyWith => __$FirstQuizzStateCopyWithImpl<_FirstQuizzState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _FirstQuizzState&&(identical(other.answers, answers) || other.answers == answers)&&(identical(other.currentIndex, currentIndex) || other.currentIndex == currentIndex)&&(identical(other.isCompleted, isCompleted) || other.isCompleted == isCompleted)&&(identical(other.showBtn, showBtn) || other.showBtn == showBtn)&&(identical(other.tempName, tempName) || other.tempName == tempName)&&(identical(other.tempAge, tempAge) || other.tempAge == tempAge)&&(identical(other.selectedResponseIndex, selectedResponseIndex) || other.selectedResponseIndex == selectedResponseIndex));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,answers,currentIndex,isCompleted,showBtn,tempName,tempAge,selectedResponseIndex);
+
+@override
+String toString() {
+  return 'FirstQuizzState(answers: $answers, currentIndex: $currentIndex, isCompleted: $isCompleted, showBtn: $showBtn, tempName: $tempName, tempAge: $tempAge, selectedResponseIndex: $selectedResponseIndex)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$FirstQuizzStateCopyWith<$Res> implements $FirstQuizzStateCopyWith<$Res> {
+  factory _$FirstQuizzStateCopyWith(_FirstQuizzState value, $Res Function(_FirstQuizzState) _then) = __$FirstQuizzStateCopyWithImpl;
+@override @useResult
+$Res call({
+ OnboardingAnswers answers, int currentIndex, bool isCompleted, bool showBtn, String? tempName, String? tempAge, int? selectedResponseIndex
+});
+
+
+@override $OnboardingAnswersCopyWith<$Res> get answers;
+
+}
+/// @nodoc
+class __$FirstQuizzStateCopyWithImpl<$Res>
+    implements _$FirstQuizzStateCopyWith<$Res> {
+  __$FirstQuizzStateCopyWithImpl(this._self, this._then);
+
+  final _FirstQuizzState _self;
+  final $Res Function(_FirstQuizzState) _then;
+
+/// Create a copy of FirstQuizzState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? answers = null,Object? currentIndex = null,Object? isCompleted = null,Object? showBtn = null,Object? tempName = freezed,Object? tempAge = freezed,Object? selectedResponseIndex = freezed,}) {
+  return _then(_FirstQuizzState(
+answers: null == answers ? _self.answers : answers // ignore: cast_nullable_to_non_nullable
+as OnboardingAnswers,currentIndex: null == currentIndex ? _self.currentIndex : currentIndex // ignore: cast_nullable_to_non_nullable
+as int,isCompleted: null == isCompleted ? _self.isCompleted : isCompleted // ignore: cast_nullable_to_non_nullable
+as bool,showBtn: null == showBtn ? _self.showBtn : showBtn // ignore: cast_nullable_to_non_nullable
+as bool,tempName: freezed == tempName ? _self.tempName : tempName // ignore: cast_nullable_to_non_nullable
+as String?,tempAge: freezed == tempAge ? _self.tempAge : tempAge // ignore: cast_nullable_to_non_nullable
+as String?,selectedResponseIndex: freezed == selectedResponseIndex ? _self.selectedResponseIndex : selectedResponseIndex // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+
+/// Create a copy of FirstQuizzState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$OnboardingAnswersCopyWith<$Res> get answers {
+  
+  return $OnboardingAnswersCopyWith<$Res>(_self.answers, (value) {
+    return _then(_self.copyWith(answers: value));
+  });
+}
 }
 
 // dart format on

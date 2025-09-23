@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:starter_kit/core/providers/core/services/onboarding.service.provider.dart';
-import 'package:starter_kit/domain/entities/onboarding_answers.dart';
-import 'package:starter_kit/presentation/on_boarding/first_quizz/first_quizz.state.dart';
-import 'package:starter_kit/presentation/on_boarding/on_boarding.view_model.dart';
+import 'package:welly/core/providers/core/services/onboarding.service.provider.dart';
+import 'package:welly/domain/entities/onboarding_answers.dart';
+import 'package:welly/presentation/on_boarding/first_quizz/first_quizz.state.dart';
+import 'package:welly/presentation/on_boarding/on_boarding.view_model.dart';
 
 part 'first_quizz.view_model.g.dart';
 

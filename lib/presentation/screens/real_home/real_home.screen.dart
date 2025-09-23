@@ -2,18 +2,19 @@ import 'package:animate_gradient/animate_gradient.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:starter_kit/core/extensions/date.extension.dart';
-import 'package:starter_kit/core/extensions/string.extension.dart';
-import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
-import 'package:starter_kit/presentation/screens/real_home/real_home.state.dart';
-import 'package:starter_kit/presentation/screens/real_home/real_home.view_model.dart';
-import 'package:starter_kit/presentation/widgets/custom_loader.dart';
-import 'package:starter_kit/presentation/widgets/error_placeholder.dart';
-import 'package:starter_kit/presentation/widgets/gradient_background.dart';
-import 'package:starter_kit/presentation/widgets/tappable_componenent.dart';
-import 'package:starter_kit/presentation/widgets/text_variant.dart';
+import 'package:welly/core/extensions/date.extension.dart';
+import 'package:welly/core/extensions/string.extension.dart';
+import 'package:welly/core/localization/generated/locale_keys.g.dart';
+import 'package:welly/presentation/screens/real_home/real_home.state.dart';
+import 'package:welly/presentation/screens/real_home/real_home.view_model.dart';
+import 'package:welly/presentation/widgets/custom_loader.dart';
+import 'package:welly/presentation/widgets/error_placeholder.dart';
+import 'package:welly/presentation/widgets/gradient_background.dart';
+import 'package:welly/presentation/widgets/tappable_componenent.dart';
+import 'package:welly/presentation/widgets/text_variant.dart';
 
 /// Real home screen
 @RoutePage()
@@ -138,6 +139,9 @@ class _AnalyzeWithAiBtn extends ConsumerWidget {
     final RealHomeViewModel viewModel = ref.watch(
       realHomeViewModelProvider.notifier,
     );
+    final RealHomeState state = ref
+        .watch(realHomeViewModelProvider)
+        .requireValue;
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
     return TappableComponent(
@@ -173,7 +177,9 @@ class _AnalyzeWithAiBtn extends ConsumerWidget {
                 const Gap(28),
                 Flexible(
                   child: TextVariant(
-                    LocaleKeys.reviewScreenAnalyzeWithAi.tr(),
+                    state.doesReportExist
+                        ? LocaleKeys.aiAnalyze_seeReport.tr()
+                        : LocaleKeys.reviewScreenAnalyzeWithAi.tr(),
                     variantType: TextVariantType.titleMedium,
                     fontSize: 16,
                   ),
@@ -259,39 +265,46 @@ class _MainActionBtn extends ConsumerWidget {
     );
     final ColorScheme colorScheme = Theme.of(context).colorScheme;
 
-    return TappableComponent(
-      color: colorScheme.primary,
-      splashColor: colorScheme.onPrimary.withAlpha(30),
-      onTap: viewModel.onTapAddHappenAction,
-      borderRadius: BorderRadius.circular(24),
-      boxShadow: <BoxShadow>[
-        BoxShadow(
-          color: colorScheme.primary.withAlpha(100),
-          blurRadius: 1,
-          offset: const Offset(0, 5),
-          spreadRadius: 1,
-        ),
+    return Animate(
+      delay: Duration.zero,
+      effects: const <Effect<dynamic>>[
+        FadeEffect(duration: Duration(milliseconds: 250)),
+        SlideEffect(begin: Offset(0, -0.1), delay: Duration(milliseconds: 250)),
       ],
-      child: Container(
-        padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: colorScheme.onPrimary.withAlpha(20)),
-        ),
-        child: Column(
-          children: <Widget>[
-            TextVariant(
-              LocaleKeys.reviewScreenTitle3.tr(),
-              variantType: TextVariantType.bodyLarge,
-              fontWeight: FontWeight.bold,
-              color: colorScheme.onPrimary,
-            ),
-            TextVariant(
-              LocaleKeys.reviewScreenTitle4.tr(),
-              color: colorScheme.onPrimary,
-              fontWeight: FontWeight.w300,
-            ),
-          ],
+      child: TappableComponent(
+        color: colorScheme.primary,
+        splashColor: colorScheme.onPrimary.withAlpha(30),
+        onTap: viewModel.onTapAddHappenAction,
+        borderRadius: BorderRadius.circular(24),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            color: colorScheme.primary.withAlpha(100),
+            blurRadius: 1,
+            offset: const Offset(0, 5),
+            spreadRadius: 1,
+          ),
+        ],
+        child: Container(
+          padding: const EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(24),
+            border: Border.all(color: colorScheme.onPrimary.withAlpha(20)),
+          ),
+          child: Column(
+            children: <Widget>[
+              TextVariant(
+                LocaleKeys.reviewScreenTitle3.tr(),
+                variantType: TextVariantType.bodyLarge,
+                fontWeight: FontWeight.bold,
+                color: colorScheme.onPrimary,
+              ),
+              TextVariant(
+                LocaleKeys.reviewScreenTitle4.tr(),
+                color: colorScheme.onPrimary,
+                fontWeight: FontWeight.w300,
+              ),
+            ],
+          ),
         ),
       ),
     );

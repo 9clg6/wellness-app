@@ -1,5 +1,5 @@
 
-import 'package:starter_kit/foundation/enum/environment.enum.dart';
+import 'package:welly/foundation/enum/environment.enum.dart';
 
 /// App config
 abstract class AppConfig {
@@ -9,6 +9,8 @@ abstract class AppConfig {
     required this.baseUrl,
     required this.env,
     required this.openApiBaseUrl,
+    required this.revenueCatAppleApiKey,
+    required this.revenueCatGoogleApiKey,
   });
 
   /// Environment
@@ -22,6 +24,12 @@ abstract class AppConfig {
 
   /// Base url
   final String baseUrl;
+
+  /// RevenueCat Apple API key
+  final String revenueCatAppleApiKey;
+
+  /// RevenueCat Google API key
+  final String revenueCatGoogleApiKey;
 
   /// Is production
   bool get isProd => env == Environment.production;

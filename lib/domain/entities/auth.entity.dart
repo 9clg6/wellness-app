@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:starter_kit/data/model/local/auth.local.model.dart';
-import 'package:starter_kit/data/model/remote/auth.remote.model.dart';
+import 'package:welly/data/model/local/auth.local.model.dart';
+import 'package:welly/data/model/remote/auth.remote.model.dart';
 
 part 'auth.entity.freezed.dart';
 

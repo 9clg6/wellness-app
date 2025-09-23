@@ -244,7 +244,6 @@ class FormInput extends StatelessWidget {
           errorText: errorText,
           error: errorBuilder,
           errorMaxLines: 3,
-
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(borderRadius),
             borderSide: BorderSide(

@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:starter_kit/domain/entities/happen_action.entity.dart';
+import 'package:welly/domain/entities/happen_action.entity.dart';
 
 part 'daily_happen_action.entity.freezed.dart';
 
