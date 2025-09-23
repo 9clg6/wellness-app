@@ -1,6 +1,6 @@
-import 'package:starter_kit/domain/entities/onboarding_answers.dart';
-import 'package:starter_kit/domain/repositories/user.repository.dart';
-import 'package:starter_kit/foundation/interfaces/future.usecases.dart';
+import 'package:welly/domain/entities/onboarding_answers.dart';
+import 'package:welly/domain/repositories/user.repository.dart';
+import 'package:welly/foundation/interfaces/future.usecases.dart';
 
 /// Use case to save onboarding answers
 class SaveOnboardingAnswersUseCase

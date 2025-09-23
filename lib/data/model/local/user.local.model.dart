@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:starter_kit/domain/entities/user.entity.dart';
+import 'package:welly/domain/entities/user.entity.dart';
 
 part 'user.local.model.freezed.dart';
 part 'user.local.model.g.dart';

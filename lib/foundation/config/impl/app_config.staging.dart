@@ -1,5 +1,5 @@
-import 'package:starter_kit/foundation/config/app_config.dart';
-import 'package:starter_kit/foundation/enum/environment.enum.dart';
+import 'package:welly/foundation/config/app_config.dart';
+import 'package:welly/foundation/enum/environment.enum.dart';
 
 /// App config staging
 final class AppConfigStaging implements AppConfig {
@@ -14,6 +14,12 @@ final class AppConfigStaging implements AppConfig {
 
   @override
   String get openApiBaseUrl => 'https://api.openai.com/v1/';
+
+  @override
+  String get revenueCatAppleApiKey => 'appl_staging_api_key_here';
+
+  @override
+  String get revenueCatGoogleApiKey => 'goog_staging_api_key_here';
 
   @override
   bool get isProd => false;

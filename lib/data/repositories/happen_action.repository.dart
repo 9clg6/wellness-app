@@ -1,8 +1,8 @@
-import 'package:starter_kit/data/datasources/local/happen_action.local_data_source.dart';
-import 'package:starter_kit/data/model/local/happen_action.local_model.dart';
-import 'package:starter_kit/domain/entities/daily_happen_action.entity.dart';
-import 'package:starter_kit/domain/entities/happen_action.entity.dart';
-import 'package:starter_kit/domain/repositories/happen_action.repository.dart';
+import 'package:welly/data/datasources/local/happen_action.local_data_source.dart';
+import 'package:welly/data/model/local/happen_action.local_model.dart';
+import 'package:welly/domain/entities/daily_happen_action.entity.dart';
+import 'package:welly/domain/entities/happen_action.entity.dart';
+import 'package:welly/domain/repositories/happen_action.repository.dart';
 
 /// Implementation of happen action repository
 class HappenActionRepositoryImpl implements HappenActionRepository {

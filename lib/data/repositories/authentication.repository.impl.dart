@@ -1,10 +1,10 @@
-import 'package:starter_kit/data/datasources/local/authentication.local.data_source.dart';
-import 'package:starter_kit/data/datasources/remote/authentication.remote.data_source.dart';
-import 'package:starter_kit/data/model/local/auth.local.model.dart';
-import 'package:starter_kit/data/model/remote/auth.remote.model.dart';
-import 'package:starter_kit/domain/entities/auth.entity.dart';
-import 'package:starter_kit/domain/params/login.param.dart';
-import 'package:starter_kit/domain/repositories/authentication.repository.dart';
+import 'package:welly/data/datasources/local/authentication.local.data_source.dart';
+import 'package:welly/data/datasources/remote/authentication.remote.data_source.dart';
+import 'package:welly/data/model/local/auth.local.model.dart';
+import 'package:welly/data/model/remote/auth.remote.model.dart';
+import 'package:welly/domain/entities/auth.entity.dart';
+import 'package:welly/domain/params/login.param.dart';
+import 'package:welly/domain/repositories/authentication.repository.dart';
 
 /// Authentication Repository
 final class AuthenticationRepositoryImpl extends AuthenticationRepository {

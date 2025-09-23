@@ -2,9 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
-import 'package:starter_kit/core/providers/config/kernel.provider.dart';
-import 'package:starter_kit/presentation/widgets/text_variant.dart';
+import 'package:welly/core/localization/generated/locale_keys.g.dart';
+import 'package:welly/core/providers/config/kernel.provider.dart';
+import 'package:welly/presentation/widgets/text_variant.dart';
 
 /// Error placeholder widget
 class ErrorPlaceholder extends ConsumerWidget {

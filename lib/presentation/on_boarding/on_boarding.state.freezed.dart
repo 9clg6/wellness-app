@@ -63,7 +63,7 @@ class _$OnBoardingStateCopyWithImpl<$Res>
 /// Create a copy of OnBoardingState
 /// with the given fields replaced by the non-null parameter values.
 @pragma('vm:prefer-inline') @override $Res call({Object? currentStep = null,Object? selectedOption = freezed,}) {
-  return _then(OnBoardingState(
+  return _then(_self.copyWith(
 currentStep: null == currentStep ? _self.currentStep : currentStep // ignore: cast_nullable_to_non_nullable
 as int,selectedOption: freezed == selectedOption ? _self.selectedOption : selectedOption // ignore: cast_nullable_to_non_nullable
 as int?,
@@ -87,10 +87,11 @@ extension OnBoardingStatePatterns on OnBoardingState {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _OnBoardingState value)?  $default,{required TResult orElse(),}){
 final _that = this;
 switch (_that) {
-case _:
+case _OnBoardingState() when $default != null:
+return $default(_that);case _:
   return orElse();
 
 }
@@ -108,10 +109,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>(){
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _OnBoardingState value)  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _OnBoardingState():
+return $default(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -128,10 +130,11 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _OnBoardingState value)?  $default,){
 final _that = this;
 switch (_that) {
-case _:
+case _OnBoardingState() when $default != null:
+return $default(_that);case _:
   return null;
 
 }
@@ -148,9 +151,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int currentStep,  int? selectedOption)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
-case _:
+case _OnBoardingState() when $default != null:
+return $default(_that.currentStep,_that.selectedOption);case _:
   return orElse();
 
 }
@@ -168,9 +172,10 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int currentStep,  int? selectedOption)  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _OnBoardingState():
+return $default(_that.currentStep,_that.selectedOption);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -187,13 +192,82 @@ case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>() {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int currentStep,  int? selectedOption)?  $default,) {final _that = this;
 switch (_that) {
-case _:
+case _OnBoardingState() when $default != null:
+return $default(_that.currentStep,_that.selectedOption);case _:
   return null;
 
 }
 }
+
+}
+
+/// @nodoc
+
+
+class _OnBoardingState implements OnBoardingState {
+  const _OnBoardingState({required this.currentStep, this.selectedOption});
+  
+
+@override final  int currentStep;
+@override final  int? selectedOption;
+
+/// Create a copy of OnBoardingState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$OnBoardingStateCopyWith<_OnBoardingState> get copyWith => __$OnBoardingStateCopyWithImpl<_OnBoardingState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _OnBoardingState&&(identical(other.currentStep, currentStep) || other.currentStep == currentStep)&&(identical(other.selectedOption, selectedOption) || other.selectedOption == selectedOption));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,currentStep,selectedOption);
+
+@override
+String toString() {
+  return 'OnBoardingState(currentStep: $currentStep, selectedOption: $selectedOption)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$OnBoardingStateCopyWith<$Res> implements $OnBoardingStateCopyWith<$Res> {
+  factory _$OnBoardingStateCopyWith(_OnBoardingState value, $Res Function(_OnBoardingState) _then) = __$OnBoardingStateCopyWithImpl;
+@override @useResult
+$Res call({
+ int currentStep, int? selectedOption
+});
+
+
+
+
+}
+/// @nodoc
+class __$OnBoardingStateCopyWithImpl<$Res>
+    implements _$OnBoardingStateCopyWith<$Res> {
+  __$OnBoardingStateCopyWithImpl(this._self, this._then);
+
+  final _OnBoardingState _self;
+  final $Res Function(_OnBoardingState) _then;
+
+/// Create a copy of OnBoardingState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? currentStep = null,Object? selectedOption = freezed,}) {
+  return _then(_OnBoardingState(
+currentStep: null == currentStep ? _self.currentStep : currentStep // ignore: cast_nullable_to_non_nullable
+as int,selectedOption: freezed == selectedOption ? _self.selectedOption : selectedOption // ignore: cast_nullable_to_non_nullable
+as int?,
+  ));
+}
+
 
 }
 

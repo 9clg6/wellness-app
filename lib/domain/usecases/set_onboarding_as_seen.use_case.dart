@@ -1,5 +1,5 @@
-import 'package:starter_kit/domain/repositories/user.repository.dart';
-import 'package:starter_kit/foundation/interfaces/future.usecases.dart';
+import 'package:welly/domain/repositories/user.repository.dart';
+import 'package:welly/foundation/interfaces/future.usecases.dart';
 
 /// Set on boarding as seen use case
 final class SetOnBoardingAsSeenUseCase extends FutureUseCase<void> {

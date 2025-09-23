@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:sembast/sembast.dart';
-import 'package:starter_kit/core/providers/data/sembast.provider.dart';
-import 'package:starter_kit/data/datasources/local/happen_action.local_data_source.dart';
-import 'package:starter_kit/data/datasources/local/impl/happen_action.local_data_source.impl.dart';
+import 'package:welly/core/providers/data/sembast.provider.dart';
+import 'package:welly/data/datasources/local/happen_action.local_data_source.dart';
+import 'package:welly/data/datasources/local/impl/happen_action.local_data_source.impl.dart';
 
 part 'happen_action.local_data_source.provider.g.dart';
 

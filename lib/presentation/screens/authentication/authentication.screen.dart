@@ -2,10 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:starter_kit/presentation/screens/authentication/authentication.state.dart';
-import 'package:starter_kit/presentation/screens/authentication/authentication.view_model.dart';
-import 'package:starter_kit/presentation/widgets/custom_loader.dart';
-import 'package:starter_kit/presentation/widgets/error_placeholder.dart';
+import 'package:welly/presentation/screens/authentication/authentication.state.dart';
+import 'package:welly/presentation/screens/authentication/authentication.view_model.dart';
+import 'package:welly/presentation/widgets/custom_loader.dart';
+import 'package:welly/presentation/widgets/error_placeholder.dart';
 
 /// Authentication Screen
 @RoutePage()

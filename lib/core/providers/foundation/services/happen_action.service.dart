@@ -1,13 +1,13 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:starter_kit/core/extensions/date.extension.dart';
-import 'package:starter_kit/core/providers/foundation/services/ai.service.dart';
-import 'package:starter_kit/domain/entities/ai_analysis.entity.dart';
-import 'package:starter_kit/domain/entities/daily_happen_action.entity.dart';
-import 'package:starter_kit/domain/entities/happen_action.entity.dart';
-import 'package:starter_kit/domain/usecases/clear_happen_actions.usecase.dart';
-import 'package:starter_kit/domain/usecases/delete_happen_action_by_date.usecase.dart';
-import 'package:starter_kit/domain/usecases/save_happen_action.usecase.dart';
-import 'package:starter_kit/domain/usecases/save_happen_actions.usecase.dart';
+import 'package:welly/core/extensions/date.extension.dart';
+import 'package:welly/core/providers/foundation/services/ai.service.dart';
+import 'package:welly/domain/entities/ai_analysis.entity.dart';
+import 'package:welly/domain/entities/daily_happen_action.entity.dart';
+import 'package:welly/domain/entities/happen_action.entity.dart';
+import 'package:welly/domain/usecases/clear_happen_actions.usecase.dart';
+import 'package:welly/domain/usecases/delete_happen_action_by_date.usecase.dart';
+import 'package:welly/domain/usecases/save_happen_action.usecase.dart';
+import 'package:welly/domain/usecases/save_happen_actions.usecase.dart';
 
 /// Service to manage daily happen actions with persistence
 class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
@@ -168,6 +168,46 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
               "J'ai réfléchi à mes priorités et j'ai communiqué mes limites avec respect",
         ),
       ),
+      // Jour 6
+      DailyHappenActionEntity.create(
+        date: DateTime.now().subtract(const Duration(days: 6)),
+        first: HappenActionEntity(
+          happen:
+              "J'ai terminé la lecture d'un livre inspirant sur le développement personnel",
+          action:
+              "J'ai lu chaque soir avant de dormir et pris des notes sur les passages importants",
+        ),
+        second: HappenActionEntity(
+          happen: "J'ai cuisiné un repas sain pour toute ma famille",
+          action:
+              "J'ai cherché des recettes équilibrées et fait les courses moi-même",
+        ),
+        third: HappenActionEntity(
+          happen:
+              "J'ai pris le temps de méditer 20 minutes malgré une journée chargée",
+          action:
+              "J'ai bloqué un créneau dans mon agenda et coupé mon téléphone",
+        ),
+      ),
+      // Jour 7
+      DailyHappenActionEntity.create(
+        date: DateTime.now().subtract(const Duration(days: 7)),
+        first: HappenActionEntity(
+          happen: "J'ai reçu un compliment inattendu de la part de mon manager",
+          action:
+              "J'ai travaillé sérieusement sur un dossier complexe et respecté les délais",
+        ),
+        second: HappenActionEntity(
+          happen: "J'ai retrouvé un ami d'enfance après plusieurs années",
+          action:
+              "J'ai pris l'initiative de le contacter via les réseaux sociaux",
+        ),
+        third: HappenActionEntity(
+          happen: "J'ai réussi à faire du sport tous les matins cette semaine",
+          action:
+              "Je me suis levé plus tôt et j'ai suivi un programme d'entraînement régulier",
+        ),
+      ),
     ];
   }
 
@@ -293,9 +333,21 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
     }
   }
 
-  /// Analyze with ai
-  Future<AIAnalysisEntity> analyzeWithAi() async {
-    final AIAnalysisEntity result = await _aiService.analyzeWithAI(state);
-    return result;
+  /// Analyze with AI and save report for current period
+  Future<AIAnalysisEntity> analyzeWithAiAndSaveReport() async {
+    final List<DailyHappenActionEntity> last7DaysData = _aiService
+        .getLast7DaysData(state);
+
+    return _aiService.analyzeWithAIAndSaveReport(last7DaysData);
+  }
+
+  /// Get current period report if exists
+  Future<AIAnalysisEntity?> getCurrentPeriodReport() async {
+    return _aiService.getCurrentPeriodReport();
+  }
+
+  /// Check if current period report exists
+  Future<bool> hasCurrentPeriodReport() async {
+    return _aiService.hasCurrentPeriodReport();
   }
 }

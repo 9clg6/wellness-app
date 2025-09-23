@@ -1,5 +1,5 @@
-import 'package:starter_kit/foundation/interfaces/results.usecases.dart';
-import 'package:starter_kit/foundation/interfaces/usecase.interfaces.dart';
+import 'package:welly/foundation/interfaces/results.usecases.dart';
+import 'package:welly/foundation/interfaces/usecase.interfaces.dart';
 
 /// [StreamUseCase]
 abstract class StreamUseCase<T> implements BaseUseCase<Stream<ResultState<T>>> {

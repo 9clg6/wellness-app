@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:starter_kit/core/providers/core/services/user.service.provider.dart';
-import 'package:starter_kit/core/providers/foundation/services/user.service.dart';
-import 'package:starter_kit/presentation/screens/authentication/authentication.state.dart';
+import 'package:welly/core/providers/core/services/user.service.provider.dart';
+import 'package:welly/core/providers/foundation/services/user.service.dart';
+import 'package:welly/presentation/screens/authentication/authentication.state.dart';
 
 part 'authentication.view_model.g.dart';
 

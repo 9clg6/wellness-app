@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
-import 'package:starter_kit/data/bodies/login.param.dart';
-import 'package:starter_kit/data/clients/dio.authentication.client.dart';
-import 'package:starter_kit/data/clients/extra_client.dart';
+import 'package:welly/data/bodies/login.param.dart';
+import 'package:welly/data/clients/dio.authentication.client.dart';
+import 'package:welly/data/clients/extra_client.dart';
 
 part 'authentication.endpoint.g.dart';
 

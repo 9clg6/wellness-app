@@ -1,12 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:starter_kit/core/providers/config/kernel.provider.dart';
-import 'package:starter_kit/core/providers/presentation/router.provider.dart';
-import 'package:starter_kit/foundation/routing/app_router.dart';
-import 'package:starter_kit/foundation/theming/theme.dart';
-import 'package:starter_kit/presentation/widgets/custom_loader.dart';
-import 'package:starter_kit/presentation/widgets/error_placeholder.dart';
+import 'package:welly/core/providers/config/kernel.provider.dart';
+import 'package:welly/core/providers/presentation/router.provider.dart';
+import 'package:welly/foundation/routing/app_router.dart';
+import 'package:welly/foundation/theming/theme.dart';
+import 'package:welly/presentation/widgets/custom_loader.dart';
+import 'package:welly/presentation/widgets/error_placeholder.dart';
 
 /// App startup widget
 class AppStartup extends ConsumerWidget {

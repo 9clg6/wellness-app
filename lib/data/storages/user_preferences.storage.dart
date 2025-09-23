@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:starter_kit/data/model/local/onboarding_answers.local.model.dart';
-import 'package:starter_kit/data/model/local/user.local.model.dart';
+import 'package:welly/data/model/local/onboarding_answers.local.model.dart';
+import 'package:welly/data/model/local/user.local.model.dart';
 
 /// User Preferences Storage
 class UserPreferencesStorage {

@@ -13,11 +13,11 @@ val keystorePropertiesFile = rootProject.file("keystore.properties")
 if (keystorePropertiesFile.exists()) {
     keystoreProperties.load(FileInputStream(keystorePropertiesFile))
 } else {
-    throw GradleException("Le fichier key.properties est introuvable : ${keystorePropertiesFile}")
+    throw GradleException("Le fichier keystore.properties est introuvable : ${keystorePropertiesFile}")
 }
 
 android {
-    namespace = "com.example.starterkit"
+    namespace = "fr.yellowstone.welly"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = "27.0.12077973"
 
@@ -32,7 +32,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.starterkit"
+        applicationId = "fr.yellowstone.welly"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
@@ -59,7 +59,7 @@ android {
         create("prod") {
             dimension = "default"
             resValue(type = "string", name = "app_name", value = "Starter Kit")
-            applicationId = "starter.kit.app"
+            applicationId = "fr.yellowstone.welly.app"
         }
     }
 
@@ -67,7 +67,7 @@ android {
         create("release") {
             keyAlias = keystoreProperties["keyAlias"] as String
             keyPassword = keystoreProperties["keyPassword"] as String
-            storeFile = keystoreProperties["storeFile"]?.let { file(it) }
+            storeFile = keystoreProperties["storeFile"]?.let { rootProject.file(it) }
             storePassword = keystoreProperties["storePassword"] as String
         }
     }

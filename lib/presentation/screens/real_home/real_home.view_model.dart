@@ -1,16 +1,18 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:starter_kit/core/extensions/date.extension.dart';
-import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
-import 'package:starter_kit/core/providers/core/services/happen_action.service.provider.dart';
-import 'package:starter_kit/core/providers/core/services/navigation.service.provider.dart';
-import 'package:starter_kit/core/providers/core/services/user.service.provider.dart';
-import 'package:starter_kit/core/providers/foundation/services/happen_action.service.dart';
-import 'package:starter_kit/core/providers/foundation/services/navigation.service.dart';
-import 'package:starter_kit/core/providers/foundation/services/user.service.dart';
-import 'package:starter_kit/domain/entities/daily_happen_action.entity.dart';
-import 'package:starter_kit/presentation/screens/real_home/real_home.state.dart';
+import 'package:welly/core/extensions/date.extension.dart';
+import 'package:welly/core/localization/generated/locale_keys.g.dart';
+import 'package:welly/core/providers/core/services/ai.service.provider.dart';
+import 'package:welly/core/providers/core/services/happen_action.service.provider.dart';
+import 'package:welly/core/providers/core/services/navigation.service.provider.dart';
+import 'package:welly/core/providers/core/services/user.service.provider.dart';
+import 'package:welly/core/providers/foundation/services/ai.service.dart';
+import 'package:welly/core/providers/foundation/services/happen_action.service.dart';
+import 'package:welly/core/providers/foundation/services/navigation.service.dart';
+import 'package:welly/core/providers/foundation/services/user.service.dart';
+import 'package:welly/domain/entities/daily_happen_action.entity.dart';
+import 'package:welly/presentation/screens/real_home/real_home.state.dart';
 
 part 'real_home.view_model.g.dart';
 
@@ -19,6 +21,7 @@ part 'real_home.view_model.g.dart';
 class RealHomeViewModel extends _$RealHomeViewModel {
   late final HappenActionService _happenActionService;
   late final NavigationService _navigationService;
+  late final AiService _aiService;
 
   /// First day of streak
   DateTime? firstDayOfStreak;
@@ -35,12 +38,20 @@ class RealHomeViewModel extends _$RealHomeViewModel {
     _happenActionService = await ref.watch(happenActionServiceProvider.future);
     final UserService userService = await ref.watch(userServiceProvider.future);
     _navigationService = ref.watch(navigationServiceProvider);
+    _aiService = await ref.watch(aiServiceProvider.future);
+
+    _aiService.reportExistsStream.listen((bool reportExists) {
+      state = AsyncValue<RealHomeState>.data(
+        state.value!.copyWith(doesReportExist: reportExists),
+      );
+    });
 
     getStreak();
 
     return RealHomeState.initial(
       surname: userService.currentUser!.firstname!,
       isTodayEventsFilled: _happenActionService.isTodayEventsFilled,
+      doesReportExist: _aiService.reportExists,
     );
   }
 

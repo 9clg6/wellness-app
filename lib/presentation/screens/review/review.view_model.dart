@@ -1,16 +1,16 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
-import 'package:starter_kit/core/providers/core/services/happen_action.service.provider.dart';
-import 'package:starter_kit/core/providers/core/services/navigation.service.provider.dart';
-import 'package:starter_kit/core/providers/core/services/user.service.provider.dart';
-import 'package:starter_kit/core/providers/foundation/services/happen_action.service.dart';
-import 'package:starter_kit/core/providers/foundation/services/navigation.service.dart';
-import 'package:starter_kit/core/providers/foundation/services/user.service.dart';
-import 'package:starter_kit/core/providers/presentation/router.provider.dart';
-import 'package:starter_kit/domain/entities/happen_action.entity.dart';
-import 'package:starter_kit/presentation/screens/review/review.state.dart';
+import 'package:welly/core/localization/generated/locale_keys.g.dart';
+import 'package:welly/core/providers/core/services/happen_action.service.provider.dart';
+import 'package:welly/core/providers/core/services/navigation.service.provider.dart';
+import 'package:welly/core/providers/core/services/user.service.provider.dart';
+import 'package:welly/core/providers/foundation/services/happen_action.service.dart';
+import 'package:welly/core/providers/foundation/services/navigation.service.dart';
+import 'package:welly/core/providers/foundation/services/user.service.dart';
+import 'package:welly/core/providers/presentation/router.provider.dart';
+import 'package:welly/domain/entities/happen_action.entity.dart';
+import 'package:welly/presentation/screens/review/review.state.dart';
 import 'package:top_snackbar_flutter/top_snack_bar.dart';
 
 part 'review.view_model.g.dart';
@@ -87,8 +87,7 @@ class ReviewViewModel extends _$ReviewViewModel {
       );
     });
 
-    return ReviewState(
-      isLoading: false,
+    return ReviewState.initial(
       streakDays: _userService.streakDays,
       entries: entries,
     );

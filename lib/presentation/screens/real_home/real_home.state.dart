@@ -3,35 +3,23 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'real_home.state.freezed.dart';
 
 /// Real home state
-@Freezed(copyWith: true)
-final class RealHomeState with _$RealHomeState {
+@freezed
+abstract class RealHomeState with _$RealHomeState {
   /// Constructor
-  const RealHomeState({
-    required this.surname,
-    this.isLoading = false,
-    this.isTodayEventsFilled = false,
-  });
+  const factory RealHomeState({
+    required String surname,
+    required bool isTodayEventsFilled,
+    required bool doesReportExist,
+  }) = _RealHomeState;
 
   /// Initial state
   factory RealHomeState.initial({
-    bool isLoading = false,
     String surname = '',
     bool isTodayEventsFilled = false,
+    bool doesReportExist = false,
   }) => RealHomeState(
-    isLoading: isLoading,
     surname: surname,
     isTodayEventsFilled: isTodayEventsFilled,
+    doesReportExist: doesReportExist,
   );
-
-  /// Is loading
-  @override
-  final bool isLoading;
-
-  /// Surname
-  @override
-  final String surname;
-
-  /// Is today events filled
-  @override
-  final bool isTodayEventsFilled;
 }

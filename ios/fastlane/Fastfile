@@ -1,4 +1,106 @@
-import_from_git(
-  url: "git@git.example.com:mobile-ci-cd/ios-fastlane.git",
-  path: "import-files-gitlab/example-base-import-v1"
-)
+default_platform(:ios)
+
+platform :ios do
+  desc "Check signing configuration"
+  lane :check_signing do
+    # Check available certificates
+    puts "Checking available certificates..."
+    sh "security find-identity -v -p codesigning"
+    
+    # Check provisioning profiles
+    puts "\nChecking provisioning profiles..."
+    sh "ls -la ~/Library/MobileDevice/Provisioning\\ Profiles/"
+    
+    # Check team ID in project
+    puts "\nChecking project configuration..."
+    sh "cd .. && xcodebuild -showBuildSettings -workspace Runner.xcworkspace -scheme prod | grep DEVELOPMENT_TEAM"
+  end
+
+  desc "Setup certificates and provisioning profiles"
+  lane :setup_signing do
+    # Create App Store provisioning profile
+    sigh(
+      app_identifier: "fr.yellowstone.welly.app",
+      team_id: ENV['APPLE_TEAM_ID'],
+      force: true
+    )
+  end
+  desc "Build Flutter iOS App"
+  lane :build do
+    project_root = File.expand_path('../../', __dir__)
+    Dir.chdir(project_root) do
+      # Use system Ruby for CocoaPods compatibility - add our wrapper to PATH
+      ENV['PATH'] = "#{project_root}:/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin:#{ENV['PATH']}"
+      sh "fvm flutter clean"
+      sh "fvm flutter pub get"
+      sh "fvm flutter build ios --release --flavor prod --no-codesign"
+    end
+  end
+
+  desc "Upload to TestFlight"
+  lane :beta do
+    build
+    
+    api_key = app_store_connect_api_key(
+      key_id: ENV['APP_STORE_CONNECT_KEY_ID'],
+      issuer_id: ENV['APP_STORE_CONNECT_ISSUER_ID'],
+      key_filepath: ENV['APP_STORE_CONNECT_KEY_PATH']
+    )
+    
+    build_app(
+      workspace: "Runner.xcworkspace",
+      scheme: "prod",
+      clean: true,
+      export_method: "app-store",
+      export_options: {
+        signingStyle: "automatic",
+      }
+    )
+    
+    upload_to_testflight(api_key: api_key)
+  end
+
+  desc "Upload to TestFlight (build already done)"
+  lane :beta_upload do
+    api_key = app_store_connect_api_key(
+      key_id: ENV['APP_STORE_CONNECT_KEY_ID'],
+      issuer_id: ENV['APP_STORE_CONNECT_ISSUER_ID'],
+      key_filepath: ENV['APP_STORE_CONNECT_KEY_PATH']
+    )
+    
+    build_app(
+      workspace: "Runner.xcworkspace",
+      scheme: "prod",
+      clean: true,
+      export_method: "app-store",
+      export_options: {
+        signingStyle: "automatic",
+      }
+    )
+    
+    upload_to_testflight(api_key: api_key)
+  end
+
+  desc "Deploy to App Store"
+  lane :release do
+    build
+    
+    api_key = app_store_connect_api_key(
+      key_id: ENV['APP_STORE_CONNECT_KEY_ID'],
+      issuer_id: ENV['APP_STORE_CONNECT_ISSUER_ID'],
+      key_filepath: ENV['APP_STORE_CONNECT_KEY_PATH']
+    )
+    
+    build_app(
+      workspace: "Runner.xcworkspace",
+      scheme: "prod",
+      clean: true,
+      export_method: "app-store",
+      export_options: {
+        signingStyle: "automatic",
+      }
+    )
+    
+    upload_to_app_store(api_key: api_key)
+  end
+end

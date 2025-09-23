@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:starter_kit/domain/entities/onboarding_answers.dart';
+import 'package:welly/domain/entities/onboarding_answers.dart';
 
 part 'onboarding_answers.local.model.freezed.dart';
 part 'onboarding_answers.local.model.g.dart';

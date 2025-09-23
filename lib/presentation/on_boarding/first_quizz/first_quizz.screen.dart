@@ -3,13 +3,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
-import 'package:starter_kit/core/localization/generated/locale_keys.g.dart';
-import 'package:starter_kit/presentation/on_boarding/first_quizz/first_quizz.state.dart';
-import 'package:starter_kit/presentation/on_boarding/first_quizz/first_quizz.view_model.dart';
-import 'package:starter_kit/presentation/widgets/continue_button_card.dart';
-import 'package:starter_kit/presentation/widgets/form_input.dart';
-import 'package:starter_kit/presentation/widgets/on_boarding_button.dart';
-import 'package:starter_kit/presentation/widgets/text_variant.dart';
+import 'package:welly/core/localization/generated/locale_keys.g.dart';
+import 'package:welly/presentation/on_boarding/first_quizz/first_quizz.state.dart';
+import 'package:welly/presentation/on_boarding/first_quizz/first_quizz.view_model.dart';
+import 'package:welly/presentation/widgets/continue_button_card.dart';
+import 'package:welly/presentation/widgets/form_input.dart';
+import 'package:welly/presentation/widgets/on_boarding_button.dart';
+import 'package:welly/presentation/widgets/text_variant.dart';
 
 /// First personal engagement quiz
 class FirstPersonalEngagementQuiz extends ConsumerWidget {
@@ -421,6 +421,9 @@ class _Q6Identity extends ConsumerWidget {
                       labelText: LocaleKeys.onboarding_q6_firstName_placeholder
                           .tr(),
                       autoValidate: false,
+                      borderColor: Colors.transparent,
+                      focusBorderColor: Colors.transparent,
+                      enabledBorderColor: Colors.transparent,
                       labelStyle: Theme.of(
                         context,
                       ).textTheme.bodyMedium?.copyWith(color: Colors.black),
@@ -446,6 +449,9 @@ class _Q6Identity extends ConsumerWidget {
                       controller: viewModel.tempAgeController,
                       labelText: LocaleKeys.onboarding_q6_age_placeholder.tr(),
                       autoValidate: false,
+                      borderColor: Colors.transparent,
+                      focusBorderColor: Colors.transparent,
+                      enabledBorderColor: Colors.transparent,
                       labelStyle: Theme.of(
                         context,
                       ).textTheme.bodyMedium?.copyWith(color: Colors.black),
