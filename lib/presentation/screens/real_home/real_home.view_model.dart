@@ -133,14 +133,19 @@ class RealHomeViewModel extends _$RealHomeViewModel {
   }
 
   /// On tap add happen action
-  Future<void> onTapAddHappenAction() async {
-    final bool? isTodayEventsFilled = await _navigationService
+  Future<void> onTapAddHappenAction({required bool isTodayEventsFilled}) async {
+    if (isTodayEventsFilled) {
+      await _navigationService.navigateToReview();
+      return;
+    }
+
+    final bool? result = await _navigationService
         .navigateToDailyJourney(isFromRealHome: true);
 
-    if (isTodayEventsFilled == null) return;
+    if (result == null) return;
 
     state = AsyncData<RealHomeState>(
-      state.value!.copyWith(isTodayEventsFilled: isTodayEventsFilled),
+      state.value!.copyWith(isTodayEventsFilled: result),
     );
   }
 

@@ -7,7 +7,7 @@ part of 'happen_action.service.provider.dart';
 // **************************************************************************
 
 String _$happenActionServiceHash() =>
-    r'f3e7662adc521e466b0c1bece5339ca11059ed1a';
+    r'f4dd46c55efa45ed3a338af5f47503c1f2bf5a00';
 
 /// Provider pour HappenActionService
 ///

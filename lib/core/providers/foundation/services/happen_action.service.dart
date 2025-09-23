@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:welly/core/extensions/date.extension.dart';
 import 'package:welly/core/providers/foundation/services/ai.service.dart';
@@ -6,6 +7,7 @@ import 'package:welly/domain/entities/daily_happen_action.entity.dart';
 import 'package:welly/domain/entities/happen_action.entity.dart';
 import 'package:welly/domain/usecases/clear_happen_actions.usecase.dart';
 import 'package:welly/domain/usecases/delete_happen_action_by_date.usecase.dart';
+import 'package:welly/domain/usecases/get_happen_actions.usecase.dart';
 import 'package:welly/domain/usecases/save_happen_action.usecase.dart';
 import 'package:welly/domain/usecases/save_happen_actions.usecase.dart';
 
@@ -13,12 +15,14 @@ import 'package:welly/domain/usecases/save_happen_actions.usecase.dart';
 class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
   /// Constructor
   HappenActionService({
+    required GetHappenActionsUseCase getHappenActionsUseCase,
     required SaveHappenActionUseCase saveHappenActionUseCase,
     required SaveHappenActionsUseCase saveHappenActionsUseCase,
     required ClearHappenActionsUseCase clearHappenActionsUseCase,
     required DeleteHappenActionByDateUseCase deleteHappenActionByDateUseCase,
     required AiService aiService,
-  }) : _saveHappenActionUseCase = saveHappenActionUseCase,
+  }) : _getHappenActionsUseCase = getHappenActionsUseCase,
+       _saveHappenActionUseCase = saveHappenActionUseCase,
        _saveHappenActionsUseCase = saveHappenActionsUseCase,
        _clearHappenActionsUseCase = clearHappenActionsUseCase,
        _deleteHappenActionByDateUseCase = deleteHappenActionByDateUseCase,
@@ -26,6 +30,7 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
        super(<DailyHappenActionEntity>[]);
 
   /// Use cases
+  final GetHappenActionsUseCase _getHappenActionsUseCase;
   final SaveHappenActionUseCase _saveHappenActionUseCase;
   final SaveHappenActionsUseCase _saveHappenActionsUseCase;
   final ClearHappenActionsUseCase _clearHappenActionsUseCase;
@@ -46,169 +51,60 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
         .firstOrNull;
   }
 
-  /// Get today's entry
-  List<HappenActionEntity> get todayEntry =>
-      todayDailyHappenAction?.happenActions ?? <HappenActionEntity>[];
+  /// Get today's entry (only non-empty entries)
+  List<HappenActionEntity> get todayEntry {
+    final List<HappenActionEntity>? allActions =
+        todayDailyHappenAction?.happenActions;
+    if (allActions == null) {
+      debugPrint('[HappenActionService] No today daily happen action found');
+      return <HappenActionEntity>[];
+    }
+
+    final List<HappenActionEntity> filteredActions = allActions
+        .where(
+          (HappenActionEntity action) =>
+              action.happen.isNotEmpty || action.action.isNotEmpty,
+        )
+        .toList();
+
+    return filteredActions;
+  }
 
   /// Load happen actions from storage
   Future<void> init() async {
     try {
-      // final List<DailyHappenActionEntity> loadedActions =
-      //     await _getHappenActionsUseCase.invoke();
-      state = _loadMockData();
-    } on Exception catch (_) {
+      final List<DailyHappenActionEntity> loadedActions =
+          await _getHappenActionsUseCase.invoke();
+      state = loadedActions;
+
+      // Check if today's events are filled
+      final DateTime today = DateTime.now();
+      final DailyHappenActionEntity? todayAction = loadedActions
+          .where(
+            (DailyHappenActionEntity daily) => daily.date.isSameDate(today),
+          )
+          .firstOrNull;
+
+      if (todayAction != null) {
+        final List<HappenActionEntity> todayEntries = todayAction.happenActions
+            .where(
+              (HappenActionEntity action) =>
+                  action.happen.isNotEmpty || action.action.isNotEmpty,
+            )
+            .toList();
+        isTodayEventsFilled = todayEntries.isNotEmpty;
+      } else {
+        isTodayEventsFilled = false;
+      }
+
+      debugPrint(
+        '[HappenActionService] Initialized with ${loadedActions.length} loaded actions, today events filled: $isTodayEventsFilled',
+      );
+    } on Exception catch (e) {
+      debugPrint('[HappenActionService] Initialization error: $e');
       state = <DailyHappenActionEntity>[];
+      isTodayEventsFilled = false;
     }
-  }
-
-  /// Load mock data for development/testing
-  List<DailyHappenActionEntity> _loadMockData() {
-    return <DailyHappenActionEntity>[
-      // Mock data - Day 1
-      DailyHappenActionEntity.create(
-        date: DateTime.now().subtract(const Duration(days: 1)),
-        first: HappenActionEntity(
-          happen: "J'ai reçu un compliment de mon manager sur mon travail",
-          action: "J'ai pris le temps de bien préparer ma présentation",
-        ),
-        second: HappenActionEntity(
-          happen: "J'ai terminé ma séance de sport sans abandonner",
-          action:
-              "J'ai écouté une musique motivante et j'ai pensé à mes objectifs",
-        ),
-        third: HappenActionEntity(
-          happen: "J'ai eu une conversation agréable avec un ami",
-          action:
-              "J'ai pris l'initiative de l'appeler pour prendre de ses nouvelles",
-        ),
-      ),
-
-      // Mock data - Day 2
-      DailyHappenActionEntity.create(
-        date: DateTime.now().subtract(const Duration(days: 2)),
-        first: HappenActionEntity(
-          happen:
-              'Ma candidature a été acceptée pour le poste de mes rêves dans une startup innovante',
-          action:
-              "J'ai passé 3 mois à me former sur les nouvelles technologies, j'ai créé un portfolio GitHub impressionnant, j'ai fait du networking lors d'événements tech, et j'ai préparé méticuleusement mes entretiens en étudiant l'entreprise",
-        ),
-        second: HappenActionEntity(
-          happen: "J'ai évité une dispute avec mon colocataire",
-          action:
-              "J'ai gardé le silence au lieu de répondre quand il était de mauvaise humeur",
-        ),
-        third: HappenActionEntity(
-          happen: "J'ai réussi à me lever tôt sans appuyer sur snooze",
-          action:
-              "J'ai mis mon réveil loin du lit et j'ai préparé mes affaires la veille",
-        ),
-      ),
-
-      // Mock data - Day 3
-      DailyHappenActionEntity.create(
-        date: DateTime.now().subtract(const Duration(days: 3)),
-        first: HappenActionEntity(
-          happen:
-              'Mon projet perso a reçu 100 étoiles sur GitHub cette semaine',
-          action:
-              "J'ai partagé le projet sur Twitter et LinkedIn, j'ai répondu à tous les commentaires, et j'ai ajouté de la documentation détaillée",
-        ),
-        second: HappenActionEntity(
-          happen:
-              "J'ai finalement réussi à perdre 3 kilos après des mois d'efforts, mais je me sens épuisé",
-          action:
-              "J'ai suivi un régime strict, je me suis entraîné 5 fois par semaine, j'ai arrêté de manger tard le soir, j'ai bu plus d'eau, mais j'ai aussi sacrifié mes sorties sociales et je dors moins bien",
-        ),
-        third: HappenActionEntity(
-          happen: "J'ai aidé un collègue à résoudre un problème technique",
-          action:
-              "J'ai pris le temps d'écouter son problème et j'ai partagé mes connaissances",
-        ),
-      ),
-
-      // Mock data - Day 4
-      DailyHappenActionEntity.create(
-        date: DateTime.now().subtract(const Duration(days: 4)),
-        first: HappenActionEntity(
-          happen: "Mon meilleur ami m'a dit qu'il était fier de moi",
-          action:
-              "J'ai été honnête avec lui sur mes difficultés et j'ai accepté son aide",
-        ),
-        second: HappenActionEntity(
-          happen:
-              "J'ai réussi à économiser assez d'argent pour partir en vacances",
-          action:
-              "J'ai réduit mes sorties au restaurant, j'ai annulé quelques abonnements inutiles, j'ai vendu des objets que je n'utilisais plus sur Le Bon Coin, et j'ai trouvé un petit boulot le weekend",
-        ),
-        third: HappenActionEntity(
-          happen: "J'ai évité de me faire virer grâce à une explication rapide",
-          action:
-              "Quand mon patron m'a demandé pourquoi j'avais raté la deadline, j'ai admis mon erreur et proposé une solution immédiate",
-        ),
-      ),
-
-      // Mock data - Day 5
-      DailyHappenActionEntity.create(
-        date: DateTime.now().subtract(const Duration(days: 5)),
-        first: HappenActionEntity(
-          happen:
-              "J'ai gagné le premier prix d'un concours de photographie local, ce qui m'a donné confiance en mon art",
-          action:
-              "J'ai passé des heures à étudier la composition et la lumière, j'ai fait plus de 200 photos pour trouver LA bonne, j'ai lu des livres sur la photographie, j'ai demandé des conseils à des photographes expérimentés sur Instagram, et j'ai pris des risques créatifs que je n'aurais jamais pris avant",
-        ),
-        second: HappenActionEntity(
-          happen: "J'ai enfin réussi à réparer ma voiture moi-même",
-          action:
-              "J'ai regardé des tutoriels YouTube et j'ai acheté les outils nécessaires",
-        ),
-        third: HappenActionEntity(
-          happen:
-              "J'ai eu le courage de dire non à une demande qui ne me convenait pas",
-          action:
-              "J'ai réfléchi à mes priorités et j'ai communiqué mes limites avec respect",
-        ),
-      ),
-      // Jour 6
-      DailyHappenActionEntity.create(
-        date: DateTime.now().subtract(const Duration(days: 6)),
-        first: HappenActionEntity(
-          happen:
-              "J'ai terminé la lecture d'un livre inspirant sur le développement personnel",
-          action:
-              "J'ai lu chaque soir avant de dormir et pris des notes sur les passages importants",
-        ),
-        second: HappenActionEntity(
-          happen: "J'ai cuisiné un repas sain pour toute ma famille",
-          action:
-              "J'ai cherché des recettes équilibrées et fait les courses moi-même",
-        ),
-        third: HappenActionEntity(
-          happen:
-              "J'ai pris le temps de méditer 20 minutes malgré une journée chargée",
-          action:
-              "J'ai bloqué un créneau dans mon agenda et coupé mon téléphone",
-        ),
-      ),
-      // Jour 7
-      DailyHappenActionEntity.create(
-        date: DateTime.now().subtract(const Duration(days: 7)),
-        first: HappenActionEntity(
-          happen: "J'ai reçu un compliment inattendu de la part de mon manager",
-          action:
-              "J'ai travaillé sérieusement sur un dossier complexe et respecté les délais",
-        ),
-        second: HappenActionEntity(
-          happen: "J'ai retrouvé un ami d'enfance après plusieurs années",
-          action:
-              "J'ai pris l'initiative de le contacter via les réseaux sociaux",
-        ),
-        third: HappenActionEntity(
-          happen: "J'ai réussi à faire du sport tous les matins cette semaine",
-          action:
-              "Je me suis levé plus tôt et j'ai suivi un programme d'entraînement régulier",
-        ),
-      ),
-    ];
   }
 
   /// Add entry to today's daily happen action
@@ -230,7 +126,9 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
     DailyHappenActionEntity updatedToday;
     if (existingToday != null) {
       // Update existing today's entry
-      final int targetIndex = index ?? existingToday.happenActions.length;
+      // Find the first empty slot if no index is provided
+      final int targetIndex =
+          index ?? _findFirstEmptySlot(existingToday.happenActions);
       updatedToday = existingToday.updateHappenAction(
         targetIndex,
         newHappenAction,
@@ -263,9 +161,9 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
 
     try {
       await _saveHappenActionUseCase.invoke(updatedToday);
-    } catch (e) {
-      // Handle error - could show a snackbar or log
-      rethrow;
+    } on Exception catch (e) {
+      debugPrint('[HappenActionService] Error saving happen action: $e');
+      // Don't rethrow to prevent app crash
     }
   }
 
@@ -291,8 +189,9 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
 
       try {
         await _saveHappenActionUseCase.invoke(updatedToday);
-      } catch (e) {
-        rethrow;
+      } on Exception catch (e) {
+        debugPrint('[HappenActionService] Error updating happen action: $e');
+        // Don't rethrow to prevent app crash
       }
     }
   }
@@ -302,9 +201,9 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
     try {
       await _clearHappenActionsUseCase.invoke();
       state = <DailyHappenActionEntity>[];
-    } catch (e) {
-      // Handle error
-      rethrow;
+    } on Exception catch (e) {
+      debugPrint('[HappenActionService] Error clearing entries: $e');
+      // Don't rethrow to prevent app crash
     }
   }
 
@@ -317,9 +216,9 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
             (DailyHappenActionEntity entry) => !entry.date.isSameDate(date),
           )
           .toList();
-    } catch (e) {
-      // Handle error
-      rethrow;
+    } on Exception catch (e) {
+      debugPrint('[HappenActionService] Error deleting entry by date: $e');
+      // Don't rethrow to prevent app crash
     }
   }
 
@@ -327,9 +226,9 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
   Future<void> saveAllEntries() async {
     try {
       await _saveHappenActionsUseCase.invoke(state);
-    } catch (e) {
-      // Handle error
-      rethrow;
+    } on Exception catch (e) {
+      debugPrint('[HappenActionService] Error saving all entries: $e');
+      // Don't rethrow to prevent app crash
     }
   }
 
@@ -349,5 +248,22 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
   /// Check if current period report exists
   Future<bool> hasCurrentPeriodReport() async {
     return _aiService.hasCurrentPeriodReport();
+  }
+
+  /// Mark today's events as filled
+  void markTodayEventsAsFilled() {
+    isTodayEventsFilled = true;
+  }
+
+  /// Find the first empty slot in the happen actions list
+  int _findFirstEmptySlot(List<HappenActionEntity> actions) {
+    for (int i = 0; i < 3; i++) {
+      if (i >= actions.length) return i;
+      final HappenActionEntity action = actions[i];
+      if (action.happen.isEmpty && action.action.isEmpty) {
+        return i;
+      }
+    }
+    return 0; // Default to first slot if all are filled
   }
 }

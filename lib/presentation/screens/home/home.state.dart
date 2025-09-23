@@ -15,8 +15,6 @@ abstract class HomeState with _$HomeState {
     required int step,
     required bool showOverlay,
     required int messageStep,
-    Animation<RelativeRect>? rectAnimation,
-    Animation<double>? radiusAnimation,
   }) = _HomeState;
 
   /// Initial state
