@@ -528,6 +528,7 @@ class _BigContainerStreak extends ConsumerWidget {
               ),
             ),
           ),
+          // Firebase test buttons (remove in production)
         ],
       ),
     );

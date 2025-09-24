@@ -96,10 +96,6 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
       } else {
         isTodayEventsFilled = false;
       }
-
-      debugPrint(
-        '[HappenActionService] Initialized with ${loadedActions.length} loaded actions, today events filled: $isTodayEventsFilled',
-      );
     } on Exception catch (e) {
       debugPrint('[HappenActionService] Initialization error: $e');
       state = <DailyHappenActionEntity>[];
