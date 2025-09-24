@@ -181,5 +181,7 @@
   "aiAnalyze_progressionSemaine": "Week progression",
   "aiAnalyze_momentMarquant": "Moment marquant",
   "aiAnalyze_suggestions": "Suggestions",
-  "aiAnalyze_seeReport": "See my AI analysis of the week"
+  "aiAnalyze_seeReport": "See my AI analysis of the week",
+  "reviewScreenReviewTodayEvents": "Review my events of the day",
+  "reviewScreenRepeatTodayEvents": "Repeat the positive events that marked you today"
 }

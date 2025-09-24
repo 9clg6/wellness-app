@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:welly/core/localization/generated/locale_keys.g.dart';
 
@@ -15,8 +14,6 @@ abstract class HomeState with _$HomeState {
     required int step,
     required bool showOverlay,
     required int messageStep,
-    Animation<RelativeRect>? rectAnimation,
-    Animation<double>? radiusAnimation,
   }) = _HomeState;
 
   /// Initial state

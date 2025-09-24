@@ -68,7 +68,11 @@ class _HasDataBodyState extends ConsumerState<_HasDataBody>
               padding: const EdgeInsets.only(left: 16, right: 16),
               child: ListView(
                 children: <Widget>[
-                  if (!data.isTodayEventsFilled) ...<Widget>[_MainActionBtn()],
+                  ...<Widget>[
+                    _MainActionBtn(
+                      isTodayEventsFilled: data.isTodayEventsFilled,
+                    ),
+                  ],
                   const _AnalyzeWithAiBtn(),
                   const Gap(24),
                   _BigContainerStreak(),
@@ -258,6 +262,10 @@ class _HasDataBody extends ConsumerStatefulWidget {
 }
 
 class _MainActionBtn extends ConsumerWidget {
+  const _MainActionBtn({required this.isTodayEventsFilled});
+
+  final bool isTodayEventsFilled;
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final RealHomeViewModel viewModel = ref.watch(
@@ -274,7 +282,9 @@ class _MainActionBtn extends ConsumerWidget {
       child: TappableComponent(
         color: colorScheme.primary,
         splashColor: colorScheme.onPrimary.withAlpha(30),
-        onTap: viewModel.onTapAddHappenAction,
+        onTap: () => viewModel.onTapAddHappenAction(
+          isTodayEventsFilled: isTodayEventsFilled,
+        ),
         borderRadius: BorderRadius.circular(24),
         boxShadow: <BoxShadow>[
           BoxShadow(
@@ -293,14 +303,19 @@ class _MainActionBtn extends ConsumerWidget {
           child: Column(
             children: <Widget>[
               TextVariant(
-                LocaleKeys.reviewScreenTitle3.tr(),
+                isTodayEventsFilled
+                    ? LocaleKeys.reviewScreenReviewTodayEvents.tr()
+                    : LocaleKeys.reviewScreenTitle3.tr(),
                 variantType: TextVariantType.bodyLarge,
                 fontWeight: FontWeight.bold,
                 color: colorScheme.onPrimary,
               ),
               TextVariant(
-                LocaleKeys.reviewScreenTitle4.tr(),
+                isTodayEventsFilled
+                    ? LocaleKeys.reviewScreenRepeatTodayEvents.tr()
+                    : LocaleKeys.reviewScreenTitle4.tr(),
                 color: colorScheme.onPrimary,
+                textAlign: TextAlign.center,
                 fontWeight: FontWeight.w300,
               ),
             ],
@@ -513,6 +528,7 @@ class _BigContainerStreak extends ConsumerWidget {
               ),
             ),
           ),
+          // Firebase test buttons (remove in production)
         ],
       ),
     );

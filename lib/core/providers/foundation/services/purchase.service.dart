@@ -75,6 +75,7 @@ class PurchaseService {
       debugPrint('PurchaseService: RevenueCat initialized successfully');
     } on Exception catch (e) {
       debugPrint('PurchaseService: Initialization error: $e');
+      // Don't rethrow the error to prevent app crash
     }
   }
 
@@ -109,6 +110,7 @@ class PurchaseService {
     } on Exception catch (e) {
       debugPrint('PurchaseService: Error loading offerings: $e');
       _offeringsSubject.add(<Offering>[]);
+      // Don't rethrow the error to prevent app crash
     }
   }
 

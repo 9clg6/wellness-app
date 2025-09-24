@@ -6,10 +6,12 @@ import 'package:welly/core/localization/generated/locale_keys.g.dart';
 import 'package:welly/core/providers/core/services/ai.service.provider.dart';
 import 'package:welly/core/providers/core/services/happen_action.service.provider.dart';
 import 'package:welly/core/providers/core/services/navigation.service.provider.dart';
+import 'package:welly/core/providers/core/services/notification.service.provider.dart';
 import 'package:welly/core/providers/core/services/user.service.provider.dart';
 import 'package:welly/core/providers/foundation/services/ai.service.dart';
 import 'package:welly/core/providers/foundation/services/happen_action.service.dart';
 import 'package:welly/core/providers/foundation/services/navigation.service.dart';
+import 'package:welly/core/providers/foundation/services/notification.service.dart';
 import 'package:welly/core/providers/foundation/services/user.service.dart';
 import 'package:welly/domain/entities/daily_happen_action.entity.dart';
 import 'package:welly/presentation/screens/real_home/real_home.state.dart';
@@ -22,6 +24,7 @@ class RealHomeViewModel extends _$RealHomeViewModel {
   late final HappenActionService _happenActionService;
   late final NavigationService _navigationService;
   late final AiService _aiService;
+  late final NotificationService _notificationService;
 
   /// First day of streak
   DateTime? firstDayOfStreak;
@@ -39,6 +42,7 @@ class RealHomeViewModel extends _$RealHomeViewModel {
     final UserService userService = await ref.watch(userServiceProvider.future);
     _navigationService = ref.watch(navigationServiceProvider);
     _aiService = await ref.watch(aiServiceProvider.future);
+    _notificationService = await ref.watch(notificationServiceProvider.future);
 
     _aiService.reportExistsStream.listen((bool reportExists) {
       state = AsyncValue<RealHomeState>.data(
@@ -133,14 +137,20 @@ class RealHomeViewModel extends _$RealHomeViewModel {
   }
 
   /// On tap add happen action
-  Future<void> onTapAddHappenAction() async {
-    final bool? isTodayEventsFilled = await _navigationService
-        .navigateToDailyJourney(isFromRealHome: true);
+  Future<void> onTapAddHappenAction({required bool isTodayEventsFilled}) async {
+    if (isTodayEventsFilled) {
+      await _navigationService.navigateToReview();
+      return;
+    }
 
-    if (isTodayEventsFilled == null) return;
+    final bool? result = await _navigationService.navigateToDailyJourney(
+      isFromRealHome: true,
+    );
+
+    if (result == null) return;
 
     state = AsyncData<RealHomeState>(
-      state.value!.copyWith(isTodayEventsFilled: isTodayEventsFilled),
+      state.value!.copyWith(isTodayEventsFilled: result),
     );
   }
 
@@ -166,4 +176,56 @@ class RealHomeViewModel extends _$RealHomeViewModel {
 
   /// On tap review old events
   void onTapReviewOldEvents() {}
+
+  /// Test notification (for development purposes)
+  Future<void> testNotification() async {
+    try {
+      await _notificationService.showNotification(
+        id: 999,
+        title: 'Test de notification',
+        body: 'Ceci est un test de notification locale',
+        payload: 'test_notification',
+      );
+    } on Exception catch (e) {
+      debugPrint('Error showing test notification: $e');
+    }
+  }
+
+  /// Test Firebase Messaging
+  Future<void> testFirebaseMessaging() async {
+    try {
+      await _notificationService.testFirebaseMessaging();
+    } on Exception catch (e) {
+      debugPrint('Error testing Firebase: $e');
+    }
+  }
+
+  /// Get Firebase status
+  Future<Map<String, dynamic>> getFirebaseStatus() async {
+    try {
+      return await _notificationService.getFirebaseMessagingStatus();
+    } on Exception catch (e) {
+      debugPrint('Error getting Firebase status: $e');
+      return <String, dynamic>{'error': e.toString()};
+    }
+  }
+
+  /// Get FCM token
+  Future<String?> getFCMToken() async {
+    try {
+      return await _notificationService.getFCMToken();
+    } on Exception catch (e) {
+      debugPrint('Error getting FCM token: $e');
+      return null;
+    }
+  }
+
+  /// Test iOS configuration
+  Future<void> testIOSConfiguration() async {
+    try {
+      await _notificationService.testIOSConfiguration();
+    } on Exception catch (e) {
+      debugPrint('Error testing iOS configuration: $e');
+    }
+  }
 }

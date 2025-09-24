@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:auto_route/auto_route.dart';
 import 'package:confetti/confetti.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -31,20 +33,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
     with TickerProviderStateMixin {
   late final AnimationController _expandController = AnimationController(
     vsync: this,
-    duration: const Duration(seconds: 1),
+    duration: const Duration(milliseconds: 500),
   );
 
   late final Animation<double> _messageFade = CurvedAnimation(
     parent: _expandController,
-    curve: const Interval(0.6, 1, curve: Curves.easeInOutCubicEmphasized),
+    curve: const Interval(0.5, 1, curve: Curves.easeInOutCubicEmphasized),
   );
 
   @override
   void initState() {
     super.initState();
 
+    final HomeViewModel viewModel = ref.read(homeViewModelProvider.notifier)
+      ..isFromRealHome = widget.isFromRealHome;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      final HomeViewModel viewModel = ref.read(homeViewModelProvider.notifier);
       viewModel
         ..secondFieldController = AnimationController(
           vsync: this,
@@ -75,6 +78,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen>
                 onPressed: context.maybePop,
                 icon: const Icon(Icons.close),
               ),
+              backgroundColor: Colors.transparent,
             )
           : null,
       body: state.when(
@@ -128,9 +132,7 @@ class _HasDataBody extends StatelessWidget {
             ),
           ),
         ),
-        if (data.showOverlay &&
-            data.rectAnimation != null &&
-            data.radiusAnimation != null)
+        if (data.showOverlay)
           _CongratsOverlayParent(
             expandController: _expandController,
             messageFade: _messageFade,
@@ -152,24 +154,34 @@ class _CongratsOverlayParent extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final HomeState state = ref.watch(homeViewModelProvider).requireValue;
-
     return Positioned.fill(
       child: IgnorePointer(
         ignoring: false,
         child: Stack(
           children: <Widget>[
-            PositionedTransition(
-              rect: state.rectAnimation!,
-              child: AnimatedBuilder(
-                animation: _expandController,
-                builder: (BuildContext context, Widget? child) {
-                  return Container(
+            AnimatedBuilder(
+              animation: _expandController,
+              builder: (BuildContext context, Widget? child) {
+                final double screenWidth = MediaQuery.of(context).size.width;
+                final double screenHeight = MediaQuery.of(context).size.height;
+
+                // Calculate the radius based on animation progress
+                // Start from 10px and grow to cover the entire screen
+                final double maxRadius = math.sqrt(
+                  math.pow(screenWidth / 2, 2) + math.pow(screenHeight / 2, 2),
+                );
+                final double currentRadius =
+                    10 + (_expandController.value * (maxRadius - 10));
+
+                return Positioned(
+                  left: screenWidth / 2 - currentRadius,
+                  top: screenHeight / 2 - currentRadius,
+                  child: Container(
+                    width: currentRadius * 2,
+                    height: currentRadius * 2,
                     decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(
-                        state.radiusAnimation!.value,
-                      ),
+                      shape: BoxShape.circle,
                       boxShadow: <BoxShadow>[
                         if (_expandController.value < 1)
                           BoxShadow(
@@ -179,9 +191,9 @@ class _CongratsOverlayParent extends ConsumerWidget {
                           ),
                       ],
                     ),
-                  );
-                },
-              ),
+                  ),
+                );
+              },
             ),
             _CongratsOverlay(
               messageFade: _messageFade,
@@ -286,7 +298,9 @@ class _LastCongratsChildState extends ConsumerState<_LastCongratsChild> {
                 width: 220,
                 onTap: () {
                   viewModel
-                    ..triggerFullCompleted()
+                    ..triggerFullCompleted(
+                      isFromRealHome: viewModel.isFromRealHome,
+                    )
                     ..onOverlayClose(expandController: widget.expandController);
                 },
               ),
