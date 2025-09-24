@@ -162,9 +162,6 @@ class HomeViewModel extends _$HomeViewModel {
 
   /// Save happen action content via service
   void saveHappenActionContent() {
-    debugPrint(
-      '[HomeViewModel] Saving happen action - Step: ${state.requireValue.step}, Happen: "${happenController.text}", Action: "${becauseController.text}"',
-    );
     _happenActionService.addEntry(
       happen: happenController.text,
       action: becauseController.text,
@@ -238,9 +235,8 @@ class HomeViewModel extends _$HomeViewModel {
     required AnimationController expandController,
   }) async {
     debugPrint('[HomeViewModel] onFlowerTap called');
-    
+
     if (happenController.text.isEmpty || becauseController.text.isEmpty) {
-      debugPrint('[HomeViewModel] Empty fields - Happen: "${happenController.text}", Action: "${becauseController.text}"');
       return;
     }
 

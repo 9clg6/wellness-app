@@ -6,7 +6,7 @@ part of 'kernel.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$kernelHash() => r'ddc50744ba55a1edd3175b126500504878cf2eb3';
+String _$kernelHash() => r'155c6b5099482ecfaabebaac1a4f245414b2c161';
 
 /// Kernel provider
 ///
