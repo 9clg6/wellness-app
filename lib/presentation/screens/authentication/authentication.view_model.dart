@@ -17,13 +17,11 @@ class Authentication extends _$Authentication {
   /// Authentication constructor
   Authentication();
 
-  late AuthenticationService _authService;
   late NavigationService _navigationService;
 
   /// build
   @override
   Future<AuthenticationState> build() async {
-    _authService = await ref.watch(authenticationServiceProvider.future);
     _navigationService = ref.watch(navigationServiceProvider);
 
     return AuthenticationState.initial();
@@ -34,7 +32,10 @@ class Authentication extends _$Authentication {
     try {
       // The view model is now only responsible for calling the service
       // and handling the result. All the business logic is in the service.
-      final User? user = await _authService.loginWithApple();
+      final AuthenticationService authService = await ref.watch(
+        authenticationServiceProvider.future,
+      );
+      final User? user = await authService.loginWithApple();
 
       debugPrint('Successfully signed in with Firebase: ${user?.displayName}');
 
@@ -60,7 +61,11 @@ class Authentication extends _$Authentication {
     try {
       // The view model is now only responsible for calling the service
       // and handling the result. All the business logic is in the service.
-      final User? user = await _authService.loginWithGoogle();
+      final AuthenticationService authService = await ref.watch(
+        authenticationServiceProvider.future,
+      );
+
+      final User? user = await authService.loginWithGoogle();
 
       if (user != null) {
         if (onFinished != null) {
