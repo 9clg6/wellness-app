@@ -49,13 +49,11 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   const Gap(96),
-                  if (Platform.isIOS)
-                    SignInWithAppleButton(
-                      onPressed: () => viewModel.loginWithApple(
-                        onFinished: widget.onFinished,
-                      ),
-                      text: LocaleKeys.authentication_loginWithApple.tr(),
-                    ),
+                  if (Platform.isIOS) SignInWithAppleButton(
+                    onPressed: () =>
+                        viewModel.loginWithApple(onFinished: widget.onFinished),
+                    text: LocaleKeys.authentication_loginWithApple.tr(),
+                  ),
                   const Gap(16),
                   SizedBox(
                     width: double.infinity,
