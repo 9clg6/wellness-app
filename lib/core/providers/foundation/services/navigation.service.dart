@@ -27,7 +27,7 @@ class NavigationService {
 
   /// Navigate to sign in page
   void navigateToSignInPage() {
-    _appRouter.push(const AuthenticationRoute());
+    _appRouter.push(AuthenticationRoute());
   }
 
   /// Pop

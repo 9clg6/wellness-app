@@ -4,7 +4,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:welly/core/providers/core/services/authentication.service.provider.dart';
+import 'package:welly/core/providers/core/services/navigation.service.provider.dart';
 import 'package:welly/core/providers/foundation/services/authentication.service.dart';
+import 'package:welly/core/providers/foundation/services/navigation.service.dart';
 import 'package:welly/presentation/screens/authentication/authentication.state.dart';
 
 part 'authentication.view_model.g.dart';
@@ -16,19 +18,19 @@ class Authentication extends _$Authentication {
   Authentication();
 
   late AuthenticationService _authService;
-
-  /// email controller
+  late NavigationService _navigationService;
 
   /// build
   @override
   Future<AuthenticationState> build() async {
     _authService = await ref.watch(authenticationServiceProvider.future);
+    _navigationService = ref.watch(navigationServiceProvider);
 
     return AuthenticationState.initial();
   }
 
   /// login with apple
-  Future<void> loginWithApple({required void Function() onFinished}) async {
+  Future<void> loginWithApple({void Function()? onFinished}) async {
     try {
       // The view model is now only responsible for calling the service
       // and handling the result. All the business logic is in the service.
@@ -37,7 +39,11 @@ class Authentication extends _$Authentication {
       debugPrint('Successfully signed in with Firebase: ${user?.displayName}');
 
       if (user != null) {
-        onFinished();
+        if (onFinished != null) {
+          onFinished.call();
+        } else {
+          _navigationService.navigateToHome(replace: true);
+        }
       }
     } on FirebaseAuthException catch (e) {
       // Handle Firebase-specific errors
@@ -50,14 +56,18 @@ class Authentication extends _$Authentication {
   }
 
   /// login with google
-  Future<void> loginWithGoogle({required void Function() onFinished}) async {
+  Future<void> loginWithGoogle({void Function()? onFinished}) async {
     try {
       // The view model is now only responsible for calling the service
       // and handling the result. All the business logic is in the service.
       final User? user = await _authService.loginWithGoogle();
 
       if (user != null) {
-        onFinished();
+        if (onFinished != null) {
+          onFinished.call();
+        } else {
+          _navigationService.navigateToHome(replace: true);
+        }
       }
 
       // TODO(clement): Handle the signed-in user
