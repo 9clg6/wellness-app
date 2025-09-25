@@ -186,5 +186,7 @@
   "reviewScreenRepeatTodayEvents": "Repeat the positive events that marked you today",
   "authentication_loginWithGoogle": "Sign in with Google",
   "authentication_loginWithApple": "Sign in with Apple",
-  "authentication_skip": "Skip"
+  "authentication_skip": "Skip",
+  "authentication_devenezUnWelly": "Welly",
+  "authentication_devenezUnWellyDescription": "Start your well-being adventure and join thousands of users around the world."
 }

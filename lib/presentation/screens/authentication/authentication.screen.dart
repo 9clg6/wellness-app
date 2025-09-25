@@ -39,73 +39,120 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
     );
 
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 26),
+      body: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 26, vertical: 48),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(Assets.images.splashBg.path),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: SafeArea(
           child: state.when(
-            data: (AuthenticationState data) => Form(
-              key: GlobalKey<FormState>(),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const Gap(96),
-                  if (Platform.isIOS) SignInWithAppleButton(
-                    onPressed: () =>
-                        viewModel.loginWithApple(onFinished: widget.onFinished),
-                    text: LocaleKeys.authentication_loginWithApple.tr(),
-                  ),
-                  const Gap(16),
-                  SizedBox(
-                    width: double.infinity,
-                    child: TappableComponent(
-                      onTap: () => viewModel.loginWithGoogle(
-                        onFinished: widget.onFinished,
-                      ),
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(8),
-                      splashColor: Colors.grey.withAlpha(30),
-                      boxShadow: const <BoxShadow>[
-                        BoxShadow(
-                          color: Color(0x1A000000),
-                          blurRadius: 2,
-                          offset: Offset(0, 1),
+            data: (AuthenticationState data) => Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Expanded(
+                  child: Center(
+                    child: Column(
+                      children: <Widget>[
+                        TextVariant(
+                          LocaleKeys.authentication_devenezUnWelly.tr(),
+                          variantType: TextVariantType.headlineLarge,
+                          style: const TextStyle(
+                            fontSize: 48,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white,
+                            letterSpacing: 1.5,
+                          ),
+                        ),
+                        Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              TextVariant(
+                                LocaleKeys
+                                    .authentication_devenezUnWellyDescription
+                                    .tr(),
+                                variantType: TextVariantType.titleLarge,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w300,
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
                         ),
                       ],
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(vertical: 10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: const Color(0xFFE0E0E0)),
+                    ),
+                  ),
+                ),
+                const Gap(32),
+                Column(
+                  children: <Widget>[
+                    if (Platform.isIOS)
+                      SignInWithAppleButton(
+                        onPressed: () => viewModel.loginWithApple(
+                          onFinished: widget.onFinished,
                         ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8),
-                              child: Image.asset(
-                                Assets.images.google.path,
-                                height: 20,
-                                width: 20,
-                                fit: BoxFit.cover,
+                        text: LocaleKeys.authentication_loginWithApple.tr(),
+                      ),
+                    SizedBox(
+                      width: double.infinity,
+                      child: TappableComponent(
+                        onTap: () => viewModel.loginWithGoogle(
+                          onFinished: widget.onFinished,
+                        ),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                        splashColor: Colors.grey.withAlpha(30),
+                        boxShadow: const <BoxShadow>[
+                          BoxShadow(
+                            color: Color(0x1A000000),
+                            blurRadius: 2,
+                            offset: Offset(0, 1),
+                          ),
+                        ],
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: const Color(0xFFE0E0E0)),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(right: 4),
+                                child: Image.asset(
+                                  Assets.images.google.path,
+                                  height: 20,
+                                  width: 20,
+                                  fit: BoxFit.cover,
+                                ),
                               ),
-                            ),
-                            TextVariant(
-                              LocaleKeys.authentication_loginWithGoogle.tr(),
-                              fontSize: 17,
-                              color: Colors.black,
-                            ),
-                          ],
+                              TextVariant(
+                                LocaleKeys.authentication_loginWithGoogle.tr(),
+                                fontSize: 17,
+                                color: Colors.black,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  const Gap(16),
-                  TextButton(
-                    onPressed: widget.onFinished,
-                    child: TextVariant(LocaleKeys.authentication_skip.tr()),
-                  ),
-                ],
-              ),
+                    Center(
+                      child: TextButton(
+                        onPressed: widget.onFinished,
+                        child: TextVariant(
+                          LocaleKeys.authentication_skip.tr(),
+                          color: Colors.white,
+                          variantType: TextVariantType.titleMedium,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
             ),
             error: ErrorPlaceholder.new,
             loading: CustomLoader.new,
