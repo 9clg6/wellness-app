@@ -5,8 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:welly/core/providers/core/services/authentication.service.provider.dart';
 import 'package:welly/core/providers/core/services/navigation.service.provider.dart';
+import 'package:welly/core/providers/core/services/tracking.service.provider.dart';
 import 'package:welly/core/providers/foundation/services/authentication.service.dart';
 import 'package:welly/core/providers/foundation/services/navigation.service.dart';
+import 'package:welly/core/providers/foundation/services/tracking.service.dart';
 import 'package:welly/presentation/screens/authentication/authentication.state.dart';
 
 part 'authentication.view_model.g.dart';
@@ -35,11 +37,18 @@ class Authentication extends _$Authentication {
       final AuthenticationService authService = await ref.watch(
         authenticationServiceProvider.future,
       );
+      final TrackingService trackingService = ref.watch(
+        trackingServiceProvider,
+      );
+
       final User? user = await authService.loginWithApple();
 
       debugPrint('Successfully signed in with Firebase: ${user?.displayName}');
 
       if (user != null) {
+        // Track successful Apple login
+        await trackingService.trackLoginAppleSuccess(userId: user.uid);
+
         if (onFinished != null) {
           onFinished.call();
         } else {
@@ -49,10 +58,25 @@ class Authentication extends _$Authentication {
     } on FirebaseAuthException catch (e) {
       // Handle Firebase-specific errors
       debugPrint('Firebase Auth Error: ${e.message}');
+
+      // Track Apple login error
+      final TrackingService trackingService = ref.watch(
+        trackingServiceProvider,
+      );
+      await trackingService.trackLoginAppleError(
+        error: e.message ?? 'Unknown error',
+      );
+
       // TODO(clement): Show a user-friendly error message
     } on Exception catch (e) {
       // Handle other errors (e.g., user cancels the dialog)
       debugPrint('Apple Sign-In Error: $e');
+
+      // Track Apple login error
+      final TrackingService trackingService = ref.watch(
+        trackingServiceProvider,
+      );
+      await trackingService.trackLoginAppleError(error: e.toString());
     }
   }
 
@@ -64,10 +88,16 @@ class Authentication extends _$Authentication {
       final AuthenticationService authService = await ref.watch(
         authenticationServiceProvider.future,
       );
+      final TrackingService trackingService = ref.watch(
+        trackingServiceProvider,
+      );
 
       final User? user = await authService.loginWithGoogle();
 
       if (user != null) {
+        // Track successful Google login
+        await trackingService.trackLoginGoogleSuccess(userId: user.uid);
+
         if (onFinished != null) {
           onFinished.call();
         } else {
@@ -82,10 +112,25 @@ class Authentication extends _$Authentication {
     } on FirebaseAuthException catch (e) {
       // Handle Firebase-specific errors
       debugPrint('Firebase Auth Error: ${e.message}');
+
+      // Track Google login error
+      final TrackingService trackingService = ref.watch(
+        trackingServiceProvider,
+      );
+      await trackingService.trackLoginGoogleError(
+        error: e.message ?? 'Unknown error',
+      );
+
       // TODO(clement): Show a user-friendly error message
     } on Exception catch (e) {
       // Handle other errors (e.g., user cancels the dialog)
       debugPrint('Google Sign-In Error: $e');
+
+      // Track Google login error
+      final TrackingService trackingService = ref.watch(
+        trackingServiceProvider,
+      );
+      await trackingService.trackLoginGoogleError(error: e.toString());
     }
   }
 }
