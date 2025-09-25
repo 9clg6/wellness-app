@@ -42,7 +42,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
           physics: const NeverScrollableScrollPhysics(),
           children: <Widget>[
             const WelcomeStep(),
-            const AuthenticationScreen(),
+            AuthenticationScreen(onFinished: viewModel.nextStep),
             FirstPersonalEngagementQuiz(onEnd: viewModel.nextStep),
             const CalculationStep(),
             const MiniDiagnosticStep(),

@@ -1,20 +1,12 @@
 import 'dart:async';
 
-import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:rxdart/rxdart.dart';
-import 'package:welly/core/providers/foundation/services/navigation.service.dart';
-import 'package:welly/domain/entities/auth.entity.dart';
 import 'package:welly/domain/entities/onboarding_answers.dart';
 import 'package:welly/domain/entities/user.entity.dart';
-import 'package:welly/domain/params/login.param.dart';
 import 'package:welly/domain/usecases/get_local_user.use_case.dart';
 import 'package:welly/domain/usecases/get_onboarding_answers.use_case.dart';
-import 'package:welly/domain/usecases/get_user.use_case.dart';
 import 'package:welly/domain/usecases/is_onboarding_completed.use_case.dart';
-import 'package:welly/domain/usecases/login.use_case.dart';
-import 'package:welly/domain/usecases/logout.use_case.dart';
-import 'package:welly/domain/usecases/save_auth.use_case.dart';
 import 'package:welly/domain/usecases/save_onboarding_answers.use_case.dart';
 import 'package:welly/domain/usecases/save_user.use_case.dart';
 import 'package:welly/domain/usecases/set_onboarding_completed.use_case.dart';
@@ -24,35 +16,20 @@ import 'package:welly/foundation/interfaces/results.usecases.dart';
 class UserService {
   /// Constructor
   UserService({
-    required NavigationService navigationService,
-    required GetUserUseCase getUserUseCase,
-    required LoginUseCase loginUseCase,
-    required SaveAuthUseCase saveAuthUseCase,
-    required LogoutUseCase logoutUseCase,
     required SaveOnboardingAnswersUseCase saveOnboardingAnswersUseCase,
     required GetOnboardingAnswersUseCase getOnboardingAnswersUseCase,
     required SetOnboardingCompletedUseCase setOnboardingCompletedUseCase,
     required IsOnboardingCompletedUseCase isOnboardingCompletedUseCase,
     required GetLocalUserUseCase getLocalUserUseCase,
     required SaveUserUseCase saveUserUseCase,
-  }) : _navigationService = navigationService,
-       _getUserUseCase = getUserUseCase,
-       _loginUseCase = loginUseCase,
-       _saveAuthUseCase = saveAuthUseCase,
-       _logoutUseCase = logoutUseCase,
-       _saveOnboardingAnswersUseCase = saveOnboardingAnswersUseCase,
+  }) : _saveOnboardingAnswersUseCase = saveOnboardingAnswersUseCase,
        _getOnboardingAnswersUseCase = getOnboardingAnswersUseCase,
        _setOnboardingCompletedUseCase = setOnboardingCompletedUseCase,
        _isOnboardingCompletedUseCase = isOnboardingCompletedUseCase,
        _getLocalUserUseCase = getLocalUserUseCase,
        _saveUserUseCase = saveUserUseCase;
 
-  late final NavigationService _navigationService;
-  late final GetUserUseCase _getUserUseCase;
   late final GetLocalUserUseCase _getLocalUserUseCase;
-  late final LoginUseCase _loginUseCase;
-  late final SaveAuthUseCase _saveAuthUseCase;
-  late final LogoutUseCase _logoutUseCase;
   late final SaveUserUseCase _saveUserUseCase;
   late final SaveOnboardingAnswersUseCase _saveOnboardingAnswersUseCase;
   late final GetOnboardingAnswersUseCase _getOnboardingAnswersUseCase;
@@ -122,93 +99,6 @@ class UserService {
     _userSubject.close();
   }
 
-  /// Get saved email
-  Future<String?> getSavedEmail() async {
-    // This method still needs UserPreferencesStorage for email management
-    // We'll keep it for now but it should be refactored to use a use case
-    throw UnimplementedError(
-      'Email management should use a dedicated use case',
-    );
-  }
-
-  /// Clear saved email
-  Future<void> clearSavedEmail() async {
-    // This method still needs UserPreferencesStorage for email management
-    // We'll keep it for now but it should be refactored to use a use case
-    throw UnimplementedError(
-      'Email management should use a dedicated use case',
-    );
-  }
-
-  /// Check if email is saved
-  Future<bool> hasSavedEmail() async {
-    // This method still needs UserPreferencesStorage for email management
-    // We'll keep it for now but it should be refactored to use a use case
-    throw UnimplementedError(
-      'Email management should use a dedicated use case',
-    );
-  }
-
-  /// Login
-  Future<void> login({
-    required String username,
-    required String password,
-    required Null Function() onRequest,
-    required Null Function() onFinish,
-  }) async {
-    final LoginParam params = LoginParam(
-      username: username,
-      password: password,
-    );
-
-    onRequest();
-    final ResultState<AuthEntity> result = await _loginUseCase.execute(params);
-
-    await result.when(
-      success: (AuthEntity data) async {
-        onFinish();
-        await _saveAuthUseCase.execute(data);
-
-        final ResultState<UserEntity> user = await _getUserUseCase.execute();
-        _userSubject.add(user.data);
-        _navigationService.navigateToHome(replace: true);
-      },
-      failure: (Exception exception) async {
-        debugPrint('failure: $exception');
-        onFinish();
-        if (exception is DioException) {
-          switch (exception.response?.statusCode) {
-            case 400:
-            // await _dialogService.showLoginErrorDialog(
-            //   title: LocaleKeys.errorOccured.tr(),
-            //   message: LocaleKeys.loginOrPasswordIncorrect.tr(),
-            // );
-          }
-        } else if (exception is TimeoutException) {
-          // await _dialogService.showLoginErrorDialog(
-          //   title: LocaleKeys.errorOccured.tr(),
-          //   message: LocaleKeys.operationTimeout.tr(),
-          // );
-        }
-      },
-    );
-  }
-
-  /// Logout
-  /// Complete logout process: clear auth token, email, and user data
-  Future<void> logout() async {
-    try {
-      await _logoutUseCase.execute();
-      _userSubject.add(null);
-
-      _navigationService.navigateToSignInPage();
-    } on Exception catch (exception) {
-      debugPrint('logout: error during logout: $exception');
-      _userSubject.add(null);
-      _navigationService.navigateToSignInPage();
-    }
-  }
-
   /// Check if onboarding is completed
   Future<bool> isOnboardingCompleted() async {
     debugPrint('[UserService] isOnboardingCompleted');
@@ -257,8 +147,10 @@ class UserService {
   }
 
   /// Update and save user
-  void updateAndSaveUser(UserEntity user) {
+  void updateAndSaveUser(UserEntity? user) {
     _userSubject.add(user);
-    _saveUserUseCase.execute(user);
+    if (user != null) {
+      _saveUserUseCase.execute(user);
+    }
   }
 }

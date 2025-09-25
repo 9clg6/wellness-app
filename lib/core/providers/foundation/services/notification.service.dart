@@ -64,11 +64,13 @@ class NotificationService {
         String? apnsToken;
         int attempts = 0;
         const int maxAttempts = 10;
-        
+
         while (apnsToken == null && attempts < maxAttempts) {
           apnsToken = await _firebaseMessaging.getAPNSToken();
           if (apnsToken == null) {
-            debugPrint('[NotificationService] APNS token not ready, waiting... (attempt ${attempts + 1}/$maxAttempts)');
+            debugPrint(
+              '[NotificationService] APNS token not ready, waiting... (attempt ${attempts + 1}/$maxAttempts)',
+            );
             await Future<void>.delayed(const Duration(milliseconds: 500));
             attempts++;
           }
@@ -77,11 +79,15 @@ class NotificationService {
         if (apnsToken != null) {
           debugPrint('[NotificationService] APNS Token: $apnsToken');
         } else {
-          debugPrint('[NotificationService] APNS token not available after $maxAttempts attempts');
+          debugPrint(
+            '[NotificationService] APNS token not '
+            'available after $maxAttempts attempts',
+          );
         }
       }
 
-      // Get FCM token (this might fail if APNS token is not available, but that's OK)
+      // Get FCM token (this might fail if APNS token
+      //  is not available, but that's OK)
       try {
         final String? token = await _firebaseMessaging.getToken();
         if (token != null) {
@@ -100,11 +106,13 @@ class NotificationService {
       // Handle foreground messages
       FirebaseMessaging.onMessage.listen((RemoteMessage message) {
         debugPrint(
-          '[NotificationService] Foreground message received: ${message.messageId}',
+          '[NotificationService] Foreground message '
+          'received: ${message.messageId}',
         );
         debugPrint('[NotificationService] Message data: ${message.data}');
         debugPrint(
-          '[NotificationService] Message notification: ${message.notification?.title}',
+          '[NotificationService] Message notification: '
+          '${message.notification?.title}',
         );
 
         // Show local notification when app is in foreground
@@ -126,11 +134,9 @@ class NotificationService {
           '[NotificationService] Message opened app: ${message.messageId}',
         );
         debugPrint('[NotificationService] Message data: ${message.data}');
-        // TODO: Navigate to appropriate screen based on message data
       });
     } on Exception catch (e) {
       debugPrint('[NotificationService] Firebase initialization error: $e');
-      // Don't rethrow to prevent app crash, just log the error
     }
   }
 
@@ -175,17 +181,20 @@ class NotificationService {
 
         if (result ?? false) {
           debugPrint(
-            '[NotificationService] Android local notification permissions granted',
+            '[NotificationService] Android local notification'
+            ' permissions granted',
           );
         } else {
           debugPrint(
-            '[NotificationService] Android local notification permissions denied',
+            '[NotificationService] Android local notification'
+            ' permissions denied',
           );
         }
       } else if (Platform.isIOS) {
         // iOS permissions are handled by Firebase Messaging
         debugPrint(
-          '[NotificationService] iOS permissions handled by Firebase Messaging',
+          '[NotificationService] iOS permissions handled by '
+          'Firebase Messaging',
         );
       }
     } on Exception catch (e) {
@@ -302,7 +311,8 @@ class NotificationService {
     }
   }
 
-  /// Create notification channel for Android (required for reliable notifications)
+  /// Create notification channel for Android
+  /// (required for reliable notifications)
   Future<void> _createNotificationChannel() async {
     if (Platform.isAndroid) {
       final AndroidFlutterLocalNotificationsPlugin? androidImplementation =
@@ -317,7 +327,8 @@ class NotificationService {
             'daily_reminder',
             'Rappels quotidiens',
             description:
-                'Notifications pour rappeler de noter les événements quotidiens',
+                'Notifications pour rappeler de noter '
+                'les événements quotidiens',
             importance: Importance.max,
             enableLights: true,
             ledColor: Color(0xFF2196F3),
@@ -472,20 +483,24 @@ class NotificationService {
   Future<void> testIOSConfiguration() async {
     try {
       debugPrint('[NotificationService] === iOS CONFIGURATION TEST ===');
-      
+
       if (!Platform.isIOS) {
         debugPrint('[NotificationService] This test is for iOS only');
         return;
       }
-      
+
       // 1. Check notification permissions
-      final NotificationSettings settings = await _firebaseMessaging.getNotificationSettings();
+      final NotificationSettings settings = await _firebaseMessaging
+          .getNotificationSettings();
       debugPrint('[NotificationService] Notification settings:');
-      debugPrint('[NotificationService] - Authorization: ${settings.authorizationStatus}');
+      debugPrint(
+        '[NotificationService] - Authorization: '
+        '${settings.authorizationStatus}',
+      );
       debugPrint('[NotificationService] - Alert: ${settings.alert}');
       debugPrint('[NotificationService] - Badge: ${settings.badge}');
       debugPrint('[NotificationService] - Sound: ${settings.sound}');
-      
+
       // 2. Check APNS token availability
       final String? apnsToken = await _firebaseMessaging.getAPNSToken();
       if (apnsToken != null) {
@@ -493,7 +508,7 @@ class NotificationService {
       } else {
         debugPrint('[NotificationService] ❌ APNS Token not available');
       }
-      
+
       // 3. Get FCM token
       final String? fcmToken = await _firebaseMessaging.getToken();
       if (fcmToken != null) {
@@ -501,15 +516,21 @@ class NotificationService {
       } else {
         debugPrint('[NotificationService] ❌ FCM Token not available');
       }
-      
+
       // 4. Subscribe to test topic
       await _firebaseMessaging.subscribeToTopic('ios_config_test');
       debugPrint('[NotificationService] ✅ Subscribed to ios_config_test topic');
-      
-      debugPrint('[NotificationService] === iOS CONFIGURATION TEST COMPLETED ===');
-      debugPrint('[NotificationService] Send a message to topic "ios_config_test" from Firebase Console');
-      debugPrint('[NotificationService] Make sure the app is in background when testing');
-      
+
+      debugPrint(
+        '[NotificationService] === iOS CONFIGURATION TEST COMPLETED ===',
+      );
+      debugPrint(
+        '[NotificationService] Send a message to topic "ios_config_test" '
+        'from Firebase Console',
+      );
+      debugPrint(
+        '[NotificationService] Make sure the app is in background when testing',
+      );
     } on Exception catch (e) {
       debugPrint('[NotificationService] ❌ iOS configuration test error: $e');
     }
