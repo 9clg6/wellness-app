@@ -7,6 +7,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:welly/core/localization/generated/locale_keys.g.dart';
+import 'package:welly/core/providers/core/services/tracking.service.provider.dart';
+import 'package:welly/core/providers/foundation/services/tracking.service.dart';
 import 'package:welly/gen/assets.gen.dart';
 import 'package:welly/presentation/screens/authentication/authentication.state.dart';
 import 'package:welly/presentation/screens/authentication/authentication.view_model.dart';
@@ -91,17 +93,33 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
                   children: <Widget>[
                     if (Platform.isIOS)
                       SignInWithAppleButton(
-                        onPressed: () => viewModel.loginWithApple(
-                          onFinished: widget.onFinished,
-                        ),
+                        onPressed: () async {
+                          // Track Apple login button press
+                          final TrackingService trackingService = ref.watch(
+                            trackingServiceProvider,
+                          );
+                          await trackingService.trackLoginApplePressed();
+
+                          await viewModel.loginWithApple(
+                            onFinished: widget.onFinished,
+                          );
+                        },
                         text: LocaleKeys.authentication_loginWithApple.tr(),
                       ),
                     SizedBox(
                       width: double.infinity,
                       child: TappableComponent(
-                        onTap: () => viewModel.loginWithGoogle(
-                          onFinished: widget.onFinished,
-                        ),
+                        onTap: () async {
+                          // Track Google login button press
+                          final TrackingService trackingService = ref.watch(
+                            trackingServiceProvider,
+                          );
+                          await trackingService.trackLoginGooglePressed();
+
+                          await viewModel.loginWithGoogle(
+                            onFinished: widget.onFinished,
+                          );
+                        },
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(8),
                         splashColor: Colors.grey.withAlpha(30),
@@ -142,7 +160,15 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
                     ),
                     Center(
                       child: TextButton(
-                        onPressed: widget.onFinished,
+                        onPressed: () async {
+                          // Track skip auth button press
+                          final TrackingService trackingService = ref.watch(
+                            trackingServiceProvider,
+                          );
+                          await trackingService.trackSkipAuthPressed();
+
+                          widget.onFinished?.call();
+                        },
                         child: TextVariant(
                           LocaleKeys.authentication_skip.tr(),
                           color: Colors.white,
