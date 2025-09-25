@@ -28,18 +28,51 @@ class AiAnalyzeRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [AuthenticationScreen]
-class AuthenticationRoute extends PageRouteInfo<void> {
-  const AuthenticationRoute({List<PageRouteInfo>? children})
-    : super(AuthenticationRoute.name, initialChildren: children);
+class AuthenticationRoute extends PageRouteInfo<AuthenticationRouteArgs> {
+  AuthenticationRoute({
+    void Function()? onFinished,
+    Key? key,
+    List<PageRouteInfo>? children,
+  }) : super(
+         AuthenticationRoute.name,
+         args: AuthenticationRouteArgs(onFinished: onFinished, key: key),
+         initialChildren: children,
+       );
 
   static const String name = 'AuthenticationRoute';
 
   static PageInfo page = PageInfo(
     name,
     builder: (data) {
-      return const AuthenticationScreen();
+      final args = data.argsAs<AuthenticationRouteArgs>(
+        orElse: () => const AuthenticationRouteArgs(),
+      );
+      return AuthenticationScreen(onFinished: args.onFinished, key: args.key);
     },
   );
+}
+
+class AuthenticationRouteArgs {
+  const AuthenticationRouteArgs({this.onFinished, this.key});
+
+  final void Function()? onFinished;
+
+  final Key? key;
+
+  @override
+  String toString() {
+    return 'AuthenticationRouteArgs{onFinished: $onFinished, key: $key}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! AuthenticationRouteArgs) return false;
+    return key == other.key;
+  }
+
+  @override
+  int get hashCode => key.hashCode;
 }
 
 /// generated route for

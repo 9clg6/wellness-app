@@ -19,10 +19,10 @@ import 'package:welly/presentation/widgets/text_variant.dart';
 @RoutePage()
 class AuthenticationScreen extends ConsumerStatefulWidget {
   /// Constructor
-  const AuthenticationScreen({required this.onFinished, super.key});
+  const AuthenticationScreen({this.onFinished, super.key});
 
   /// On finished
-  final void Function() onFinished;
+  final void Function()? onFinished;
 
   /// Create State
   @override
