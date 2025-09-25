@@ -183,5 +183,8 @@
   "aiAnalyze_suggestions": "Suggestions",
   "aiAnalyze_seeReport": "Voir mon analyse IA de la semaine",
   "reviewScreenReviewTodayEvents": "Revoir mes événements du jour",
-  "reviewScreenRepeatTodayEvents": "Répète les événements positifs qui t'ont marqué aujourd'hui"
+  "reviewScreenRepeatTodayEvents": "Répète les événements positifs qui t'ont marqué aujourd'hui",
+  "authentication_loginWithGoogle": "Se connecter avec Google",
+  "authentication_loginWithApple": "Se connecter avec Apple",
+  "authentication_skip": "Passer"
 }

@@ -188,5 +188,8 @@ abstract class  LocaleKeys {
   static const aiAnalyze_seeReport = 'aiAnalyze_seeReport';
   static const reviewScreenReviewTodayEvents = 'reviewScreenReviewTodayEvents';
   static const reviewScreenRepeatTodayEvents = 'reviewScreenRepeatTodayEvents';
+  static const authentication_loginWithGoogle = 'authentication_loginWithGoogle';
+  static const authentication_loginWithApple = 'authentication_loginWithApple';
+  static const authentication_skip = 'authentication_skip';
 
 }
