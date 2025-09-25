@@ -18,12 +18,15 @@ class $AssetsImagesGen {
   AssetGenImage get appLogo =>
       const AssetGenImage('assets/images/app_logo.png');
 
+  /// File path: assets/images/google.png
+  AssetGenImage get google => const AssetGenImage('assets/images/google.png');
+
   /// File path: assets/images/splash_bg.png
   AssetGenImage get splashBg =>
       const AssetGenImage('assets/images/splash_bg.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [appLogo, splashBg];
+  List<AssetGenImage> get values => [appLogo, google, splashBg];
 }
 
 class $AssetsTranslationsGen {
