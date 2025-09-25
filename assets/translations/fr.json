@@ -186,5 +186,8 @@
   "reviewScreenRepeatTodayEvents": "Répète les événements positifs qui t'ont marqué aujourd'hui",
   "authentication_loginWithGoogle": "Se connecter avec Google",
   "authentication_loginWithApple": "Se connecter avec Apple",
-  "authentication_skip": "Passer"
+  "authentication_skip": "Passer",
+  "authentication_devenezUnWelly": "Welly",
+  "authentication_devenezUnWellyDescription": "Démarrer votre aventure bien-être et rejoignez des milliers d'utilisateurs partout dans le monde."
+
 }

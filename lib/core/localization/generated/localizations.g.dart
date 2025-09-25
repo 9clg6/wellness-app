@@ -202,7 +202,9 @@ class CodegenLoader extends AssetLoader{
   "reviewScreenRepeatTodayEvents": "Repeat the positive events that marked you today",
   "authentication_loginWithGoogle": "Sign in with Google",
   "authentication_loginWithApple": "Sign in with Apple",
-  "authentication_skip": "Skip"
+  "authentication_skip": "Skip",
+  "authentication_devenezUnWelly": "Welly",
+  "authentication_devenezUnWellyDescription": "Start your well-being adventure and join thousands of users around the world."
 };
 static const Map<String,dynamic> _fr = {
   "first": "Bonjour",
@@ -392,7 +394,9 @@ static const Map<String,dynamic> _fr = {
   "reviewScreenRepeatTodayEvents": "Répète les événements positifs qui t'ont marqué aujourd'hui",
   "authentication_loginWithGoogle": "Se connecter avec Google",
   "authentication_loginWithApple": "Se connecter avec Apple",
-  "authentication_skip": "Passer"
+  "authentication_skip": "Passer",
+  "authentication_devenezUnWelly": "Welly",
+  "authentication_devenezUnWellyDescription": "Démarrer votre aventure bien-être et rejoignez des milliers d'utilisateurs partout dans le monde."
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": _en, "fr": _fr};
 }

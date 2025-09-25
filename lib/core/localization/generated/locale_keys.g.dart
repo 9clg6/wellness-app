@@ -191,5 +191,7 @@ abstract class  LocaleKeys {
   static const authentication_loginWithGoogle = 'authentication_loginWithGoogle';
   static const authentication_loginWithApple = 'authentication_loginWithApple';
   static const authentication_skip = 'authentication_skip';
+  static const authentication_devenezUnWelly = 'authentication_devenezUnWelly';
+  static const authentication_devenezUnWellyDescription = 'authentication_devenezUnWellyDescription';
 
 }
