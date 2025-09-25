@@ -28,16 +28,17 @@ class Authentication extends _$Authentication {
   }
 
   /// login with apple
-  Future<void> loginWithApple() async {
+  Future<void> loginWithApple({required void Function() onFinished}) async {
     try {
       // The view model is now only responsible for calling the service
       // and handling the result. All the business logic is in the service.
       final User? user = await _authService.loginWithApple();
 
-      // TODO(clement): Handle the signed-in user
-      // This is the place to trigger navigation or update the UI state
-      // based on the successful login.
       debugPrint('Successfully signed in with Firebase: ${user?.displayName}');
+
+      if (user != null) {
+        onFinished();
+      }
     } on FirebaseAuthException catch (e) {
       // Handle Firebase-specific errors
       debugPrint('Firebase Auth Error: ${e.message}');
@@ -49,11 +50,15 @@ class Authentication extends _$Authentication {
   }
 
   /// login with google
-  Future<void> loginWithGoogle() async {
+  Future<void> loginWithGoogle({required void Function() onFinished}) async {
     try {
       // The view model is now only responsible for calling the service
       // and handling the result. All the business logic is in the service.
       final User? user = await _authService.loginWithGoogle();
+
+      if (user != null) {
+        onFinished();
+      }
 
       // TODO(clement): Handle the signed-in user
       // This is the place to trigger navigation or update the UI state

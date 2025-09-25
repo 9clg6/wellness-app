@@ -199,7 +199,10 @@ class CodegenLoader extends AssetLoader{
   "aiAnalyze_suggestions": "Suggestions",
   "aiAnalyze_seeReport": "See my AI analysis of the week",
   "reviewScreenReviewTodayEvents": "Review my events of the day",
-  "reviewScreenRepeatTodayEvents": "Repeat the positive events that marked you today"
+  "reviewScreenRepeatTodayEvents": "Repeat the positive events that marked you today",
+  "authentication_loginWithGoogle": "Sign in with Google",
+  "authentication_loginWithApple": "Sign in with Apple",
+  "authentication_skip": "Skip"
 };
 static const Map<String,dynamic> _fr = {
   "first": "Bonjour",
@@ -386,7 +389,10 @@ static const Map<String,dynamic> _fr = {
   "aiAnalyze_suggestions": "Suggestions",
   "aiAnalyze_seeReport": "Voir mon analyse IA de la semaine",
   "reviewScreenReviewTodayEvents": "Revoir mes événements du jour",
-  "reviewScreenRepeatTodayEvents": "Répète les événements positifs qui t'ont marqué aujourd'hui"
+  "reviewScreenRepeatTodayEvents": "Répète les événements positifs qui t'ont marqué aujourd'hui",
+  "authentication_loginWithGoogle": "Se connecter avec Google",
+  "authentication_loginWithApple": "Se connecter avec Apple",
+  "authentication_skip": "Passer"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": _en, "fr": _fr};
 }

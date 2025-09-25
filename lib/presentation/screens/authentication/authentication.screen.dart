@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:welly/core/localization/generated/locale_keys.g.dart';
 import 'package:welly/gen/assets.gen.dart';
 import 'package:welly/presentation/screens/authentication/authentication.state.dart';
 import 'package:welly/presentation/screens/authentication/authentication.view_model.dart';
@@ -17,7 +19,10 @@ import 'package:welly/presentation/widgets/text_variant.dart';
 @RoutePage()
 class AuthenticationScreen extends ConsumerStatefulWidget {
   /// Constructor
-  const AuthenticationScreen({super.key});
+  const AuthenticationScreen({required this.onFinished, super.key});
+
+  /// On finished
+  final void Function() onFinished;
 
   /// Create State
   @override
@@ -46,15 +51,18 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
                   const Gap(96),
                   if (Platform.isIOS)
                     SignInWithAppleButton(
-                      onPressed: viewModel.loginWithApple,
-                      text: 'Se connecter avec Apple',
+                      onPressed: () => viewModel.loginWithApple(
+                        onFinished: widget.onFinished,
+                      ),
+                      text: LocaleKeys.authentication_loginWithApple.tr(),
                     ),
                   const Gap(16),
-                  // Google Sign-In button
                   SizedBox(
                     width: double.infinity,
                     child: TappableComponent(
-                      onTap: viewModel.loginWithGoogle,
+                      onTap: () => viewModel.loginWithGoogle(
+                        onFinished: widget.onFinished,
+                      ),
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(8),
                       splashColor: Colors.grey.withAlpha(30),
@@ -83,8 +91,8 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
                                 fit: BoxFit.cover,
                               ),
                             ),
-                            const TextVariant(
-                              'Se connecter avec Google',
+                            TextVariant(
+                              LocaleKeys.authentication_loginWithGoogle.tr(),
                               fontSize: 17,
                               color: Colors.black,
                             ),
@@ -94,6 +102,10 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
                     ),
                   ),
                   const Gap(16),
+                  TextButton(
+                    onPressed: widget.onFinished,
+                    child: TextVariant(LocaleKeys.authentication_skip.tr()),
+                  ),
                 ],
               ),
             ),
