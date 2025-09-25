@@ -5,10 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
+import 'package:welly/gen/assets.gen.dart';
 import 'package:welly/presentation/screens/authentication/authentication.state.dart';
 import 'package:welly/presentation/screens/authentication/authentication.view_model.dart';
 import 'package:welly/presentation/widgets/custom_loader.dart';
 import 'package:welly/presentation/widgets/error_placeholder.dart';
+import 'package:welly/presentation/widgets/tappable_componenent.dart';
+import 'package:welly/presentation/widgets/text_variant.dart';
 
 /// Authentication Screen
 @RoutePage()
@@ -36,13 +39,61 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
           padding: const EdgeInsets.symmetric(horizontal: 26),
           child: state.when(
             data: (AuthenticationState data) => Form(
-              key: viewModel.formKey,
+              key: GlobalKey<FormState>(),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   const Gap(96),
                   if (Platform.isIOS)
-                    SignInWithAppleButton(onPressed: viewModel.loginWithApple),
+                    SignInWithAppleButton(
+                      onPressed: viewModel.loginWithApple,
+                      text: 'Se connecter avec Apple',
+                    ),
+                  const Gap(16),
+                  // Google Sign-In button
+                  SizedBox(
+                    width: double.infinity,
+                    child: TappableComponent(
+                      onTap: viewModel.loginWithGoogle,
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8),
+                      splashColor: Colors.grey.withAlpha(30),
+                      boxShadow: const <BoxShadow>[
+                        BoxShadow(
+                          color: Color(0x1A000000),
+                          blurRadius: 2,
+                          offset: Offset(0, 1),
+                        ),
+                      ],
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(vertical: 10),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(8),
+                          border: Border.all(color: const Color(0xFFE0E0E0)),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8),
+                              child: Image.asset(
+                                Assets.images.google.path,
+                                height: 20,
+                                width: 20,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            const TextVariant(
+                              'Se connecter avec Google',
+                              fontSize: 17,
+                              color: Colors.black,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  const Gap(16),
                 ],
               ),
             ),
