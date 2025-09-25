@@ -50,6 +50,12 @@ class AuthenticationService {
   /// Emits the current [User] if logged in, or `null` otherwise.
   Stream<User?> get authStateChanges => _firebaseAuth.authStateChanges();
 
+  /// Check if user is currently authenticated
+  bool get isAuthenticated => _firebaseAuth.currentUser != null;
+
+  /// Get current authenticated user
+  User? get currentUser => _firebaseAuth.currentUser;
+
   /// Handles the entire Sign in with Apple flow and
   /// authenticates with Firebase.
   /// Returns the [UserCredential] on success.
