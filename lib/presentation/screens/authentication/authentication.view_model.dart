@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import 'package:welly/core/providers/core/services/user.service.provider.dart';
 import 'package:welly/core/providers/foundation/services/user.service.dart';
 import 'package:welly/presentation/screens/authentication/authentication.state.dart';
@@ -55,5 +56,18 @@ class Authentication extends _$Authentication {
       username: usernameController.text,
       password: passwordController.text,
     );
+  }
+
+  /// login with apple
+  Future<void> loginWithApple() async {
+    final AuthorizationCredentialAppleID credential =
+        await SignInWithApple.getAppleIDCredential(
+          scopes: <AppleIDAuthorizationScopes>[
+            AppleIDAuthorizationScopes.email,
+            AppleIDAuthorizationScopes.fullName,
+          ],
+        );
+
+    debugPrint('credential: $credential');
   }
 }
