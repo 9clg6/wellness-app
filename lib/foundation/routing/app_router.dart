@@ -1,7 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:welly/core/providers/core/services/authentication.service.provider.dart';
 import 'package:welly/core/providers/core/services/user.service.provider.dart';
+import 'package:welly/core/providers/foundation/services/authentication.service.dart';
 import 'package:welly/core/providers/foundation/services/user.service.dart';
 import 'package:welly/presentation/on_boarding/on_boarding.screen.dart';
 import 'package:welly/presentation/screens/ai_analyze/ai_analyze.screen.dart';
@@ -20,17 +22,49 @@ class AppRouter extends RootStackRouter {
 
   @override
   List<AutoRoute> get routes => <AutoRoute>[
-    AutoRoute(page: AuthenticationRoute.page),
+    AutoRoute(
+      page: AuthenticationRoute.page,
+      guards: <AutoRouteGuard>[AuthGuard()],
+    ),
     AutoRoute(page: HomeRoute.page),
     AutoRoute(
       page: RealHomeRoute.page,
-      guards: <AutoRouteGuard>[OnboardingGuard()],
+      guards: <AutoRouteGuard>[AuthGuard(), OnboardingGuard()],
       initial: true,
     ),
     AutoRoute(page: ReviewRoute.page),
     AutoRoute(page: OnBoardingRoute.page),
     AutoRoute(page: AiAnalyzeRoute.page),
   ];
+}
+
+/// Authentication guard - check if user is authenticated
+class AuthGuard extends AutoRouteGuard {
+  @override
+  Future<void> onNavigation(
+    NavigationResolver resolver,
+    StackRouter router,
+  ) async {
+    final ProviderContainer container = ProviderScope.containerOf(
+      resolver.context,
+      listen: false,
+    );
+
+    // Check authentication state using the service
+    final AuthenticationService authService = await container.read(
+      authenticationServiceProvider.future,
+    );
+
+    if (authService.isAuthenticated) {
+      debugPrint(
+        '[AuthGuard] User is authenticated: ${authService.currentUser?.email}',
+      );
+      resolver.next();
+    } else {
+      debugPrint('[AuthGuard] User is not authenticated, redirecting to auth');
+      await resolver.redirectUntil(AuthenticationRoute());
+    }
+  }
 }
 
 /// Onboarding guard - check if the onboarding has already been completed
