@@ -23,6 +23,22 @@ class AnalyticsEvents {
   /// Skip authentication pressed
   static const String skipAuthPressed = 'skip_auth_pressed';
 
+  // Error tracking events
+  /// Authentication error occurred
+  static const String authError = 'auth_error';
+
+  /// Network error occurred
+  static const String networkError = 'network_error';
+
+  /// Payment error occurred
+  static const String paymentError = 'payment_error';
+
+  /// Permission error occurred
+  static const String permissionError = 'permission_error';
+
+  /// System error occurred
+  static const String systemError = 'system_error';
+
   /// Onboarding events
   static const String onboardingStarted = 'onboarding_started';
 
