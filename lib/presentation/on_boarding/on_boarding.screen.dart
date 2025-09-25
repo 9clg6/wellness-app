@@ -13,6 +13,7 @@ import 'package:welly/presentation/on_boarding/steps/pre_activation.step.dart';
 import 'package:welly/presentation/on_boarding/steps/solution.step.dart';
 import 'package:welly/presentation/on_boarding/steps/testimonials.step.dart';
 import 'package:welly/presentation/on_boarding/steps/welcome.step.dart';
+import 'package:welly/presentation/screens/authentication/authentication.screen.dart';
 
 /// On boarding screen
 @RoutePage()
@@ -41,6 +42,7 @@ class _OnBoardingScreenState extends ConsumerState<OnBoardingScreen> {
           physics: const NeverScrollableScrollPhysics(),
           children: <Widget>[
             const WelcomeStep(),
+            const AuthenticationScreen(),
             FirstPersonalEngagementQuiz(onEnd: viewModel.nextStep),
             const CalculationStep(),
             const MiniDiagnosticStep(),
