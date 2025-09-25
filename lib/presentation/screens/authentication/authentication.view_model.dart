@@ -59,12 +59,14 @@ class Authentication extends _$Authentication {
       // Handle Firebase-specific errors
       debugPrint('Firebase Auth Error: ${e.message}');
 
-      // Track Apple login error
-      final TrackingService trackingService = ref.watch(
+      // Track Apple login error with context
+      final TrackingService trackingService = await ref.watch(
         trackingServiceProvider,
       );
-      await trackingService.trackLoginAppleError(
-        error: e.message ?? 'Unknown error',
+      await trackingService.trackAuthError(
+        errorType: 'firebase_auth_exception',
+        provider: 'apple',
+        errorCode: e.code,
       );
 
       // TODO(clement): Show a user-friendly error message
@@ -72,11 +74,14 @@ class Authentication extends _$Authentication {
       // Handle other errors (e.g., user cancels the dialog)
       debugPrint('Apple Sign-In Error: $e');
 
-      // Track Apple login error
-      final TrackingService trackingService = ref.watch(
+      // Track Apple login error with context
+      final TrackingService trackingService = await ref.watch(
         trackingServiceProvider,
       );
-      await trackingService.trackLoginAppleError(error: e.toString());
+      await trackingService.trackAuthError(
+        errorType: 'user_cancelled',
+        provider: 'apple',
+      );
     }
   }
 
@@ -113,12 +118,14 @@ class Authentication extends _$Authentication {
       // Handle Firebase-specific errors
       debugPrint('Firebase Auth Error: ${e.message}');
 
-      // Track Google login error
-      final TrackingService trackingService = ref.watch(
+      // Track Google login error with context
+      final TrackingService trackingService = await ref.watch(
         trackingServiceProvider,
       );
-      await trackingService.trackLoginGoogleError(
-        error: e.message ?? 'Unknown error',
+      await trackingService.trackAuthError(
+        errorType: 'firebase_auth_exception',
+        provider: 'google',
+        errorCode: e.code,
       );
 
       // TODO(clement): Show a user-friendly error message
@@ -126,11 +133,14 @@ class Authentication extends _$Authentication {
       // Handle other errors (e.g., user cancels the dialog)
       debugPrint('Google Sign-In Error: $e');
 
-      // Track Google login error
-      final TrackingService trackingService = ref.watch(
+      // Track Google login error with context
+      final TrackingService trackingService = await ref.watch(
         trackingServiceProvider,
       );
-      await trackingService.trackLoginGoogleError(error: e.toString());
+      await trackingService.trackAuthError(
+        errorType: 'user_cancelled',
+        provider: 'google',
+      );
     }
   }
 }
