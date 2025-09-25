@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -49,13 +47,11 @@ class _AuthenticationScreenState extends ConsumerState<AuthenticationScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   const Gap(96),
-                  if (Platform.isIOS)
-                    SignInWithAppleButton(
-                      onPressed: () => viewModel.loginWithApple(
-                        onFinished: widget.onFinished,
-                      ),
-                      text: LocaleKeys.authentication_loginWithApple.tr(),
-                    ),
+                  SignInWithAppleButton(
+                    onPressed: () =>
+                        viewModel.loginWithApple(onFinished: widget.onFinished),
+                    text: LocaleKeys.authentication_loginWithApple.tr(),
+                  ),
                   const Gap(16),
                   SizedBox(
                     width: double.infinity,

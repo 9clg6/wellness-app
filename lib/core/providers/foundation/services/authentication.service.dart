@@ -88,17 +88,24 @@ class AuthenticationService {
   /// Throws exceptions on failure.
   Future<User?> loginWithGoogle() async {
     try {
-      final GoogleSignIn signIn = GoogleSignIn.instance;
+      // Initialize GoogleSignIn with proper configuration
+      await GoogleSignIn.instance.initialize();
 
       // Trigger the authentication flow
-      final GoogleSignInAccount googleUser = await signIn.authenticate();
+      final GoogleSignInAccount googleUser = await GoogleSignIn.instance
+          .authenticate(scopeHint: <String>['email', 'profile']);
 
       // Obtain the auth details from the request
       final GoogleSignInAuthentication googleAuth = googleUser.authentication;
 
+      // Get authorization tokens for server authentication
+      final GoogleSignInServerAuthorization? serverAuth = await googleUser
+          .authorizationClient
+          .authorizeServer(<String>['email', 'profile']);
+
       // Create a new credential
       final OAuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.idToken,
+        accessToken: serverAuth?.serverAuthCode,
         idToken: googleAuth.idToken,
       );
 
@@ -108,7 +115,7 @@ class AuthenticationService {
 
       final User? user = userCredential.user;
       if (user != null) {
-        // Associate user ID with Analytics and Crashlytics 
+        // Associate user ID with Analytics and Crashlytics
         //for better reporting.
         unawaited(_analyticsService.setUserId(user.uid));
         unawaited(FirebaseCrashlytics.instance.setUserIdentifier(user.uid));

@@ -28,6 +28,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
+        isCoreLibraryDesugaringEnabled = true
     }
 
     kotlinOptions {
@@ -63,7 +64,7 @@ android {
         create("prod") {
             dimension = "default"
             resValue(type = "string", name = "app_name", value = "Starter Kit")
-            applicationId = "fr.yellowstone.welly.app"
+            applicationId = "fr.yellowstone.welly"
         }
     }
 
@@ -88,4 +89,8 @@ android {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.4")
 }
