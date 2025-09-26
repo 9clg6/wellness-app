@@ -38,12 +38,6 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen>
       ),
     );
   }
-
-  @override
-  void dispose() {
-    ref.read(reviewViewModelProvider.notifier).dispose();
-    super.dispose();
-  }
 }
 
 class _HasDataBody extends ConsumerWidget {

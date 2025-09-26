@@ -30,10 +30,7 @@ class ReviewViewModel extends _$ReviewViewModel {
   late final OverlayState overlay;
 
   /// Snackbar controller
-  AnimationController? _snackController;
-
-  /// Whether snackbar controller is disposed
-  bool _isSnackControllerDisposed = false;
+  late final AnimationController _snackController;
 
   @override
   Future<ReviewState> build() async {
@@ -54,6 +51,7 @@ class ReviewViewModel extends _$ReviewViewModel {
 
       showTopSnackBar(
         overlay,
+        displayDuration: const Duration(seconds: 10),
         animationDuration: const Duration(milliseconds: 1000),
         onAnimationControllerInit: (AnimationController controller) {
           _snackController = controller;
@@ -106,17 +104,6 @@ class ReviewViewModel extends _$ReviewViewModel {
 
   /// Close snackbar
   void _closeSnackBar() {
-    if (_snackController != null && !_isSnackControllerDisposed) {
-      _snackController!.reverse();
-    }
-  }
-
-  /// Dispose resources
-  void dispose() {
-    _closeSnackBar();
-    if (_snackController != null && !_isSnackControllerDisposed) {
-      _snackController!.dispose();
-      _isSnackControllerDisposed = true;
-    }
+    _snackController.reverse();
   }
 }
