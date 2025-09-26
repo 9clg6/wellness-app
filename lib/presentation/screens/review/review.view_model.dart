@@ -55,7 +55,6 @@ class ReviewViewModel extends _$ReviewViewModel {
       showTopSnackBar(
         overlay,
         animationDuration: const Duration(milliseconds: 1000),
-        persistent: true,
         onAnimationControllerInit: (AnimationController controller) {
           _snackController = controller;
         },
