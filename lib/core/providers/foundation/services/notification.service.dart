@@ -566,7 +566,7 @@ class NotificationService {
 
       await _localNotifications.zonedSchedule(
         1,
-        'Rappel quotidien',
+        'Welly',
         "N'oubliez pas de noter les événements de votre journée !",
         _nextInstanceOfTime(hour, minute),
         const NotificationDetails(
@@ -588,7 +588,7 @@ class NotificationService {
             styleInformation: BigTextStyleInformation(
               "N'oubliez pas de noter les événements de votre journée !",
               htmlFormatBigText: true,
-              contentTitle: 'Rappel quotidien',
+              contentTitle: 'Welly',
               htmlFormatContentTitle: true,
               summaryText: 'Welly - Rappel quotidien',
               htmlFormatSummaryText: true,
