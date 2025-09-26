@@ -20,7 +20,25 @@ lib/generated_plugin_registrant.dart
 .project
 .settings/
 
+
+# FVM Version Cache
+.fvm/
+
+# IDE specific
+.idea/
+.vscode/
+*.iml
+*.hprof
+*.hgprof
+*.pydevproject
+.project
+.settings/
+
 # Android related
+android/app/google-services.json
+android/key.properties
+android/local.properties
+android/keystore.jks
 android/app/google-services.json
 android/key.properties
 android/local.properties
@@ -30,8 +48,24 @@ android/.gradle/
 android/gradlew
 android/gradlew.bat
 android/fastlane/service-account-key.json
+android/.gradle/
+android/gradlew
+android/gradlew.bat
+android/fastlane/service-account-key.json
 
 # iOS/XCode related
+ios/Pods/
+ios/Podfile.lock
+ios/.symlinks/
+ios/Runner/GoogleService-Info.plist
+ios/fastlane/AuthKey_*.p8
+ios/Flutter/ephemeral/
+*.xcworkspace
+xcuserdata/
+DerivedData/
+
+# macOS
+.DS_Store
 ios/Pods/
 ios/Podfile.lock
 ios/.symlinks/
@@ -52,3 +86,18 @@ DerivedData/
 # Firebase configuration files
 firebase.json
 lib/firebase_options.dart
+
+build/
+ios/build/
+**/*.dSYM
+ios/Runner.app.dSYM*
+*.ipa
+*.xcarchive
+EOF
+# iOS / Flutter build artifacts
+build/
+ios/build/
+**/*.dSYM
+ios/Runner.app.dSYM*
+*.ipa
+*.xcarchive

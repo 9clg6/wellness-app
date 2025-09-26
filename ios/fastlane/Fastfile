@@ -18,13 +18,26 @@ platform :ios do
 
   desc "Setup certificates and provisioning profiles"
   lane :setup_signing do
-    # Create App Store provisioning profile
+    # Create App Store provisioning profile for production
     sigh(
       app_identifier: "fr.yellowstone.welly.app",
       team_id: ENV['APPLE_TEAM_ID'],
-      force: true
+      force: true,
+      skip_certificate_verification: true
     )
   end
+
+  desc "Download provisioning profiles"
+  lane :download_profiles do
+    # Download all provisioning profiles for the team
+    sigh(
+      team_id: ENV['APPLE_TEAM_ID'],
+      force: true,
+      skip_certificate_verification: true,
+      development: false
+    )
+  end
+
   desc "Build Flutter iOS App"
   lane :build do
     project_root = File.expand_path('../../', __dir__)
@@ -54,6 +67,12 @@ platform :ios do
       export_method: "app-store",
       export_options: {
         signingStyle: "automatic",
+        teamID: ENV['APPLE_TEAM_ID'],
+        uploadBitcode: false,
+        uploadSymbols: true,
+        compileBitcode: false,
+        method: "app-store",
+        destination: "upload"
       }
     )
     
@@ -75,6 +94,12 @@ platform :ios do
       export_method: "app-store",
       export_options: {
         signingStyle: "automatic",
+        teamID: ENV['APPLE_TEAM_ID'],
+        uploadBitcode: false,
+        uploadSymbols: true,
+        compileBitcode: false,
+        method: "app-store",
+        destination: "upload"
       }
     )
     
@@ -98,6 +123,12 @@ platform :ios do
       export_method: "app-store",
       export_options: {
         signingStyle: "automatic",
+        teamID: ENV['APPLE_TEAM_ID'],
+        uploadBitcode: false,
+        uploadSymbols: true,
+        compileBitcode: false,
+        method: "app-store",
+        destination: "upload"
       }
     )
     

@@ -31,6 +31,14 @@ Check signing configuration
 
 Setup certificates and provisioning profiles
 
+### ios download_profiles
+
+```sh
+[bundle exec] fastlane ios download_profiles
+```
+
+Download provisioning profiles
+
 ### ios build
 
 ```sh

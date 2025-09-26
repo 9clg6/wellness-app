@@ -188,5 +188,7 @@
   "authentication_loginWithApple": "Sign in with Apple",
   "authentication_skip": "Skip",
   "authentication_devenezUnWelly": "Welly",
-  "authentication_devenezUnWellyDescription": "Start your well-being adventure and join thousands of users around the world."
+  "authentication_devenezUnWellyDescription": "Start your well-being adventure and join thousands of users around the world.",
+  "onboarding_paywall_noOfferings": "No offerings available",
+  "onboarding_paywall_next": "Next"
 }

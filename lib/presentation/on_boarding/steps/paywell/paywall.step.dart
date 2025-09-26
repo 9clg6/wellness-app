@@ -1,7 +1,9 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:purchases_ui_flutter/views/paywall_view.dart';
+import 'package:welly/core/localization/generated/locale_keys.g.dart';
 import 'package:welly/presentation/on_boarding/steps/paywell/paywall.step.state.dart';
 import 'package:welly/presentation/on_boarding/steps/paywell/paywall.step.view_model.dart';
 import 'package:welly/presentation/widgets/custom_loader.dart';
@@ -37,15 +39,15 @@ class PaywallStep extends ConsumerWidget {
                   color: Colors.grey,
                 ),
                 const SizedBox(height: 16),
-                const TextVariant(
-                  'Aucune offre disponible',
+                TextVariant(
+                  LocaleKeys.onboarding_paywall_noOfferings.tr(),
                   variantType: TextVariantType.headlineSmall,
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: onNext,
-                  child: const TextVariant(
-                    'Suivant',
+                  child: TextVariant(
+                    LocaleKeys.onboarding_paywall_next.tr(),
                     variantType: TextVariantType.titleMedium,
                   ),
                 ),
@@ -79,10 +81,7 @@ class PaywallStep extends ConsumerWidget {
           onRestoreError: (PurchasesError error) {
             debugPrint('Restore error: $error');
           },
-          onDismiss: () {
-            debugPrint('Paywall asked to dismiss');
-            Navigator.pop(context);
-          },
+          onDismiss: onNext,
         );
       },
 

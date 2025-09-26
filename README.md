@@ -127,7 +127,8 @@ fvm dart run easy_localization:generate \
 ## 🛠️ Getting Started
 
 ### **Prerequisites**
-- Flutter 3.32.0
+- Flutter 3.8.0 or higher
+- Dart 3.0.0 or higher
 - FVM (Flutter Version Manager) for consistent Flutter versions
 
 ### **Installation**
@@ -138,7 +139,7 @@ cd motivation-app
 
 # Install FVM and Flutter
 fvm install
-fvm use
+fvm use stable
 
 # Install dependencies
 fvm flutter pub get
@@ -218,6 +219,12 @@ motivation-app/
 - [ ] Advanced analytics
 - [ ] Integration with health apps
 
+### **Phase 3: Platform Expansion** 📋
+- [ ] Web application
+- [ ] Desktop application
+- [ ] Wearable integration
+- [ ] API for developers
+
 ## 🤝 Contributing
 
 We welcome contributions from the community! Whether you're a developer, designer, researcher, or user, there are many ways to help improve Motivation App.
@@ -246,6 +253,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Research community** - Countless studies that validate our approach
 - **Open source community** - Tools and libraries that make this possible
 - **Beta testers** - Early users who provided valuable feedback
+
+## 📞 Contact & Support
+
+- **Website**: [motivation-app.com](https://motivation-app.com)
+- **Email**: support@motivation-app.com
+- **GitHub**: [github.com/your-username/motivation-app](https://github.com/your-username/motivation-app)
+- **Documentation**: [docs.motivation-app.com](https://docs.motivation-app.com)
 
 ---
 

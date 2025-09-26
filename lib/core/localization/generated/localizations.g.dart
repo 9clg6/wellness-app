@@ -204,7 +204,9 @@ class CodegenLoader extends AssetLoader{
   "authentication_loginWithApple": "Sign in with Apple",
   "authentication_skip": "Skip",
   "authentication_devenezUnWelly": "Welly",
-  "authentication_devenezUnWellyDescription": "Start your well-being adventure and join thousands of users around the world."
+  "authentication_devenezUnWellyDescription": "Start your well-being adventure and join thousands of users around the world.",
+  "onboarding_paywall_noOfferings": "No offerings available",
+  "onboarding_paywall_next": "Next"
 };
 static const Map<String,dynamic> _fr = {
   "first": "Bonjour",
@@ -396,7 +398,9 @@ static const Map<String,dynamic> _fr = {
   "authentication_loginWithApple": "Se connecter avec Apple",
   "authentication_skip": "Passer",
   "authentication_devenezUnWelly": "Welly",
-  "authentication_devenezUnWellyDescription": "Démarrer votre aventure bien-être et rejoignez des milliers d'utilisateurs partout dans le monde."
+  "authentication_devenezUnWellyDescription": "Démarrer votre aventure bien-être et rejoignez des milliers d'utilisateurs partout dans le monde.",
+  "onboarding_paywall_noOfferings": "Aucune offre disponible",
+  "onboarding_paywall_next": "Suivant"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": _en, "fr": _fr};
 }
