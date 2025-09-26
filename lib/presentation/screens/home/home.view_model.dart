@@ -222,7 +222,7 @@ class HomeViewModel extends _$HomeViewModel {
     _happenActionService.markTodayEventsAsFilled();
 
     final bool? result = await _navigationService.navigateToReview();
-
+ 
     if (isFromRealHome) {
       _navigationService.pop(result: result);
     } else {

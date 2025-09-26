@@ -32,6 +32,9 @@ class ReviewViewModel extends _$ReviewViewModel {
   /// Snackbar controller
   AnimationController? _snackController;
 
+  /// Whether snackbar controller is disposed
+  bool _isSnackControllerDisposed = false;
+
   @override
   Future<ReviewState> build() async {
     debugPrint('[ReviewViewModel] build');
@@ -94,19 +97,27 @@ class ReviewViewModel extends _$ReviewViewModel {
 
   /// Leave review
   void leaveReview() {
-    _closeSnackBar();
-    _userService.increaseStreakDays();
-    _navigationService.pop(result: true);
+    try {
+      _closeSnackBar();
+    } finally {
+      _userService.increaseStreakDays();
+      _navigationService.pop(result: true);
+    }
   }
 
   /// Close snackbar
   void _closeSnackBar() {
-    _snackController?.reverse();
+    if (_snackController != null && !_isSnackControllerDisposed) {
+      _snackController!.reverse();
+    }
   }
 
   /// Dispose resources
   void dispose() {
     _closeSnackBar();
-    _snackController?.dispose();
+    if (_snackController != null && !_isSnackControllerDisposed) {
+      _snackController!.dispose();
+      _isSnackControllerDisposed = true;
+    }
   }
 }

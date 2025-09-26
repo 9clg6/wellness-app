@@ -193,5 +193,7 @@ abstract class  LocaleKeys {
   static const authentication_skip = 'authentication_skip';
   static const authentication_devenezUnWelly = 'authentication_devenezUnWelly';
   static const authentication_devenezUnWellyDescription = 'authentication_devenezUnWellyDescription';
+  static const onboarding_paywall_noOfferings = 'onboarding_paywall_noOfferings';
+  static const onboarding_paywall_next = 'onboarding_paywall_next';
 
 }

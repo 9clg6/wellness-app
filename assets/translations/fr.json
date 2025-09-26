@@ -188,6 +188,8 @@
   "authentication_loginWithApple": "Se connecter avec Apple",
   "authentication_skip": "Passer",
   "authentication_devenezUnWelly": "Welly",
-  "authentication_devenezUnWellyDescription": "Démarrer votre aventure bien-être et rejoignez des milliers d'utilisateurs partout dans le monde."
+  "authentication_devenezUnWellyDescription": "Démarrer votre aventure bien-être et rejoignez des milliers d'utilisateurs partout dans le monde.",
+  "onboarding_paywall_noOfferings": "Aucune offre disponible",
+  "onboarding_paywall_next": "Suivant"
 
 }
