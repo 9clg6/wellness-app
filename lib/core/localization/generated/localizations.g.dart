@@ -230,6 +230,7 @@ static const Map<String,dynamic> _fr = {
   "reviewCardSubtitle": "Ce que j'ai fais pour que cela ait lieu",
   "reviewScreenTitle": "Revue du jour",
   "reviewScreenStreak": "{} jours positifs d'affilé ! 🥹",
+  "reviewScreenStreak": "{} jours positifs d'affilé ! 🥹",
   "reviewScreenNoEntries": "Aucune entrée pour aujourd'hui",
   "continueBtn": "Continuer 🌻",
   "reviewScreenTitle2": "😍 Félicitation ! Vous avez réussi à trouver 3 événements positifs aujourd'hui ! 😍\n\nPassez les en revue !",
@@ -402,5 +403,6 @@ static const Map<String,dynamic> _fr = {
   "onboarding_paywall_noOfferings": "Aucune offre disponible",
   "onboarding_paywall_next": "Suivant"
 };
+static const Map<String, Map<String,dynamic>> mapLocales = {"en": _en, "fr": _fr};
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": _en, "fr": _fr};
 }
