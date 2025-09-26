@@ -1,92 +1,37 @@
 default_platform(:ios)
 
 platform :ios do
-  desc "Check signing configuration"
-  lane :check_signing do
-    # Check available certificates
-    puts "Checking available certificates..."
-    sh "security find-identity -v -p codesigning"
-    
-    # Check provisioning profiles
-    puts "\nChecking provisioning profiles..."
-    sh "ls -la ~/Library/MobileDevice/Provisioning\\ Profiles/"
-    
-    # Check team ID in project
-    puts "\nChecking project configuration..."
-    sh "cd .. && xcodebuild -showBuildSettings -workspace Runner.xcworkspace -scheme prod | grep DEVELOPMENT_TEAM"
-  end
-
-  desc "Setup certificates and provisioning profiles"
-  lane :setup_signing do
-    # Create App Store provisioning profile for production
-    sigh(
-      app_identifier: "fr.yellowstone.welly.app",
-      team_id: ENV['APPLE_TEAM_ID'],
-      force: true,
-      skip_certificate_verification: true
-    )
-  end
-
-  desc "Download provisioning profiles"
-  lane :download_profiles do
-    # Download all provisioning profiles for the team
-    sigh(
-      team_id: ENV['APPLE_TEAM_ID'],
-      force: true,
-      skip_certificate_verification: true,
-      development: false
-    )
-  end
-
-  desc "Build Flutter iOS App"
-  lane :build do
-    project_root = File.expand_path('../../', __dir__)
-    Dir.chdir(project_root) do
-      # Use system Ruby for CocoaPods compatibility - add our wrapper to PATH
-      ENV['PATH'] = "#{project_root}:/System/Library/Frameworks/Ruby.framework/Versions/2.6/usr/bin:#{ENV['PATH']}"
-      sh "fvm flutter clean"
-      sh "fvm flutter pub get"
-      sh "fvm flutter build ios --release --flavor prod --no-codesign"
-    end
-  end
-
-  desc "Upload to TestFlight"
+  
   lane :beta do
-    build
-    
-    api_key = app_store_connect_api_key(
-      key_id: ENV['APP_STORE_CONNECT_KEY_ID'],
-      issuer_id: ENV['APP_STORE_CONNECT_ISSUER_ID'],
-      key_filepath: ENV['APP_STORE_CONNECT_KEY_PATH']
-    )
-    
-    build_app(
-      workspace: "Runner.xcworkspace",
-      scheme: "prod",
-      clean: true,
-      export_method: "app-store",
-      export_options: {
-        signingStyle: "automatic",
-        teamID: ENV['APPLE_TEAM_ID'],
-        uploadBitcode: false,
-        uploadSymbols: true,
-        compileBitcode: false,
-        method: "app-store",
-        destination: "upload"
-      }
-    )
-    
-    upload_to_testflight(api_key: api_key)
-  end
+    # 1. Assurer que les dépendances Flutter sont à jour
+    sh("cd .. && fvm flutter pub get")
 
-  desc "Upload to TestFlight (build already done)"
-  lane :beta_upload do
+    # 2. Se connecter à l'App Store Connect
     api_key = app_store_connect_api_key(
       key_id: ENV['APP_STORE_CONNECT_KEY_ID'],
       issuer_id: ENV['APP_STORE_CONNECT_ISSUER_ID'],
       key_filepath: File.absolute_path(ENV['APP_STORE_CONNECT_KEY_PATH'])
     )
+
+    # 3. Déterminer la version et le nouveau numéro de build
+    current_version = get_version_number(xcodeproj: "Runner.xcodeproj")
     
+    begin
+      # Essayer de récupérer le dernier build pour cette version
+      latest_build = latest_testflight_build_number(
+        app_identifier: "fr.yellowstone.welly.app",
+        version: current_version,
+        api_key: api_key
+      )
+      new_build_number = latest_build + 1
+    rescue
+      # Si aucun build n'existe pour cette version, commencer à 1
+      new_build_number = 1
+    end
+
+    UI.message("Version : #{current_version}, Nouveau Build : #{new_build_number}")
+
+    # 4. Compiler l'application en injectant les numéros de version
     build_app(
       workspace: "Runner.xcworkspace",
       scheme: "prod",
@@ -94,44 +39,18 @@ platform :ios do
       export_method: "app-store",
       export_options: {
         signingStyle: "automatic",
-        teamID: ENV['APPLE_TEAM_ID'],
-        uploadBitcode: false,
-        uploadSymbols: true,
-        compileBitcode: false,
-        method: "app-store",
-        destination: "upload"
-      }
+        teamID: ENV['APPLE_TEAM_ID']
+      },
+      xcargs: "FLUTTER_BUILD_NUMBER=#{new_build_number} FLUTTER_BUILD_NAME=#{current_version}"
     )
-    
-    upload_to_testflight(api_key: api_key)
+
+    # 5. Envoyer à TestFlight
+    upload_to_testflight(
+      api_key: api_key,
+      skip_waiting_for_build_processing: true
+    )
   end
 
-  desc "Deploy to App Store"
-  lane :release do
-    build
-    
-    api_key = app_store_connect_api_key(
-      key_id: ENV['APP_STORE_CONNECT_KEY_ID'],
-      issuer_id: ENV['APP_STORE_CONNECT_ISSUER_ID'],
-      key_filepath: ENV['APP_STORE_CONNECT_KEY_PATH']
-    )
-    
-    build_app(
-      workspace: "Runner.xcworkspace",
-      scheme: "prod",
-      clean: true,
-      export_method: "app-store",
-      export_options: {
-        signingStyle: "automatic",
-        teamID: ENV['APPLE_TEAM_ID'],
-        uploadBitcode: false,
-        uploadSymbols: true,
-        compileBitcode: false,
-        method: "app-store",
-        destination: "upload"
-      }
-    )
-    
-    upload_to_app_store(api_key: api_key)
-  end
+  # Vous pouvez ajouter une lane :release sur le même modèle si nécessaire
+  
 end
