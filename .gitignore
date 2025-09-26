@@ -52,3 +52,18 @@ DerivedData/
 # Firebase configuration files
 firebase.json
 lib/firebase_options.dart
+
+build/
+ios/build/
+**/*.dSYM
+ios/Runner.app.dSYM*
+*.ipa
+*.xcarchive
+EOF
+# iOS / Flutter build artifacts
+build/
+ios/build/
+**/*.dSYM
+ios/Runner.app.dSYM*
+*.ipa
+*.xcarchive
