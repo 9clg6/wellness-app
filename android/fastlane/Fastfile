@@ -1,35 +1,5 @@
-default_platform(:android)
-
-platform :android do
-  desc "Build Flutter App Bundle"
-
-  lane :build do
-    project_root = File.expand_path('../../', __dir__)
-    Dir.chdir(project_root) do
-      sh "fvm flutter clean"
-      sh "fvm flutter pub get"
-      sh "fvm flutter build appbundle --release --flavor prod"
-    end
-  end
-
-  desc "Upload to Internal Testing"
-  lane :beta do
-    build
-    upload_to_play_store(
-      track: 'internal',
-      aab: '../build/app/outputs/bundle/prodRelease/app-prod-release.aab',
-      skip_upload_metadata: true,
-      skip_upload_images: true,
-      skip_upload_screenshots: true
-    )
-  end
-
-  desc "Deploy to Production"
-  lane :release do
-    build
-    upload_to_play_store(
-      track: 'production',
-      aab: '../build/app/outputs/bundle/prodRelease/app-prod-release.aab'
-    )
-  end
+lane :beta do
+  gradle(task: 'assemble', build_type: 'Release', flavor: 'prod')
+  aab_path = File.expand_path("../build/app/outputs/bundle/prodRelease/app-prod-release.aab", __dir__)
+  upload_to_play_store(track: 'beta', aab: aab_path)
 end

@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:sembast/sembast.dart';
 import 'package:welly/core/extensions/date.extension.dart';
 import 'package:welly/data/datasources/local/happen_action.local_data_source.dart';
@@ -31,8 +34,8 @@ class HappenActionLocalDataSourceImpl implements HappenActionLocalDataSource {
                 HappenActionLocalModel.fromJson(snapshot.value),
           )
           .toList();
-    } on Exception catch (_) {
-      // If parsing fails, return empty list
+    } on Exception catch (e, s) {
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
       return <HappenActionLocalModel>[];
     }
   }

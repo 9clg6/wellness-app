@@ -7,6 +7,7 @@ import 'package:welly/presentation/on_boarding/on_boarding.screen.dart';
 import 'package:welly/presentation/screens/ai_analyze/ai_analyze.screen.dart';
 import 'package:welly/presentation/screens/authentication/authentication.screen.dart';
 import 'package:welly/presentation/screens/home/home.screen.dart';
+import 'package:welly/presentation/screens/privacy_policy/privacy_policy.screen.dart';
 import 'package:welly/presentation/screens/real_home/real_home.screen.dart';
 import 'package:welly/presentation/screens/review/review.screen.dart';
 
@@ -19,27 +20,30 @@ class AppRouter extends RootStackRouter {
   RouteType get defaultRouteType => const RouteType.adaptive();
 
   @override
-  List<AutoRoute> get routes => <AutoRoute>[
-    AutoRoute(page: AuthenticationRoute.page),
-    AutoRoute(
-      page: HomeRoute.page,
-      guards: <AutoRouteGuard>[OnboardingGuard()],
-    ),
-    AutoRoute(
-      page: RealHomeRoute.page,
-      guards: <AutoRouteGuard>[OnboardingGuard()],
-      initial: true,
-    ),
-    AutoRoute(
-      page: ReviewRoute.page,
-      guards: <AutoRouteGuard>[OnboardingGuard()],
-    ),
-    AutoRoute(page: OnBoardingRoute.page),
-    AutoRoute(
-      page: AiAnalyzeRoute.page,
-      guards: <AutoRouteGuard>[OnboardingGuard()],
-    ),
-  ];
+  List<AutoRoute> get routes => kIsWeb
+      ? <AutoRoute>[AutoRoute(page: PrivacyPolicyRoute.page, initial: true)]
+      : <AutoRoute>[
+          AutoRoute(page: AuthenticationRoute.page),
+          AutoRoute(
+            page: HomeRoute.page,
+            guards: <AutoRouteGuard>[OnboardingGuard()],
+          ),
+          AutoRoute(
+            page: RealHomeRoute.page,
+            guards: <AutoRouteGuard>[OnboardingGuard()],
+            initial: true,
+          ),
+          AutoRoute(
+            page: ReviewRoute.page,
+            guards: <AutoRouteGuard>[OnboardingGuard()],
+          ),
+          AutoRoute(page: OnBoardingRoute.page),
+          AutoRoute(
+            page: AiAnalyzeRoute.page,
+            guards: <AutoRouteGuard>[OnboardingGuard()],
+          ),
+          AutoRoute(page: PrivacyPolicyRoute.page),
+        ];
 }
 
 /// Onboarding guard - check if the onboarding has already been completed

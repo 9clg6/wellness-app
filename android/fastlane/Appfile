@@ -1,2 +1,2 @@
-json_key_file("fastlane/service-account-key.json")
+json_key_file("fastlane/service-key.json")
 package_name("fr.yellowstone.welly.app")

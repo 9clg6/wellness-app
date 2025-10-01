@@ -5,7 +5,6 @@
 .packages
 build/
 coverage/
-lib/generated_plugin_registrant.dart
 
 # FVM Version Cache
 .fvm/
@@ -101,3 +100,4 @@ ios/build/
 ios/Runner.app.dSYM*
 *.ipa
 *.xcarchive
+welly-release-key.jks

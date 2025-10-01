@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:welly/domain/entities/onboarding_answers.dart';
@@ -69,8 +70,9 @@ class UserService {
         debugPrint('[UserService] loadLocalUser error: ${localUser.exception}');
         await createDefaultUser(); // Fallback to default user
       }
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('[UserService] loadLocalUser critical error: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
       await createDefaultUser(); // Fallback to default user
     }
   }

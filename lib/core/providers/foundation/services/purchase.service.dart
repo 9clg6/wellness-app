@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 import 'package:rxdart/rxdart.dart';
@@ -73,8 +74,9 @@ class PurchaseService {
       await _loadOfferings();
 
       debugPrint('PurchaseService: RevenueCat initialized successfully');
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('PurchaseService: Initialization error: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
       // Don't rethrow the error to prevent app crash
     }
   }
@@ -85,8 +87,9 @@ class PurchaseService {
       final CustomerInfo customerInfo = await Purchases.getCustomerInfo();
       _customerInfoSubject.add(customerInfo);
       debugPrint('PurchaseService: Customer info loaded');
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('PurchaseService: Error loading customer info: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
       _customerInfoSubject.add(null);
     }
   }
@@ -107,8 +110,9 @@ class PurchaseService {
 
       _offeringsSubject.add(offeringsList);
       debugPrint('PurchaseService: Offerings loaded: ${offeringsList.length}');
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('PurchaseService: Error loading offerings: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
       _offeringsSubject.add(<Offering>[]);
       // Don't rethrow the error to prevent app crash
     }
@@ -127,8 +131,9 @@ class PurchaseService {
 
       debugPrint('PurchaseService: Package purchased successfully');
       return true;
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('PurchaseService: Purchase error: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
       return false;
     }
   }
@@ -140,8 +145,9 @@ class PurchaseService {
       _customerInfoSubject.add(customerInfo);
       debugPrint('PurchaseService: Purchases restored successfully');
       return true;
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('PurchaseService: Restore error: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
       return false;
     }
   }
@@ -162,8 +168,9 @@ class PurchaseService {
       final LogInResult logInResult = await Purchases.logIn(userId);
       _customerInfoSubject.add(logInResult.customerInfo);
       debugPrint('PurchaseService: User logged in: $userId');
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('PurchaseService: Login error: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
     }
   }
 
@@ -173,8 +180,9 @@ class PurchaseService {
       final CustomerInfo customerInfo = await Purchases.logOut();
       _customerInfoSubject.add(customerInfo);
       debugPrint('PurchaseService: User logged out');
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('PurchaseService: Logout error: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
     }
   }
 

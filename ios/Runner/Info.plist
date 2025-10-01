@@ -46,14 +46,6 @@
 		<key>NSAllowsArbitraryLoadsInWebContent</key>
 		<true/>
 	</dict>
-	<key>NSBluetoothAlwaysUsageDescription</key>
-	<string>Cette app utilise le Bluetooth pour scanner des devices.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>This app needs access to your camera to upload your profile picture.</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>This app needs access to your location to scan BLE devices.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This app needs access to your location to display your position on the map.</string>
 	<key>NSUserNotificationsUsageDescription</key>
 	<string>Cette app envoie des rappels quotidiens pour vous aider à noter les événements de votre journée.</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>

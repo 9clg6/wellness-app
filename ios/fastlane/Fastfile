@@ -1,56 +1,63 @@
-default_platform(:ios)
+lane :beta do
+  xcode_select(ENV.fetch("XCODE_PATH", "/Applications/Xcode-16.2.0.app"))
 
-platform :ios do
-  
-  lane :beta do
-    # 1. Assurer que les dépendances Flutter sont à jour
-    sh("cd .. && fvm flutter pub get")
+  keychain_name = ENV.fetch("KEYCHAIN_NAME", "login.keychain-db")
+  team_id   = ENV.fetch("APPLE_TEAM_ID")
+  bundle_id = ENV.fetch("BUNDLE_ID", "fr.yellowstone.welly.app")
+  profile_name = ENV.fetch("MATCH_PROFILE_NAME", "match AppStore #{bundle_id} 1759307619")
 
-    # 2. Se connecter à l'App Store Connect
-    api_key = app_store_connect_api_key(
-      key_id: ENV['APP_STORE_CONNECT_KEY_ID'],
-      issuer_id: ENV['APP_STORE_CONNECT_ISSUER_ID'],
-      key_filepath: File.absolute_path(ENV['APP_STORE_CONNECT_KEY_PATH'])
-    )
+  # Manual signing pendant le build
+  update_code_signing_settings(
+    use_automatic_signing: false,
+    path: "Runner.xcodeproj",
+    targets: ["Runner"],
+    team_id: team_id,
+    code_sign_identity: "Apple Distribution",
+    profile_name: profile_name,
+    bundle_identifier: bundle_id
+  )
 
-    # 3. Déterminer la version et le nouveau numéro de build
-    current_version = get_version_number(xcodeproj: "Runner.xcodeproj")
-    
-    begin
-      # Essayer de récupérer le dernier build pour cette version
-      latest_build = latest_testflight_build_number(
-        app_identifier: "fr.yellowstone.welly.app",
-        version: current_version,
-        api_key: api_key
-      )
-      new_build_number = latest_build + 1
-    rescue
-      # Si aucun build n'existe pour cette version, commencer à 1
-      new_build_number = 1
-    end
+  # Repo match (doit rester privé). L’URL peut venir d’ENV
+  sync_code_signing(
+    type: "appstore",
+    readonly: false,
+    git_url: ENV.fetch("MATCH_GIT_URL"),
+    keychain_name: keychain_name,
+    keychain_password: ENV.fetch("MATCH_KEYCHAIN_PASSWORD")
+  )
 
-    UI.message("Version : #{current_version}, Nouveau Build : #{new_build_number}")
+  # API key ASC (NE PAS logger les valeurs)
+  api_key = app_store_connect_api_key(
+    key_id:       ENV.fetch("APP_STORE_CONNECT_KEY_ID"),
+    issuer_id:    ENV.fetch("APP_STORE_CONNECT_ISSUER_ID"),
+    key_filepath: File.absolute_path(ENV.fetch("APP_STORE_CONNECT_KEY_PATH"))
+  )
 
-    # 4. Compiler l'application en injectant les numéros de version
-    build_app(
-      workspace: "Runner.xcworkspace",
-      scheme: "prod",
-      clean: true,
-      export_method: "app-store",
-      export_options: {
-        signingStyle: "automatic",
-        teamID: ENV['APPLE_TEAM_ID']
-      },
-      xcargs: "FLUTTER_BUILD_NUMBER=#{new_build_number} FLUTTER_BUILD_NAME=#{current_version}"
-    )
+  build_app(
+    scheme: "prod",
+    export_method: "app-store",
+    export_team_id: team_id,
+    codesigning_identity: "Apple Distribution",
+    export_options: {
+      provisioningProfiles: { bundle_id => profile_name },
+      signingStyle: "manual",
+      signingCertificate: "Apple Distribution"
+    },
+    xcargs: "CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM=#{team_id} " \
+            "PROVISIONING_PROFILE_SPECIFIER='#{profile_name}' " \
+            "CODE_SIGN_IDENTITY='Apple Distribution' " \
+            "OTHER_CODE_SIGN_FLAGS='--keychain ~/Library/Keychains/#{keychain_name}'"
+  )
 
-    # 5. Envoyer à TestFlight
-    upload_to_testflight(
-      api_key: api_key,
-      skip_waiting_for_build_processing: true
-    )
-  end
+  upload_to_testflight(
+    api_key: api_key,
+    skip_waiting_for_build_processing: true
+  )
 
-  # Vous pouvez ajouter une lane :release sur le même modèle si nécessaire
-  
+  update_code_signing_settings(
+    use_automatic_signing: true,
+    path: "Runner.xcodeproj",
+    targets: ["Runner"],
+    team_id: team_id
+  )
 end

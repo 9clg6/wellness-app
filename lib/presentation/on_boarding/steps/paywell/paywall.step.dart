@@ -11,7 +11,6 @@ import 'package:welly/presentation/widgets/error_placeholder.dart';
 import 'package:welly/presentation/widgets/text_variant.dart';
 
 /// Custom paywall step
-// TODO(clement): Add paywall with RevenueCat and RevenueService
 class PaywallStep extends ConsumerWidget {
   /// Constructor
   const PaywallStep({required this.onNext, super.key});

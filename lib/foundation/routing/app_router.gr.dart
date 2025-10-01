@@ -141,6 +141,22 @@ class OnBoardingRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [PrivacyPolicyScreen]
+class PrivacyPolicyRoute extends PageRouteInfo<void> {
+  const PrivacyPolicyRoute({List<PageRouteInfo>? children})
+    : super(PrivacyPolicyRoute.name, initialChildren: children);
+
+  static const String name = 'PrivacyPolicyRoute';
+
+  static PageInfo page = PageInfo(
+    name,
+    builder: (data) {
+      return const PrivacyPolicyScreen();
+    },
+  );
+}
+
+/// generated route for
 /// [RealHomeScreen]
 class RealHomeRoute extends PageRouteInfo<void> {
   const RealHomeRoute({List<PageRouteInfo>? children})

@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:welly/core/extensions/date.extension.dart';
@@ -96,8 +99,9 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
       } else {
         isTodayEventsFilled = false;
       }
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('[HappenActionService] Initialization error: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
       state = <DailyHappenActionEntity>[];
       isTodayEventsFilled = false;
     }
@@ -157,8 +161,9 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
 
     try {
       await _saveHappenActionUseCase.invoke(updatedToday);
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('[HappenActionService] Error saving happen action: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
       // Don't rethrow to prevent app crash
     }
   }
@@ -185,8 +190,9 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
 
       try {
         await _saveHappenActionUseCase.invoke(updatedToday);
-      } on Exception catch (e) {
+      } on Exception catch (e, s) {
         debugPrint('[HappenActionService] Error updating happen action: $e');
+        unawaited(FirebaseCrashlytics.instance.recordError(e, s));
         // Don't rethrow to prevent app crash
       }
     }
@@ -197,8 +203,9 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
     try {
       await _clearHappenActionsUseCase.invoke();
       state = <DailyHappenActionEntity>[];
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('[HappenActionService] Error clearing entries: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
       // Don't rethrow to prevent app crash
     }
   }
@@ -212,8 +219,9 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
             (DailyHappenActionEntity entry) => !entry.date.isSameDate(date),
           )
           .toList();
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('[HappenActionService] Error deleting entry by date: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
       // Don't rethrow to prevent app crash
     }
   }
@@ -222,8 +230,9 @@ class HappenActionService extends StateNotifier<List<DailyHappenActionEntity>> {
   Future<void> saveAllEntries() async {
     try {
       await _saveHappenActionsUseCase.invoke(state);
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('[HappenActionService] Error saving all entries: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
       // Don't rethrow to prevent app crash
     }
   }
