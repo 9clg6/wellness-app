@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:welly/core/providers/core/services/ai.service.provider.dart';
@@ -31,8 +34,9 @@ final class AiAnalyze extends _$AiAnalyze {
 
     try {
       report = await happenActionService.analyzeWithAiAndSaveReport();
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint(e.toString());
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
       rethrow;
     }
 

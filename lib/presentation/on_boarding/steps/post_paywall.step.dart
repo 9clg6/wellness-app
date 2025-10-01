@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gap/gap.dart';
@@ -12,7 +15,6 @@ import 'package:welly/presentation/widgets/continue_button_card.dart';
 import 'package:welly/presentation/widgets/text_variant.dart';
 
 /// Post-paywall step (after refusal)
-// TODO(clement): Add post-paywall or free trial handling
 class PostPaywallStep extends ConsumerWidget {
   /// Constructor
   const PostPaywallStep({super.key});
@@ -73,23 +75,11 @@ Future<void> _requestNotificationPermissions(WidgetRef ref) async {
     } else {
       debugPrint('[PostPaywallStep] ⚠️ Notification permissions denied');
       debugPrint('[PostPaywallStep] User can enable them later in settings');
-      await trackingService.trackPermissionError(
-        permissionType: 'notifications',
-        reason: 'user_denied',
-      );
     }
-  } on Exception catch (e) {
+  } on Exception catch (e, s) {
     debugPrint(
       '[PostPaywallStep] Error requesting notification permissions: $e',
     );
-
-    // Track permission error
-    final TrackingService trackingService = await ref.read(
-      trackingServiceProvider,
-    );
-    await trackingService.trackPermissionError(
-      permissionType: 'notifications',
-      reason: 'system_error',
-    );
+    unawaited(FirebaseCrashlytics.instance.recordError(e, s));
   }
 }

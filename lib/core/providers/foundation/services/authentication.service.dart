@@ -128,8 +128,9 @@ class AuthenticationService {
       }
 
       return user;
-    } catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('Google Sign-In Error: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
       rethrow;
     }
   }
@@ -187,8 +188,9 @@ class AuthenticationService {
       _userService.updateAndSaveUser(null);
 
       _navigationService.navigateToSignInPage();
-    } on Exception catch (exception) {
+    } on Exception catch (exception, s) {
       debugPrint('logout: error during logout: $exception');
+      unawaited(FirebaseCrashlytics.instance.recordError(exception, s));
       _userService.updateAndSaveUser(null);
       _navigationService.navigateToSignInPage();
     }

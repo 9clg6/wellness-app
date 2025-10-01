@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -50,8 +52,9 @@ Future<void> kernel(Ref ref) async {
         userServiceProvider.future,
       );
       await userService.loadLocalUser();
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('User service initialization error: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
     }
 
     try {
@@ -59,8 +62,9 @@ Future<void> kernel(Ref ref) async {
         happenActionServiceProvider.future,
       );
       await happenActionService.init();
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('Happen action service initialization error: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
     }
 
     try {
@@ -69,8 +73,9 @@ Future<void> kernel(Ref ref) async {
         purchaseServiceProvider,
       );
       await purchaseService.initialize();
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('RevenueCat initialization error: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
     }
 
     ref.onDispose(() {

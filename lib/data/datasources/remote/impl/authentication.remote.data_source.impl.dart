@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:welly/data/bodies/login.param.dart';
 import 'package:welly/data/datasources/remote/authentication.remote.data_source.dart';
 import 'package:welly/data/endpoint/authentication.endpoint.dart';
@@ -24,7 +27,14 @@ final class AuthenticationRemoteDataSourceImpl
         LoginBody.fromUseCaseParams(body),
       );
       response = AuthRemoteModel(token: jwtToken.replaceAll('"', ''));
-    } on DioException catch (exception) {
+    } on DioException catch (exception, s) {
+      unawaited(
+        FirebaseCrashlytics.instance.recordError(
+          exception,
+          s,
+          reason: exception.response?.data,
+        ),
+      );
       final int? statusCode = exception.response?.statusCode;
       switch (statusCode) {
         default:

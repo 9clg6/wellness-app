@@ -63,23 +63,6 @@ class TrackingService {
     await track(AnalyticsEvents.skipAuthPressed);
   }
 
-  // Error tracking methods
-  /// Track authentication error with context
-  Future<void> trackAuthError({
-    required String errorType,
-    String? provider,
-    String? errorCode,
-  }) async {
-    await track(
-      AnalyticsEvents.authError,
-      parameters: <String, Object>{
-        'error_type': errorType,
-        if (provider != null) 'provider': provider,
-        if (errorCode != null) 'error_code': errorCode,
-      },
-    );
-  }
-
   /// Track network error with context
   Future<void> trackNetworkError({
     required String operation,
@@ -108,20 +91,6 @@ class TrackingService {
         'error_type': errorType,
         if (packageId != null) 'package_id': packageId,
         if (errorCode != null) 'error_code': errorCode,
-      },
-    );
-  }
-
-  /// Track permission error with context
-  Future<void> trackPermissionError({
-    required String permissionType,
-    String? reason,
-  }) async {
-    await track(
-      AnalyticsEvents.permissionError,
-      parameters: <String, Object>{
-        'permission_type': permissionType,
-        if (reason != null) 'reason': reason,
       },
     );
   }

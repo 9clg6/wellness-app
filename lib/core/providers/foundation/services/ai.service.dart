@@ -2,6 +2,7 @@
 
 import 'dart:async';
 
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:welly/core/extensions/date.extension.dart';
 import 'package:welly/data/bodies/analyze_with_ai_param.dart';
@@ -50,9 +51,8 @@ final class AiService {
         _lastReport = null;
         _updateReportExistence(false);
       }
-    } catch (e) {
-      // Handle any errors during initialization
-      // Reset state on error
+    } on Exception catch (e, s) {
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
       _lastReport = null;
       _updateReportExistence(false);
       rethrow;

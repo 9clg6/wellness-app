@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:convert';
 
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:welly/data/model/local/onboarding_answers.local.model.dart';
@@ -83,8 +85,9 @@ class UserPreferencesStorage {
             jsonDecode(answersString) as Map<String, dynamic>;
         return OnboardingAnswersLocalModel.fromJson(answersMap);
       }
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('Error getting onboarding answers: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
       rethrow;
     }
     return null;
@@ -109,8 +112,9 @@ class UserPreferencesStorage {
 
         return UserLocalModel.fromJson(userMap);
       }
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('Error getting user: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
       rethrow;
     }
     return null;

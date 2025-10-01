@@ -5,6 +5,8 @@ set -euo pipefail
 PLATFORM="$1"; shift || true
 LANE_NAME="$1"; shift || true
 
+export FLUTTER_ROOT=.fvm/flutter_sdk
+
 if [ "${PLATFORM}" = "ios" ]; then
   cd ios
   bundle exec fastlane "${LANE_NAME}"

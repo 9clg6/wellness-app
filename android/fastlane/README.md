@@ -13,31 +13,13 @@ For _fastlane_ installation instructions, see [Installing _fastlane_](https://do
 
 # Available Actions
 
-## Android
-
-### android build
+### beta
 
 ```sh
-[bundle exec] fastlane android build
+[bundle exec] fastlane beta
 ```
 
-Build Flutter App Bundle
 
-### android beta
-
-```sh
-[bundle exec] fastlane android beta
-```
-
-Upload to Internal Testing
-
-### android release
-
-```sh
-[bundle exec] fastlane android release
-```
-
-Deploy to Production
 
 ----
 

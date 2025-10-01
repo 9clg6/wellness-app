@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:welly/core/extensions/date.extension.dart';
@@ -186,8 +189,9 @@ class RealHomeViewModel extends _$RealHomeViewModel {
         body: 'Ceci est un test de notification locale',
         payload: 'test_notification',
       );
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('Error showing test notification: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
     }
   }
 
@@ -195,8 +199,9 @@ class RealHomeViewModel extends _$RealHomeViewModel {
   Future<void> testFirebaseMessaging() async {
     try {
       await _notificationService.testFirebaseMessaging();
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('Error testing Firebase: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
     }
   }
 
@@ -204,8 +209,9 @@ class RealHomeViewModel extends _$RealHomeViewModel {
   Future<Map<String, dynamic>> getFirebaseStatus() async {
     try {
       return await _notificationService.getFirebaseMessagingStatus();
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('Error getting Firebase status: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
       return <String, dynamic>{'error': e.toString()};
     }
   }
@@ -214,8 +220,9 @@ class RealHomeViewModel extends _$RealHomeViewModel {
   Future<String?> getFCMToken() async {
     try {
       return await _notificationService.getFCMToken();
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('Error getting FCM token: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
       return null;
     }
   }
@@ -224,8 +231,9 @@ class RealHomeViewModel extends _$RealHomeViewModel {
   Future<void> testIOSConfiguration() async {
     try {
       await _notificationService.testIOSConfiguration();
-    } on Exception catch (e) {
+    } on Exception catch (e, s) {
       debugPrint('Error testing iOS configuration: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
     }
   }
 }
