@@ -1,5 +1,9 @@
 lane :beta do
-  xcode_select(ENV.fetch("XCODE_PATH", "/Applications/Xcode-16.2.0.app"))
+  xcode_select(ENV.fetch("XCODE_PATH", "/Applications/Xcode.app"))
+
+  # S'assurer que le CLI flutterfire est disponible pendant le build Xcode
+  ENV["PATH"] = "#{ENV['HOME']}/.pub-cache/bin:#{ENV['PATH']}"
+  sh("fvm dart pub global activate flutterfire_cli")
 
   keychain_name = ENV.fetch("KEYCHAIN_NAME", "login.keychain-db")
   team_id   = ENV.fetch("APPLE_TEAM_ID")
@@ -44,9 +48,14 @@ lane :beta do
       signingCertificate: "Apple Distribution"
     },
     xcargs: "CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM=#{team_id} " \
-            "PROVISIONING_PROFILE_SPECIFIER='#{profile_name}' " \
-            "CODE_SIGN_IDENTITY='Apple Distribution' " \
             "OTHER_CODE_SIGN_FLAGS='--keychain ~/Library/Keychains/#{keychain_name}'"
+  )
+
+  # Upload des dSYM Crashlytics en post-archive (fiable, indépendant du script Xcode)
+  dsym_path = Actions.lane_context[SharedValues::DSYM_OUTPUT_PATH]
+  upload_symbols_to_crashlytics(
+    gsp_path: File.join(Dir.pwd, "../Runner/GoogleService-Info.plist"),
+    dsym_path: dsym_path
   )
 
   upload_to_testflight(

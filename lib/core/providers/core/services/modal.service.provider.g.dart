@@ -6,24 +6,50 @@ part of 'modal.service.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$modalServiceHash() => r'9e0a38463f833b8a467a4e9336de51ccac4cf4b3';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// Modal service provider
+
+@ProviderFor(modalService)
+const modalServiceProvider = ModalServiceProvider._();
 
 /// Modal service provider
-///
-/// Copied from [modalService].
-@ProviderFor(modalService)
-final modalServiceProvider = AutoDisposeProvider<ModalService>.internal(
-  modalService,
-  name: r'modalServiceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$modalServiceHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef ModalServiceRef = AutoDisposeProviderRef<ModalService>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class ModalServiceProvider
+    extends $FunctionalProvider<ModalService, ModalService, ModalService>
+    with $Provider<ModalService> {
+  /// Modal service provider
+  const ModalServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'modalServiceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$modalServiceHash();
+
+  @$internal
+  @override
+  $ProviderElement<ModalService> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  ModalService create(Ref ref) {
+    return modalService(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(ModalService value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<ModalService>(value),
+    );
+  }
+}
+
+String _$modalServiceHash() => r'9e0a38463f833b8a467a4e9336de51ccac4cf4b3';

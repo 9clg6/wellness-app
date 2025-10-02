@@ -6,24 +6,51 @@ part of 'purchase.service.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$purchaseServiceHash() => r'ed7604944ef26fac2cd9a6314e0683199ccbcf1c';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// Purchase service provider
+
+@ProviderFor(purchaseService)
+const purchaseServiceProvider = PurchaseServiceProvider._();
 
 /// Purchase service provider
-///
-/// Copied from [purchaseService].
-@ProviderFor(purchaseService)
-final purchaseServiceProvider = AutoDisposeProvider<PurchaseService>.internal(
-  purchaseService,
-  name: r'purchaseServiceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$purchaseServiceHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef PurchaseServiceRef = AutoDisposeProviderRef<PurchaseService>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class PurchaseServiceProvider
+    extends
+        $FunctionalProvider<PurchaseService, PurchaseService, PurchaseService>
+    with $Provider<PurchaseService> {
+  /// Purchase service provider
+  const PurchaseServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'purchaseServiceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$purchaseServiceHash();
+
+  @$internal
+  @override
+  $ProviderElement<PurchaseService> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  PurchaseService create(Ref ref) {
+    return purchaseService(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(PurchaseService value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<PurchaseService>(value),
+    );
+  }
+}
+
+String _$purchaseServiceHash() => r'ed7604944ef26fac2cd9a6314e0683199ccbcf1c';

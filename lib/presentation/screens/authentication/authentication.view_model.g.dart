@@ -6,26 +6,56 @@ part of 'authentication.view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authenticationHash() => r'f944eaac3417601bcb8332e2892ed4c797732f6a';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// Authentication View Model
+
+@ProviderFor(Authentication)
+const authenticationProvider = AuthenticationProvider._();
 
 /// Authentication View Model
-///
-/// Copied from [Authentication].
-@ProviderFor(Authentication)
-final authenticationProvider =
-    AutoDisposeAsyncNotifierProvider<
-      Authentication,
-      AuthenticationState
-    >.internal(
-      Authentication.new,
-      name: r'authenticationProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$authenticationHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+final class AuthenticationProvider
+    extends $AsyncNotifierProvider<Authentication, AuthenticationState> {
+  /// Authentication View Model
+  const AuthenticationProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'authenticationProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-typedef _$Authentication = AutoDisposeAsyncNotifier<AuthenticationState>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+  @override
+  String debugGetCreateSourceHash() => _$authenticationHash();
+
+  @$internal
+  @override
+  Authentication create() => Authentication();
+}
+
+String _$authenticationHash() => r'568e3e541ed12ba849b1cf0c2f5ed36c5b384248';
+
+/// Authentication View Model
+
+abstract class _$Authentication extends $AsyncNotifier<AuthenticationState> {
+  FutureOr<AuthenticationState> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref =
+        this.ref as $Ref<AsyncValue<AuthenticationState>, AuthenticationState>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<AuthenticationState>, AuthenticationState>,
+              AsyncValue<AuthenticationState>,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}

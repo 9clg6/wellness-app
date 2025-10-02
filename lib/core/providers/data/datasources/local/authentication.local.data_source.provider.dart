@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:welly/core/providers/data/storages/authentication.secure_storage.provider.dart';
 import 'package:welly/data/datasources/local/authentication.local.data_source.dart';

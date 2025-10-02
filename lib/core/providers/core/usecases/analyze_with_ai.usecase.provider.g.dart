@@ -6,27 +6,51 @@ part of 'analyze_with_ai.usecase.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$analyzeWithAIUseCaseHash() =>
-    r'6b607249fddb375a23b0f47b730b640e0b20e37a';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// Provider for analyze with AI use case
+
+@ProviderFor(analyzeWithAIUseCase)
+const analyzeWithAIUseCaseProvider = AnalyzeWithAIUseCaseProvider._();
 
 /// Provider for analyze with AI use case
-///
-/// Copied from [analyzeWithAIUseCase].
-@ProviderFor(analyzeWithAIUseCase)
-final analyzeWithAIUseCaseProvider =
-    AutoDisposeFutureProvider<AnalyzeWithAIUseCase>.internal(
-      analyzeWithAIUseCase,
-      name: r'analyzeWithAIUseCaseProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$analyzeWithAIUseCaseHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef AnalyzeWithAIUseCaseRef =
-    AutoDisposeFutureProviderRef<AnalyzeWithAIUseCase>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class AnalyzeWithAIUseCaseProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<AnalyzeWithAIUseCase>,
+          AnalyzeWithAIUseCase,
+          FutureOr<AnalyzeWithAIUseCase>
+        >
+    with
+        $FutureModifier<AnalyzeWithAIUseCase>,
+        $FutureProvider<AnalyzeWithAIUseCase> {
+  /// Provider for analyze with AI use case
+  const AnalyzeWithAIUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'analyzeWithAIUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$analyzeWithAIUseCaseHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<AnalyzeWithAIUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<AnalyzeWithAIUseCase> create(Ref ref) {
+    return analyzeWithAIUseCase(ref);
+  }
+}
+
+String _$analyzeWithAIUseCaseHash() =>
+    r'6b607249fddb375a23b0f47b730b640e0b20e37a';

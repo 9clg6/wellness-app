@@ -6,27 +6,51 @@ part of 'get_local_user.use_case.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getLocalUserUseCaseHash() =>
-    r'ebe0051cecae2667ce89195f2f68ef0cada73051';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// Get local user use case provider
+
+@ProviderFor(getLocalUserUseCase)
+const getLocalUserUseCaseProvider = GetLocalUserUseCaseProvider._();
 
 /// Get local user use case provider
-///
-/// Copied from [getLocalUserUseCase].
-@ProviderFor(getLocalUserUseCase)
-final getLocalUserUseCaseProvider =
-    AutoDisposeFutureProvider<GetLocalUserUseCase>.internal(
-      getLocalUserUseCase,
-      name: r'getLocalUserUseCaseProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$getLocalUserUseCaseHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef GetLocalUserUseCaseRef =
-    AutoDisposeFutureProviderRef<GetLocalUserUseCase>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class GetLocalUserUseCaseProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<GetLocalUserUseCase>,
+          GetLocalUserUseCase,
+          FutureOr<GetLocalUserUseCase>
+        >
+    with
+        $FutureModifier<GetLocalUserUseCase>,
+        $FutureProvider<GetLocalUserUseCase> {
+  /// Get local user use case provider
+  const GetLocalUserUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'getLocalUserUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$getLocalUserUseCaseHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<GetLocalUserUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<GetLocalUserUseCase> create(Ref ref) {
+    return getLocalUserUseCase(ref);
+  }
+}
+
+String _$getLocalUserUseCaseHash() =>
+    r'ebe0051cecae2667ce89195f2f68ef0cada73051';

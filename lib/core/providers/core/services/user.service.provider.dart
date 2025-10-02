@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:welly/core/providers/core/usecases/get_local_user.use_case.provider.dart';
 import 'package:welly/core/providers/core/usecases/get_onboarding_answers.use_case.provider.dart';

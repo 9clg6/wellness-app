@@ -6,24 +6,48 @@ part of 'logout.use_case.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$logoutUseCaseHash() => r'725125cc67e26efc2badf59083a93c37605e35ce';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// Logout Use Case provider
+
+@ProviderFor(logoutUseCase)
+const logoutUseCaseProvider = LogoutUseCaseProvider._();
 
 /// Logout Use Case provider
-///
-/// Copied from [logoutUseCase].
-@ProviderFor(logoutUseCase)
-final logoutUseCaseProvider = AutoDisposeFutureProvider<LogoutUseCase>.internal(
-  logoutUseCase,
-  name: r'logoutUseCaseProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$logoutUseCaseHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef LogoutUseCaseRef = AutoDisposeFutureProviderRef<LogoutUseCase>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class LogoutUseCaseProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<LogoutUseCase>,
+          LogoutUseCase,
+          FutureOr<LogoutUseCase>
+        >
+    with $FutureModifier<LogoutUseCase>, $FutureProvider<LogoutUseCase> {
+  /// Logout Use Case provider
+  const LogoutUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'logoutUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$logoutUseCaseHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<LogoutUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<LogoutUseCase> create(Ref ref) {
+    return logoutUseCase(ref);
+  }
+}
+
+String _$logoutUseCaseHash() => r'725125cc67e26efc2badf59083a93c37605e35ce';

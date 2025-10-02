@@ -6,24 +6,47 @@ part of 'ai.endpoint.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$aiEndpointHash() => r'a66601b68ef22659dd7ccf755ea970e9aa86f7d5';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// AI endpoint provider
+
+@ProviderFor(aiEndpoint)
+const aiEndpointProvider = AiEndpointProvider._();
 
 /// AI endpoint provider
-///
-/// Copied from [aiEndpoint].
-@ProviderFor(aiEndpoint)
-final aiEndpointProvider = AutoDisposeFutureProvider<AiEndpoint>.internal(
-  aiEndpoint,
-  name: r'aiEndpointProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$aiEndpointHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef AiEndpointRef = AutoDisposeFutureProviderRef<AiEndpoint>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class AiEndpointProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<AiEndpoint>,
+          AiEndpoint,
+          FutureOr<AiEndpoint>
+        >
+    with $FutureModifier<AiEndpoint>, $FutureProvider<AiEndpoint> {
+  /// AI endpoint provider
+  const AiEndpointProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'aiEndpointProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$aiEndpointHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<AiEndpoint> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<AiEndpoint> create(Ref ref) {
+    return aiEndpoint(ref);
+  }
+}
+
+String _$aiEndpointHash() => r'a66601b68ef22659dd7ccf755ea970e9aa86f7d5';

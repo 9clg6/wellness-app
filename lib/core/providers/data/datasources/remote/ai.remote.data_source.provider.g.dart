@@ -6,27 +6,51 @@ part of 'ai.remote.data_source.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$aiRemoteDataSourceHash() =>
-    r'b22c3b504ecf2c9a050d7bfb64cc9c5b6d743a1b';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// AI analysis remote data source provider
+
+@ProviderFor(aiRemoteDataSource)
+const aiRemoteDataSourceProvider = AiRemoteDataSourceProvider._();
 
 /// AI analysis remote data source provider
-///
-/// Copied from [aiRemoteDataSource].
-@ProviderFor(aiRemoteDataSource)
-final aiRemoteDataSourceProvider =
-    AutoDisposeFutureProvider<AIRemoteDataSource>.internal(
-      aiRemoteDataSource,
-      name: r'aiRemoteDataSourceProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$aiRemoteDataSourceHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef AiRemoteDataSourceRef =
-    AutoDisposeFutureProviderRef<AIRemoteDataSource>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class AiRemoteDataSourceProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<AIRemoteDataSource>,
+          AIRemoteDataSource,
+          FutureOr<AIRemoteDataSource>
+        >
+    with
+        $FutureModifier<AIRemoteDataSource>,
+        $FutureProvider<AIRemoteDataSource> {
+  /// AI analysis remote data source provider
+  const AiRemoteDataSourceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'aiRemoteDataSourceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$aiRemoteDataSourceHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<AIRemoteDataSource> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<AIRemoteDataSource> create(Ref ref) {
+    return aiRemoteDataSource(ref);
+  }
+}
+
+String _$aiRemoteDataSourceHash() =>
+    r'b22c3b504ecf2c9a050d7bfb64cc9c5b6d743a1b';

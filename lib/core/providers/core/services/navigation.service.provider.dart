@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:welly/core/providers/foundation/services/navigation.service.dart';
 import 'package:welly/core/providers/presentation/router.provider.dart';

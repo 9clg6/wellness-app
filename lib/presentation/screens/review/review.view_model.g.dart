@@ -6,23 +6,55 @@ part of 'review.view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// Review view model
+
+@ProviderFor(ReviewViewModel)
+const reviewViewModelProvider = ReviewViewModelProvider._();
+
+/// Review view model
+final class ReviewViewModelProvider
+    extends $AsyncNotifierProvider<ReviewViewModel, ReviewState> {
+  /// Review view model
+  const ReviewViewModelProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'reviewViewModelProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$reviewViewModelHash();
+
+  @$internal
+  @override
+  ReviewViewModel create() => ReviewViewModel();
+}
+
 String _$reviewViewModelHash() => r'6f7676d074d367f9fe7aaec34ffb4b3a6f9ae542';
 
 /// Review view model
-///
-/// Copied from [ReviewViewModel].
-@ProviderFor(ReviewViewModel)
-final reviewViewModelProvider =
-    AutoDisposeAsyncNotifierProvider<ReviewViewModel, ReviewState>.internal(
-      ReviewViewModel.new,
-      name: r'reviewViewModelProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$reviewViewModelHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
 
-typedef _$ReviewViewModel = AutoDisposeAsyncNotifier<ReviewState>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+abstract class _$ReviewViewModel extends $AsyncNotifier<ReviewState> {
+  FutureOr<ReviewState> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<AsyncValue<ReviewState>, ReviewState>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<ReviewState>, ReviewState>,
+              AsyncValue<ReviewState>,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}

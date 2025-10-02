@@ -6,27 +6,52 @@ part of 'authentication.remote.data_source.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authenticationRemoteDataSourceHash() =>
-    r'22bad71cf42f865bf217e6a590549324d92a9cbf';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// Authentication Data Source provider
+
+@ProviderFor(authenticationRemoteDataSource)
+const authenticationRemoteDataSourceProvider =
+    AuthenticationRemoteDataSourceProvider._();
 
 /// Authentication Data Source provider
-///
-/// Copied from [authenticationRemoteDataSource].
-@ProviderFor(authenticationRemoteDataSource)
-final authenticationRemoteDataSourceProvider =
-    AutoDisposeFutureProvider<AuthenticationRemoteDataSource>.internal(
-      authenticationRemoteDataSource,
-      name: r'authenticationRemoteDataSourceProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$authenticationRemoteDataSourceHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef AuthenticationRemoteDataSourceRef =
-    AutoDisposeFutureProviderRef<AuthenticationRemoteDataSource>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class AuthenticationRemoteDataSourceProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<AuthenticationRemoteDataSource>,
+          AuthenticationRemoteDataSource,
+          FutureOr<AuthenticationRemoteDataSource>
+        >
+    with
+        $FutureModifier<AuthenticationRemoteDataSource>,
+        $FutureProvider<AuthenticationRemoteDataSource> {
+  /// Authentication Data Source provider
+  const AuthenticationRemoteDataSourceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'authenticationRemoteDataSourceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$authenticationRemoteDataSourceHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<AuthenticationRemoteDataSource> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<AuthenticationRemoteDataSource> create(Ref ref) {
+    return authenticationRemoteDataSource(ref);
+  }
+}
+
+String _$authenticationRemoteDataSourceHash() =>
+    r'22bad71cf42f865bf217e6a590549324d92a9cbf';

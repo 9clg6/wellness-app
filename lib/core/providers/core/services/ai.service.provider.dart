@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:welly/core/providers/core/usecases/analyze_with_ai.usecase.provider.dart';
 import 'package:welly/core/providers/core/usecases/get_current_period_report.usecase.provider.dart';

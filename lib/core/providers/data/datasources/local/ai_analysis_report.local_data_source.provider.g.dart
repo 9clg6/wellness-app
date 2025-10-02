@@ -6,27 +6,52 @@ part of 'ai_analysis_report.local_data_source.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$aiAnalysisReportLocalDataSourceHash() =>
-    r'ac2dabc684079b50cb970ebabd1e20b20338da1e';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// Provider for AIAnalysisReportLocalDataSource
+
+@ProviderFor(aiAnalysisReportLocalDataSource)
+const aiAnalysisReportLocalDataSourceProvider =
+    AiAnalysisReportLocalDataSourceProvider._();
 
 /// Provider for AIAnalysisReportLocalDataSource
-///
-/// Copied from [aiAnalysisReportLocalDataSource].
-@ProviderFor(aiAnalysisReportLocalDataSource)
-final aiAnalysisReportLocalDataSourceProvider =
-    AutoDisposeFutureProvider<AIAnalysisReportLocalDataSource>.internal(
-      aiAnalysisReportLocalDataSource,
-      name: r'aiAnalysisReportLocalDataSourceProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$aiAnalysisReportLocalDataSourceHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef AiAnalysisReportLocalDataSourceRef =
-    AutoDisposeFutureProviderRef<AIAnalysisReportLocalDataSource>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class AiAnalysisReportLocalDataSourceProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<AIAnalysisReportLocalDataSource>,
+          AIAnalysisReportLocalDataSource,
+          FutureOr<AIAnalysisReportLocalDataSource>
+        >
+    with
+        $FutureModifier<AIAnalysisReportLocalDataSource>,
+        $FutureProvider<AIAnalysisReportLocalDataSource> {
+  /// Provider for AIAnalysisReportLocalDataSource
+  const AiAnalysisReportLocalDataSourceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'aiAnalysisReportLocalDataSourceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$aiAnalysisReportLocalDataSourceHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<AIAnalysisReportLocalDataSource> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<AIAnalysisReportLocalDataSource> create(Ref ref) {
+    return aiAnalysisReportLocalDataSource(ref);
+  }
+}
+
+String _$aiAnalysisReportLocalDataSourceHash() =>
+    r'ac2dabc684079b50cb970ebabd1e20b20338da1e';

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: xcode_select" time="0.000238">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: fvm dart pub global activate flutterfire_cli" time="1.151655">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: update_code_signing_settings" time="0.055338">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="3: sync_code_signing" time="791.141541">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="4: app_store_connect_api_key" time="0.001804">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="5: build_app" time="156.062479">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="6: upload_symbols_to_crashlytics" time="81.405412">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="7: upload_to_testflight" time="68.807472">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="8: update_code_signing_settings" time="0.027608">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>

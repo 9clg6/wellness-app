@@ -6,24 +6,48 @@ part of 'user.service.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$userServiceHash() => r'44946e369356eb815875e97d804b550b19f6f091';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// User service provider
+
+@ProviderFor(userService)
+const userServiceProvider = UserServiceProvider._();
 
 /// User service provider
-///
-/// Copied from [userService].
-@ProviderFor(userService)
-final userServiceProvider = FutureProvider<UserService>.internal(
-  userService,
-  name: r'userServiceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$userServiceHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef UserServiceRef = FutureProviderRef<UserService>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class UserServiceProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<UserService>,
+          UserService,
+          FutureOr<UserService>
+        >
+    with $FutureModifier<UserService>, $FutureProvider<UserService> {
+  /// User service provider
+  const UserServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'userServiceProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$userServiceHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<UserService> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<UserService> create(Ref ref) {
+    return userService(ref);
+  }
+}
+
+String _$userServiceHash() => r'44946e369356eb815875e97d804b550b19f6f091';

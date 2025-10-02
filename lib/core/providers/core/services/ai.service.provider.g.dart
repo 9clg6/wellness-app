@@ -6,24 +6,47 @@ part of 'ai.service.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$aiServiceHash() => r'ca1005e6ea79983bbb5b068f0bb8dbf68225852c';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// Ai service provider
+
+@ProviderFor(aiService)
+const aiServiceProvider = AiServiceProvider._();
 
 /// Ai service provider
-///
-/// Copied from [aiService].
-@ProviderFor(aiService)
-final aiServiceProvider = AutoDisposeFutureProvider<AiService>.internal(
-  aiService,
-  name: r'aiServiceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$aiServiceHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef AiServiceRef = AutoDisposeFutureProviderRef<AiService>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class AiServiceProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<AiService>,
+          AiService,
+          FutureOr<AiService>
+        >
+    with $FutureModifier<AiService>, $FutureProvider<AiService> {
+  /// Ai service provider
+  const AiServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'aiServiceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$aiServiceHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<AiService> $createElement($ProviderPointer pointer) =>
+      $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<AiService> create(Ref ref) {
+    return aiService(ref);
+  }
+}
+
+String _$aiServiceHash() => r'ca1005e6ea79983bbb5b068f0bb8dbf68225852c';

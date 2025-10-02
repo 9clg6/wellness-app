@@ -6,24 +6,42 @@ part of 'auth_state.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authStateHash() => r'e373767a2056a644e7139a513b9a3eb6322d2a0a';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// Provider that streams Firebase authentication state changes
+
+@ProviderFor(authState)
+const authStateProvider = AuthStateProvider._();
 
 /// Provider that streams Firebase authentication state changes
-///
-/// Copied from [authState].
-@ProviderFor(authState)
-final authStateProvider = AutoDisposeStreamProvider<User?>.internal(
-  authState,
-  name: r'authStateProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$authStateHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef AuthStateRef = AutoDisposeStreamProviderRef<User?>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class AuthStateProvider
+    extends $FunctionalProvider<AsyncValue<User?>, User?, Stream<User?>>
+    with $FutureModifier<User?>, $StreamProvider<User?> {
+  /// Provider that streams Firebase authentication state changes
+  const AuthStateProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'authStateProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$authStateHash();
+
+  @$internal
+  @override
+  $StreamProviderElement<User?> $createElement($ProviderPointer pointer) =>
+      $StreamProviderElement(pointer);
+
+  @override
+  Stream<User?> create(Ref ref) {
+    return authState(ref);
+  }
+}
+
+String _$authStateHash() => r'e373767a2056a644e7139a513b9a3eb6322d2a0a';

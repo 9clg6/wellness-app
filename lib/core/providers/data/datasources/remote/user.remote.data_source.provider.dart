@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:welly/core/providers/data/endpoints/user.endpoint.provider.dart';
 import 'package:welly/data/datasources/remote/impl/user.remote.data_source.impl.dart';

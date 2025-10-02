@@ -6,27 +6,52 @@ part of 'delete_happen_action_by_date.usecase.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$deleteHappenActionByDateUseCaseHash() =>
-    r'b6dfe1aa9e63ed28820b3132585c78555cae1c0e';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// Provider for DeleteHappenActionByDateUseCase
+
+@ProviderFor(deleteHappenActionByDateUseCase)
+const deleteHappenActionByDateUseCaseProvider =
+    DeleteHappenActionByDateUseCaseProvider._();
 
 /// Provider for DeleteHappenActionByDateUseCase
-///
-/// Copied from [deleteHappenActionByDateUseCase].
-@ProviderFor(deleteHappenActionByDateUseCase)
-final deleteHappenActionByDateUseCaseProvider =
-    AutoDisposeFutureProvider<DeleteHappenActionByDateUseCase>.internal(
-      deleteHappenActionByDateUseCase,
-      name: r'deleteHappenActionByDateUseCaseProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$deleteHappenActionByDateUseCaseHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef DeleteHappenActionByDateUseCaseRef =
-    AutoDisposeFutureProviderRef<DeleteHappenActionByDateUseCase>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class DeleteHappenActionByDateUseCaseProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<DeleteHappenActionByDateUseCase>,
+          DeleteHappenActionByDateUseCase,
+          FutureOr<DeleteHappenActionByDateUseCase>
+        >
+    with
+        $FutureModifier<DeleteHappenActionByDateUseCase>,
+        $FutureProvider<DeleteHappenActionByDateUseCase> {
+  /// Provider for DeleteHappenActionByDateUseCase
+  const DeleteHappenActionByDateUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'deleteHappenActionByDateUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$deleteHappenActionByDateUseCaseHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<DeleteHappenActionByDateUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<DeleteHappenActionByDateUseCase> create(Ref ref) {
+    return deleteHappenActionByDateUseCase(ref);
+  }
+}
+
+String _$deleteHappenActionByDateUseCaseHash() =>
+    r'b6dfe1aa9e63ed28820b3132585c78555cae1c0e';

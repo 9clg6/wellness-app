@@ -6,23 +6,55 @@ part of 'ai_analyze.view_model.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$aiAnalyzeHash() => r'b39827ccd64c76d5b229e6d78f5ac5d335383184';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// Ai analyze view model
+
+@ProviderFor(AiAnalyze)
+const aiAnalyzeProvider = AiAnalyzeProvider._();
 
 /// Ai analyze view model
-///
-/// Copied from [AiAnalyze].
-@ProviderFor(AiAnalyze)
-final aiAnalyzeProvider =
-    AutoDisposeAsyncNotifierProvider<AiAnalyze, AiAnalyzeState>.internal(
-      AiAnalyze.new,
-      name: r'aiAnalyzeProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$aiAnalyzeHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
+final class AiAnalyzeProvider
+    extends $AsyncNotifierProvider<AiAnalyze, AiAnalyzeState> {
+  /// Ai analyze view model
+  const AiAnalyzeProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'aiAnalyzeProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
 
-typedef _$AiAnalyze = AutoDisposeAsyncNotifier<AiAnalyzeState>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+  @override
+  String debugGetCreateSourceHash() => _$aiAnalyzeHash();
+
+  @$internal
+  @override
+  AiAnalyze create() => AiAnalyze();
+}
+
+String _$aiAnalyzeHash() => r'f9e7c04436b20e51cc1d675444418af709f4aa85';
+
+/// Ai analyze view model
+
+abstract class _$AiAnalyze extends $AsyncNotifier<AiAnalyzeState> {
+  FutureOr<AiAnalyzeState> build();
+  @$mustCallSuper
+  @override
+  void runBuild() {
+    final created = build();
+    final ref = this.ref as $Ref<AsyncValue<AiAnalyzeState>, AiAnalyzeState>;
+    final element =
+        ref.element
+            as $ClassProviderElement<
+              AnyNotifier<AsyncValue<AiAnalyzeState>, AiAnalyzeState>,
+              AsyncValue<AiAnalyzeState>,
+              Object?,
+              Object?
+            >;
+    element.handleValue(ref, created);
+  }
+}

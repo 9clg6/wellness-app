@@ -6,27 +6,52 @@ part of 'has_current_period_report.usecase.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$hasCurrentPeriodReportUseCaseHash() =>
-    r'8d1e9dfd11a1ee55a49538ea3df90c73857f452f';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// Provider for HasCurrentPeriodReportUseCase
+
+@ProviderFor(hasCurrentPeriodReportUseCase)
+const hasCurrentPeriodReportUseCaseProvider =
+    HasCurrentPeriodReportUseCaseProvider._();
 
 /// Provider for HasCurrentPeriodReportUseCase
-///
-/// Copied from [hasCurrentPeriodReportUseCase].
-@ProviderFor(hasCurrentPeriodReportUseCase)
-final hasCurrentPeriodReportUseCaseProvider =
-    AutoDisposeFutureProvider<HasCurrentPeriodReportUseCase>.internal(
-      hasCurrentPeriodReportUseCase,
-      name: r'hasCurrentPeriodReportUseCaseProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$hasCurrentPeriodReportUseCaseHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef HasCurrentPeriodReportUseCaseRef =
-    AutoDisposeFutureProviderRef<HasCurrentPeriodReportUseCase>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class HasCurrentPeriodReportUseCaseProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<HasCurrentPeriodReportUseCase>,
+          HasCurrentPeriodReportUseCase,
+          FutureOr<HasCurrentPeriodReportUseCase>
+        >
+    with
+        $FutureModifier<HasCurrentPeriodReportUseCase>,
+        $FutureProvider<HasCurrentPeriodReportUseCase> {
+  /// Provider for HasCurrentPeriodReportUseCase
+  const HasCurrentPeriodReportUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'hasCurrentPeriodReportUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$hasCurrentPeriodReportUseCaseHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<HasCurrentPeriodReportUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<HasCurrentPeriodReportUseCase> create(Ref ref) {
+    return hasCurrentPeriodReportUseCase(ref);
+  }
+}
+
+String _$hasCurrentPeriodReportUseCaseHash() =>
+    r'8d1e9dfd11a1ee55a49538ea3df90c73857f452f';

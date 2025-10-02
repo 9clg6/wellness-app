@@ -1,4 +1,3 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:welly/core/providers/core/services/ai.service.provider.dart';
 import 'package:welly/core/providers/core/usecases/clear_happen_actions.usecase.provider.dart';
@@ -13,7 +12,7 @@ part 'happen_action.service.provider.g.dart';
 /// Provider pour HappenActionService
 @riverpod
 Future<HappenActionService> happenActionService(Ref ref) async {
-  return HappenActionService(
+  final HappenActionService service = HappenActionService(
     getHappenActionsUseCase: await ref.watch(
       getHappenActionsUseCaseProvider.future,
     ),
@@ -31,4 +30,7 @@ Future<HappenActionService> happenActionService(Ref ref) async {
     ),
     aiService: await ref.watch(aiServiceProvider.future),
   );
+
+  ref.onDispose(service.dispose);
+  return service;
 }

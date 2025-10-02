@@ -6,25 +6,48 @@ part of 'get_user.use_case.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$getUserUseCaseHash() => r'2becafb19cbbbbfa9fe076e561da63985617d5de';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// Get user use case provider
+
+@ProviderFor(getUserUseCase)
+const getUserUseCaseProvider = GetUserUseCaseProvider._();
 
 /// Get user use case provider
-///
-/// Copied from [getUserUseCase].
-@ProviderFor(getUserUseCase)
-final getUserUseCaseProvider =
-    AutoDisposeFutureProvider<GetUserUseCase>.internal(
-      getUserUseCase,
-      name: r'getUserUseCaseProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$getUserUseCaseHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef GetUserUseCaseRef = AutoDisposeFutureProviderRef<GetUserUseCase>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class GetUserUseCaseProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<GetUserUseCase>,
+          GetUserUseCase,
+          FutureOr<GetUserUseCase>
+        >
+    with $FutureModifier<GetUserUseCase>, $FutureProvider<GetUserUseCase> {
+  /// Get user use case provider
+  const GetUserUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'getUserUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$getUserUseCaseHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<GetUserUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<GetUserUseCase> create(Ref ref) {
+    return getUserUseCase(ref);
+  }
+}
+
+String _$getUserUseCaseHash() => r'2becafb19cbbbbfa9fe076e561da63985617d5de';

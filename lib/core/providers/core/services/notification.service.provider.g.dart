@@ -6,27 +6,51 @@ part of 'notification.service.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$notificationServiceHash() =>
-    r'a0f8511aad296f576a3860df78f5a4e36eaf7078';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// Provider for NotificationService
+
+@ProviderFor(notificationService)
+const notificationServiceProvider = NotificationServiceProvider._();
 
 /// Provider for NotificationService
-///
-/// Copied from [notificationService].
-@ProviderFor(notificationService)
-final notificationServiceProvider =
-    AutoDisposeFutureProvider<NotificationService>.internal(
-      notificationService,
-      name: r'notificationServiceProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$notificationServiceHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef NotificationServiceRef =
-    AutoDisposeFutureProviderRef<NotificationService>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class NotificationServiceProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<NotificationService>,
+          NotificationService,
+          FutureOr<NotificationService>
+        >
+    with
+        $FutureModifier<NotificationService>,
+        $FutureProvider<NotificationService> {
+  /// Provider for NotificationService
+  const NotificationServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'notificationServiceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$notificationServiceHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<NotificationService> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<NotificationService> create(Ref ref) {
+    return notificationService(ref);
+  }
+}
+
+String _$notificationServiceHash() =>
+    r'a0f8511aad296f576a3860df78f5a4e36eaf7078';

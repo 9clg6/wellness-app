@@ -6,27 +6,52 @@ part of 'authentication.local.data_source.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$authenticationLocalDataSourceHash() =>
-    r'1dea9d8255ffbb8eb57c707bac6cb16a564b1168';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// Authentication Local Data Source provider
+
+@ProviderFor(authenticationLocalDataSource)
+const authenticationLocalDataSourceProvider =
+    AuthenticationLocalDataSourceProvider._();
 
 /// Authentication Local Data Source provider
-///
-/// Copied from [authenticationLocalDataSource].
-@ProviderFor(authenticationLocalDataSource)
-final authenticationLocalDataSourceProvider =
-    FutureProvider<AuthenticationLocalDataSource>.internal(
-      authenticationLocalDataSource,
-      name: r'authenticationLocalDataSourceProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$authenticationLocalDataSourceHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef AuthenticationLocalDataSourceRef =
-    FutureProviderRef<AuthenticationLocalDataSource>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class AuthenticationLocalDataSourceProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<AuthenticationLocalDataSource>,
+          AuthenticationLocalDataSource,
+          FutureOr<AuthenticationLocalDataSource>
+        >
+    with
+        $FutureModifier<AuthenticationLocalDataSource>,
+        $FutureProvider<AuthenticationLocalDataSource> {
+  /// Authentication Local Data Source provider
+  const AuthenticationLocalDataSourceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'authenticationLocalDataSourceProvider',
+        isAutoDispose: false,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$authenticationLocalDataSourceHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<AuthenticationLocalDataSource> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<AuthenticationLocalDataSource> create(Ref ref) {
+    return authenticationLocalDataSource(ref);
+  }
+}
+
+String _$authenticationLocalDataSourceHash() =>
+    r'1dea9d8255ffbb8eb57c707bac6cb16a564b1168';

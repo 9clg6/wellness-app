@@ -6,27 +6,51 @@ part of 'save_happen_action.usecase.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$saveHappenActionUseCaseHash() =>
-    r'9e667ecc212791d1a144051378f6f02ace8b6e9a';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// Provider for SaveHappenActionUseCase
+
+@ProviderFor(saveHappenActionUseCase)
+const saveHappenActionUseCaseProvider = SaveHappenActionUseCaseProvider._();
 
 /// Provider for SaveHappenActionUseCase
-///
-/// Copied from [saveHappenActionUseCase].
-@ProviderFor(saveHappenActionUseCase)
-final saveHappenActionUseCaseProvider =
-    AutoDisposeFutureProvider<SaveHappenActionUseCase>.internal(
-      saveHappenActionUseCase,
-      name: r'saveHappenActionUseCaseProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$saveHappenActionUseCaseHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef SaveHappenActionUseCaseRef =
-    AutoDisposeFutureProviderRef<SaveHappenActionUseCase>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class SaveHappenActionUseCaseProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<SaveHappenActionUseCase>,
+          SaveHappenActionUseCase,
+          FutureOr<SaveHappenActionUseCase>
+        >
+    with
+        $FutureModifier<SaveHappenActionUseCase>,
+        $FutureProvider<SaveHappenActionUseCase> {
+  /// Provider for SaveHappenActionUseCase
+  const SaveHappenActionUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'saveHappenActionUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$saveHappenActionUseCaseHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<SaveHappenActionUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<SaveHappenActionUseCase> create(Ref ref) {
+    return saveHappenActionUseCase(ref);
+  }
+}
+
+String _$saveHappenActionUseCaseHash() =>
+    r'9e667ecc212791d1a144051378f6f02ace8b6e9a';

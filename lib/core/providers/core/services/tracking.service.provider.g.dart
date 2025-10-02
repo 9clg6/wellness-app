@@ -6,24 +6,51 @@ part of 'tracking.service.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$trackingServiceHash() => r'6e688b61fe7aa917fa91bc4a1bc4f61d4337104f';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// Provider for the [TrackingService]
+
+@ProviderFor(trackingService)
+const trackingServiceProvider = TrackingServiceProvider._();
 
 /// Provider for the [TrackingService]
-///
-/// Copied from [trackingService].
-@ProviderFor(trackingService)
-final trackingServiceProvider = AutoDisposeProvider<TrackingService>.internal(
-  trackingService,
-  name: r'trackingServiceProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$trackingServiceHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef TrackingServiceRef = AutoDisposeProviderRef<TrackingService>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class TrackingServiceProvider
+    extends
+        $FunctionalProvider<TrackingService, TrackingService, TrackingService>
+    with $Provider<TrackingService> {
+  /// Provider for the [TrackingService]
+  const TrackingServiceProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'trackingServiceProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$trackingServiceHash();
+
+  @$internal
+  @override
+  $ProviderElement<TrackingService> $createElement($ProviderPointer pointer) =>
+      $ProviderElement(pointer);
+
+  @override
+  TrackingService create(Ref ref) {
+    return trackingService(ref);
+  }
+
+  /// {@macro riverpod.override_with_value}
+  Override overrideWithValue(TrackingService value) {
+    return $ProviderOverride(
+      origin: this,
+      providerOverride: $SyncValueProvider<TrackingService>(value),
+    );
+  }
+}
+
+String _$trackingServiceHash() => r'6e688b61fe7aa917fa91bc4a1bc4f61d4337104f';

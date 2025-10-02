@@ -6,27 +6,52 @@ part of 'set_onboarding_completed.use_case.provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$setOnboardingCompletedUseCaseHash() =>
-    r'ce4d0a4acb1677b97b0cb46d04cb96d510ccc1c7';
+// GENERATED CODE - DO NOT MODIFY BY HAND
+// ignore_for_file: type=lint, type=warning
+/// Set onboarding completed use case provider
+
+@ProviderFor(setOnboardingCompletedUseCase)
+const setOnboardingCompletedUseCaseProvider =
+    SetOnboardingCompletedUseCaseProvider._();
 
 /// Set onboarding completed use case provider
-///
-/// Copied from [setOnboardingCompletedUseCase].
-@ProviderFor(setOnboardingCompletedUseCase)
-final setOnboardingCompletedUseCaseProvider =
-    AutoDisposeFutureProvider<SetOnboardingCompletedUseCase>.internal(
-      setOnboardingCompletedUseCase,
-      name: r'setOnboardingCompletedUseCaseProvider',
-      debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-          ? null
-          : _$setOnboardingCompletedUseCaseHash,
-      dependencies: null,
-      allTransitiveDependencies: null,
-    );
 
-@Deprecated('Will be removed in 3.0. Use Ref instead')
-// ignore: unused_element
-typedef SetOnboardingCompletedUseCaseRef =
-    AutoDisposeFutureProviderRef<SetOnboardingCompletedUseCase>;
-// ignore_for_file: type=lint
-// ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member, invalid_use_of_visible_for_testing_member, deprecated_member_use_from_same_package
+final class SetOnboardingCompletedUseCaseProvider
+    extends
+        $FunctionalProvider<
+          AsyncValue<SetOnboardingCompletedUseCase>,
+          SetOnboardingCompletedUseCase,
+          FutureOr<SetOnboardingCompletedUseCase>
+        >
+    with
+        $FutureModifier<SetOnboardingCompletedUseCase>,
+        $FutureProvider<SetOnboardingCompletedUseCase> {
+  /// Set onboarding completed use case provider
+  const SetOnboardingCompletedUseCaseProvider._()
+    : super(
+        from: null,
+        argument: null,
+        retry: null,
+        name: r'setOnboardingCompletedUseCaseProvider',
+        isAutoDispose: true,
+        dependencies: null,
+        $allTransitiveDependencies: null,
+      );
+
+  @override
+  String debugGetCreateSourceHash() => _$setOnboardingCompletedUseCaseHash();
+
+  @$internal
+  @override
+  $FutureProviderElement<SetOnboardingCompletedUseCase> $createElement(
+    $ProviderPointer pointer,
+  ) => $FutureProviderElement(pointer);
+
+  @override
+  FutureOr<SetOnboardingCompletedUseCase> create(Ref ref) {
+    return setOnboardingCompletedUseCase(ref);
+  }
+}
+
+String _$setOnboardingCompletedUseCaseHash() =>
+    r'ce4d0a4acb1677b97b0cb46d04cb96d510ccc1c7';
