@@ -5,6 +5,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
@@ -20,9 +21,22 @@ class NotificationService {
   /// Firebase messaging instance
   final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
 
+  /// Push enabled state
+  bool _pushEnabled = true;
+
+  /// Subject pour diffuser l'état d'activation des notifications
+  final BehaviorSubject<bool> _notificationsEnabledSubject =
+      BehaviorSubject<bool>.seeded(true);
+
+  /// Stream public de l'état des notifications (push/local)
+  Stream<bool> get notificationsEnabledStream =>
+      _notificationsEnabledSubject.stream;
+
   /// Initialize the notification service
-  Future<void> initialize() async {
+  Future<void> initialize({bool pushEnabled = true}) async {
     try {
+      _pushEnabled = pushEnabled;
+      _notificationsEnabledSubject.add(_pushEnabled);
       // Initialize timezone data
       tz.initializeTimeZones();
 
@@ -32,11 +46,15 @@ class NotificationService {
       // Initialize local notifications
       await _initializeLocalNotifications();
 
-      // Request permissions
-      await _requestPermissions();
+      // Request permissions (only if push enabled)
+      if (_pushEnabled) {
+        await _requestPermissions();
+      }
 
-      // Setup daily reminders (multiple for better reliability)
-      await scheduleMultipleDailyReminders();
+      // Setup daily reminders if enabled
+      if (_pushEnabled) {
+        await scheduleMultipleDailyReminders();
+      }
 
       // Check and reschedule if needed
       await checkAndRescheduleNotifications();
@@ -47,6 +65,44 @@ class NotificationService {
       unawaited(FirebaseCrashlytics.instance.recordError(e, s));
       rethrow;
     }
+  }
+
+  /// Enable or disable push notifications at runtime
+  Future<void> setPushNotificationsEnabled({required bool enabled}) async {
+    try {
+      _pushEnabled = enabled;
+      await _firebaseMessaging.setAutoInitEnabled(enabled);
+      _notificationsEnabledSubject.add(enabled);
+
+      if (!enabled) {
+        // Cancel all local notifications
+        await cancelAllNotifications();
+        // Delete FCM token and unsubscribe from test topics
+        try {
+          await _firebaseMessaging.deleteToken();
+        } on Exception catch (e, s) {
+          debugPrint('[NotificationService] Error deleting FCM token: $e');
+          unawaited(FirebaseCrashlytics.instance.recordError(e, s));
+        }
+        try {
+          await unsubscribeFromTopic('test_notifications');
+        } on Exception {
+          // ignore
+        }
+      } else {
+        // Recreate token and resubscribe logic happens automatically on demand
+        // Re-schedule reminders
+        await scheduleMultipleDailyReminders();
+      }
+    } on Exception catch (e, s) {
+      debugPrint('[NotificationService] Error toggling push: $e');
+      unawaited(FirebaseCrashlytics.instance.recordError(e, s));
+    }
+  }
+
+  /// Dispose stream
+  void dispose() {
+    _notificationsEnabledSubject.close();
   }
 
   /// Initialize Firebase Messaging

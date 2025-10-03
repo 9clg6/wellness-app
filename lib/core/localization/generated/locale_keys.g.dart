@@ -240,5 +240,23 @@ abstract class  LocaleKeys {
   static const home_privacy_policy = 'home_privacy_policy';
   static const home_privacy_policy_button = 'home_privacy_policy_button';
   static const home_privacy_policy_title = 'home_privacy_policy_title';
+  static const settings_title = 'settings_title';
+  static const settings_privacy_title = 'settings_privacy_title';
+  static const settings_privacy_subtitle = 'settings_privacy_subtitle';
+  static const settings_notifications_disable_title = 'settings_notifications_disable_title';
+  static const settings_notifications_disable_subtitle = 'settings_notifications_disable_subtitle';
+  static const settings_notifications_enable_title = 'settings_notifications_enable_title';
+  static const settings_notifications_enable_subtitle = 'settings_notifications_enable_subtitle';
+  static const settings_notifications_disable_dialog_title = 'settings_notifications_disable_dialog_title';
+  static const settings_notifications_disable_dialog_message = 'settings_notifications_disable_dialog_message';
+  static const settings_notifications_enable_dialog_title = 'settings_notifications_enable_dialog_title';
+  static const settings_notifications_enable_dialog_message = 'settings_notifications_enable_dialog_message';
+  static const settings_notifications_disabled_toast = 'settings_notifications_disabled_toast';
+  static const settings_notifications_enabled_toast = 'settings_notifications_enabled_toast';
+  static const settings_logout = 'settings_logout';
+  static const settings_logout_confirm_title = 'settings_logout_confirm_title';
+  static const settings_logout_confirm_message = 'settings_logout_confirm_message';
+  static const common_cancel = 'common_cancel';
+  static const common_disable = 'common_disable';
 
 }

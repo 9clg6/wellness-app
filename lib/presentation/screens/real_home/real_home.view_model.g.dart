@@ -36,7 +36,7 @@ final class RealHomeViewModelProvider
   RealHomeViewModel create() => RealHomeViewModel();
 }
 
-String _$realHomeViewModelHash() => r'a70fb1ce20a84401dac16fdb77388f807d89a189';
+String _$realHomeViewModelHash() => r'c66250ac7b8a66605ca5a77260de6f52a8c6f767';
 
 /// Real home view model
 

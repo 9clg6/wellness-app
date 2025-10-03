@@ -16,6 +16,7 @@ class UserPreferencesStorage {
   static const String _onboardingCompletedKey = 'onboarding_completed';
   static const String _onboardingAnswersKey = 'onboarding_answers';
   static const String _userKey = 'user';
+  static const String _notificationsEnabledKey = 'notifications_enabled';
 
   /// Get SharedPreferences instance
   Future<SharedPreferences> get _prefs async {
@@ -64,6 +65,18 @@ class UserPreferencesStorage {
     await prefs.remove(_onboardingCompletedKey);
     await prefs.remove(_onboardingAnswersKey);
     await prefs.remove(_userKey);
+  }
+
+  /// Get notifications enabled flag (default: true)
+  Future<bool> getNotificationsEnabled() async {
+    final SharedPreferences prefs = await _prefs;
+    return prefs.getBool(_notificationsEnabledKey) ?? true;
+  }
+
+  /// Set notifications enabled flag
+  Future<void> setNotificationsEnabled({required bool enabled}) async {
+    final SharedPreferences prefs = await _prefs;
+    await prefs.setBool(_notificationsEnabledKey, enabled);
   }
 
   /// Save onboarding answers

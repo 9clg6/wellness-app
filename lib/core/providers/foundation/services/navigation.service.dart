@@ -67,4 +67,9 @@ class NavigationService {
   void navigateToAnalyzeWithAi() {
     _appRouter.push(const AiAnalyzeRoute());
   }
+
+  /// Navigate to settings
+  void navigateToSettings() {
+    _appRouter.push(const SettingsRoute());
+  }
 }

@@ -252,7 +252,25 @@ class CodegenLoader extends AssetLoader{
   },
   "home_privacy_policy": "This app is not a medical device and does not provide diagnosis, treatment, or therapeutic advice. The information and measurements provided are for informational and wellness purposes only and may be incomplete or not applicable to your situation. Do not make any medical decisions based on this app. Always seek a doctor’s advice in addition to using this app and before making any medical decisions.",
   "home_privacy_policy_button": "OK",
-  "home_privacy_policy_title": "Attention"
+  "home_privacy_policy_title": "Attention",
+  "settings_title": "Settings",
+  "settings_privacy_title": "Privacy Policy",
+  "settings_privacy_subtitle": "Open web page",
+  "settings_notifications_disable_title": "Disable notifications",
+  "settings_notifications_disable_subtitle": "Cancel scheduled notifications",
+  "settings_notifications_enable_title": "Enable notifications",
+  "settings_notifications_enable_subtitle": "Allow reminders and push",
+  "settings_notifications_disable_dialog_title": "Disable notifications",
+  "settings_notifications_disable_dialog_message": "This will cancel all scheduled local notifications.",
+  "settings_notifications_enable_dialog_title": "Enable notifications",
+  "settings_notifications_enable_dialog_message": "You will start receiving reminders and notifications again.",
+  "settings_notifications_disabled_toast": "Notifications disabled",
+  "settings_notifications_enabled_toast": "Notifications enabled",
+  "settings_logout": "Log out",
+  "settings_logout_confirm_title": "Confirm logout",
+  "settings_logout_confirm_message": "Do you really want to log out?",
+  "common_cancel": "Cancel",
+  "common_disable": "Disable"
 };
 static const Map<String,dynamic> _fr = {
   "first": "Bonjour",
@@ -492,7 +510,25 @@ static const Map<String,dynamic> _fr = {
   },
   "home_privacy_policy": "Cette application n’est pas un dispositif médical et ne fournit ni diagnostic ni traitement, ni conseils thérapeutiques. Les informations et mesures présentées ont un but informatif et de bien‑être uniquement et peuvent être incomplètes ou inadaptées à votre situation. Ne prenez aucune décision médicale sur la base de cette application. Demandez toujours l’avis d’un médecin ou d’un professionnel de santé qualifié en plus de l’utilisation de cette application et avant toute décision médicale.",
   "home_privacy_policy_button": "OK",
-  "home_privacy_policy_title": "Attention"
+  "home_privacy_policy_title": "Attention",
+  "settings_title": "Paramètres",
+  "settings_privacy_title": "Politique de confidentialité",
+  "settings_privacy_subtitle": "Ouvrir la page web",
+  "settings_notifications_disable_title": "Désactiver les notifications",
+  "settings_notifications_disable_subtitle": "Annuler les notifications planifiées",
+  "settings_notifications_enable_title": "Activer les notifications",
+  "settings_notifications_enable_subtitle": "Autoriser rappels et push",
+  "settings_notifications_disable_dialog_title": "Désactiver les notifications",
+  "settings_notifications_disable_dialog_message": "Cela annulera toutes les notifications locales programmées.",
+  "settings_notifications_enable_dialog_title": "Activer les notifications",
+  "settings_notifications_enable_dialog_message": "Vous recevrez à nouveau des rappels et notifications.",
+  "settings_notifications_disabled_toast": "Notifications désactivées",
+  "settings_notifications_enabled_toast": "Notifications activées",
+  "settings_logout": "Se déconnecter",
+  "settings_logout_confirm_title": "Confirmer la déconnexion",
+  "settings_logout_confirm_message": "Voulez-vous vraiment vous déconnecter ?",
+  "common_cancel": "Annuler",
+  "common_disable": "Désactiver"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": _en, "fr": _fr};
 }

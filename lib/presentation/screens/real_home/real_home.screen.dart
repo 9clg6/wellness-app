@@ -205,6 +205,9 @@ class _HomeAppBar extends ConsumerWidget implements PreferredSizeWidget {
     final AsyncValue<RealHomeState> state = ref.watch(
       realHomeViewModelProvider,
     );
+    final RealHomeViewModel viewModel = ref.watch(
+      realHomeViewModelProvider.notifier,
+    );
 
     return state.when(
       data: (RealHomeState state) => AppBar(
@@ -215,7 +218,7 @@ class _HomeAppBar extends ConsumerWidget implements PreferredSizeWidget {
         surfaceTintColor: Colors.transparent,
         actions: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: viewModel.onTapSettings,
             icon: const Icon(Icons.settings_outlined, color: Colors.black),
           ),
         ],

@@ -292,4 +292,25 @@ class TrackingService {
   }) async {
     await _analyticsService.logEvent(eventName, parameters: parameters);
   }
+
+  // Settings specific tracking
+  /// Track settings notifications changed
+  Future<void> trackSettingsNotificationsChanged({
+    required bool enabled,
+  }) async {
+    await track(
+      AnalyticsEvents.settingsNotificationsChanged,
+      parameters: <String, Object>{'enabled': enabled},
+    );
+  }
+
+  /// Track settings logout confirmed
+  Future<void> trackSettingsLogoutConfirmed() async {
+    await track(AnalyticsEvents.settingsLogoutConfirmed);
+  }
+
+  /// Track settings privacy opened
+  Future<void> trackSettingsPrivacyOpened() async {
+    await track(AnalyticsEvents.settingsPrivacyOpened);
+  }
 }

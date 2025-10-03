@@ -241,4 +241,9 @@ class RealHomeViewModel extends _$RealHomeViewModel {
       unawaited(FirebaseCrashlytics.instance.recordError(e, s));
     }
   }
+
+  /// On tap settings
+  void onTapSettings() {
+    _navigationService.navigateToSettings();
+  }
 }

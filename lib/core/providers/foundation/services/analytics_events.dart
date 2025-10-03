@@ -118,4 +118,15 @@ class AnalyticsEvents {
 
   /// appForegrounded
   static const String appForegrounded = 'app_foregrounded';
+
+  // Settings events
+  /// settingsNotificationsChanged
+  static const String settingsNotificationsChanged =
+      'settings_notifications_changed';
+
+  /// settingsLogoutConfirmed
+  static const String settingsLogoutConfirmed = 'settings_logout_confirmed';
+
+  /// settingsPrivacyOpened
+  static const String settingsPrivacyOpened = 'settings_privacy_opened';
 }

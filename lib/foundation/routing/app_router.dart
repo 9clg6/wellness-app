@@ -10,6 +10,7 @@ import 'package:welly/presentation/screens/home/home.screen.dart';
 import 'package:welly/presentation/screens/privacy_policy/privacy_policy.screen.dart';
 import 'package:welly/presentation/screens/real_home/real_home.screen.dart';
 import 'package:welly/presentation/screens/review/review.screen.dart';
+import 'package:welly/presentation/screens/settings/settings.screen.dart';
 
 part 'app_router.gr.dart';
 
@@ -24,6 +25,7 @@ class AppRouter extends RootStackRouter {
       ? <AutoRoute>[AutoRoute(page: PrivacyPolicyRoute.page, initial: true)]
       : <AutoRoute>[
           AutoRoute(page: AuthenticationRoute.page),
+          AutoRoute(page: SettingsRoute.page),
           AutoRoute(
             page: HomeRoute.page,
             guards: <AutoRouteGuard>[OnboardingGuard()],
