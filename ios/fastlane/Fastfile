@@ -4,31 +4,36 @@ lane :beta do
   # S'assurer que le CLI flutterfire est disponible pendant le build Xcode
   ENV["PATH"] = "#{ENV['HOME']}/.pub-cache/bin:#{ENV['PATH']}"
   sh("fvm dart pub global activate flutterfire_cli")
-
+  
   keychain_name = ENV.fetch("KEYCHAIN_NAME", "login.keychain-db")
   team_id   = ENV.fetch("APPLE_TEAM_ID")
   bundle_id = ENV.fetch("BUNDLE_ID", "fr.yellowstone.welly.app")
   profile_name = ENV.fetch("MATCH_PROFILE_NAME", "match AppStore #{bundle_id} 1759307619")
 
-  # Manual signing pendant le build
-  update_code_signing_settings(
-    use_automatic_signing: false,
-    path: "Runner.xcodeproj",
-    targets: ["Runner"],
-    team_id: team_id,
-    code_sign_identity: "Apple Distribution",
-    profile_name: profile_name,
-    bundle_identifier: bundle_id
+  unlock_keychain(
+    path: File.expand_path("~/Library/Keychains/login.keychain-db"),
+    password: ENV["MATCH_KEYCHAIN_PASSWORD"]
   )
 
   # Repo match (doit rester privé). L’URL peut venir d’ENV
   sync_code_signing(
     type: "appstore",
-    readonly: false,
+    readonly: true,
     git_url: ENV.fetch("MATCH_GIT_URL"),
     keychain_name: keychain_name,
     keychain_password: ENV.fetch("MATCH_KEYCHAIN_PASSWORD")
   )
+
+  # S'assurer que le target Runner est bien en auto-signing (action à jour)
+  update_code_signing_settings(
+    use_automatic_signing: true,
+    path: "Runner.xcodeproj",
+    targets: ["Runner"],
+    team_id: team_id
+  )
+
+  # Préparer la config Flutter release pour la flavor prod (évite l'erreur debug mode)
+  sh("fvm flutter build ios --config-only --release --flavor prod")
 
   # API key ASC (NE PAS logger les valeurs)
   api_key = app_store_connect_api_key(
@@ -41,14 +46,11 @@ lane :beta do
     scheme: "prod",
     export_method: "app-store",
     export_team_id: team_id,
-    codesigning_identity: "Apple Distribution",
     export_options: {
-      provisioningProfiles: { bundle_id => profile_name },
-      signingStyle: "manual",
-      signingCertificate: "Apple Distribution"
+      signingStyle: "automatic",
+      provisioningProfiles: { bundle_id => profile_name }
     },
-    xcargs: "CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM=#{team_id} " \
-            "OTHER_CODE_SIGN_FLAGS='--keychain ~/Library/Keychains/#{keychain_name}'"
+    xcargs: "DEVELOPMENT_TEAM=#{team_id}"
   )
 
   # Upload des dSYM Crashlytics en post-archive (fiable, indépendant du script Xcode)
@@ -63,10 +65,4 @@ lane :beta do
     skip_waiting_for_build_processing: true
   )
 
-  update_code_signing_settings(
-    use_automatic_signing: true,
-    path: "Runner.xcodeproj",
-    targets: ["Runner"],
-    team_id: team_id
-  )
 end

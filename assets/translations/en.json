@@ -233,5 +233,8 @@
     "policy_changes_content": "We may update this policy. In the event of a significant change, we will inform you within the application.",
     "contact_title": "10. Contact",
     "contact_content": "For any questions regarding privacy, contact us: 📧 contact@welly.app"
-  }
+  },
+  "home_privacy_policy": "This app is not a medical device and does not provide diagnosis, treatment, or therapeutic advice. The information and measurements provided are for informational and wellness purposes only and may be incomplete or not applicable to your situation. Do not make any medical decisions based on this app. Always seek a doctor’s advice in addition to using this app and before making any medical decisions.",
+  "home_privacy_policy_button": "OK",
+  "home_privacy_policy_title": "Attention"
 }

@@ -249,7 +249,10 @@ class CodegenLoader extends AssetLoader{
     "policy_changes_content": "We may update this policy. In the event of a significant change, we will inform you within the application.",
     "contact_title": "10. Contact",
     "contact_content": "For any questions regarding privacy, contact us: 📧 contact@welly.app"
-  }
+  },
+  "home_privacy_policy": "This app is not a medical device and does not provide diagnosis, treatment, or therapeutic advice. The information and measurements provided are for informational and wellness purposes only and may be incomplete or not applicable to your situation. Do not make any medical decisions based on this app. Always seek a doctor’s advice in addition to using this app and before making any medical decisions.",
+  "home_privacy_policy_button": "OK",
+  "home_privacy_policy_title": "Attention"
 };
 static const Map<String,dynamic> _fr = {
   "first": "Bonjour",
@@ -486,7 +489,10 @@ static const Map<String,dynamic> _fr = {
     "policy_changes_content": "Nous pouvons mettre à jour cette politique. En cas de modification importante, nous vous informerons dans l’application.",
     "contact_title": "10. Contact",
     "contact_content": "Pour toute question concernant la vie privée, contactez-nous : 📧 contact@welly.app"
-  }
+  },
+  "home_privacy_policy": "Cette application n’est pas un dispositif médical et ne fournit ni diagnostic ni traitement, ni conseils thérapeutiques. Les informations et mesures présentées ont un but informatif et de bien‑être uniquement et peuvent être incomplètes ou inadaptées à votre situation. Ne prenez aucune décision médicale sur la base de cette application. Demandez toujours l’avis d’un médecin ou d’un professionnel de santé qualifié en plus de l’utilisation de cette application et avant toute décision médicale.",
+  "home_privacy_policy_button": "OK",
+  "home_privacy_policy_title": "Attention"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": _en, "fr": _fr};
 }

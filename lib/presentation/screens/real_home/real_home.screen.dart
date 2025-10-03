@@ -218,10 +218,6 @@ class _HomeAppBar extends ConsumerWidget implements PreferredSizeWidget {
             onPressed: () {},
             icon: const Icon(Icons.settings_outlined, color: Colors.black),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.notifications_outlined, color: Colors.black),
-          ),
         ],
         title: Align(
           alignment: Alignment.centerLeft,

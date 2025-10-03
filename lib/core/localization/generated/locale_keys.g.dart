@@ -237,5 +237,8 @@ abstract class  LocaleKeys {
   static const privacy_policy_contact_title = 'privacy_policy.contact_title';
   static const privacy_policy_contact_content = 'privacy_policy.contact_content';
   static const privacy_policy = 'privacy_policy';
+  static const home_privacy_policy = 'home_privacy_policy';
+  static const home_privacy_policy_button = 'home_privacy_policy_button';
+  static const home_privacy_policy_title = 'home_privacy_policy_title';
 
 }

@@ -1,6 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:welly/core/localization/generated/locale_keys.g.dart';
 import 'package:welly/foundation/routing/app_router.dart';
 import 'package:welly/presentation/widgets/custom_button.dart';
 import 'package:welly/presentation/widgets/text_variant.dart';
@@ -88,6 +90,7 @@ class DialogService {
                   CustomButton(
                     title: buttonTitle,
                     onTap: onButtonTap ?? _appRouter.pop,
+                    boldTitle: true,
                   ),
                   const Gap(16),
                   if (buttonTitle2 != null)
@@ -95,6 +98,7 @@ class DialogService {
                       title: buttonTitle2,
                       onTap: onButton2Tap,
                       inverted: true,
+                      boldTitle: true,
                       border: true,
                     ),
                 ],
@@ -103,6 +107,18 @@ class DialogService {
           ),
         ),
       ),
+    );
+  }
+
+  /// Show a warning dialog
+  Future<void> showWarningDialog() async {
+    final BuildContext? context = _appRouter.navigatorKey.currentContext;
+    if (context == null) return;
+
+    return showTemplateDialog<void>(
+      title: LocaleKeys.home_privacy_policy_title.tr(),
+      description: LocaleKeys.home_privacy_policy.tr(),
+      buttonTitle: LocaleKeys.home_privacy_policy_button.tr(),
     );
   }
 }

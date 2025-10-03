@@ -7,6 +7,7 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:welly/core/extensions/date.extension.dart';
 import 'package:welly/core/localization/generated/locale_keys.g.dart';
 import 'package:welly/core/providers/core/services/ai.service.provider.dart';
+import 'package:welly/core/providers/core/services/dialog.service.provider.dart';
 import 'package:welly/core/providers/core/services/happen_action.service.provider.dart';
 import 'package:welly/core/providers/core/services/navigation.service.provider.dart';
 import 'package:welly/core/providers/core/services/notification.service.provider.dart';
@@ -51,6 +52,10 @@ class RealHomeViewModel extends _$RealHomeViewModel {
       state = AsyncValue<RealHomeState>.data(
         state.value!.copyWith(doesReportExist: reportExists),
       );
+    });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ref.watch(dialogServiceProvider).showWarningDialog();
     });
 
     getStreak();
