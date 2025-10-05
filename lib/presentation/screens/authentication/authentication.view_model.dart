@@ -66,8 +66,6 @@ class Authentication extends _$Authentication {
   /// login with google
   Future<void> loginWithGoogle({void Function()? onFinished}) async {
     try {
-      // The view model is now only responsible for calling the service
-      // and handling the result. All the business logic is in the service.
       final AuthenticationService authService = await ref.watch(
         authenticationServiceProvider.future,
       );
@@ -78,7 +76,6 @@ class Authentication extends _$Authentication {
       final User? user = await authService.loginWithGoogle();
 
       if (user != null) {
-        // Track successful Google login
         await trackingService.trackLoginGoogleSuccess(userId: user.uid);
 
         if (onFinished != null) {

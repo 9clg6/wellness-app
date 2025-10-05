@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:welly/core/localization/generated/locale_keys.g.dart';
 import 'package:welly/presentation/screens/settings/settings.view_model.dart';
-import 'package:welly/presentation/screens/settings/widgets/settings_logout_tile.dart';
+import 'package:welly/presentation/screens/settings/widgets/settings_auth_tile.dart';
 import 'package:welly/presentation/screens/settings/widgets/settings_notifications_tile.dart';
 import 'package:welly/presentation/screens/settings/widgets/settings_privacy_tile.dart';
 import 'package:welly/presentation/widgets/custom_app_bar.dart';
@@ -37,7 +37,7 @@ class SettingsScreen extends ConsumerWidget {
           children: <Widget>[
             SettingsNotificationsTile(vm: vm),
             const Divider(height: 1),
-            SettingsLogoutTile(vm: vm),
+            SettingsAuthTile(vm: vm),
             const Divider(height: 1),
             SettingsPrivacyTile(vm: vm),
             const Divider(height: 1),

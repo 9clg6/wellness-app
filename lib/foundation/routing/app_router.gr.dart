@@ -31,11 +31,16 @@ class AiAnalyzeRoute extends PageRouteInfo<void> {
 class AuthenticationRoute extends PageRouteInfo<AuthenticationRouteArgs> {
   AuthenticationRoute({
     void Function()? onFinished,
+    bool isFromRealHome = false,
     Key? key,
     List<PageRouteInfo>? children,
   }) : super(
          AuthenticationRoute.name,
-         args: AuthenticationRouteArgs(onFinished: onFinished, key: key),
+         args: AuthenticationRouteArgs(
+           onFinished: onFinished,
+           isFromRealHome: isFromRealHome,
+           key: key,
+         ),
          initialChildren: children,
        );
 
@@ -47,32 +52,42 @@ class AuthenticationRoute extends PageRouteInfo<AuthenticationRouteArgs> {
       final args = data.argsAs<AuthenticationRouteArgs>(
         orElse: () => const AuthenticationRouteArgs(),
       );
-      return AuthenticationScreen(onFinished: args.onFinished, key: args.key);
+      return AuthenticationScreen(
+        onFinished: args.onFinished,
+        isFromRealHome: args.isFromRealHome,
+        key: args.key,
+      );
     },
   );
 }
 
 class AuthenticationRouteArgs {
-  const AuthenticationRouteArgs({this.onFinished, this.key});
+  const AuthenticationRouteArgs({
+    this.onFinished,
+    this.isFromRealHome = false,
+    this.key,
+  });
 
   final void Function()? onFinished;
+
+  final bool isFromRealHome;
 
   final Key? key;
 
   @override
   String toString() {
-    return 'AuthenticationRouteArgs{onFinished: $onFinished, key: $key}';
+    return 'AuthenticationRouteArgs{onFinished: $onFinished, isFromRealHome: $isFromRealHome, key: $key}';
   }
 
   @override
   bool operator ==(Object other) {
     if (identical(this, other)) return true;
     if (other is! AuthenticationRouteArgs) return false;
-    return key == other.key;
+    return isFromRealHome == other.isFromRealHome && key == other.key;
   }
 
   @override
-  int get hashCode => key.hashCode;
+  int get hashCode => isFromRealHome.hashCode ^ key.hashCode;
 }
 
 /// generated route for

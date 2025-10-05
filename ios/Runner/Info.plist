@@ -30,13 +30,14 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.920338567753-gbacip6r55ton4vd5soj5o0trqmfsmat</string>
+				<string>com.googleusercontent.apps.920338567753-d1cr9ph007t2r3inior3kq7j1tuqj120</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>GIDClientID</key>
-	<string>920338567753-gbacip6r55ton4vd5soj5o0trqmfsmat.apps.googleusercontent.com</string>
+	<string>920338567753-d1cr9ph007t2r3inior3kq7j1tuqj120.apps.googleusercontent.com</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

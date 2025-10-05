@@ -255,6 +255,8 @@
   "settings_logout_confirm_message": "Do you really want to log out?",
   "common_cancel": "Cancel",
   "common_disable": "Disable",
+  "settings_signin": "Sign in",
+  "settings_signin_subtitle": "Access your data across devices",
   "settings_delete_account_title": "Delete account",
   "settings_delete_account_subtitle": "Permanently delete your account and data",
   "settings_delete_account_message": "This action will permanently delete your account and data. This cannot be undone.",

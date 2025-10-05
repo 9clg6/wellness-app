@@ -40,8 +40,6 @@ class SettingsDeleteAccountTile extends ConsumerWidget {
       onTap: () async {
         await vm.confirmAndDeleteAccount();
       },
-      textColor: Colors.red,
-      iconColor: Colors.red,
     );
   }
 }
