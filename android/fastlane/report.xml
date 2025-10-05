@@ -5,7 +5,12 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: assembleprodRelease" time="55.209993">
+      <testcase classname="fastlane.lanes" name="0: cd .. &amp;&amp; fvm flutter build appbundle --flavor prod --release --build-number 1759688984" time="17.5189">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: upload_to_play_store" time="127.20669">
         
       </testcase>
     

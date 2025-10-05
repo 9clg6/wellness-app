@@ -313,4 +313,9 @@ class TrackingService {
   Future<void> trackSettingsPrivacyOpened() async {
     await track(AnalyticsEvents.settingsPrivacyOpened);
   }
+
+  /// Track settings delete account confirmed
+  Future<void> trackSettingsDeleteAccountConfirmed() async {
+    await track(AnalyticsEvents.settingsDeleteAccountConfirmed);
+  }
 }

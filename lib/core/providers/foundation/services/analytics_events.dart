@@ -129,4 +129,8 @@ class AnalyticsEvents {
 
   /// settingsPrivacyOpened
   static const String settingsPrivacyOpened = 'settings_privacy_opened';
+
+  /// settingsDeleteAccountConfirmed
+  static const String settingsDeleteAccountConfirmed =
+      'settings_delete_account_confirmed';
 }

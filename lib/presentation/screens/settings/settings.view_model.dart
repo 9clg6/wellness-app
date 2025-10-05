@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:welly/core/localization/generated/locale_keys.g.dart';
 import 'package:welly/core/providers/core/services/authentication.service.provider.dart';
 import 'package:welly/core/providers/core/services/dialog.service.provider.dart';
 import 'package:welly/core/providers/core/services/notification.service.provider.dart';
@@ -85,6 +87,30 @@ class SettingsViewModel extends _$SettingsViewModel {
       await ref
           .read(trackingServiceProvider)
           .trackSettingsNotificationsChanged(enabled: !currentEnabled);
+      return true;
+    }
+    return false;
+  }
+
+  /// Confirme et supprime le compte (Firebase) conformément à 5.1.1(v)
+  Future<bool> confirmAndDeleteAccount() async {
+    final bool? confirmed = await ref
+        .read(dialogServiceProvider)
+        .showConfirmDialog(
+          title: LocaleKeys.settings_delete_account_title.tr(),
+          description: LocaleKeys.settings_delete_account_message.tr(),
+          confirmLabel: LocaleKeys.settings_delete_account_confirm.tr(),
+          cancelLabel: LocaleKeys.common_cancel.tr(),
+        );
+
+    if (confirmed ?? false) {
+      final AuthenticationService authService = await ref.read(
+        authenticationServiceProvider.future,
+      );
+      await authService.deleteAccount();
+      await ref
+          .read(trackingServiceProvider)
+          .trackSettingsDeleteAccountConfirmed();
       return true;
     }
     return false;

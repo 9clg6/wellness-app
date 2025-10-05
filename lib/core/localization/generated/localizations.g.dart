@@ -270,7 +270,11 @@ class CodegenLoader extends AssetLoader{
   "settings_logout_confirm_title": "Confirm logout",
   "settings_logout_confirm_message": "Do you really want to log out?",
   "common_cancel": "Cancel",
-  "common_disable": "Disable"
+  "common_disable": "Disable",
+  "settings_delete_account_title": "Delete account",
+  "settings_delete_account_subtitle": "Permanently delete your account and data",
+  "settings_delete_account_message": "This action will permanently delete your account and data. This cannot be undone.",
+  "settings_delete_account_confirm": "Delete account"
 };
 static const Map<String,dynamic> _fr = {
   "first": "Bonjour",
@@ -528,7 +532,11 @@ static const Map<String,dynamic> _fr = {
   "settings_logout_confirm_title": "Confirmer la déconnexion",
   "settings_logout_confirm_message": "Voulez-vous vraiment vous déconnecter ?",
   "common_cancel": "Annuler",
-  "common_disable": "Désactiver"
+  "common_disable": "Désactiver",
+  "settings_delete_account_title": "Supprimer le compte",
+  "settings_delete_account_subtitle": "Supprimer définitivement ton compte et tes données",
+  "settings_delete_account_message": "Cette action supprimera définitivement ton compte et tes données. Elle est irréversible.",
+  "settings_delete_account_confirm": "Supprimer le compte"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": _en, "fr": _fr};
 }

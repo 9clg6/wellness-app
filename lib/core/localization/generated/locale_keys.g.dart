@@ -258,5 +258,9 @@ abstract class  LocaleKeys {
   static const settings_logout_confirm_message = 'settings_logout_confirm_message';
   static const common_cancel = 'common_cancel';
   static const common_disable = 'common_disable';
+  static const settings_delete_account_title = 'settings_delete_account_title';
+  static const settings_delete_account_subtitle = 'settings_delete_account_subtitle';
+  static const settings_delete_account_message = 'settings_delete_account_message';
+  static const settings_delete_account_confirm = 'settings_delete_account_confirm';
 
 }

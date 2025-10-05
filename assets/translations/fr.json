@@ -254,6 +254,10 @@
   "settings_logout_confirm_title": "Confirmer la déconnexion",
   "settings_logout_confirm_message": "Voulez-vous vraiment vous déconnecter ?",
   "common_cancel": "Annuler",
-  "common_disable": "Désactiver"
+  "common_disable": "Désactiver",
+  "settings_delete_account_title": "Supprimer le compte",
+  "settings_delete_account_subtitle": "Supprimer définitivement ton compte et tes données",
+  "settings_delete_account_message": "Cette action supprimera définitivement ton compte et tes données. Elle est irréversible.",
+  "settings_delete_account_confirm": "Supprimer le compte"
 
 }

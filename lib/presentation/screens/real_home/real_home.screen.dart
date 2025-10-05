@@ -79,7 +79,7 @@ class _HasDataBodyState extends ConsumerState<_HasDataBody>
                   const Gap(16),
                   _RowContainerStreak(),
                   const Gap(16),
-                  const _ReviewOldEventsBtn(),
+                  // const _ReviewOldEventsBtn(),
                 ],
               ),
             ),
@@ -92,6 +92,7 @@ class _HasDataBodyState extends ConsumerState<_HasDataBody>
   }
 }
 
+// ignore: unused_element incoming
 class _ReviewOldEventsBtn extends ConsumerWidget {
   const _ReviewOldEventsBtn();
 

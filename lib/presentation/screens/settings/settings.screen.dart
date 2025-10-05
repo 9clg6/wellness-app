@@ -40,6 +40,8 @@ class SettingsScreen extends ConsumerWidget {
             SettingsLogoutTile(vm: vm),
             const Divider(height: 1),
             SettingsPrivacyTile(vm: vm),
+            const Divider(height: 1),
+            SettingsDeleteAccountTile(vm: vm),
           ],
         ),
       ),

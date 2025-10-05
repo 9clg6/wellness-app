@@ -1,5 +1,21 @@
 lane :beta do
-  gradle(task: 'assemble', build_type: 'Release', flavor: 'prod')
-  aab_path = File.expand_path("../build/app/outputs/bundle/prodRelease/app-prod-release.aab", __dir__)
-  upload_to_play_store(track: 'beta', aab: aab_path)
+  # 1) Déterminer un build-number unique
+  #    - Priorité aux variables CI courantes
+  #    - Fallback: epoch (secondes) pour rester < 2_147_483_647
+  build_number = ENV['BUILD_NUMBER'] || ENV['CI_PIPELINE_IID'] || ENV['GITHUB_RUN_NUMBER'] || Time.now.to_i.to_s
+
+  UI.message("[beta] build_number=#{build_number}")
+
+  # 2) Construire l'AAB via FVM (Flutter) avec override du build-number
+  #    On est dans android/, donc on remonte à la racine du projet pour lancer Flutter
+  sh("cd .. && fvm flutter build appbundle --flavor prod --release --build-number #{build_number}")
+
+  # 3) Résoudre le chemin de sortie de l'AAB (depuis la racine du repo)
+  repo_root = File.expand_path('../..', __dir__)
+  aab_path = File.join(repo_root, 'build', 'app', 'outputs', 'bundle', 'prodRelease', 'app-prod-release.aab')
+
+  UI.user_error!("AAB introuvable à #{aab_path}") unless File.exist?(aab_path)
+
+  # 4) Upload Play Store (track beta) avec options sûres
+  upload_to_play_store(track: 'beta', aab: aab_path, validate_only: true)
 end

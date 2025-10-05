@@ -22,3 +22,26 @@ class SettingsPrivacyTile extends ConsumerWidget {
     );
   }
 }
+
+/// Tuile de paramètres pour la suppression de compte
+class SettingsDeleteAccountTile extends ConsumerWidget {
+  /// Constructeur
+  const SettingsDeleteAccountTile({required this.vm, super.key});
+
+  /// ViewModel des paramètres
+  final SettingsViewModel vm;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ListTile(
+      leading: const Icon(Icons.delete_forever_outlined, color: Colors.red),
+      title: Text(LocaleKeys.settings_delete_account_title.tr()),
+      subtitle: Text(LocaleKeys.settings_delete_account_subtitle.tr()),
+      onTap: () async {
+        await vm.confirmAndDeleteAccount();
+      },
+      textColor: Colors.red,
+      iconColor: Colors.red,
+    );
+  }
+}

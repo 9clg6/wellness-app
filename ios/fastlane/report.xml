@@ -5,52 +5,52 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: xcode_select" time="0.000168">
+      <testcase classname="fastlane.lanes" name="0: xcode_select" time="0.000178">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: fvm dart pub global activate flutterfire_cli" time="1.168261">
+      <testcase classname="fastlane.lanes" name="1: fvm dart pub global activate flutterfire_cli" time="1.254206">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: unlock_keychain" time="0.053608">
+      <testcase classname="fastlane.lanes" name="2: unlock_keychain" time="0.122665">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: sync_code_signing" time="35.281631">
+      <testcase classname="fastlane.lanes" name="3: sync_code_signing" time="178.909976">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: update_code_signing_settings" time="0.057132">
+      <testcase classname="fastlane.lanes" name="4: update_code_signing_settings" time="0.05293">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: fvm flutter build ios --config-only --release --flavor prod" time="12.443081">
+      <testcase classname="fastlane.lanes" name="5: fvm flutter build ios --config-only --release --flavor prod" time="8.035681">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: app_store_connect_api_key" time="0.005788">
+      <testcase classname="fastlane.lanes" name="6: app_store_connect_api_key" time="0.002764">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="7: build_app" time="162.719356">
+      <testcase classname="fastlane.lanes" name="7: build_app" time="146.281415">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="8: upload_symbols_to_crashlytics" time="83.608778">
+      <testcase classname="fastlane.lanes" name="8: upload_symbols_to_crashlytics" time="84.841164">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="9: upload_to_testflight" time="81.560223">
+      <testcase classname="fastlane.lanes" name="9: upload_to_testflight" time="66.749708">
         
       </testcase>
     
