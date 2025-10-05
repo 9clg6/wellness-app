@@ -101,3 +101,9 @@ ios/Runner.app.dSYM*
 *.ipa
 *.xcarchive
 welly-release-key.jks
+android/Gemfile
+android/Gemfile.lock
+android/fastlane/service-key.json
+ios/*.cer
+generateKeystore.sh
+ios/AppStore_fr.yellowstone.welly.app.mobileprovision
